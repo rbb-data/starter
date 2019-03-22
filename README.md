@@ -1,4 +1,9 @@
+# rbb-data starter
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Folder structure
+
+Your app lives in `/src`. Reusable modules should eventually be moved to `/shared` and be pushed back to Github. :) 
 
 ## Available Scripts
 

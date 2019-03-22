@@ -1,0 +1,48 @@
+$red: #e31818
+$grey: #D8D8D8
+
+.balanceGauge
+  display: inline-block
+  position: relative
+  margin: .3em 0
+
+  .bar
+    width: 80px
+    margin-right: 10px
+    height: 3px
+    top: 50%
+    transform: translateY(-50%)
+    display: inline-block
+
+    .leftBarPart,
+    .rightBarPart
+      display: inline-block
+      height: 100%
+
+    .leftBarPart
+      // width is calculated dynamically (see .jsx)
+      background: $red
+
+    .rightBarPart
+      // width is calculated dynamically (see .jsx)
+      background: $grey
+
+    .caret
+      $size: 3px
+      display: block
+      position: absolute
+      // left is calculated dynamically (see .jsx)
+      top: 5px
+      // this is a 4px downwards pointing triangle:
+      width: 0
+      height: 0
+      border-left: $size solid transparent
+      border-right: $size solid transparent
+      border-top: $size solid $red
+      // the rotation is supposed to help with anti-aliasing issues in webkit browsers
+      transform: rotate(360deg) translateX(-$size)
+
+  .text
+    display: inline-block
+    width: calc(100% - 90px)
+    vertical-align: middle

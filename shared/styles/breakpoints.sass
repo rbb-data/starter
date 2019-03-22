@@ -1,0 +1,9 @@
+$small: 500
+
+@mixin breakpoint($point)
+  @if $point == small
+    @media (max-width: #{$small}px)
+      @content
+
+\:export
+  small: $small

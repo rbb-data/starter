@@ -1,28 +1,23 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, Fragment } from 'react'
+import './App.css'
+
+// ⬇️ this is important ⬇️
+import 'leaflet/dist/leaflet.css'
+
+import { Map, TileLayer } from 'react-leaflet'
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+  render () {
+    const position = [52, 12]
+    return <Fragment>
+      <Map center={position} zoom={13} style={{ height: 300 }}>
+        <TileLayer
+          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+          attribution='&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors'
+        />
+      </Map>
+    </Fragment>
   }
 }
 
-export default App;
+export default App
