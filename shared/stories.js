@@ -1,16 +1,24 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import { storiesOf } from '@storybook/react'
 
-import 'leaflet/dist/leaflet.css'
-import { Map, TileLayer } from 'react-leaflet'
+import BalanceGauge from './components/BalanceGauge/BalanceGauge'
 
-storiesOf('Shared Components', module)
-  .add('react-leaflet', () => (
-    <Map center={[52, 12]} zoom='13' style={{ height: 300, width: 400 }}>
-      <TileLayer
-        attribution='&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors'
-        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-      />
-    </Map>
-  ))
+storiesOf('BalanceGauge', module)
+  .add('Basic', () => <Fragment>
+    <div>
+      <BalanceGauge
+        ratio={0}
+        text={ratio => `A gauge with a ratio of ${ratio}`} />
+    </div>
+    <div>
+      <BalanceGauge
+        ratio={0.3}
+        text={ratio => `A gauge with a ratio of ${ratio}`} />
+    </div>
+    <div>
+      <BalanceGauge
+        ratio={1}
+        text={ratio => `A gauge with a ratio of ${ratio}`} />
+    </div>
+  </Fragment>)
