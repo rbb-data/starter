@@ -1,9 +1,11 @@
-import { configure, addDecorator } from '@storybook/react';
+import { configure, addDecorator } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
 
+const req = require.context('../src/shared/components', true, /\.stories\.js$/)
+
 const loadStories = () => {
-  require('../src/shared/stories')
+  req.keys().forEach(filename => req(filename));
 }
 
 addDecorator(withInfo)
-configure(loadStories, module);
+configure(loadStories, module)

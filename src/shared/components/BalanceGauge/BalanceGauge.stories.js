@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 
-import BalanceGauge from './components/BalanceGauge/BalanceGauge'
+import BalanceGauge from './BalanceGauge'
 
 storiesOf('BalanceGauge', module)
   .add('Low ratio', () =>

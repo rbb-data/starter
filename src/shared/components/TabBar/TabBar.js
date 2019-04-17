@@ -1,7 +1,17 @@
 import React, { Component } from 'react'
-import _ from './styles.sass'
+import PropTypes from 'prop-types'
+import _ from './TabBar.module.sass'
 
 export default class TabBar extends Component {
+  static propTypes = {
+    onChange: PropTypes.func,
+    id: PropTypes.string,
+    options: PropTypes.array,
+    title: PropTypes.string,
+    selectedValue: PropTypes.any,
+    className: PropTypes.string
+  }
+
   constructor (props) {
     super(props)
     if (!this.props.onChange) this.props.onChange = ({ selectedValue }) => {}
@@ -12,9 +22,9 @@ export default class TabBar extends Component {
   }
 
   render () {
-    const { id, options, title, selectedValue, class: className } = this.props
+    const { id, options, title, selectedValue, className } = this.props
 
-    return <div class={`${_.radioFilter} ${className}`}>
+    return <div className={`${_.radioFilter} ${className}`}>
       <ul title={title}>
         { options.map((option, i) => <li className={option.value === selectedValue && _.active}>
           <input
