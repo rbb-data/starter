@@ -1,7 +1,7 @@
 /* eslint-env browser */
 import style from './styles.sass'
 
-import React, { Component } from  'react'
+import React, { Component } from 'react'
 import searchIcon from './img/searchIcon.svg'
 import closeIcon from './img/closeIcon.svg'
 import dropdownIcon from './img/dropdownIcon.svg'

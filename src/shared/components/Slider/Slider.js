@@ -1,8 +1,32 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import nextIcon from './nextIcon.svg'
-import _ from './styles.sass'
+import _ from './Slider.module.sass'
 
+/**
+ * Adds prev next icons around provided content and provides functions for navigating
+ * backward and forward throgh content (on mobile with swipe gesture).
+ */
 export default class Slider extends Component {
+  static propTypes = {
+    /** the currently visible slide */
+    currentSlide: PropTypes.node.isRequired,
+    /** used during slide animation and user gestures
+        set to `null` to dissable backward navigation */
+    previousSlide: PropTypes.node,
+    /** used during slide animation and user gestures
+        set to `null` to dissable forward navigation */
+    nextSlide: PropTypes.node,
+    /** called after user did navigate forward */
+    onBackwardNavigation: PropTypes.func,
+    /** called after user did navigate backward */
+    onForwardNavigation: PropTypes.func,
+    /** when Slider is focusable user can navigate with keyboard */
+    canHaveFocus: PropTypes.bool,
+    showSlideButtons: PropTypes.bool,
+    className: PropTypes.string
+  }
+
   static defaultProps = {
     onBackwardNavigation: () => {},
     onForwardNavigation: () => {},
@@ -92,24 +116,13 @@ export default class Slider extends Component {
     }
   }
 
-  // When a user selects something on the map or in the search the content
-  // of the slider will change and componentDidUpdate will be called
-  // so now we set the focus here so we can use keyboard navigation
-  // focusSlider = () => {
-  //   this.ref.focus()
-  // }
-  // componentDidMount () {
-  //   this.focusSlider()
-  // }
-
   componentDidUpdate () {
-    // this.focusSlider()
     this.resetTransition()
   }
 
-  render (props) {
+  render () {
     const {
-      class: className,
+      className,
       onForwardNavigation: navigateForward,
       onBackwardNavigation: navigateBack,
       previousSlide,
@@ -117,7 +130,7 @@ export default class Slider extends Component {
       nextSlide,
       canHaveFocus,
       showSlideButtons
-    } = props
+    } = this.props
 
     const wrapperProps = {
       class: `${_.slider} ${className} ${showSlideButtons && _.hasSlideButtons}`,
@@ -131,21 +144,21 @@ export default class Slider extends Component {
     }
 
     return <div {...wrapperProps}>
-      <div class={_.content} ref={ref => { this.contentRef = ref }}>
-        <div class={_.previousSlideWrapper}>{previousSlide}</div>
+      <div className={_.content} ref={ref => { this.contentRef = ref }}>
+        <div className={_.previousSlideWrapper}>{previousSlide}</div>
         {currentSlide}
-        <div class={_.nextSlideWrapper}>{nextSlide}</div>
+        <div className={_.nextSlideWrapper}>{nextSlide}</div>
       </div>
 
       { showSlideButtons &&
         <div>
           { !!previousSlide &&
-            <button class={`${_.prevNextButton} ${_.prev}`} onClick={navigateBack}>
+            <button className={`${_.prevNextButton} ${_.prev}`} onClick={navigateBack}>
               <img src={nextIcon} />
             </button>
           }
           { !!nextSlide &&
-            <button class={`${_.prevNextButton} ${_.next}`} onClick={navigateForward}>
+            <button className={`${_.prevNextButton} ${_.next}`} onClick={navigateForward}>
               <img src={nextIcon} />
             </button>
           }
