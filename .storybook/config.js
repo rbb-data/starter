@@ -7,5 +7,5 @@ const loadStories = () => {
   req.keys().forEach(filename => req(filename));
 }
 
-addDecorator(withInfo)
+addDecorator(withInfo({ inline: true, header: false }))
 configure(loadStories, module)

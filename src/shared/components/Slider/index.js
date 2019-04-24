@@ -1,4 +1,4 @@
-import React, { Component } from  'react'
+import React, { Component } from 'react'
 import nextIcon from './nextIcon.svg'
 import _ from './styles.sass'
 

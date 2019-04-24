@@ -1,10 +1,14 @@
 import React from 'react'
 
 import { storiesOf } from '@storybook/react'
+import { withKnobs } from '@storybook/addon-knobs'
+import { withSmartKnobs } from 'storybook-addon-smart-knobs'
 
 import BalanceGauge from './BalanceGauge'
 
 storiesOf('BalanceGauge', module)
+  .addDecorator(withSmartKnobs)
+  .addDecorator(withKnobs)
   .add('Low ratio', () =>
     <BalanceGauge
       ratio={0}

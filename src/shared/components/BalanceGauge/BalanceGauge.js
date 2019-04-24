@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import style from './BalanceGauge.module.sass'
 
 /**
@@ -8,9 +9,6 @@ import style from './BalanceGauge.module.sass'
  *        ⌄
  *     --------   {{here comes a user defined text}}
  *
- * @param {Number}    ratio Number between 0 and 1
- * @param {Function}  text  Function that gets passed the current ratio and
- *                          should return descriptive text.
  */
 
 const BalanceGauge = ({ className, ratio, text }) => {
@@ -22,6 +20,16 @@ const BalanceGauge = ({ className, ratio, text }) => {
     </div>
     <span className={style.text}>{text(ratio)}</span>
   </div>
+}
+
+BalanceGauge.propTypes = {
+  /** Custom className */
+  className: PropTypes.string,
+  /** Number between 0 and 1 */
+  ratio: PropTypes.number.isRequired,
+  /** Function that gets passed the current ratio and
+  *    should return descriptive text. */
+  text: PropTypes.func.isRequired
 }
 
 export default BalanceGauge
