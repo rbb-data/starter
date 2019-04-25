@@ -1,78 +1,90 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import searchIcon from './img/searchIcon.svg'
 import closeIcon from './img/closeIcon.svg'
 import dropdownIcon from './img/dropdownIcon.svg'
 import styles from './SearchInput.module.sass'
 
-const DropdownButton = props => {
-  const { showResetState, onClick } = props
-
-  return !showResetState
-    ? <button key='dropdown' className={styles.searchButton} onClick={onClick}>
-      <img src={dropdownIcon} className={styles.dropdown} />
-    </button>
-    : <button key='reset' className={styles.searchButton} type={'reset'}>
-      <img src={closeIcon} />
-    </button>
-}
-
-DropdownButton.propTypes = {
-  showResetState: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired
-}
-
-const SearchButton = ({ showResetState }) => {
-  return showResetState
-    ? <button key='reset' className={styles.searchButton} type={'reset'}>
-      <img src={closeIcon} />
-    </button>
-    : <button key='submit' className={styles.searchButton} type={'submit'}>
-      <img src={searchIcon} />
-    </button>
+const SearchButton = ({ type, defaultAction }) => {
+  switch (type) {
+    case 'search':
+      return <button key='submit' className={styles.searchButton} type={'submit'}>
+        <img src={searchIcon} />
+      </button>
+    case 'dropdown':
+      return <button key='dropdown' className={styles.searchButton} onClick={defaultAction}>
+        <img src={dropdownIcon} className={styles.dropdown} />
+      </button>
+    case 'cancel':
+      return <button key='reset' className={styles.searchButton} type={'reset'}>
+        <img src={closeIcon} />
+      </button>
+  }
 }
 
 SearchButton.propTypes = {
-  showResetState: PropTypes.bool.isRequired
+  type: PropTypes.oneOf(['search', 'dropdown', 'cancel']).isRequired,
+  defaultAction: PropTypes.func.isRequired
 }
 
+/**
+ * SearchInput that can show a list of suggestions
+ *
+ */
 const SearchInput = props => {
   const {
     className,
-    asDropdown,
+    buttonType,
     placeholder, nothingFoundText,
     suggestions,
     onReset, onResult, onInput } = props
 
   const [text, setText] = useState('')
+  const [result, setResult] = useState(null)
   const [highlightedSuggestion, setHighlightedSuggestion] = useState(0)
+  const inputRef = useRef()
   const nothingFound = suggestions && suggestions.length === 0
   const wrapperClassName = `${className} ${styles.searchWrapper}`
+
+  function setNewResult (result) {
+    if (!result) return
+
+    setHighlightedSuggestion(0)
+    setResult(result)
+    setText(result.label)
+    onResult(result.value)
+  }
 
   function handleReset () {
     setText('')
     onReset()
+    setResult(null)
+    setHighlightedSuggestion(0)
+  }
+
+  function handleSuggestionSelect (result) {
+    setNewResult(result)
   }
 
   function handleSubmit (e) {
     e.preventDefault()
-    const result = (suggestions && suggestions[highlightedSuggestion])
-    if (result) {
-      setText(result.label)
-      onResult(result.value)
-    }
+    const newResult = (suggestions && suggestions[highlightedSuggestion]) || result
+    setNewResult(newResult)
   }
 
   function handleInput (e) {
     e.preventDefault()
     const { target: { value } } = e
+
     setText(value)
     onInput(value)
+    setHighlightedSuggestion(0)
+    setResult(null)
   }
 
   function handleFocus (e) {
-    this.handleInput(e)
-    this.inputElement.focus()
+    handleInput(e)
+    inputRef.current.focus()
   }
 
   function handleKeyDown (e) {
@@ -103,7 +115,7 @@ const SearchInput = props => {
         onKeyDown={handleKeyDown}>
 
         <input
-          ref={elem => { this.inputElement = elem }}
+          ref={inputRef}
           type='text'
           placeholder={placeholder}
           value={text}
@@ -111,17 +123,14 @@ const SearchInput = props => {
           onFocus={handleFocus}
           autoComplete={'off'} />
 
-        {asDropdown
-          ? <DropdownButton showResetState={suggestions !== null} onClick={handleReset} />
-          : <SearchButton showResetState={false} />
-        }
+        <SearchButton type={buttonType} defaultAction={handleFocus} />
       </form>
 
       {suggestions &&
         <ul className={styles.resultList}>
           {suggestions.map((suggestion, i) =>
             <li
-              onClick={onResult(suggestion.value)}
+              onClick={handleSuggestionSelect(suggestion)}
               className={highlightedSuggestion === i ? styles.active : ''}>
               <div className={styles.inner}>{suggestion.label}</div>
             </li>)
@@ -137,22 +146,19 @@ const SearchInput = props => {
 
 SearchInput.propTypes = {
   className: PropTypes.string,
-  /** Input can be used as dropdown
-      this only alters the search button:
-   - *when asDropdown is `false`:*
-     button will show a search icon
-     button click will call onResult function with the highlighted suggestion
-
-   - *when asDropdown is `true`:*
-     button will show a triangle
-     button click will focus input and call onInput with ''
-
+  /** You can set different button types that have different actions
+   *
+   * - search: magnifining class; when clicked calls onResult with the selected suggestion
+   * - dropdown: triangle; when clicked focuses the input and calls onInput
+   * - cancel: cross; when clicked clears the input and calls onReset
    */
-  asDropdown: PropTypes.bool,
+  buttonType: PropTypes.oneOf(['search', 'dropdown', 'cancel']),
   placeholder: PropTypes.string,
   /** text shown when suggestions are an empty array */
   nothingFoundText: PropTypes.string,
-  /** list of possible results that can be selected by the user */
+  /** list of possible results that can be selected by the user
+   *  set to `null` to show no suggestions and to `[]` to show nothingFound state
+   */
   suggestions: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.any.isRequired,
     label: PropTypes.string.isRequired
@@ -166,7 +172,7 @@ SearchInput.propTypes = {
 }
 
 SearchInput.defaultProps = {
-  asDropdown: false,
+  buttonType: 'search',
   placeholder: '',
   nothingFoundText: 'Nichts gefunden',
   suggestions: null,
