@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
+import debounce from 'lodash/debounce'
 import { autocomplete, fixBerlinSearchResult } from './openrouteservice.js'
 
 const label = feature => `${feature.properties.name}, ${feature.properties.neighbourhood ? `${feature.properties.neighbourhood},` : ''} ${feature.properties.region}`
 
-async function makeRequest (searchString) {
+const makeRequest = debounce(async (searchString, setSuggestions) => {
   // TODO:
   const layers = ['address']
   const location = 'berlin'
@@ -25,17 +26,15 @@ async function makeRequest (searchString) {
         }
       }
     }))
-  return features
-}
+
+  setSuggestions(features)
+}, 300, { 'leading': true, 'trailing': true })
 
 function useOpenrouteservice (config) {
   const [searchString, setSearchString] = useState(null)
   const [suggestions, setSuggestions] = useState(null)
 
-  useEffect(() => {
-    makeRequest(searchString)
-      .then(result => { setSuggestions(result) })
-  }, [searchString])
+  useEffect(() => { makeRequest(searchString, setSuggestions) }, [searchString])
 
   function clearSuggestions () {
     setSuggestions(null)
