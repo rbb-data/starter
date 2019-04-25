@@ -9,14 +9,15 @@ import SearchInput from '../SearchInput/SearchInput'
  * you can use this as is or as an example to create your own search from
  */
 const LocationSearch = props => {
-  const { keepInputOnFocus, onResult, onReset } = props
+  const { keepInputOnFocus, openrouteConfig, onResult, onReset } = props
 
-  const { suggestions, setSearchString, clearSuggestions } = useOpenrouteservice()
+  const { suggestions, setSearchString, clearSuggestions } = useOpenrouteservice(openrouteConfig)
   const [result, setResult] = useState(null)
+  const showCancel = result || (suggestions && suggestions.length === 0)
 
   return <SearchInput
     textInputValue={result}
-    buttonType={result ? 'cancel' : 'search'}
+    buttonType={showCancel ? 'cancel' : 'search'}
     keepInputOnFocus={keepInputOnFocus}
     suggestions={suggestions}
     onInput={setSearchString}
@@ -33,12 +34,19 @@ const LocationSearch = props => {
 }
 
 LocationSearch.propTypes = {
+  /** see: https://openrouteservice.org/dev/#/api-docs/geocode/autocomplete/get */
+  openrouteConfig: PropTypes.shape({
+    location: PropTypes.oneOf(['berlin', 'brandenburg']),
+    layers: PropTypes.arrayOf(PropTypes.string),
+    sources: PropTypes.arrayOf(PropTypes.string)
+  }),
   keepInputOnFocus: PropTypes.bool,
   onResult: PropTypes.func,
   onReset: PropTypes.func
 }
 
 LocationSearch.defaultProps = {
+  openrouteConfig: { layers: ['street'], location: 'berlin', sources: 'osm' },
   keepInputOnFocus: true
 }
 

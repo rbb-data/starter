@@ -4,14 +4,17 @@ import { autocomplete, fixBerlinSearchResult } from './openrouteservice.js'
 
 const label = feature => `${feature.properties.name}, ${feature.properties.neighbourhood ? `${feature.properties.neighbourhood},` : ''} ${feature.properties.region}`
 
-const makeRequest = debounce(async (searchString, setSuggestions) => {
-  // TODO:
-  const layers = ['address']
-  const location = 'berlin'
-
+const makeRequest = debounce(async ({ searchString, config, setSuggestions }) => {
   if (searchString === null || searchString.trim() === '') return null
 
-  const params = { layers: layers.join(','), text: searchString, location }
+  const { layers, location, sources } = config
+  const params = {
+    layers: layers.join(','),
+    sources: sources.join(','),
+    location: location,
+    text: searchString
+  }
+
   const result = await autocomplete(params)
   const features = result.features
     .map(feature => fixBerlinSearchResult(feature))
@@ -34,7 +37,7 @@ function useOpenrouteservice (config) {
   const [searchString, setSearchString] = useState(null)
   const [suggestions, setSuggestions] = useState(null)
 
-  useEffect(() => { makeRequest(searchString, setSuggestions) }, [searchString])
+  useEffect(() => { makeRequest({ searchString, config, setSuggestions }) }, [searchString])
 
   function clearSuggestions () {
     setSuggestions(null)

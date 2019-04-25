@@ -13,10 +13,11 @@ const SimpleSearch = props => {
 
   const { suggestions, setSearchString, clearSuggestions } = useFuseJsSearch(list)
   const [result, setResult] = useState(null)
+  const showCancel = result || (suggestions && suggestions.length === 0)
 
   return <SearchInput
     textInputValue={result}
-    buttonType={result ? 'cancel' : 'search'}
+    buttonType={showCancel ? 'cancel' : 'search'}
     keepInputOnFocus={keepInputOnFocus}
     suggestions={suggestions}
     onInput={setSearchString}

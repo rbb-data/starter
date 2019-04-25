@@ -103,9 +103,9 @@ export function fixBerlinSearchResult (feature) {
  * Fetches autocomplete suggestions for a string of text.
  *
  * @param  {String} text                      Text to base the suggestions on
- * @param  {Array}  [boundingBox=[]]          An array of [{lat, lng}, {lat, lng}] in the order top-left bottom-right
- * @param  {String} [layers='locality']       Which layers to search for in autosuggestions; see https://mapzen.com/documentation/search/autocomplete/#available-autocomplete-parameters
- * @param  {String} [sources='openaddresses'] Also refer to https://mapzen.com/documentation/search/autocomplete/
+ * @param  {String} location='berlin'         berlin or brandenburg the bounding box for the search
+ * @param  {String} [layers='locality']       Which layers to search for in autosuggestions; see https://openrouteservice.org/dev/#/api-docs/geocode/autocomplete/get
+ * @param  {String} sources='osm'             Also refer to https://openrouteservice.org/dev/#/api-docs/geocode/autocomplete/get
  * @return {Promise}                          A promise that resolves to a list of suggestions, like [{name, latLon}] in descending order of precedence
  */
 export function autocomplete ({ text, layers = 'street', sources = 'osm', location = 'berlin' }) {
