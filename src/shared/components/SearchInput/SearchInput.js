@@ -128,6 +128,7 @@ const SearchInput = props => {
         <ul className={styles.resultList}>
           {suggestions.map((suggestion, i) =>
             <li
+              key={i}
               onClick={() => { setNewResult(suggestion) }}
               className={highlightedSuggestion === i ? styles.active : ''}>
               <div className={styles.inner}>{suggestion.label}</div>
