@@ -37,11 +37,10 @@ const SearchInput = props => {
     buttonType, keepInputOnFocus,
     placeholder, nothingFoundText,
     suggestions,
-    value,
+    textInputValue,
     onReset, onResult, onInput } = props
 
-  const [text, setText] = useState('')
-  const [result, setResult] = useState(null)
+  const [searchString, setSearchString] = useState('')
   const [highlightedSuggestion, setHighlightedSuggestion] = useState(0)
   const inputRef = useRef()
   const nothingFound = suggestions && suggestions.length === 0
@@ -51,21 +50,18 @@ const SearchInput = props => {
     if (!result) return
 
     setHighlightedSuggestion(0)
-    setResult(result)
-    setText(result.label)
-    onResult(result.value)
+    onResult(result)
   }
 
   function handleReset () {
-    setText('')
+    setSearchString('')
     onReset()
-    setResult(null)
     setHighlightedSuggestion(0)
   }
 
   function handleSubmit (e) {
     e.preventDefault()
-    const newResult = (suggestions && suggestions[highlightedSuggestion]) || result
+    const newResult = (suggestions && suggestions[highlightedSuggestion])
     setNewResult(newResult)
   }
 
@@ -73,20 +69,18 @@ const SearchInput = props => {
     e.preventDefault()
     const { target: { value } } = e
 
-    setText(value)
+    setSearchString(value)
     onInput(value)
     setHighlightedSuggestion(0)
-    setResult(null)
   }
 
   function handleFocus (e) {
     if (keepInputOnFocus) {
       handleInput(e)
     } else {
-      setText('')
+      setSearchString('')
       onInput('')
       setHighlightedSuggestion(0)
-      setResult(null)
     }
     inputRef.current.focus()
   }
@@ -122,7 +116,7 @@ const SearchInput = props => {
           ref={inputRef}
           type='text'
           placeholder={placeholder}
-          value={value || text}
+          value={textInputValue || searchString}
           onInput={handleInput}
           onFocus={handleFocus}
           autoComplete={'off'} />
@@ -150,10 +144,8 @@ const SearchInput = props => {
 
 SearchInput.propTypes = {
   className: PropTypes.string,
-  /** with this you can take full controll over the value of the text input
-   *  probably you don't want to do this
-   */
-  value: PropTypes.string,
+  /** set the value of the textinput manually */
+  textInputValue: PropTypes.string,
   /** You can set different button types that have different actions
    *
    * - search: magnifining class; when clicked calls onResult with the selected suggestion
@@ -181,7 +173,7 @@ SearchInput.propTypes = {
 }
 
 SearchInput.defaultProps = {
-  value: null,
+  textInputValue: null,
   buttonType: 'search',
   keepInputOnFocus: false,
   placeholder: '',

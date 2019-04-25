@@ -18,7 +18,6 @@ storiesOf('SearchInput', module)
   .add('With suggestions', () => {
     return <SearchInput
       placeholder={text('placeholder', 'Suchbegriff eingeben')}
-      nothingFoundText={text('nothingFoundText', 'Nichts gefunden')}
       suggestions={object('suggestions', [
         { value: 0, label: 'Apple' },
         { value: 1, label: 'Banana' }
@@ -52,11 +51,10 @@ storiesOf('SearchInput', module)
       onReset={action('onReset')}
       onResult={action('onResult')} />
   })
-  .add('With controlled value', () => {
+  .add('With controlled Input', () => {
     return <SearchInput
-      value={text('value', 'Banana')}
+      textInputValue={text('textInputValue', 'Banana')}
       buttonType='cancel'
-      placeholder={text('placeholder', 'Suchbegriff eingeben')}
       onInput={action('onInput')}
       onReset={action('onReset')}
       onResult={action('onResult')} />

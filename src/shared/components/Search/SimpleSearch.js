@@ -12,22 +12,23 @@ export const SimpleSearch = props => {
   const { list, keepInputOnFocus, onResult, onReset } = props
 
   const { suggestions, setSearchString, clearSuggestions } = useFuseJsSearch(list)
-  const [hasResult, setHasResult] = useState(false)
+  const [result, setResult] = useState(null)
 
   return <SearchInput
-    buttonType={hasResult ? 'cancel' : 'search'}
+    textInputValue={result}
+    buttonType={result ? 'cancel' : 'search'}
     keepInputOnFocus={keepInputOnFocus}
     suggestions={suggestions}
     onInput={setSearchString}
     onReset={() => {
       onReset()
       clearSuggestions()
-      setHasResult(false)
+      setResult(null)
     }}
-    onResult={value => {
-      onResult(value)
+    onResult={result => {
+      onResult(result)
+      setResult(result.label)
       clearSuggestions()
-      setHasResult(true)
     }} />
 }
 
