@@ -37,6 +37,7 @@ const SearchInput = props => {
     buttonType,
     placeholder, nothingFoundText,
     suggestions,
+    value,
     onReset, onResult, onInput } = props
 
   const [text, setText] = useState('')
@@ -60,10 +61,6 @@ const SearchInput = props => {
     onReset()
     setResult(null)
     setHighlightedSuggestion(0)
-  }
-
-  function handleSuggestionSelect (result) {
-    setNewResult(result)
   }
 
   function handleSubmit (e) {
@@ -118,7 +115,7 @@ const SearchInput = props => {
           ref={inputRef}
           type='text'
           placeholder={placeholder}
-          value={text}
+          value={value || text}
           onInput={handleInput}
           onFocus={handleFocus}
           autoComplete={'off'} />
@@ -130,7 +127,7 @@ const SearchInput = props => {
         <ul className={styles.resultList}>
           {suggestions.map((suggestion, i) =>
             <li
-              onClick={handleSuggestionSelect(suggestion)}
+              onClick={() => { setNewResult(suggestion) }}
               className={highlightedSuggestion === i ? styles.active : ''}>
               <div className={styles.inner}>{suggestion.label}</div>
             </li>)
@@ -146,6 +143,10 @@ const SearchInput = props => {
 
 SearchInput.propTypes = {
   className: PropTypes.string,
+  /** with this you can take full controll over the value of the text input
+   *  probably you don't want to do this
+   */
+  value: PropTypes.string,
   /** You can set different button types that have different actions
    *
    * - search: magnifining class; when clicked calls onResult with the selected suggestion
@@ -172,6 +173,7 @@ SearchInput.propTypes = {
 }
 
 SearchInput.defaultProps = {
+  value: null,
   buttonType: 'search',
   placeholder: '',
   nothingFoundText: 'Nichts gefunden',
