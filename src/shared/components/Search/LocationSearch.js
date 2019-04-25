@@ -1,36 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
 import useOpenrouteservice from './useOpenrouteservice'
+import useDefaultSearchProps from './useDefaultSearchProps'
 import PropTypes from 'prop-types'
 
 import SearchInput from '../SearchInput/SearchInput'
 
 /**
- * This is a basic example of how to use the SearchInput component
- * you can use this as is or as an example to create your own search from
+ * This is a basic example of how to use the SearchInput component with Openrouteservice
+ * you can use this as is – or as an example for creating your own search
  */
 const LocationSearch = props => {
   const { keepInputOnFocus, openrouteConfig, onResult, onReset } = props
 
-  const { suggestions, setSearchString, clearSuggestions } = useOpenrouteservice(openrouteConfig)
-  const [result, setResult] = useState(null)
-  const showCancel = result || (suggestions && suggestions.length === 0)
+  const suggestionAccessors = useOpenrouteservice(openrouteConfig)
+  const searchProps = useDefaultSearchProps({ ...suggestionAccessors, onReset, onResult })
 
-  return <SearchInput
-    textInputValue={result}
-    buttonType={showCancel ? 'cancel' : 'search'}
-    keepInputOnFocus={keepInputOnFocus}
-    suggestions={suggestions}
-    onInput={setSearchString}
-    onReset={() => {
-      onReset()
-      clearSuggestions()
-      setResult(null)
-    }}
-    onResult={result => {
-      onResult(result)
-      setResult(result.label)
-      clearSuggestions()
-    }} />
+  return <SearchInput {...searchProps} keepInputOnFocus={keepInputOnFocus} />
 }
 
 LocationSearch.propTypes = {
