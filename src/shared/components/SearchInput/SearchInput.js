@@ -34,7 +34,7 @@ SearchButton.propTypes = {
 const SearchInput = props => {
   const {
     className,
-    buttonType,
+    buttonType, keepInputOnFocus,
     placeholder, nothingFoundText,
     suggestions,
     value,
@@ -80,7 +80,14 @@ const SearchInput = props => {
   }
 
   function handleFocus (e) {
-    handleInput(e)
+    if (keepInputOnFocus) {
+      handleInput(e)
+    } else {
+      setText('')
+      onInput('')
+      setHighlightedSuggestion(0)
+      setResult(null)
+    }
     inputRef.current.focus()
   }
 
@@ -154,6 +161,7 @@ SearchInput.propTypes = {
    * - cancel: cross; when clicked clears the input and calls onReset
    */
   buttonType: PropTypes.oneOf(['search', 'dropdown', 'cancel']),
+  keepInputOnFocus: PropTypes.bool,
   placeholder: PropTypes.string,
   /** text shown when suggestions are an empty array */
   nothingFoundText: PropTypes.string,
@@ -162,7 +170,7 @@ SearchInput.propTypes = {
    */
   suggestions: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.any.isRequired,
-    label: PropTypes.string.isRequired
+    label: PropTypes.node.isRequired
   })),
   /** called when user clicks reset button */
   onReset: PropTypes.func,
@@ -175,6 +183,7 @@ SearchInput.propTypes = {
 SearchInput.defaultProps = {
   value: null,
   buttonType: 'search',
+  keepInputOnFocus: false,
   placeholder: '',
   nothingFoundText: 'Nichts gefunden',
   suggestions: null,
