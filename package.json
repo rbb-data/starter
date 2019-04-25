@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "chroma-js": "^2.0.3",
     "fuse.js": "^3.4.4",
     "leaflet": "^1.4.0",
     "node-sass": "^4.11.0",
