@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions'
 import { withKnobs, optionsKnob, radios } from '@storybook/addon-knobs'
 import { withSmartKnobs } from 'storybook-addon-smart-knobs'
 
-import { SimpleSearch, DropdownSearch, LocationSearch } from './Search'
+import { SimpleSearch, DropdownSearch, DropdownSearchWithReactNodes, LocationSearch } from './Search'
 
 const list = [
   { value: 'apple', label: 'Apple' },
@@ -25,6 +25,9 @@ storiesOf('Search', module)
   )
   .add('DropdownSearch', () =>
     <DropdownSearch list={list} onResult={action('onResult')} />
+  )
+  .add('DropdownSearchWithReactNodes', () =>
+    <DropdownSearchWithReactNodes list={list} onResult={action('onResult')} />
   )
   .add('LocationSearch', () => {
     const layers = {

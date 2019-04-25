@@ -1,9 +1,9 @@
 import React from 'react'
-import useFuseJsSearch from './useFuseJsSearch'
-import useDropdownSearchProps from './useDropdownSearchProps'
+import useFuseJsSearch from '../hooks/useFuseJsSearch'
+import useDropdownSearchProps from '../hooks/useDropdownSearchProps'
 import PropTypes from 'prop-types'
 
-import SearchInput from '../SearchInput/SearchInput'
+import SearchInput from '../../SearchInput/SearchInput'
 
 /**
  * This is a basic example of how to use the search SearchInput component as dropdown
@@ -11,8 +11,8 @@ import SearchInput from '../SearchInput/SearchInput'
  */
 const DropdownSearch = props => {
   const { list, onResult } = props
-  const suggestionAccessors = useFuseJsSearch(list, { returnAllOnEmptyString: true })
-  const searchProps = useDropdownSearchProps({ ...suggestionAccessors, handleResult: onResult })
+  const { suggestions, setSearchString } = useFuseJsSearch(list, { returnAllOnEmptyString: true })
+  const searchProps = useDropdownSearchProps({ suggestions, setSearchString, onResult })
 
   return <SearchInput {...searchProps} />
 }

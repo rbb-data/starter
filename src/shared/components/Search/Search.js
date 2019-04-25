@@ -1,3 +1,4 @@
-export { default as DropdownSearch } from './DropdownSearch'
-export { default as SimpleSearch } from './SimpleSearch'
-export { default as LocationSearch } from './LocationSearch'
+export { default as DropdownSearch } from './examples/DropdownSearch'
+export { default as DropdownSearchWithReactNodes } from './examples/DropdownSearchWithReactNodes'
+export { default as SimpleSearch } from './examples/SimpleSearch'
+export { default as LocationSearch } from './examples/LocationSearch'

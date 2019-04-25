@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import debounce from 'lodash/debounce'
-import { autocomplete, fixBerlinSearchResult } from './openrouteservice.js'
+import { autocomplete, fixBerlinSearchResult } from '../openrouteservice.js'
 
 const label = feature => `${feature.properties.name}, ${feature.properties.neighbourhood ? `${feature.properties.neighbourhood},` : ''} ${feature.properties.region}`
 

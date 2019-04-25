@@ -140,9 +140,17 @@ const SearchInput = props => {
 }
 
 SearchInput.propTypes = {
-  className: PropTypes.string,
   /** the value of the textinput */
   value: PropTypes.string,
+
+  /** list of possible results that can be selected by the user
+   *  set to `null` to show no suggestions and to `[]` to show nothingFound state
+   */
+  suggestions: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.any.isRequired,
+    label: PropTypes.node.isRequired
+  })),
+
   /** You can set different button types that have different actions
    *
    * - search: magnifining class; when clicked calls onResult with the selected suggestion
@@ -150,21 +158,20 @@ SearchInput.propTypes = {
    * - cancel: cross; when clicked clears the input and calls onReset
    */
   buttonType: PropTypes.oneOf(['search', 'dropdown', 'cancel']),
+
   keepInputOnFocus: PropTypes.bool,
+  className: PropTypes.string,
   placeholder: PropTypes.string,
+
   /** text shown when suggestions are an empty array */
   nothingFoundText: PropTypes.string,
-  /** list of possible results that can be selected by the user
-   *  set to `null` to show no suggestions and to `[]` to show nothingFound state
-   */
-  suggestions: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.any.isRequired,
-    label: PropTypes.string.isRequired
-  })),
+
   /** called when user clicks reset button */
   onReset: PropTypes.func,
+
   /** called when user selects a suggestion */
   onResult: PropTypes.func,
+
   /** called when text input changes */
   onInput: PropTypes.func
 }

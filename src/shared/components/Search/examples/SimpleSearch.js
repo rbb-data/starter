@@ -1,9 +1,9 @@
 import React from 'react'
-import useFuseJsSearch from './useFuseJsSearch'
-import useDefaultSearchProps from './useDefaultSearchProps'
+import useFuseJsSearch from '../hooks/useFuseJsSearch'
+import useDefaultSearchProps from '../hooks/useDefaultSearchProps'
 import PropTypes from 'prop-types'
 
-import SearchInput from '../SearchInput/SearchInput'
+import SearchInput from '../../SearchInput/SearchInput'
 
 /**
  * This is a basic example of how to use the SearchInput component
@@ -12,8 +12,8 @@ import SearchInput from '../SearchInput/SearchInput'
 const SimpleSearch = props => {
   const { list, keepInputOnFocus, onResult, onReset } = props
 
-  const suggestionAccessors = useFuseJsSearch(list)
-  const searchProps = useDefaultSearchProps({ ...suggestionAccessors, onReset, onResult })
+  const { suggestions, setSearchString } = useFuseJsSearch(list)
+  const searchProps = useDefaultSearchProps({ suggestions, setSearchString, onReset, onResult })
 
   return <SearchInput {...searchProps} keepInputOnFocus={keepInputOnFocus} />
 }
