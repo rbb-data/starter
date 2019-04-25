@@ -1,0 +1,29 @@
+$slant-width: 4px
+
+@mixin slant-left($height: 40px, $color: $dark-grey)
+  &::before
+    position: absolute
+    content: ''
+    display: block
+    left: $slant-width * -1
+    top: 0
+    width: 0
+    height: 0
+    border: 0 solid transparent
+    border-right-width: $slant-width
+    border-right-color: $color
+    border-top-width: $height
+
+@mixin slant-right($height: 40px, $color: $dark-grey)
+  &::after
+    position: absolute
+    content: ''
+    display: block
+    right: $slant-width * -1
+    top: 0
+    width: 0
+    height: 0
+    border: 0 solid transparent
+    border-left-width: $slant-width
+    border-left-color: $color
+    border-bottom-width: $height
