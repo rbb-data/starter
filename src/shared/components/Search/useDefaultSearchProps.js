@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function useDefaultSearchProps ({ suggestions, setSearchString, clearSuggestions, onReset, onResult }) {
+function useDefaultSearchProps ({ suggestions, setSearchString, onReset, onResult }) {
   const [value, setValue] = useState('')
   const [hasResult, setHasResult] = useState(false)
   const showCancel = hasResult || (suggestions && suggestions.length === 0)
@@ -11,24 +11,30 @@ function useDefaultSearchProps ({ suggestions, setSearchString, clearSuggestions
     buttonType: showCancel ? 'cancel' : 'search',
     keepInputOnFocus: true,
     onInput (value) {
+      // update internal state
       setValue(value)
       setHasResult(false)
 
+      // calll external handlers
       setSearchString(value)
     },
     onReset () {
-      onReset()
-      clearSuggestions()
-
+      // update internal state
       setValue('')
       setHasResult(false)
+
+      // calll external handlers
+      setSearchString(null)
+      onReset()
     },
     onResult (result) {
-      onResult(result)
-      clearSuggestions()
-
+      // update internal state
       setValue(result.label)
       setHasResult(true)
+
+      // calll external handlers
+      setSearchString(null)
+      onResult(result)
     }
   }
 }

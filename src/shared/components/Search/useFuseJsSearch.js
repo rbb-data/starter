@@ -26,11 +26,7 @@ function useFuseJsSearch (allResults, options = {}) {
 
   const suggestions = getSuggestions()
 
-  const clearSuggestions = () => {
-    setSearchString(null)
-  }
-
-  return { suggestions, setSearchString, clearSuggestions }
+  return { suggestions, setSearchString }
 }
 
 export default useFuseJsSearch

@@ -7,6 +7,7 @@ const label = feature => `${feature.properties.name}, ${feature.properties.neigh
 const makeRequest = debounce(async ({ searchString, config, setSuggestions }) => {
   if (searchString === null || searchString.trim() === '') return null
 
+  // format config so it can be consumed by the api
   const { layers, location, sources } = config
   const params = {
     layers: layers.join(','),
@@ -15,9 +16,11 @@ const makeRequest = debounce(async ({ searchString, config, setSuggestions }) =>
     text: searchString
   }
 
+  // get autocomplete results from api
   const result = await autocomplete(params)
   const features = result.features
     .map(feature => fixBerlinSearchResult(feature))
+    // format for use in SearchInput
     .map(feature => ({
       label: label(feature),
       value: {
@@ -34,17 +37,19 @@ const makeRequest = debounce(async ({ searchString, config, setSuggestions }) =>
 }, 300, { 'leading': true, 'trailing': true })
 
 function useOpenrouteservice (config) {
-  const [searchString, setSearchString] = useState(null)
+  const [searchString, setInternalSearchString] = useState(null)
   const [suggestions, setSuggestions] = useState(null)
 
-  useEffect(() => { makeRequest({ searchString, config, setSuggestions }) }, [searchString])
+  useEffect(() => {
+    makeRequest({ searchString, config, setSuggestions })
+  }, [searchString])
 
-  function clearSuggestions () {
-    setSuggestions(null)
-    setSearchString(null)
+  function setSearchString (searchString) {
+    if (searchString === null) setSuggestions(null)
+    setInternalSearchString(searchString)
   }
 
-  return { suggestions, setSearchString, clearSuggestions }
+  return { suggestions, setSearchString }
 }
 
 export default useOpenrouteservice

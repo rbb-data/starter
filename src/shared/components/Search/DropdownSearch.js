@@ -12,7 +12,7 @@ import SearchInput from '../SearchInput/SearchInput'
 const DropdownSearch = props => {
   const { list, onResult } = props
   const suggestionAccessors = useFuseJsSearch(list, { returnAllOnEmptyString: true })
-  const searchProps = useDropdownSearchProps({ ...suggestionAccessors, onResult })
+  const searchProps = useDropdownSearchProps({ ...suggestionAccessors, handleResult: onResult })
 
   return <SearchInput {...searchProps} />
 }
