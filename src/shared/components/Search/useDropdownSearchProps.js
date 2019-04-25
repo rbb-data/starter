@@ -1,25 +1,28 @@
 import { useState } from 'react'
 
 function useDropdownSearchProps ({ suggestions, setSearchString, clearSuggestions, onResult }) {
+  const [value, setValue] = useState('')
   const [lastResult, setLastResult] = useState(null)
-  const [result, setResult] = useState(null)
 
   return {
-    textInputValue: result,
+    value: value,
+    suggestions: suggestions,
     buttonType: suggestions === null ? 'dropdown' : 'cancel',
-    suggestions,
     onInput (value) {
-      setResult(null)
+      setValue(value)
+
       setSearchString(value)
     },
     onReset () {
+      setValue(lastResult)
+
       clearSuggestions()
-      setResult(lastResult)
     },
     onResult (result) {
-      onResult(result)
       setLastResult(result.label)
-      setResult(result.label)
+      setValue(result.label)
+
+      onResult(result)
       clearSuggestions()
     }
   }

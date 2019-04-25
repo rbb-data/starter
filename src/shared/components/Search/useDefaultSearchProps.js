@@ -1,24 +1,34 @@
 import { useState } from 'react'
 
 function useDefaultSearchProps ({ suggestions, setSearchString, clearSuggestions, onReset, onResult }) {
-  const [result, setResult] = useState(null)
-  const showCancel = result || (suggestions && suggestions.length === 0)
+  const [value, setValue] = useState('')
+  const [hasResult, setHasResult] = useState(false)
+  const showCancel = hasResult || (suggestions && suggestions.length === 0)
 
   return {
-    textInputValue: result,
+    value: value,
+    suggestions: suggestions,
     buttonType: showCancel ? 'cancel' : 'search',
-    suggestions,
     keepInputOnFocus: true,
-    onInput: setSearchString,
+    onInput (value) {
+      setValue(value)
+      setHasResult(false)
+
+      setSearchString(value)
+    },
     onReset () {
       onReset()
       clearSuggestions()
-      setResult(null)
+
+      setValue('')
+      setHasResult(false)
     },
     onResult (result) {
       onResult(result)
-      setResult(result.label)
       clearSuggestions()
+
+      setValue(result.label)
+      setHasResult(true)
     }
   }
 }

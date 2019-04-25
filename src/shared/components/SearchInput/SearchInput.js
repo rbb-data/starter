@@ -37,10 +37,9 @@ const SearchInput = props => {
     buttonType, keepInputOnFocus,
     placeholder, nothingFoundText,
     suggestions,
-    textInputValue,
+    value,
     onReset, onResult, onInput } = props
 
-  const [searchString, setSearchString] = useState('')
   const [highlightedSuggestion, setHighlightedSuggestion] = useState(0)
   const inputRef = useRef()
   const nothingFound = suggestions && suggestions.length === 0
@@ -54,7 +53,6 @@ const SearchInput = props => {
   }
 
   function handleReset () {
-    setSearchString('')
     onReset()
     setHighlightedSuggestion(0)
   }
@@ -69,7 +67,6 @@ const SearchInput = props => {
     e.preventDefault()
     const { target: { value } } = e
 
-    setSearchString(value)
     onInput(value)
     setHighlightedSuggestion(0)
   }
@@ -78,7 +75,6 @@ const SearchInput = props => {
     if (keepInputOnFocus) {
       handleInput(e)
     } else {
-      setSearchString('')
       onInput('')
       setHighlightedSuggestion(0)
     }
@@ -116,7 +112,7 @@ const SearchInput = props => {
           ref={inputRef}
           type='text'
           placeholder={placeholder}
-          value={textInputValue || searchString}
+          value={value}
           onInput={handleInput}
           onFocus={handleFocus}
           autoComplete={'off'} />
@@ -145,8 +141,8 @@ const SearchInput = props => {
 
 SearchInput.propTypes = {
   className: PropTypes.string,
-  /** set the value of the textinput manually */
-  textInputValue: PropTypes.string,
+  /** the value of the textinput */
+  value: PropTypes.string,
   /** You can set different button types that have different actions
    *
    * - search: magnifining class; when clicked calls onResult with the selected suggestion
@@ -174,7 +170,7 @@ SearchInput.propTypes = {
 }
 
 SearchInput.defaultProps = {
-  textInputValue: null,
+  value: '',
   buttonType: 'search',
   keepInputOnFocus: false,
   placeholder: '',

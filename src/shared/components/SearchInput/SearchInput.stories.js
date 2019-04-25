@@ -10,6 +10,7 @@ storiesOf('SearchInput', module)
   .addDecorator(withKnobs)
   .add('Without suggestions', () => {
     return <SearchInput
+      value={text('value', '')}
       placeholder={text('placeholder', 'Suchbegriff eingeben')}
       onInput={action('onInput')}
       onReset={action('onReset')}
@@ -17,6 +18,7 @@ storiesOf('SearchInput', module)
   })
   .add('With suggestions', () => {
     return <SearchInput
+      value={text('value', 'A')}
       placeholder={text('placeholder', 'Suchbegriff eingeben')}
       suggestions={object('suggestions', [
         { value: 0, label: 'Apple' },
@@ -28,6 +30,7 @@ storiesOf('SearchInput', module)
   })
   .add('Nothing Found', () => {
     return <SearchInput
+      value={text('value', 'shjdk')}
       placeholder={text('placeholder', 'Suchbegriff eingeben')}
       nothingFoundText={text('nothingFoundText', 'Nichts gefunden')}
       suggestions={[]}
@@ -37,6 +40,7 @@ storiesOf('SearchInput', module)
   })
   .add('With cancel button', () => {
     return <SearchInput
+      value={text('value', 'Banana')}
       buttonType='cancel'
       placeholder={text('placeholder', 'Suchbegriff eingeben')}
       onInput={action('onInput')}
@@ -45,16 +49,9 @@ storiesOf('SearchInput', module)
   })
   .add('With dropdown button', () => {
     return <SearchInput
+      value={text('value', '')}
       buttonType='dropdown'
       placeholder={text('placeholder', 'Suchbegriff eingeben')}
-      onInput={action('onInput')}
-      onReset={action('onReset')}
-      onResult={action('onResult')} />
-  })
-  .add('With controlled Input', () => {
-    return <SearchInput
-      textInputValue={text('textInputValue', 'Banana')}
-      buttonType='cancel'
       onInput={action('onInput')}
       onReset={action('onReset')}
       onResult={action('onResult')} />
