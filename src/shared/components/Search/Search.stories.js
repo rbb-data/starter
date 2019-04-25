@@ -5,7 +5,7 @@ import { withKnobs } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { withSmartKnobs } from 'storybook-addon-smart-knobs'
 
-import { SimpleSearch, DropdownSearch } from './Search'
+import { SimpleSearch, DropdownSearch, LocationSearch } from './Search'
 
 const list = [
   { value: 'apple', label: 'Apple' },
@@ -18,11 +18,14 @@ const list = [
 ]
 
 storiesOf('Search', module)
-  .addDecorator(withSmartKnobs)
+  // .addDecorator(withSmartKnobs)
   .addDecorator(withKnobs)
   .add('SimpleSearch', () =>
     <SimpleSearch list={list} onResult={action('onResult')} onReset={action('onReset')} />
   )
   .add('DropdownSearch', () =>
     <DropdownSearch list={list} onResult={action('onResult')} />
+  )
+  .add('LocationSearch', () =>
+    <LocationSearch onResult={action('onResult')} />
   )
