@@ -170,7 +170,7 @@ SearchInput.propTypes = {
    */
   suggestions: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.any.isRequired,
-    label: PropTypes.node.isRequired
+    label: PropTypes.string.isRequired
   })),
   /** called when user clicks reset button */
   onReset: PropTypes.func,

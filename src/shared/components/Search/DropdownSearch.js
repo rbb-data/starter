@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 import SearchInput from '../SearchInput/SearchInput'
 
 /**
- * This is a basic example of how to use the search input as a dropdown
- * you can use this as a ready component or as an example to create your own search from
+ * This is a basic example of how to use the search SearchInput component
+ * you can use this as is or as an example to create your own search from
  */
 const DropdownSearch = props => {
   const { list, onResult } = props
@@ -30,7 +30,7 @@ const DropdownSearch = props => {
 DropdownSearch.propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.any.isRequired,
-    label: PropTypes.node.isRequired
+    label: PropTypes.string.isRequired
   })),
   onResult: PropTypes.func
 }

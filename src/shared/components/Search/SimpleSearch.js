@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 import SearchInput from '../SearchInput/SearchInput'
 
 /**
- * This is a basic example of how to use the search input
- * you can use this as a ready component or as an example to create your own search from
+ * This is a basic example of how to use the SearchInput component
+ * you can use this as is or as an example to create your own search from
  */
 export const SimpleSearch = props => {
   const { list, keepInputOnFocus, onResult, onReset } = props
@@ -34,7 +34,7 @@ export const SimpleSearch = props => {
 SimpleSearch.propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.any.isRequired,
-    label: PropTypes.node.isRequired
+    label: PropTypes.string.isRequired
   })),
   keepInputOnFocus: PropTypes.bool,
   onResult: PropTypes.func,
