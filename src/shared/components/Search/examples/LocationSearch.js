@@ -1,5 +1,5 @@
 import React from 'react'
-import useOpenrouteservice from '../hooks/useOpenrouteservice'
+import useOpenrouteservice, { format } from '../hooks/useOpenrouteservice'
 import useDefaultSearchProps from '../hooks/useDefaultSearchProps'
 import PropTypes from 'prop-types'
 
@@ -13,7 +13,7 @@ const LocationSearch = props => {
   const { keepInputOnFocus, openrouteConfig, onResult, onReset } = props
 
   const { suggestions, setSearchString } = useOpenrouteservice(openrouteConfig)
-  const searchProps = useDefaultSearchProps({ suggestions, setSearchString, onReset, onResult })
+  const searchProps = useDefaultSearchProps({ suggestions, setSearchString, format, onReset, onResult })
 
   return <SearchInput {...searchProps} keepInputOnFocus={keepInputOnFocus} />
 }

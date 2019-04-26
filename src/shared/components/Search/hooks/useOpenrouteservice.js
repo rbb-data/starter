@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import debounce from 'lodash/debounce'
 import { autocomplete, fixBerlinSearchResult } from '../openrouteservice.js'
 
-const label = feature => `${feature.properties.name}, ${feature.properties.neighbourhood ? `${feature.properties.neighbourhood},` : ''} ${feature.properties.region}`
+export const format = feature =>
+  `${feature.properties.name}, ${feature.properties.neighbourhood ? `${feature.properties.neighbourhood},` : ''} ${feature.properties.region}`
 
 const makeRequest = debounce(async ({ searchString, config, setSuggestions }) => {
   if (searchString === null || searchString.trim() === '') return null
@@ -20,16 +21,13 @@ const makeRequest = debounce(async ({ searchString, config, setSuggestions }) =>
   const result = await autocomplete(params)
   const features = result.features
     .map(feature => fixBerlinSearchResult(feature))
-    // format for use in SearchInput
+    // format with lat lng
     .map(feature => ({
-      label: label(feature),
-      value: {
-        ...feature,
-        type: 'location',
-        location: {
-          lat: feature.geometry.coordinates[1],
-          lng: feature.geometry.coordinates[0]
-        }
+      ...feature,
+      type: 'location',
+      location: {
+        lat: feature.geometry.coordinates[1],
+        lng: feature.geometry.coordinates[0]
       }
     }))
 

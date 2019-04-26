@@ -10,18 +10,20 @@ import SearchInput from '../../SearchInput/SearchInput'
  * you can use this as is – or as an example for creating your own search
  */
 const DropdownSearch = props => {
-  const { list, onResult } = props
-  const { suggestions, setSearchString } = useFuseJsSearch(list, { returnAllOnEmptyString: true })
-  const searchProps = useDropdownSearchProps({ suggestions, setSearchString, onResult })
+  const { list, fuseOptions, format, onResult } = props
+  const { suggestions, setSearchString } = useFuseJsSearch(list, {
+    ...fuseOptions,
+    returnAllOnEmptyString: true
+  })
+  const searchProps = useDropdownSearchProps({ suggestions, setSearchString, format, onResult })
 
   return <SearchInput {...searchProps} />
 }
 
 DropdownSearch.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.any.isRequired,
-    label: PropTypes.string.isRequired
-  })),
+  list: PropTypes.array,
+  fuseOptions: PropTypes.object,
+  format: PropTypes.func,
   onResult: PropTypes.func
 }
 

@@ -36,7 +36,7 @@ const SearchInput = props => {
     className,
     buttonType, keepInputOnFocus,
     placeholder, nothingFoundText,
-    suggestions,
+    suggestions, format,
     value,
     onReset, onResult, onInput } = props
 
@@ -127,7 +127,7 @@ const SearchInput = props => {
               key={i}
               onClick={() => { setNewResult(suggestion) }}
               className={highlightedSuggestion === i ? styles.active : ''}>
-              <div className={styles.inner}>{suggestion.label}</div>
+              <div className={styles.inner}>{format(suggestion)}</div>
             </li>)
           }
         </ul>
@@ -146,10 +146,7 @@ SearchInput.propTypes = {
   /** list of possible results that can be selected by the user
    *  set to `null` to show no suggestions and to `[]` to show nothingFound state
    */
-  suggestions: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.any.isRequired,
-    label: PropTypes.node.isRequired
-  })),
+  suggestions: PropTypes.array,
 
   /** You can set different button types that have different actions
    *
@@ -165,6 +162,11 @@ SearchInput.propTypes = {
 
   /** text shown when suggestions are an empty array */
   nothingFoundText: PropTypes.string,
+
+  /** used to format display of single suggestion
+   * is passed the suggestion and should return a node
+   */
+  format: PropTypes.func,
 
   /** called when user clicks reset button */
   onReset: PropTypes.func,
@@ -184,6 +186,7 @@ SearchInput.defaultProps = {
   nothingFoundText: 'Nichts gefunden',
   suggestions: null,
   selectedResult: null,
+  format: value => value,
   onReset: () => {},
   onResult: () => {},
   onInput: () => {}

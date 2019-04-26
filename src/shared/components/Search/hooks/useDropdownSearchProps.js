@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function useDropdownSearchProps ({ suggestions, setSearchString, onResult }) {
+function useDropdownSearchProps ({ suggestions, setSearchString, format, onResult }) {
   const [value, setValue] = useState('')
   const [lastResult, setLastResult] = useState(null)
 
@@ -8,6 +8,7 @@ function useDropdownSearchProps ({ suggestions, setSearchString, onResult }) {
     value: value,
     suggestions: suggestions,
     buttonType: suggestions === null ? 'dropdown' : 'cancel',
+    format: format,
     onInput (value) {
       // update internal state
       setValue(value)
@@ -24,8 +25,8 @@ function useDropdownSearchProps ({ suggestions, setSearchString, onResult }) {
     },
     onResult (result) {
       // update internal state
-      setLastResult(result.label)
-      setValue(result.label)
+      setLastResult(format(result))
+      setValue(format(result))
 
       // calll external handlers
       setSearchString(null)

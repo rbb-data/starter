@@ -8,26 +8,50 @@ import { withSmartKnobs } from 'storybook-addon-smart-knobs'
 import { SimpleSearch, DropdownSearch, DropdownSearchWithReactNodes, LocationSearch } from './Search'
 
 const list = [
-  { value: 'apple', label: 'Apple' },
-  { value: 'banana', label: 'Banana' },
-  { value: 'strawbery', label: 'Strawbery' },
-  { value: 'avocado', label: 'Avocado' },
-  { value: 'blueberry', label: 'Blueberry' },
-  { value: 'cherry', label: 'Cherry' },
-  { value: 'grapes', label: 'Grapes' }
+  { color: 'red', label: 'Apple' },
+  { color: 'yellow', label: 'Banana' },
+  { color: 'red', label: 'Strawbery' },
+  { color: 'green', label: 'Avocado' },
+  { color: 'blue', label: 'Blueberry' },
+  { color: 'red', label: 'Cherry' },
+  { color: 'green', label: 'Grapes' }
 ]
+
+const Circle = ({ color }) =>
+  <div style={{
+    display: 'inline-block',
+    marginRight: '5px',
+    backgroundColor: color,
+    width: '10px',
+    height: '10px',
+    borderRadius: '10px'
+  }} />
 
 storiesOf('Search', module)
   .addDecorator(withSmartKnobs)
   .addDecorator(withKnobs)
   .add('SimpleSearch', () =>
-    <SimpleSearch list={list} onResult={action('onResult')} onReset={action('onReset')} />
+    <SimpleSearch
+      list={list}
+      fuseOptions={{ keys: ['label'] }}
+      format={suggestion => suggestion.label}
+      onResult={action('onResult')}
+      onReset={action('onReset')} />
   )
   .add('DropdownSearch', () =>
-    <DropdownSearch list={list} onResult={action('onResult')} />
+    <DropdownSearch
+      list={list}
+      fuseOptions={{ keys: ['label'] }}
+      format={suggestion => suggestion.label}
+      onResult={action('onResult')} />
   )
   .add('DropdownSearchWithReactNodes', () =>
-    <DropdownSearchWithReactNodes list={list} onResult={action('onResult')} />
+    <DropdownSearchWithReactNodes
+      list={list}
+      fuseOptions={{ keys: ['label'] }}
+      formatString={suggestion => suggestion.label}
+      formatNode={suggestion => <div><Circle color={suggestion.color} />{suggestion.label}</div>}
+      onResult={action('onResult')} />
   )
   .add('LocationSearch', () => {
     const layers = {
