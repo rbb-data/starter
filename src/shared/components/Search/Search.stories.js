@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
@@ -26,6 +27,8 @@ const Circle = ({ color }) =>
     height: '10px',
     borderRadius: '10px'
   }} />
+
+Circle.propTypes = { color: PropTypes.string }
 
 storiesOf('Search', module)
   .addDecorator(withSmartKnobs)
