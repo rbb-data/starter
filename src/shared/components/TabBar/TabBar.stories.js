@@ -2,14 +2,14 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { withKnobs, number, text, object } from '@storybook/addon-knobs'
+import { withKnobs, number, text, array } from '@storybook/addon-knobs'
 
 import TabBar from './TabBar'
 
 storiesOf('TabBar', module)
   .addDecorator(withKnobs)
   .add('Basic Example', () => {
-    const tabs = object('tabs', ['one', 'two', 'three'])
+    const tabs = array('tabs', ['one', 'two', 'three'])
 
     return <TabBar
       id='tab-bar-id'
@@ -21,11 +21,11 @@ storiesOf('TabBar', module)
   })
 
   .add('With custom color', () => {
-    const tabs = object('tabs', [
+    const tabs = [
       { color: 'red', display: 'Option number one' },
       { color: 'blue', display: 'Option number two' },
       { color: 'green', display: 'Option number three' }
-    ])
+    ]
 
     const selectedTabIndex = number('selectedTabIndex', 0)
     const selectedTab = tabs[selectedTabIndex]
