@@ -31,8 +31,7 @@
       border: 0
       z-index: 0
 
-      &::after
-        content: ''
+      .slant
         position: absolute
         z-index: -1
         top: 0
@@ -43,10 +42,10 @@
         transform-origin: center
         transform: skewX(-10deg)
 
-    &:first-child.active::after
+    &:first-child.active .slant
       transform-origin: top
 
-    &:last-child.active::after
+    &:last-child.active .slant
       transform-origin: bottom
 
 
