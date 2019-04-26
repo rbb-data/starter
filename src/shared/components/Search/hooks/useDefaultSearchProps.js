@@ -3,7 +3,7 @@ import { useState } from 'react'
 function useDefaultSearchProps ({ suggestions, setSearchString, onReset, onResult }) {
   const [value, setValue] = useState('')
   const [hasResult, setHasResult] = useState(false)
-  const showCancel = hasResult || (suggestions && suggestions.length === 0)
+  const showCancel = hasResult || suggestions
 
   return {
     value: value,
