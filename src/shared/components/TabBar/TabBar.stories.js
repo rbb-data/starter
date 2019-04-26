@@ -11,7 +11,8 @@ storiesOf('TabBar', module)
   .add('Number as value', () => {
     const tabs = object('tabs', [
       { value: 0, display: 'Option number one' },
-      { value: 1, display: 'Option number two' }
+      { value: 1, display: 'Option number two' },
+      { value: 2, display: 'Option number three' }
     ])
 
     return <TabBar
@@ -26,7 +27,8 @@ storiesOf('TabBar', module)
   .add('String as value', () => {
     const tabs = object('tabs', [
       { value: 'one', display: 'Option number one' },
-      { value: 'two', display: 'Option number two' }
+      { value: 'two', display: 'Option number two' },
+      { value: 'three', display: 'Option number three' }
     ])
 
     return <TabBar
@@ -41,7 +43,8 @@ storiesOf('TabBar', module)
   .add('With react components', () => {
     const tabs = [
       { value: 'one', display: <span>Option <i>number one</i></span> },
-      { value: 'two', display: <span>Option <i>number two</i></span> }
+      { value: 'two', display: <span>Option <i>number two</i></span> },
+      { value: 'three', display: <span>Option <i>number three</i></span> }
     ]
 
     return <TabBar id='tab-bar-id'
