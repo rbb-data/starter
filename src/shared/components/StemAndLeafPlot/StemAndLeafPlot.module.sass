@@ -1,0 +1,32 @@
+@import "../../styles/colors.sass"
+@import "../../styles/breakpoints.sass"
+
+.salPlot
+  width: 100%
+
+
+.highlightedValue
+  position: relative
+  display: block
+  width: 80px
+  margin-left: -40px
+  text-align: center
+  font-size: 12px
+  font-weight: bold
+  margin-bottom: 10px
+
+.graph
+  position: relative
+  font-size: 0
+
+  .svg
+    position: relative
+    width: 100%
+    z-index: 1
+
+  .canvas
+    position: absolute
+    left: 0
+    bottom: 0
+    width: 100%
+    z-index: 0
