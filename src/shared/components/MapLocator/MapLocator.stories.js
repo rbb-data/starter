@@ -9,7 +9,7 @@ import MapLocator from './MapLocator'
 storiesOf('MapLocator', module)
   .addDecorator(withKnobs)
   .add('MapLocator', () => {
-    return <Map bingKey={text('bingKey for Map', '')}>
+    return <Map>
       <MapLocator position={[52.49, 13.4]} />
     </Map>
   })

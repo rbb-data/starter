@@ -9,7 +9,7 @@ import MapSelectableMarker from './MapSelectableMarker'
 storiesOf('MapSelectableMarker', module)
   .addDecorator(withKnobs)
   .add('Not selected', () => {
-    return <Map bingKey={text('bingKey for Map', '')}>
+    return <Map>
       <MapSelectableMarker
         position={array('position', [52.49, 13.4])}
         hasStroke={boolean('hasStroke', true)}
@@ -18,7 +18,7 @@ storiesOf('MapSelectableMarker', module)
     </Map>
   })
   .add('selected', () => {
-    return <Map bingKey={text('bingKey for Map', '')}>
+    return <Map>
       <MapSelectableMarker
         isSelected
         position={array('position', [52.49, 13.4])}
