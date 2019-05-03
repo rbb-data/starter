@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Polygon } from 'react-leaflet'
+import { Polygon, withLeaflet } from 'react-leaflet'
 
-export default class MapPolygonWithAbsolutePoints extends Component {
+class MapPolygonWithAbsolutePoints extends Component {
   static defaultProps = {
     pointCalculationFunctions: [],
     positionsOnMap: []
@@ -13,8 +13,8 @@ export default class MapPolygonWithAbsolutePoints extends Component {
   }
 
   updateAbsPos = () => {
-    const { pointCalculationFunctions, positionsOnMap } = this.props
-    const bounds = this.context.map.getPixelBounds()
+    const { pointCalculationFunctions, positionsOnMap, leaflet } = this.props
+    const bounds = leaflet.map.getPixelBounds()
     const width = bounds.max.x - bounds.min.x
     const height = bounds.max.y - bounds.min.y
 
@@ -23,7 +23,7 @@ export default class MapPolygonWithAbsolutePoints extends Component {
       const x = bounds.min.x + xOffset
       const y = bounds.min.y + yOffset
 
-      return this.context.map.unproject([x, y])
+      return leaflet.map.unproject([x, y])
     })
 
     this.setState({ positions: [...unprojectedPoints, ...positionsOnMap] })
@@ -31,7 +31,8 @@ export default class MapPolygonWithAbsolutePoints extends Component {
 
   componentDidMount () {
     this.updateAbsPos()
-    this.context.map.on('move', e => { this.updateAbsPos() })
+    const { leaflet } = this.props
+    leaflet.map.on('move', e => { this.updateAbsPos() })
   }
 
   componentDidUpdate (prevProps) {
@@ -40,10 +41,14 @@ export default class MapPolygonWithAbsolutePoints extends Component {
     }
   }
 
-  render (props) {
-    const { pointCalculationFunctions, positionsOnMap, ...others } = props
-    if (!this.state.positions) return
+  render () {
+    const { pointCalculationFunctions, positionsOnMap, ...others } = this.props
+    if (!this.state.positions) return null
 
     return <Polygon positions={this.state.positions} {...others} />
   }
 }
+
+const Wrapped = withLeaflet(MapPolygonWithAbsolutePoints)
+
+export default Wrapped
