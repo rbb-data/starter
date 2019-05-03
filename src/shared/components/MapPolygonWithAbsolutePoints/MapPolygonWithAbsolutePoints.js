@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Polygon, withLeaflet } from 'react-leaflet'
 
 class MapPolygonWithAbsolutePoints extends Component {
+  static propTypes = {
+    pointCalculationFunctions: PropTypes.arrayOf(PropTypes.func).isRequired,
+    positionsOnMap: PropTypes.array.isRequired
+  }
+
   static defaultProps = {
     pointCalculationFunctions: [],
     positionsOnMap: []
