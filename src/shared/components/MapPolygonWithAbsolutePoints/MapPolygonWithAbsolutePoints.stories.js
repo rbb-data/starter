@@ -21,7 +21,7 @@ storiesOf('MapPolygonWithAbsolutePoints', module)
       weight: 1
     }
 
-    return <Map bingKey={text('bingKey for Map', '')}>
+    return <Map>
       <MapPolygonWithAbsolutePoints {...polygonProps} />
     </Map>
   })
@@ -38,7 +38,7 @@ storiesOf('MapPolygonWithAbsolutePoints', module)
       weight: 1
     }
 
-    return <Map bingKey={text('bingKey for Map', '')}>
+    return <Map>
       <MapPolygonWithAbsolutePoints {...polygonProps} />
     </Map>
   })
@@ -55,7 +55,7 @@ storiesOf('MapPolygonWithAbsolutePoints', module)
       weight: 1
     }
 
-    return <Map bingKey={text('bingKey for Map', '')}>
+    return <Map>
       <MapPolygonWithAbsolutePoints {...polygonProps} />
     </Map>
   })
