@@ -69,7 +69,7 @@ storiesOf('MapPolygonWithAbsolutePoints', module)
         ({ width, height }) => ({ x: 0, y: height / 2 })
       ],
       fillOpacity: 1,
-      fillColor: text('fillColor', colors.darkGrey),
+      fillColor: text('fillColor', 'transparent'),
       color: text('color', colors.darkGrey),
       weight: 1
     }
