@@ -30,7 +30,7 @@ This component needs to be a child or some grandchild of [`<Map>`](https://react
 **Code**
 
 ```jsx
-<MapSelectableMarker position={L.LatLng(52.69,13.06 )} isSelected={false} optimizeForTouch={isTouchEnabled} />
+<MapSelectableMarker position={L.LatLng(52.69,13.06)} isSelected={false} optimizeForTouch={isTouchEnabled} />
 ```
 
 **Screenshot**

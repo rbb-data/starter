@@ -1,13 +1,7 @@
-# MapLocationMarker
+# MapLocator
 
 Renders a marker at a given location.
 ## Dependencies
-
-### npm
-
-```
-npm i react-leaflet-div-icon
-```
 
 ### context
 

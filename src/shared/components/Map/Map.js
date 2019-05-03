@@ -7,6 +7,9 @@ import { BingLayer } from 'react-leaflet-bing'
 import berlinMask from '../../data/berlin.geo.json'
 import _ from './Map.module.sass'
 
+// TODO:
+// add brandenburg as option
+
 /**
  * React leaflet map component in rbb-data style
  * with bing map tiles and berlin borders
