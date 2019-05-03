@@ -2,8 +2,16 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Polygon, withLeaflet } from 'react-leaflet'
 
+/**
+ * anything you can pass to [`Path`](http://leafletjs.com/reference-1.3.0.html#path)
+ * can also be passed to this polygon
+ *
+ * This component uses the [`map` context of react leaflet](https://react-leaflet.js.org/docs/en/intro.html#component-context)
+ * and therefore needs to be a child or some grandchild of [`<Map>`](https://react-leaflet.js.org/docs/en/components.html#map)
+*/
 class MapPolygonWithAbsolutePoints extends Component {
   static propTypes = {
+    /**  An array of functions that take the parameters `{ width, height }` and must return an object with numbers for `{ x, y } */
     pointCalculationFunctions: PropTypes.arrayOf(PropTypes.func).isRequired,
     positionsOnMap: PropTypes.array.isRequired
   }
