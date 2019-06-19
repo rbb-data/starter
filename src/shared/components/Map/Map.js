@@ -15,7 +15,7 @@ import _ from './Map.module.sass'
  * with bing map tiles and berlin borders
  */
 const Map = props => {
-  const { children, className, bingKey } = props
+  const { children, className, bingKey, ...forwardedProps } = props
 
   function handleZoom (e) {
     const map = e.target
@@ -60,7 +60,7 @@ const Map = props => {
   const mapStyle = 'trs|lv:false;fc:EAEAEA_pp|lv:false;v:false_ar|v:false;lv:false_vg|v:true;fc:E4E4E4_wt|fc:AED1E4_rd|sc:d0d0d0;fc:e9e9e9_mr|sc:d3d3d3;fc:dddddd_hg|sc:d3d3d3;fc:e9e9e9_g|lc:EAEAEA'
   const mapClassName = `${className} ${_.map}`
 
-  return <LeafletMap className={mapClassName} {...mapProps}>
+  return <LeafletMap className={mapClassName} {...mapProps} {...forwardedProps}>
     <BingLayer
       type='CanvasGray'
       bingkey={bingKey}
