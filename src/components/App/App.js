@@ -24,12 +24,15 @@ function App (props) {
 
   const position = [52, 12]
   return <div className={_.app}>
-    <Map className={_.map} center={position} />
     <Detail
       className={_.detail}
       markers={markers}
       selectedMarkerId={selectedMarkerId}
       onSelectMarkerId={setSelectedMarkerId} />
+    <Map
+      bingKey={process.env.REACT_APP_BING_KEY}
+      className={_.map}
+      center={position} />
   </div>
 }
 

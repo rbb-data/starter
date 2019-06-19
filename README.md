@@ -5,6 +5,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Your app lives in `/src`. Reusable modules should eventually be moved to `/shared` and be pushed back to Github. :)
 
+## Bing Keys
+
+We don't want our bing keys in version control so you have to add them as `REACT_APP_BING_KEY`
+in an `.env.local` file (or `.env.development.local` for the development key)
+You can just copy and rename `.env.local.example` and add the key :-)
+
+For more about .env files in cra see https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables
+
 ## Available Scripts
 
 In the project directory, you can run:
