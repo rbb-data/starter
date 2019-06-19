@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import 'whatwg-fetch'
 import Map from '../../shared/components/Map/Map'
+import Markers from '../Markers/Markers'
 import Detail from '../Detail/Detail'
 import _ from './App.module.sass'
 
@@ -32,7 +33,13 @@ function App (props) {
     <Map
       bingKey={process.env.REACT_APP_BING_KEY}
       className={_.map}
-      center={position} />
+      center={position}>
+
+      <Markers
+        markers={markers || []}
+        selectedMarkerId={selectedMarkerId}
+        onMarkerSelect={setSelectedMarkerId} />
+    </Map>
   </div>
 }
 
