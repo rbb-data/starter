@@ -9,6 +9,8 @@ import SearchInput from '../../SearchInput/SearchInput'
 /**
  * This is a basic example of how to use the SearchInput component with Openrouteservice
  * you can use this as is – or as an example for creating your own search
+ * This component thinks a result is from openrouteservice when it has the type location
+ * so if you provide a list with objects that have { type: 'location' } your format function wont work
  */
 const MixedSearch = props => {
   const { keepInputOnFocus, list, format: fuseFormat, fuseOptions, openrouteConfig, onResult, onReset } = props
