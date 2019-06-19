@@ -16,13 +16,16 @@
     "react-dom": "^16.8.4",
     "react-leaflet": "^2.2.1",
     "react-leaflet-bing": "^4.1.0",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "source-map-explorer": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "analyze": "npm run build && npm run analyze-without-build",
+    "analyze-without-build": "source-map-explorer 'build/static/js/*.js'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "deploy-storybook": "storybook-to-ghpages"

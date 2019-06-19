@@ -22,6 +22,11 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+### `npm run analyze`
+
+Analyze the bundle size you can also run `npm run analyze-without-build` if you already have run
+`npm run build` before.
+
 ### `npm run storybook`
 
 Creates and opens the [storybook](https://storybook.js.org/) that documents the components in `/shared`
