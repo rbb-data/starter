@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import 'whatwg-fetch'
 import Map from '../../shared/components/Map/Map'
-import Markers from '../Markers/Markers'
+import MapElements from '../MapElements/MapElements'
 import Detail from '../Detail/Detail'
 import _ from './App.module.sass'
 
@@ -35,10 +35,10 @@ function App (props) {
       className={_.map}
       center={position}>
 
-      <Markers
-        markers={markers || []}
-        selectedMarkerId={selectedMarkerId}
-        onMarkerSelect={setSelectedMarkerId} />
+      <MapElements
+        markers={markers}
+        onSelectMarkerId={setSelectedMarkerId}
+        selectedMarkerId={selectedMarkerId} />
     </Map>
   </div>
 }
