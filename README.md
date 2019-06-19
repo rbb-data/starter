@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Folder structure
 
-Your app lives in `/src`. Reusable modules should eventually be moved to `/shared` and be pushed back to Github. :) 
+Your app lives in `/src`. Reusable modules should eventually be moved to `/shared` and be pushed back to Github. :)
 
 ## Available Scripts
 
@@ -25,6 +25,10 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 ### `npm run storybook`
 
 Creates and opens the [storybook](https://storybook.js.org/) that documents the components in `/shared`
+
+### `npm run deploy-storybook`
+
+Deploy storybook to gh-pages
 
 ### `npm run build`
 
