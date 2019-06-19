@@ -134,8 +134,7 @@ export default class Slider extends Component {
     this.canNavigateBackward = !!previousSlide
 
     const wrapperProps = {
-      class: `${_.slider} ${className} ${showSlideButtons && _.hasSlideButtons}`,
-      ref: ref => { this.ref = ref },
+      className: `${_.slider} ${className} ${showSlideButtons && _.hasSlideButtons}`,
       tabIndex: canHaveFocus ? 0 : null,
       onKeyDown: this.handleKeyDown,
       onTouchStart: this.handleTouchStart,
@@ -153,14 +152,14 @@ export default class Slider extends Component {
 
       { showSlideButtons &&
         <div>
-          { !!previousSlide &&
+          { this.canNavigateBackward &&
             <button className={`${_.prevNextButton} ${_.prev}`} onClick={navigateBack}>
-              <img src={nextIcon} />
+              <img alt='go to previous slide' src={nextIcon} />
             </button>
           }
-          { !!nextSlide &&
+          { this.canNavigateForward &&
             <button className={`${_.prevNextButton} ${_.next}`} onClick={navigateForward}>
-              <img src={nextIcon} />
+              <img alt='go to next slide' src={nextIcon} />
             </button>
           }
         </div>

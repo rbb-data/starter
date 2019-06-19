@@ -65,6 +65,7 @@ const Map = props => {
       type='CanvasGray'
       bingkey={bingKey}
       culture='de-de'
+      // eslint-disable-next-line react/style-prop-object
       style={mapStyle} />
 
     <GeoJSON
