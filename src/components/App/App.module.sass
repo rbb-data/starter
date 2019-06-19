@@ -15,17 +15,26 @@
     display: flex
     flex-direction: column
 
-.map
-  display: flex
+.detail
   width: 100%
+  flex: 1 1 auto
+
+.mapWrapper
+  position: relative
   flex: 100 1 auto
   overflow: hidden
-  position: relative
 
   @include breakpoint(small)
     max-height: 60%
     min-height: 0
 
-.detail
+.map
   width: 100%
-  flex: 1 1 auto
+  height: 100%
+
+.search
+  position: absolute
+  top: 20px
+  left: 20px
+  width: calc(100% - 40px)
+  z-index: 1000

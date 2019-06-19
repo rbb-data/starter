@@ -31,7 +31,7 @@ LocationSearch.propTypes = {
 }
 
 LocationSearch.defaultProps = {
-  openrouteConfig: { layers: ['street'], location: 'berlin', sources: 'osm' },
+  openrouteConfig: { layers: ['street'], location: 'berlin', sources: ['osm'] },
   keepInputOnFocus: true
 }
 
