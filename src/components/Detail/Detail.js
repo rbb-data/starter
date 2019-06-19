@@ -12,13 +12,15 @@ function Slide ({ feature }) {
 }
 
 export default function Detail (props) {
-  const { className } = props
+  const { className, markers, selectedMarkerId } = props
+
+  const selectedMarkerIndex = 1
 
   return <div className={className}>
     <Slider>
-      {() => <Slide />}
-      {() => <Slide />}
-      {() => <Slide />}
+      {() => <Slide feature={markers[selectedMarkerIndex - 1]} />}
+      {() => <Slide feature={markers[selectedMarkerIndex]} />}
+      {() => <Slide feature={markers[selectedMarkerIndex + 1]} />}
     </Slider>
   </div>
 }
