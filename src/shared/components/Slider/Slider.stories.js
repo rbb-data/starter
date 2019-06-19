@@ -12,18 +12,22 @@ storiesOf('Slider', module)
   .addDecorator(withKnobs)
   .add('With prev next Buttons', () =>
     <Slider
-      currentSlide={<p>slide content</p>}
-      previousSlide={<p>prev</p>}
-      nextSlide={<p>next</p>}
       onForwardNavigation={action('onForwardNavigation')}
-      onBackwardNavigation={action('onBackwardNavigation')} />
+      onBackwardNavigation={action('onBackwardNavigation')}>
+
+      {() => <p>prev</p>}
+      {() => <p>slide content</p>}
+      {() => <p>next</p>}
+    </Slider>
   )
   .add('Without prev next Buttons', () =>
     <Slider
-      currentSlide={<p>slide content</p>}
-      previousSlide={<p>prev</p>}
-      nextSlide={<p>next</p>}
       onForwardNavigation={action('onForwardNavigation')}
       onBackwardNavigation={action('onBackwardNavigation')}
-      showSlideButtons={false} />
+      showSlideButtons={false}>
+
+      {() => <p>prev</p>}
+      {() => <p>slide content</p>}
+      {() => <p>next</p>}
+    </Slider>
   )

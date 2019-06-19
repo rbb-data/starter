@@ -9,14 +9,13 @@ import _ from './Slider.module.sass'
  */
 export default class Slider extends Component {
   static propTypes = {
-    /** the currently visible slide */
-    currentSlide: PropTypes.node.isRequired,
-    /** used during slide animation and user gestures
-        set to `null` to dissable backward navigation */
-    previousSlide: PropTypes.node,
-    /** used during slide animation and user gestures
-        set to `null` to dissable forward navigation */
-    nextSlide: PropTypes.node,
+    /** an array of render funtions for the prevoius current and next slide
+     *  in that order.
+     *
+     *  return null for the previous or next slide if you want to dissable backward
+     *  or forward navigation
+     */
+    children: PropTypes.arrayOf(PropTypes.func),
     /** called after user did navigate forward */
     onBackwardNavigation: PropTypes.func,
     /** called after user did navigate backward */
@@ -36,8 +35,6 @@ export default class Slider extends Component {
 
   handleKeyDown = e => {
     const {
-      previousSlide,
-      nextSlide,
       onBackwardNavigation: navigateBack,
       onForwardNavigation: navigateForward
     } = this.props
@@ -45,8 +42,8 @@ export default class Slider extends Component {
     const keyIsArrowRight = e.key === 'ArrowRight' || e.key === 'Right'
     const keyIsArrowLeft = e.key === 'ArrowLeft' || e.key === 'Left'
 
-    if (!!nextSlide && keyIsArrowRight) navigateForward()
-    if (!!previousSlide && keyIsArrowLeft) navigateBack()
+    if (this.canNavigateForward && keyIsArrowRight) navigateForward()
+    if (this.canNavigateBackward && keyIsArrowLeft) navigateBack()
   }
 
   handleTouchStart = (e) => {
@@ -70,8 +67,6 @@ export default class Slider extends Component {
     if (!this.touchStartPosition || !this.contentRef) return
 
     const {
-      previousSlide,
-      nextSlide,
       onBackwardNavigation: navigateBack,
       onForwardNavigation: navigateForward
     } = this.props
@@ -86,8 +81,8 @@ export default class Slider extends Component {
     if (Math.abs(diff) < 100) return this.resetTransition({ animated: true })
 
     // cancel transition when there is no slide to go to
-    if (!previousSlide && !isForwardNavigation) return this.resetTransition({ animated: true })
-    if (!nextSlide && isForwardNavigation) return this.resetTransition({ animated: true })
+    if (!this.canNavigateBackward && !isForwardNavigation) return this.resetTransition({ animated: true })
+    if (!this.canNavigateForward && isForwardNavigation) return this.resetTransition({ animated: true })
 
     this.contentRef.style.transition = 'transform 0.5s'
     this.contentRef.style.transform = `translateX(${offset}px)`
@@ -125,12 +120,18 @@ export default class Slider extends Component {
       className,
       onForwardNavigation: navigateForward,
       onBackwardNavigation: navigateBack,
-      previousSlide,
-      currentSlide,
-      nextSlide,
       canHaveFocus,
-      showSlideButtons
+      showSlideButtons,
+      children
     } = this.props
+
+    const [renderPreviousSlide, renderCurrentSlide, renderNextSlide] = children
+    const previousSlide = renderPreviousSlide()
+    const currentSlide = renderCurrentSlide()
+    const nextSlide = renderNextSlide()
+
+    this.canNavigateForward = !!nextSlide
+    this.canNavigateBackward = !!previousSlide
 
     const wrapperProps = {
       class: `${_.slider} ${className} ${showSlideButtons && _.hasSlideButtons}`,
