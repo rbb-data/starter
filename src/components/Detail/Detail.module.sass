@@ -1,0 +1,38 @@
+@import "../../shared/styles/colors.sass"
+@import "../../shared/styles/breakpoints.sass"
+
+.detail
+  background-color: $background-grey
+  border-bottom: 4px solid $dark-grey
+
+.content
+  font-size: 14px
+  padding: 20px 0
+
+  @include breakpoint(small)
+    padding: 8px 10px 10px
+
+.title
+  font-size: 18px
+  margin: 5px 0 10px
+  margin-right: 5px
+  line-height: 1.2em
+  text-transform: uppercase
+  color: $dark-grey
+
+  @include breakpoint(small)
+    font-size: 16px
+
+.description
+  font-size: 14px
+  margin: 5px 0
+
+
+.loadingText
+  display: block
+  color: $dark-grey
+  font-size: 14px
+  line-height: 1.3em
+  text-align: center
+  padding: 0 10px
+  margin: 0

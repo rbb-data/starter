@@ -1,0 +1,31 @@
+@import "../../shared/styles/colors.sass"
+@import "../../shared/styles/breakpoints.sass"
+
+.app
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  display: flex
+  flex-direction: column
+  overflow: hidden
+
+  @include breakpoint(small)
+    display: flex
+    flex-direction: column
+
+.map
+  display: flex
+  width: 100%
+  flex: 100 1 auto
+  overflow: hidden
+  position: relative
+
+  @include breakpoint(small)
+    max-height: 60%
+    min-height: 0
+
+.detail
+  width: 100%
+  flex: 1 1 auto
