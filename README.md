@@ -4,6 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Folder structure
 
 Your app lives in `/src`. Reusable modules should eventually be moved to `src/shared` and be pushed back to Github. :)
+
 (create react app forces all code to live under `src`)
 
 ## Bing Keys
