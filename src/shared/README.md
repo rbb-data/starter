@@ -19,7 +19,7 @@ component.
 The component should be the default export in the file so it can be imported like this:
 
 ```js
-import ComponentName from './src/shared/components/ComponentName/ComponentName'
+import ComponentName from '/src/shared/components/ComponentName/ComponentName'
 ```
 
 #### README.md
