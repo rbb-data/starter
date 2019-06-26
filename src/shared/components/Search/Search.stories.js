@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { withKnobs, optionsKnob, radios } from '@storybook/addon-knobs'
+import { withSmartKnobs } from 'storybook-addon-smart-knobs'
 
 import { SimpleSearch, DropdownSearch, DropdownSearchWithReactNodes, LocationSearch } from './Search'
 
@@ -30,6 +31,7 @@ const Circle = ({ color }) =>
 Circle.propTypes = { color: PropTypes.string }
 
 storiesOf('Search', module)
+  .addDecorator(withSmartKnobs)
   .addDecorator(withKnobs)
   .add('SimpleSearch', () =>
     <SimpleSearch

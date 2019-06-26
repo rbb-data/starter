@@ -3,10 +3,12 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { withKnobs, array, text, radios } from '@storybook/addon-knobs'
+import { withSmartKnobs } from 'storybook-addon-smart-knobs'
 
 import Toggle from './Toggle'
 
 storiesOf('Toggle', module)
+  .addDecorator(withSmartKnobs)
   .addDecorator(withKnobs)
   .add('basic example', () =>
     <Toggle
