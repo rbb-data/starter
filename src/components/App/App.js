@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import 'whatwg-fetch'
 import Map from '../../shared/components/Map/Map'
 import MixedSearch from '../../shared/components/Search/examples/MixedSearch'
+import InfoBox from '../../shared/components/InfoBox/InfoBox'
 import MapElements from '../MapElements/MapElements'
 import Detail from '../Detail/Detail'
 import _ from './App.module.sass'
@@ -49,6 +50,11 @@ function App (props) {
             if (result.type === 'location') return // TODO
             setSelectedMarkerId(result.properties.id)
           }} />
+        <InfoBox className={_.infoBox}>
+          Bei Nutzung der Suchfunktion werden Daten an <a target='_blank' href='https://openrouteservice.org/'>openrouteservice</a> übertragen.
+          Weitere Informationen auf der rbb <a target='_blank' href='https://www.rbb-online.de/datenschutz/datenschutzerklaerung.html'>
+          Datenschutzerklärung</a>.
+        </InfoBox>
       </div>
     </div>
   </div>

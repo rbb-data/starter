@@ -7,8 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfo } from '@fortawesome/free-solid-svg-icons'
 
 const InfoBox = props => {
-  const { children } = props
-  return <div className={style.wrapper}>
+  const { children, className } = props
+  return <div className={`${className} ${style.wrapper}`}>
     <div className={style.infoWrapper}>
       <button className={style.infoButton}>
         <FontAwesomeIcon icon={faInfo} />
@@ -21,7 +21,8 @@ const InfoBox = props => {
 }
 
 InfoBox.propTypes = {
-  children: PropTypes.PropTypes.node
+  children: PropTypes.node,
+  className: PropTypes.string
 }
 
 export default InfoBox
