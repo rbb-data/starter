@@ -1,7 +1,7 @@
 import React from 'react'
-import colors from '../../styles/colors.sass'
 import { storiesOf } from '@storybook/react'
 import { withKnobs, text, array, boolean } from '@storybook/addon-knobs'
+import colors from '../../styles/colors.sass'
 
 import Map from '../Map/Map'
 import MapSelectableMarker from './MapSelectableMarker'
