@@ -11,9 +11,8 @@ const TabBar = props => {
   return <div className={`${styles.radioFilter} ${className}`}>
     <ul title={title}>
       { tabs.map((tab, i) =>
-        <li className={tab === selectedTab && styles.active}>
+        <li className={tab === selectedTab ? styles.active : ''} key={`${id}-${i}`}>
           <input
-            key={`${id}-${i}`}
             id={`${id}-${i}`}
             type='radio'
             name={id}
@@ -21,7 +20,7 @@ const TabBar = props => {
             checked={tab === selectedTab}
             onChange={e => onSelect(e.target.value)} />
 
-          <label key={`${id}-${i}`} htmlFor={`${id}-${i}`}>
+          <label htmlFor={`${id}-${i}`}>
             <span className={styles.slant} style={{ backgroundColor: color(tab) }} />
             { format(tab) }
           </label>
@@ -52,7 +51,8 @@ TabBar.propTypes = {
 TabBar.defaultProps = {
   onSelect: () => {},
   format: value => value,
-  color: () => null
+  color: () => null,
+  className: ''
 }
 
 export default TabBar
