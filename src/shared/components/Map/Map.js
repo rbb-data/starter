@@ -5,6 +5,8 @@ import { Map as LeafletMap, ZoomControl, GeoJSON } from 'react-leaflet'
 import { BingLayer } from 'react-leaflet-bing'
 
 import berlinMask from '../../data/berlin.geo.json'
+import berlinBoroughs from '../../data/berlin-bezirke.geo.json'
+import { darkGrey } from '../../styles/colors.sass'
 import _ from './Map.module.sass'
 
 // TODO:
@@ -20,14 +22,23 @@ const Map = props => {
   function handleZoom (e) {
     const map = e.target
     map.dragging.enable()
+    if (typeof window.callAnalytics === 'function') {
+      window.callAnalytics('pi', 'rbb-data-e-scooter', `zoom map`)
+    }
+  }
+
+  function handleDragEnd (e) {
+    if (typeof window.callAnalytics === 'function') {
+      window.callAnalytics('pi', 'rbb-data-e-scooter', `move map`)
+    }
   }
 
   // props used for initial map rendering
   const berlin = {
     center: { lat: 52.5244, lng: 13.4105 },
     bounds: {
-      topleft: { lat: 52.69, lng: 13.06 },
-      bottomright: { lat: 52.32, lng: 13.79 }
+      topleft: { lat: 52.55, lng: 13.27 },
+      bottomright: { lat: 52.468, lng: 13.53 }
     },
     maxBounds: {
       topleft: { lat: 52.8, lng: 12.9 },
@@ -36,16 +47,17 @@ const Map = props => {
   }
 
   const mapProps = {
-    animate: true,
+    animate: false,
     // this is false because ios jumps towards elemts that can have focus when you touch
     // them which makes the page jump
     keyboard: false,
     minZoom: 9,
-    maxZoom: 16,
+    maxZoom: 17,
     zoomControl: false,
     scrollWheelZoom: false,
     dragging: false,
     onZoom: handleZoom,
+    onDragEnd: handleDragEnd,
     zoomSnap: false,
     bounds: [
       [berlin.bounds.bottomright.lat, berlin.bounds.bottomright.lng],
@@ -57,7 +69,9 @@ const Map = props => {
     ]
   }
 
-  const mapStyle = 'trs|lv:false;fc:EAEAEA_pp|lv:false;v:false_ar|v:false;lv:false_vg|v:true;fc:E4E4E4_wt|fc:AED1E4_rd|sc:d0d0d0;fc:e9e9e9_mr|sc:d3d3d3;fc:dddddd_hg|sc:d3d3d3;fc:e9e9e9_g|lc:EAEAEA'
+  // const mapStyle = 'trs|lv:true;fc:EAEAEA_pp|lv:false;v:false_ar|v:false;lv:false_vg|v:true;fc:E4E4E4_wt|fc:AED1E4_rd|sc:d0d0d0;fc:e9e9e9;lv:false_mr|sc:d3d3d3;fc:dddddd;lv:true_hg|sc:d3d3d3;fc:e9e9e9;lv:true_g|lc:EAEAEA'
+  // const darkStyle = 'trs|lv:true_pp|lv:false;v:false_ar|v:false;lv:false_vg|v:true_wt|lv:false_wt|fc:0B2539_rd|lv:false_mr|lv:true_hg|lv:false'
+  const beigeStyle = 'trs|lv:true;fc:dfded2_pp|lv:false;v:false_ar|v:false;lv:false_vg|v:true_wt|lv:false;fc:86c6ed_rd|fc:ECEADD;sc:D4CDB9;lv:false_mr|fc:ECEADD;lv:true_hg|lv:false_g|lc:dfded2'
   const mapClassName = `${className} ${_.map}`
 
   return <LeafletMap className={mapClassName} {...mapProps} {...forwardedProps}>
@@ -66,7 +80,7 @@ const Map = props => {
       bingkey={bingKey}
       culture='de-de'
       // eslint-disable-next-line react/style-prop-object
-      style={mapStyle} />
+      style={beigeStyle} />
 
     <GeoJSON
       data={berlinMask}
@@ -74,6 +88,16 @@ const Map = props => {
       fillOpacity={0.8}
       color='white'
       stroke={false} />
+
+    <GeoJSON
+      data={berlinBoroughs}
+      interactive={false}
+      opacity={1}
+      weight={0.3}
+      fillOpacity={0}
+      color={darkGrey} />
+
+    {/* <Rectangle bounds={mapProps.bounds} /> */}
 
     <ZoomControl position='bottomright' />
 
