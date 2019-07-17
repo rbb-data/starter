@@ -25,6 +25,12 @@ To override this, specify the homepage in your package.json, for example:
 
     "homepage": "http://rbb24.de/static/rbb/rbb-data/project-name",
 
+### Analytics
+
+This App can track "pageviews" and e.g. map interactions.
+To enable this you need to replace everything in `{}` in the ANALYTICS variables in the `.env` file
+and set `REACT_APP_ANALYTICS_ENABLED` to true.
+
 ## Available Scripts
 
 In the project directory, you can run:

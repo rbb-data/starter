@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css'
 import { Map as LeafletMap, ZoomControl, GeoJSON } from 'react-leaflet'
 import { BingLayer } from 'react-leaflet-bing'
 
+import trackEvent from 'lib/analytics'
 import berlinMask from 'data/berlin.geo.json'
 import berlinBoroughs from 'data/berlin-bezirke.geo.json'
 import { darkGrey } from 'global_styles/colors.sass'
@@ -22,15 +23,11 @@ const Map = props => {
   function handleZoom (e) {
     const map = e.target
     map.dragging.enable()
-    if (typeof window.callAnalytics === 'function') {
-      window.callAnalytics('pi', 'rbb-data-e-scooter', `zoom map`)
-    }
+    trackEvent('zoom map')
   }
 
   function handleDragEnd (e) {
-    if (typeof window.callAnalytics === 'function') {
-      window.callAnalytics('pi', 'rbb-data-e-scooter', `move map`)
-    }
+    trackEvent('move map')
   }
 
   // props used for initial map rendering

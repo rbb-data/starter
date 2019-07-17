@@ -24,7 +24,15 @@
     -->
     <title>rbb data</title>
   </head>
-  <body>
+  <body data-analytics='{
+    "title":"%REACT_APP_ANALYTICS_TITLE%",
+    "handle":"%REACT_APP_ANALYTICS_HANDLE%",
+    "createDate":%REACT_APP_ANALYTICS_CREATE_DATE%,
+    "doctype":20,
+    "ATIxtsite":549286,
+    "ATIxtn2":"25",
+    "IVWcp":"infoportal_rbb"
+  }'>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -37,5 +45,14 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <% if (process.env.REACT_APP_ANALYTICS_ENABLED === 'true') { %>
+      <!-- this is all needed for tracking :-( -->
+      <script src='https://www.rbb-online.de/basis/js/jquery-2.2.4.min.js'></script>
+      <script src='https://www.rbb-online.de/basis/js/underscore-1.8.2.js'></script>
+      <script src='https://www.rbb-online.de/basis/js/underscore.string-3.0.3.js'></script>
+      <script src='https://www.rbb-online.de/basis/js/analytics.js'></script>
+      <script src='https://www.rbb-online.de/basis/js/xtcore.js'></script>
+    <% } %>
   </body>
 </html>

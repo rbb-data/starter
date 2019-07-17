@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from 'react'
 import 'whatwg-fetch'
 import Map from 'components/_shared/Map/Map'
-import MixedSearch from 'components/_shared/Search/examples/MixedSearch'
-import InfoBox from 'components/_shared/InfoBox/InfoBox'
 import MapElements from 'components/MapElements/MapElements'
 import Search from 'components/Search/Search'
 import Detail from 'components/Detail/Detail'
