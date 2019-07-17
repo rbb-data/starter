@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { featureToLatLng } from 'lib/geoJsonCompat'
 import MixedSearch from 'components/_shared/Search/examples/MixedSearch'
 import InfoBox from 'components/_shared/InfoBox/InfoBox'
@@ -16,7 +17,6 @@ function Search (props) {
       fuseOptions={{ keys: ['properties.title'] }}
       onResult={result => {
         if (result.type === 'location') {
-          console.log(result)
           setResultLatLng(featureToLatLng(result))
         } else {
           setSelectedMarkerId(result.properties.id)
@@ -31,6 +31,13 @@ function Search (props) {
     </InfoBox>
     {resultLatLng !== null && <MapLocator position={resultLatLng} />}
   </div>
+}
+
+Search.propTypes = {
+  /** a geojson feature array */
+  markers: PropTypes.array,
+  /** called when the selected search result is a marker */
+  onSelectMarkerId: PropTypes.func
 }
 
 export default Search
