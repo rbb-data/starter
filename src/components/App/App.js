@@ -51,8 +51,8 @@ function App (props) {
             setSelectedMarkerId(result.properties.id)
           }} />
         <InfoBox className={_.infoBox}>
-          Bei Nutzung der Suchfunktion werden Daten an <a target='_blank' href='https://openrouteservice.org/'>openrouteservice</a> übertragen.
-          Weitere Informationen auf der rbb <a target='_blank' href='https://www.rbb-online.de/datenschutz/datenschutzerklaerung.html'>
+          Bei Nutzung der Suchfunktion werden Daten an <a target='_blank' rel='noopener noreferrer' href='https://openrouteservice.org/'>openrouteservice</a> übertragen.
+          Weitere Informationen auf der rbb <a target='_blank' rel='noopener noreferrer' href='https://www.rbb-online.de/datenschutz/datenschutzerklaerung.html'>
           Datenschutzerklärung</a>.
         </InfoBox>
       </div>
