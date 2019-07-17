@@ -8,13 +8,22 @@ Reusable modules should eventually be moved to `src/shared` and be pushed back t
 
 (create react app forces all code to live under `src`)
 
-## Bing Keys
+## Environment Variables
+
+### Bing Keys
 
 We don't want our bing keys in version control so you have to add them as `REACT_APP_BING_KEY`
 in an `.env.local` file (or `.env.development.local` for the development key)
 You can just copy and rename `.env.local.example` and add the key :-)
 
 For more about .env files in cra see https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables
+
+### Homepage
+
+By default, Create React App produces a build assuming your app is hosted at the server root.
+To override this, specify the homepage in your package.json, for example:
+
+    "homepage": "http://rbb24.de/static/rbb/rbb-data/project-name",
 
 ## Available Scripts
 
