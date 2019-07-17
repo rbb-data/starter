@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'react-leaflet'
 import L from 'leaflet'
-import { featureToLatLng } from '../../shared/lib/geoJsonCompat'
-import useWindowSize from '../../shared/lib/useWindowSize'
-import mobileBreakpoint from '../../shared/styles/breakpoints.sass'
-import SelectableMarker from '../../shared/components/MapSelectableMarker/MapSelectableMarker'
+import { featureToLatLng } from 'lib/geoJsonCompat'
+import useWindowSize from 'lib/hooks/useWindowSize'
+import mobileBreakpoint from 'global_styles/breakpoints.sass'
+import SelectableMarker from 'components/_shared/MapSelectableMarker/MapSelectableMarker'
 
 export default function Markers (props) {
   const { onMarkerSelect: handleMarkerSelect, markers, selectedMarkerId } = props

@@ -1,0 +1,54 @@
+@import "global_styles/colors.sass"
+@import "global_styles/breakpoints.sass"
+
+.gradientBar
+  box-sizing: border-box
+  width: 100%
+  padding: 0 10px
+
+.highlightedValue
+  position: relative
+  display: block
+  width: 80px
+  margin-left: -40px
+  text-align: center
+  font-size: 12px
+  font-weight: bold
+  margin-bottom: 4px
+
+.canvas
+  width: 100%
+
+.ticks
+  position: relative
+  height: 20px
+
+  @include breakpoint(small)
+    height: 30px
+
+.tick
+  position: absolute
+  font-size: 11px
+  color: $dark-grey
+  margin: 0
+  text-align: center
+  width: 100px
+  margin-left: -50px
+  line-height: 1em
+  margin-top: 3px
+
+  &.first
+  &.last
+    width: 20px
+    margin-left: -10px
+
+  .moreInfo
+    &::before
+      content: ' '
+
+    @include breakpoint(small)
+      display: block
+
+      &::before
+        display: none
+

@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from 'react'
 import 'whatwg-fetch'
-import Map from '../../shared/components/Map/Map'
-import MixedSearch from '../../shared/components/Search/examples/MixedSearch'
-import InfoBox from '../../shared/components/InfoBox/InfoBox'
+import Map from '../_shared/Map/Map'
+import MixedSearch from '../_shared/Search/examples/MixedSearch'
+import InfoBox from '../_shared/InfoBox/InfoBox'
 import MapElements from '../MapElements/MapElements'
 import Detail from '../Detail/Detail'
 import _ from './App.module.sass'

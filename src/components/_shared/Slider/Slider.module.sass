@@ -1,0 +1,62 @@
+@import "global_styles/colors.sass"
+@import "global_styles/breakpoints.sass"
+
+.slider
+  position: relative
+  overflow: hidden
+  height: 100%
+
+.content
+  width: 100%
+  height: 100%
+  position: relative
+  padding: 0
+  // user-select: none
+
+.previousSlideWrapper,
+.nextSlideWrapper
+  position: absolute
+  width: 100%
+  height: 100%
+  padding: 0
+  top: 0
+
+.slider.hasSlideButtons
+
+  .content,
+  .previousSlideWrapper,
+  .nextSlideWrapper
+    padding: 0 40px
+
+    @include breakpoint(small)
+      padding: 0 30px
+
+.previousSlideWrapper
+  left: -100%
+
+.nextSlideWrapper
+  left: 100%
+
+.prevNextButton
+  position: absolute
+  top: 50%
+  margin-top: -28px
+  cursor: pointer
+  padding: 15px
+  background: transparent
+  border: 0
+  box-shadow: none
+  z-index: 100
+
+  @include breakpoint(small)
+    padding-right: 8px
+
+  img
+    width: 12px
+
+.next
+  right: 0
+
+.prev
+  left: 0
+  transform: rotate(180deg)

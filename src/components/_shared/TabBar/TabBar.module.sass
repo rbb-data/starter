@@ -1,0 +1,66 @@
+@import "global_styles/colors.sass"
+@import "global_styles/breakpoints.sass"
+
+.radioFilter
+  ul
+    display: flex
+    list-style: none
+    margin: 0
+    padding: 0
+    overflow: hidden
+    vertical-align: middle
+    background-color: $light-grey
+
+  li
+    position: relative
+    display: flex
+    margin-right: -1px
+    font-size: 12px
+    font-weight: bold
+    flex: 1 1 auto
+    text-align: center
+    color: $dark-grey
+    min-width: 100px
+
+    @include breakpoint(small)
+      font-size: 11px
+
+    &.active
+      background-color: transparent
+      color: white
+      border: 0
+      z-index: 0
+
+      .slant
+        position: absolute
+        z-index: -1
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background-color: $dark-grey
+        transform-origin: center
+        transform: skewX(-10deg)
+
+    &:first-child.active .slant
+      transform-origin: top
+
+    &:last-child.active .slant
+      transform-origin: bottom
+
+
+  input
+    position: absolute
+    left: -9999px
+    top: auto
+    width: 1px
+    height: 1px
+    overflow: hidden
+
+  label
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 8px 10px
+    width: 100%
+    cursor: pointer

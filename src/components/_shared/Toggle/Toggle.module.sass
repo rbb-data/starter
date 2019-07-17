@@ -1,0 +1,48 @@
+@import "global_styles/colors.sass"
+@import "global_styles/mixins.sass"
+
+.scenarioToggler
+  box-sizing: border-box
+  font-size: 14px
+  white-space: nowrap
+  text-align: center
+  background: white
+  background: linear-gradient(rgba(255, 255, 255, 0.9) 70%, rgba(255, 255, 255, 0))
+  padding: 15px 0 10px
+  transition: opacity 0.5s
+  width: 100%
+  height: 70px
+  // bottom: 0
+  z-index: 10
+
+  @media screen and (min-width: 600px)
+    background: none
+
+  input[type=radio]
+    display: none
+
+  label
+    cursor: pointer
+    position: relative
+    padding: 0 12px
+    display: inline-block
+    height: 30px
+    line-height: 30px
+    background: $light-grey
+    color: $dark-grey
+
+  input:checked + label
+    $checked-label-height: 34px
+
+    z-index: 10
+    height: $checked-label-height
+    line-height: $checked-label-height
+    font-weight: bold
+    background: $red
+    color: white
+
+    &.twoSix
+      +slant-left($checked-label-height, $red)
+
+    &.eightFive
+      +slant-right($checked-label-height, $red)

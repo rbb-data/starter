@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 // import lodash like this to not import all of lodash
 import findIndex from 'lodash/findIndex'
-import Slider from '../../shared/components/Slider/Slider'
+import Slider from 'components/_shared/Slider/Slider'
 import Slide from './Slide'
 import _ from './Detail.module.sass'
 
