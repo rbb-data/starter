@@ -3,10 +3,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## TODO:
 
-[] move map to serach result if it is off screen
-[] add example script for data conversion
-[] add date picker from christmas market map
-[] add play / stop button from e-scooter-map
+- [ ] move map to serach result if it is off screen
+- [ ] add example script for data conversion
+- [ ] add date picker from christmas market map
+- [ ] add play / stop button from e-scooter-map
 
 ## Folder structure
 
