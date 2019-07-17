@@ -13,7 +13,7 @@ import SearchInput from '../../SearchInput/SearchInput'
  * so if you provide a list with objects that have { type: 'location' } your format function wont work
  */
 const MixedSearch = props => {
-  const { keepInputOnFocus, list, format: fuseFormat, fuseOptions, openrouteConfig, onResult, onReset } = props
+  const { keepInputOnFocus, list, format: fuseFormat, fuseOptions, openrouteConfig, onResult, onReset, placeholder } = props
 
   const { suggestions: fuseSuggestions, setSearchString: setFuseSearchString } = useFuseJsSearch(list, fuseOptions)
   const { suggestions: orSuggestions, setSearchString: setOrSearchString } = useOpenrouteservice(openrouteConfig)
@@ -32,7 +32,7 @@ const MixedSearch = props => {
     : [...(fuseSuggestions || []), ...(orSuggestions || [])]
   const searchProps = useDefaultSearchProps({ suggestions, setSearchString, format, onReset, onResult })
 
-  return <SearchInput {...searchProps} keepInputOnFocus={keepInputOnFocus} />
+  return <SearchInput {...searchProps} placeholder={placeholder} keepInputOnFocus={keepInputOnFocus} />
 }
 
 MixedSearch.propTypes = {
@@ -47,7 +47,8 @@ MixedSearch.propTypes = {
   format: PropTypes.func,
   keepInputOnFocus: PropTypes.bool,
   onResult: PropTypes.func,
-  onReset: PropTypes.func
+  onReset: PropTypes.func,
+  placeholder: PropTypes.string
 }
 
 MixedSearch.defaultProps = {

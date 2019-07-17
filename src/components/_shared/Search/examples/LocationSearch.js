@@ -10,12 +10,12 @@ import SearchInput from '../../SearchInput/SearchInput'
  * you can use this as is – or as an example for creating your own search
  */
 const LocationSearch = props => {
-  const { keepInputOnFocus, openrouteConfig, onResult, onReset } = props
+  const { keepInputOnFocus, openrouteConfig, onResult, onReset, placeholder } = props
 
   const { suggestions, setSearchString } = useOpenrouteservice(openrouteConfig)
   const searchProps = useDefaultSearchProps({ suggestions, setSearchString, format, onReset, onResult })
 
-  return <SearchInput {...searchProps} keepInputOnFocus={keepInputOnFocus} />
+  return <SearchInput {...searchProps} placeholder={placeholder} keepInputOnFocus={keepInputOnFocus} />
 }
 
 LocationSearch.propTypes = {
@@ -27,7 +27,8 @@ LocationSearch.propTypes = {
   }),
   keepInputOnFocus: PropTypes.bool,
   onResult: PropTypes.func,
-  onReset: PropTypes.func
+  onReset: PropTypes.func,
+  placeholder: PropTypes.string
 }
 
 LocationSearch.defaultProps = {

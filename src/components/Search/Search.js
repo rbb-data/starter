@@ -15,6 +15,7 @@ function Search (props) {
       list={markers}
       format={marker => marker.properties.title}
       fuseOptions={{ keys: ['properties.title'] }}
+      placeholder='Nach Ort oder Beispiel suchen'
       onResult={result => {
         if (result.type === 'location') {
           setResultLatLng(featureToLatLng(result))

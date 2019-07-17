@@ -9,7 +9,7 @@ import SearchInput from '../../SearchInput/SearchInput'
  * This is a basic example of how to customize the search
  */
 const DropdownSearchWithReactNodes = props => {
-  const { list, fuseOptions, formatString, formatNode, onResult } = props
+  const { list, fuseOptions, formatString, formatNode, onResult, placeholder } = props
 
   const { suggestions, setSearchString } = useFuseJsSearch(list, {
     ...fuseOptions,
@@ -30,7 +30,7 @@ const DropdownSearchWithReactNodes = props => {
     format: formatNode
   }
 
-  return <SearchInput {...searchProps} />
+  return <SearchInput {...searchProps} placeholder={placeholder} />
 }
 
 DropdownSearchWithReactNodes.propTypes = {
@@ -38,7 +38,8 @@ DropdownSearchWithReactNodes.propTypes = {
   fuseOptions: PropTypes.object,
   formatString: PropTypes.func,
   formatNode: PropTypes.func,
-  onResult: PropTypes.func
+  onResult: PropTypes.func,
+  placeholder: PropTypes.string
 }
 
 export default DropdownSearchWithReactNodes

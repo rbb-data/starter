@@ -10,12 +10,12 @@ import SearchInput from '../../SearchInput/SearchInput'
  * you can use this as is – or as an example for creating your own search
  */
 const SimpleSearch = props => {
-  const { list, keepInputOnFocus, fuseOptions, format, onResult, onReset } = props
+  const { list, keepInputOnFocus, fuseOptions, format, onResult, onReset, placeholder } = props
 
   const { suggestions, setSearchString } = useFuseJsSearch(list, fuseOptions)
   const searchProps = useDefaultSearchProps({ suggestions, setSearchString, format, onReset, onResult })
 
-  return <SearchInput {...searchProps} keepInputOnFocus={keepInputOnFocus} />
+  return <SearchInput {...searchProps} placeholder={placeholder} keepInputOnFocus={keepInputOnFocus} />
 }
 
 SimpleSearch.propTypes = {
@@ -24,7 +24,8 @@ SimpleSearch.propTypes = {
   keepInputOnFocus: PropTypes.bool,
   format: PropTypes.func,
   onResult: PropTypes.func,
-  onReset: PropTypes.func
+  onReset: PropTypes.func,
+  placeholder: PropTypes.string
 }
 
 SimpleSearch.defaultProps = {
