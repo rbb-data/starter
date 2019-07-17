@@ -41,6 +41,7 @@ export function fixBerlinSearchResult (feature) {
       case 'Neukolln':
         borough = 'Neukölln'
         break
+      default: break
     }
 
     switch (feature.properties.neighbourhood) {
@@ -86,6 +87,7 @@ export function fixBerlinSearchResult (feature) {
       case 'Neu-Hohenschonhausen':
         neighbourhood = 'Neu-Hohenschönhausen'
         break
+      default: break
     }
   }
 

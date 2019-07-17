@@ -7,17 +7,18 @@ import styles from './SearchInput.module.sass'
 
 const SearchButton = ({ type, defaultAction }) => {
   switch (type) {
+    default:
     case 'search':
       return <button key='submit' className={styles.searchButton} type={'submit'}>
-        <img src={searchIcon} />
+        <img src={searchIcon} alt='search' />
       </button>
     case 'dropdown':
       return <button key='dropdown' className={styles.searchButton} onClick={defaultAction}>
-        <img src={dropdownIcon} className={styles.dropdown} />
+        <img src={dropdownIcon} alt='show' className={styles.dropdown} />
       </button>
     case 'cancel':
       return <button key='reset' className={styles.searchButton} type={'reset'}>
-        <img src={closeIcon} />
+        <img src={closeIcon} alt='reset' />
       </button>
   }
 }
