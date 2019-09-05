@@ -13,6 +13,7 @@ git init
 git add --all
 git commit -m "Cloned from rbb-data starter"
 ````
+(you have to replace "my-rbb-data-project" with the name of your project)
 
 Propably you also want to add a remote.
 For example:
