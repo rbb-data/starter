@@ -1,6 +1,26 @@
 # rbb-data starter
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Start a new Project:
+
+To create new project just run:
+
+````bash
+git clone git@github.com:rbb-data/starter.git my-rbb-data-project --depth 1
+cd my-rbb-data-project
+rm -rf .git
+git init
+git add --all
+git commit -m "Cloned from rbb-data starter"
+````
+
+Propably you also want to add a remote.
+For example:
+````
+git remote add origin https://docs.rbb-online.de/bitbucket/scm/rdat/my-rbb-data-project.git
+git push -u origin master
+````
+
 ## TODO:
 
 - [ ] move map to serach result if it is off screen
