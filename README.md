@@ -11,7 +11,7 @@ cd my-rbb-data-project
 rm -rf .git
 git init
 git add --all
-git commit -m "Cloned from rbb-data starter"
+git commit -m "Init with clone from rbb-data starter"
 ````
 (you have to replace "my-rbb-data-project" with the name of your project)
 
