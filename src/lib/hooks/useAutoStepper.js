@@ -1,12 +1,5 @@
 import { useState, useReducer, useEffect, useRef } from 'react'
 
-const reducer = (state, delay) => {
-  return {
-    step: state.step + 1,
-    delay: delay
-  }
-}
-
 /**
  * hook that can periodically call a handler function
  * @param  {function} handler          handler must return the delay untill it should be called the next time
@@ -20,8 +13,7 @@ const reducer = (state, delay) => {
  */
 export default function useAutoStepper (handler, initialDelay = 0) {
   const [isAnimating, setIsAnimating] = useState(false)
-  const [state, setupNext] = useReducer(reducer, { step: 0, delay: initialDelay })
-  const { step, delay } = state
+  const [step, bumpStep] = useReducer(s => s + 1, 0)
   const timeoutId = useRef(null)
 
   useEffect(() => {
@@ -29,14 +21,18 @@ export default function useAutoStepper (handler, initialDelay = 0) {
 
     if (!isAnimating) return
 
-    const performStep = () => {
-      const delay = handler()
-      const keepRunning = delay !== false
-      if (keepRunning) { setupNext(delay) }
-    }
+    timeoutId.current = setTimeout(bumpStep, initialDelay)
+  }, [isAnimating])
 
-    timeoutId.current = setTimeout(performStep, delay)
-  }, [isAnimating, step, delay])
+  useEffect(() => {
+    // don't run on inital render (after that it will only run when handlerStep changed)
+    if (step === 0) return
+
+    const delay = handler()
+    if (delay === false) return
+
+    timeoutId.current = setTimeout(bumpStep, delay)
+  }, [step])
 
   return [isAnimating, setIsAnimating]
 }
