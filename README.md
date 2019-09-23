@@ -1,9 +1,10 @@
 # rbb-data starter
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Start a new Project:
 
-To create new project just run:
+To create a new project just run:
 
 ````bash
 git clone git@github.com:rbb-data/starter.git my-rbb-data-project --depth 1
@@ -13,7 +14,7 @@ git init
 git add --all
 git commit -m "Init with clone from rbb-data starter"
 ````
-(you have to replace "my-rbb-data-project" with the name of your project)
+Replace "my-rbb-data-project" with the name of your project.
 
 Propably you also want to add a remote.
 For example:
@@ -21,6 +22,8 @@ For example:
 git remote add origin https://docs.rbb-online.de/bitbucket/scm/rdat/my-rbb-data-project.git
 git push -u origin master
 ````
+
+Adjust the project name/path in the following files: `.env` and `package.json` (see below). 
 
 ## TODO:
 
@@ -41,15 +44,15 @@ Reusable modules should eventually be moved to `src/shared` and be pushed back t
 ### Bing Keys
 
 We don't want our bing keys in version control so you have to add them as `REACT_APP_BING_KEY`
-in an `.env.local` file (or `.env.development.local` for the development key)
-You can just copy and rename `.env.local.example` and add the key :-)
+in an `.env.local` file (or `.env.development.local` for the development key).
+You can just copy and rename `.env.local.example` and add the key. :-)
 
 For more about .env files in cra see https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables
 
 ### Homepage
 
 By default, Create React App produces a build assuming your app is hosted at the server root.
-To override this, specify the homepage in your package.json, for example:
+To override this, specify the homepage in your `package.json`, for example:
 
     "homepage": "http://rbb24.de/static/rbb/rbb-data/project-name",
 
