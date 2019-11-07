@@ -7,6 +7,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "@turf/turf": "^5.1.6",
     "chroma-js": "^2.0.3",
     "fuse.js": "^3.4.4",
     "leaflet": "^1.4.0",
@@ -32,7 +33,8 @@
     "analyze-without-build": "source-map-explorer 'build/static/js/*.js'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "deploy-storybook": "storybook-to-ghpages"
+    "deploy-storybook": "storybook-to-ghpages",
+    "scripts:create-geojson-mask": "node ./scripts/create-geojson-mask.js"
   },
   "browserslist": [
     ">0.2%",
