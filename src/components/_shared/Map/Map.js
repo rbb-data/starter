@@ -5,13 +5,14 @@ import { Map as LeafletMap, ZoomControl, GeoJSON } from 'react-leaflet'
 import { BingLayer } from 'react-leaflet-bing'
 
 import trackEvent from 'lib/analytics'
-import berlinMask from 'data/berlin.geo.json'
+import berlinMask from 'data/berlin-mask.geo.json'
 import berlinBoroughs from 'data/berlin-bezirke.geo.json'
 import { darkGrey } from 'global_styles/colors.sass'
 import _ from './Map.module.sass'
 
 // TODO:
 // add brandenburg as option
+// add Potsdam as option
 
 /**
  * React leaflet map component in rbb-data style
