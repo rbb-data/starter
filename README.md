@@ -30,7 +30,6 @@ Adjust the project name/path in the following files: `.env` and `package.json` (
 - [ ] move map to serach result if it is off screen
 - [ ] add example script for data conversion
 - [ ] add date picker from christmas market map
-- [ ] add play / stop button from e-scooter-map
 
 ## Folder structure
 
