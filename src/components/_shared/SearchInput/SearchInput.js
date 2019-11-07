@@ -30,7 +30,9 @@ SearchButton.propTypes = {
 
 /**
  * SearchInput that can show a list of suggestions
- *
+ * This component provides no logic.
+ * It just renders the search string and the provided result list
+ * and provides event handlers for user actions
  */
 const SearchInput = props => {
   const {
