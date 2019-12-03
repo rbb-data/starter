@@ -25,12 +25,6 @@ git push -u origin master
 
 Adjust the project name/path in the following files: `.env` and `package.json` (see below). 
 
-## TODO:
-
-- [ ] move map to serach result if it is off screen
-- [ ] add example script for data conversion
-- [ ] add date picker from christmas market map
-
 ## Folder structure
 
 Your app lives in `/src`.  
