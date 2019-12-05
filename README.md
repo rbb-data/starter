@@ -34,11 +34,12 @@ Reusable modules should eventually be moved to `src/shared` and be pushed back t
 
 ## Environment Variables
 
-### Bing Keys
+### Keys
 
-We don't want our bing keys in version control so you have to add them as `REACT_APP_BING_KEY`
-in an `.env.local` file (or `.env.development.local` for the development key).
-You can just copy and rename `.env.local.example` and add the key. :-)
+We don't want our keys in version control so you have to add them as `REACT_APP_BING_KEY`
+and `REACT_APP_OPENROUTSERVICE_KEY`
+in an `.env.local` file (or `.env.development.local` because bing has a different development key).
+You can just copy and rename `.env.local.example` and add the keys. :-)
 
 For more about .env files in cra see https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables
 
@@ -55,7 +56,7 @@ This App can track "pageviews" and e.g. map interactions.
 To enable this you need to replace everything in `{}` in the ANALYTICS variables in the `.env` file
 and set `REACT_APP_ANALYTICS_ENABLED` to true.
 
-## Available Scripts
+## Scripts
 
 In the project directory, you can run:
 
@@ -97,19 +98,39 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+https://create-react-app.dev/docs/available-scripts/#npm-run-eject
 
 ### `npm run --silent scripts:create-geojson-mask`
 
 Inverts a given geojson file and creates a mask that can be displayed on a map to draw focus on an area (see `src/data/potsdam-mask.geo.json` for an example`. Additional info: `npm run scripts:create-geojson-mask --help`.
 
 **NOTE:** The `--silent` flag is needed, otherwise invalid GeoJSON will be produced.
+
+### `npm run scripts:geocode-data`
+
+**This is an example script that you need to customize for your project**
+
+This script expects a csv at `../src/data/raw_source_file.csv`. runs through all its
+entries and tries to find a geocode specified in the column `Ort` and adds the columns lat lng to each row.
+Then it saves the result in the file `../src/data/geocoded.csv`
+
+### `npm run scripts:convert-to-csv`
+
+**This is an example script that you need to customize for your project**
+
+This script expects a csv at `../src/data/geocoded.csv` (you could change this to `../src/data/raw_source_file.cs`)
+This is just a simple example on how to map an external file to the datastructure used in the project.
+The output is a csv file.
+Then it saves the result in the file `../public/markers.csv`
+
+### `npm run scripts:convert-to-geojson`
+
+**This is an example script that you need to customize for your project**
+
+This script expects a csv at `../src/data/geocoded.csv` (you could change this to `../src/data/raw_source_file.cs`)
+This is just a simple example on how to map an external file to the datastructure used in the project.
+The output is a geojson file.
+Then it saves the result in the file `../public/markers.geojson`
 
 ## Learn More
 

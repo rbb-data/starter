@@ -27,14 +27,17 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "analyze": "npm run build && npm run analyze-without-build",
     "analyze-without-build": "source-map-explorer 'build/static/js/*.js'",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "deploy-storybook": "storybook-to-ghpages",
-    "scripts:create-geojson-mask": "node ./scripts/create-geojson-mask.js"
+    "scripts:create-geojson-mask": "node ./scripts/create-geojson-mask.js",
+    "scripts:geocode-data": "node ./scripts/geocode-data.js",
+    "scripts:convert-to-csv": "node ./scripts/convert-to-csv.js",
+    "scripts:convert-to-geojson": "node ./scripts/convert-to-geojson.js"
   },
   "browserslist": [
     ">0.2%",
@@ -53,6 +56,7 @@
     "@storybook/react": "5.0.10",
     "@storybook/storybook-deployer": "2.8.1",
     "babel-loader": "^8.0.5",
+    "d3-dsv": "^1.2.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-config-standard-react": "^7.0.2",
     "eslint-plugin-import": "^2.16.0",
@@ -60,6 +64,7 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-standard": "^4.0.0",
+    "request-promise": "^4.2.5",
     "storybook-addon-smart-knobs": "^4.1.2"
   }
 }
