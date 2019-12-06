@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import 'whatwg-fetch'
 import Map from 'components/_shared/Map/Map'
 import MapElements from 'components/MapElements/MapElements'
-import Search from 'components/Search/Search'
+import SearchWrapper from 'components/SearchWrapper/SearchWrapper'
 import Detail from 'components/Detail/Detail'
 import _ from './App.module.sass'
 
@@ -29,18 +29,22 @@ function App (props) {
       className={_.detail}
       markers={markers}
       selectedMarkerId={selectedMarkerId}
-      onSelectMarkerId={setSelectedMarkerId} />
+      onSelectMarkerId={setSelectedMarkerId}
+    />
     <div className={_.mapWrapper}>
       <Map
         bingKey={process.env.REACT_APP_BING_KEY}
-        className={_.map}>
-
+        className={_.map}
+      >
         <MapElements
           markers={markers}
           onSelectMarkerId={setSelectedMarkerId}
-          selectedMarkerId={selectedMarkerId} />
-
-        <Search markers={markers} onSelectMarkerId={setSelectedMarkerId} />
+          selectedMarkerId={selectedMarkerId}
+        />
+        <SearchWrapper
+          markers={markers}
+          onSelectMarkerId={setSelectedMarkerId}
+        />
       </Map>
     </div>
   </div>
