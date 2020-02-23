@@ -37,11 +37,18 @@ SearchButton.propTypes = {
 const SearchInput = props => {
   const {
     className,
-    buttonType, keepInputOnFocus,
-    placeholder, nothingFoundText,
-    suggestions, format,
+    buttonType,
+    keepInputOnFocus,
+    placeholder,
+    nothingFoundText,
+    suggestions,
+    format,
     value,
-    onReset, onResult, onInput } = props
+    onReset,
+    onBlur,
+    onResult, 
+    onInput
+  } = props
 
   const [highlightedSuggestion, setHighlightedSuggestion] = useState(0)
   const inputRef = useRef()
@@ -84,6 +91,11 @@ const SearchInput = props => {
     inputRef.current.focus()
   }
 
+  function handleBlur () {
+    onBlur()
+    setHighlightedSuggestion(0)
+  }
+
   function handleKeyDown (e) {
     // if we don't have any suggestions we don't need to change behavior
     if (suggestions === null) return
@@ -117,7 +129,9 @@ const SearchInput = props => {
           placeholder={placeholder}
           value={value}
           onInput={handleInput}
+          onChange={handleInput}
           onFocus={handleFocus}
+          onBlur={handleBlur}
           autoComplete={'off'} />
 
         <SearchButton type={buttonType} defaultAction={handleFocus} />
@@ -128,8 +142,17 @@ const SearchInput = props => {
           {suggestions.map((suggestion, i) =>
             <li
               key={i}
-              onClick={() => { setNewResult(suggestion) }}
-              className={highlightedSuggestion === i ? styles.active : ''}>
+              // this is needed to prevent the blur event on the input beeing called
+              // before we select a suggestion. Becuase we might clear the suggestions
+              // in the blur event and then a click would not be triggered
+              onMouseDown={ e => e.preventDefault() }
+              onClick={() => {
+                setNewResult(suggestion)
+                // if we did select a suggestion call blur afterwards
+                inputRef.current.blur()
+              }}
+              className={highlightedSuggestion === i ? styles.active : ''}
+            >
               <div className={styles.inner}>{format(suggestion)}</div>
             </li>)
           }
@@ -174,6 +197,9 @@ SearchInput.propTypes = {
   /** called when user clicks reset button */
   onReset: PropTypes.func,
 
+  /** called when input field looses focus */
+  onBlur: PropTypes.func,
+
   /** called when user selects a suggestion */
   onResult: PropTypes.func,
 
@@ -192,7 +218,8 @@ SearchInput.defaultProps = {
   format: value => value,
   onReset: () => {},
   onResult: () => {},
-  onInput: () => {}
+  onInput: () => {},
+  onBlur: () => {}
 }
 
 export default SearchInput
