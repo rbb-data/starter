@@ -14,9 +14,9 @@ const Toggle = props => {
         checked={active === options[0]}
         onChange={handleChange}
         value={options[0]}
-        name={`${name}_scenario`}
-        id={`${name}_scenario-rcp8.5`} />
-      <label className={_.eightFive} htmlFor={`${name}_scenario-rcp8.5`}>
+        name={`${name}`}
+        id={`${name}_${options[0]}`} />
+      <label className={_.eightFive} htmlFor={`${name}_${options[0]}`}>
         {format(options[0])}
       </label>
     </span>
@@ -26,9 +26,9 @@ const Toggle = props => {
         checked={active === options[1]}
         onChange={handleChange}
         value={options[1]}
-        name={`${name}_scenario`}
-        id={`${name}_scenario-rcp2.6`} />
-      <label className={_.twoSix} htmlFor={`${name}_scenario-rcp2.6`}>
+        name={`${name}`}
+        id={`${name}_${options[1]}`} />
+      <label className={_.twoSix} htmlFor={`${name}_${options[1]}`}>
         {format(options[1])}
       </label>
     </span>
