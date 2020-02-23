@@ -1,0 +1,36 @@
+@import "global_styles/colors.sass"
+
+.Button
+  transition: opacity .2s ease
+
+.ShareButtonGroup
+  box-sizing: border-box
+  font-size: 25px
+  margin: 5px 5px 10px
+  text-align: center
+
+  @media screen and (min-width: 600px)
+    width: 100%
+    font-size: 22px
+
+    \:global
+      .icon-whatsapp
+        display: none
+
+  .text
+    color: $red
+    font-size: 14px
+    margin: 0 0 20px
+    color: $dark-grey
+
+  a
+    color: $red
+    margin: 0 20px
+    text-decoration: none
+
+  &:hover
+    a
+      opacity: 0.5
+
+      &:hover
+        opacity: 1
