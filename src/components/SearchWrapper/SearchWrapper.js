@@ -4,9 +4,9 @@ import { featureToLatLng } from 'lib/geoJsonCompat'
 import MixedSearch from 'components/_shared/Search/examples/MixedSearch'
 import InfoBox from 'components/_shared/InfoBox/InfoBox'
 import MapLocator from 'components/_shared/MapLocator/MapLocator'
-import _ from './Search.module.sass'
+import _ from './SearchWrapper.module.sass'
 
-function Search (props) {
+function SearchWrapper (props) {
   const { markers, onSelectMarkerId: setSelectedMarkerId } = props
   const [resultLatLng, setResultLatLng] = useState(null)
 
@@ -34,11 +34,11 @@ function Search (props) {
   </div>
 }
 
-Search.propTypes = {
+SearchWrapper.propTypes = {
   /** a geojson feature array */
   markers: PropTypes.array,
   /** called when the selected search result is a marker */
   onSelectMarkerId: PropTypes.func
 }
 
-export default Search
+export default SearchWrapper
