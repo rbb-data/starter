@@ -11,13 +11,16 @@ storiesOf('TabBar', module)
   .add('Basic Example', () => {
     const tabs = array('tabs', ['one', 'two', 'three'])
 
-    return <TabBar
-      id='tab-bar-id'
-      class='custom-class-name'
-      title='select something'
-      selectedTab={text('selectedTab', 'one')}
-      tabs={tabs}
-      onSelect={action('changed')} />
+    return (
+      <TabBar
+        id='tab-bar-id'
+        class='custom-class-name'
+        title='select something'
+        selectedTab={text('selectedTab', 'one')}
+        tabs={tabs}
+        onChange={action('changed')}
+      />
+    )
   })
 
   .add('With custom color', () => {
@@ -30,32 +33,60 @@ storiesOf('TabBar', module)
     const selectedTabIndex = number('selectedTabIndex', 0)
     const selectedTab = tabs[selectedTabIndex]
 
-    return <TabBar
-      id='tab-bar-id'
-      class='custom-class-name'
-      title='select something'
-      selectedTab={selectedTab}
-      tabs={tabs}
-      format={tab => tab.display}
-      color={tab => tab === selectedTab ? tab.color : null}
-      onSelect={action('changed')} />
+    return (
+      <TabBar
+        id='tab-bar-id'
+        class='custom-class-name'
+        title='select something'
+        selectedTab={selectedTab}
+        tabs={tabs}
+        format={tab => tab.display}
+        color={tab => (tab === selectedTab ? tab.color : null)}
+        onChange={action('changed')}
+      />
+    )
   })
 
   .add('With react components', () => {
     const tabs = [
-      { value: 'one', display: <span>Option <i>number one</i></span> },
-      { value: 'two', display: <span>Option <i>number two</i></span> },
-      { value: 'three', display: <span>Option <i>number three</i></span> }
+      {
+        value: 'one',
+        display: (
+          <span>
+            Option <i>number one</i>
+          </span>
+        )
+      },
+      {
+        value: 'two',
+        display: (
+          <span>
+            Option <i>number two</i>
+          </span>
+        )
+      },
+      {
+        value: 'three',
+        display: (
+          <span>
+            Option <i>number three</i>
+          </span>
+        )
+      }
     ]
 
     const selectedTabIndex = number('selectedTabIndex', 0)
     const selectedTab = tabs[selectedTabIndex]
 
-    return <TabBar id='tab-bar-id'
-      class='custom-class-name'
-      title='select something'
-      selectedTab={selectedTab}
-      format={tab => tab.display}
-      tabs={tabs}
-      onSelect={action('changed')} />
+    return (
+      <TabBar
+        id='tab-bar-id'
+        class='custom-class-name'
+        title='select something'
+        selectedTab={selectedTab}
+        format={tab => tab.display}
+        tabs={tabs}
+        onChange={action('changed')}
+      />
+    )
   })

@@ -6,28 +6,46 @@ import styles from './TabBar.module.sass'
  * Renders selectable Tabs next to each other
  */
 const TabBar = props => {
-  const { id, tabs, title, selectedTab, format, color, onSelect, className } = props
+  const {
+    id,
+    tabs,
+    title,
+    selectedTab,
+    format,
+    color,
+    onChange,
+    className
+  } = props
 
-  return <div className={`${styles.radioFilter} ${className}`}>
-    <ul title={title}>
-      { tabs.map((tab, i) =>
-        <li className={tab === selectedTab ? styles.active : ''} key={`${id}-${i}`}>
-          <input
-            id={`${id}-${i}`}
-            type='radio'
-            name={id}
-            value={tab}
-            checked={tab === selectedTab}
-            onChange={e => onSelect(e.target.value)} />
+  return (
+    <div className={`${styles.radioFilter} ${className}`}>
+      <ul title={title}>
+        {tabs.map((tab, i) => (
+          <li
+            className={tab === selectedTab ? styles.active : ''}
+            key={`${id}-${i}`}
+          >
+            <input
+              id={`${id}-${i}`}
+              type='radio'
+              name={id}
+              value={i}
+              checked={tab === selectedTab}
+              onChange={() => onChange(tab)}
+            />
 
-          <label htmlFor={`${id}-${i}`}>
-            <span className={styles.slant} style={{ backgroundColor: color(tab) }} />
-            { format(tab) }
-          </label>
-        </li>
-      )}
-    </ul>
-  </div>
+            <label htmlFor={`${id}-${i}`}>
+              <span
+                className={styles.slant}
+                style={{ backgroundColor: color(tab) }}
+              />
+              {format(tab)}
+            </label>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
 }
 
 TabBar.propTypes = {
@@ -45,11 +63,11 @@ TabBar.propTypes = {
   /** takes the tab value and should return its background color */
   color: PropTypes.func,
   /** select handler */
-  onSelect: PropTypes.func
+  onChange: PropTypes.func
 }
 
 TabBar.defaultProps = {
-  onSelect: () => {},
+  onChange: () => {},
   format: value => value,
   color: () => null,
   className: ''
