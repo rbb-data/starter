@@ -21,6 +21,7 @@ export const FacebookButton = ({ url }) => (
     className={`${_.Button} icon-facebook`}
     aria-label='Auf Facebook teilen'
     target='_blank'
+    rel='noopener noreferrer'
     href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
       url
     )}`}
@@ -36,6 +37,7 @@ export const TwitterButton = ({ url, description }) => (
     className={`${_.Button} icon-twitter`}
     aria-label='Auf Twitter teilen'
     target='_blank'
+    rel='noopener noreferrer'
     href={
       'https://twitter.com/intent/tweet?via=rbb24&url=' +
       encodeURIComponent(url) +
@@ -55,6 +57,7 @@ export const WhatsAppButton = ({ url, description }) => (
     className={`${_.Button} icon-whatsapp`}
     aria-label='Auf WhatsApp teilen'
     target='_blank'
+    rel='noopener noreferrer'
     href={
       'whatsapp://send?text=' +
       encodeURIComponent(removeHashtags(description) + ' ' + url)
