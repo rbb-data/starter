@@ -14,7 +14,7 @@ function App (props) {
 
   useEffect(() => {
     async function fetchMarkers () {
-      const res = await fetch('./markers.geo.json')
+      const res = await fetch(`${window.location}/markers.geo.json`)
       const json = await res.json()
       setMarkers(json.features)
     }

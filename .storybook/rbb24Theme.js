@@ -1,5 +1,6 @@
-import { create } from '@storybook/theming'
+import { create } from '@storybook/theming/create';
 import logo from './rbb24Logo.png'
+
 export default create({
   base: 'light',
 
