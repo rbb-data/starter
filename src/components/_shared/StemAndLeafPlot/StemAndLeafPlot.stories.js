@@ -27,7 +27,7 @@ const itemsWithIdentity = [
   { value: 50 }
 ]
 
-storiesOf('StemAndLeafPlot', module)
+storiesOf('II Components/StemAndLeafPlot', module)
   .addDecorator(withKnobs)
   .add('Without selectedItem', () =>
     <StemAndLeafPlot

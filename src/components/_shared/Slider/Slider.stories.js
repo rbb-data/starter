@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions'
 
 import Slider from './Slider'
 
-storiesOf('Slider', module)
+storiesOf('II Components/Slider', module)
   .addDecorator(withKnobs)
   .add('With prev next Buttons', () =>
     <Slider

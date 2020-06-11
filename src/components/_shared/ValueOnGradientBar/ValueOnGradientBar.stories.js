@@ -11,7 +11,7 @@ const no2ColorScale = Chroma.bezier(['#B6D61B', '70B50F', '#E2430D', 'E30F04', '
   .domain([0, 100])
   .correctLightness()
 
-storiesOf('ValueOnGradientBar', module)
+storiesOf('II Components/ValueOnGradientBar', module)
   .addDecorator(withKnobs)
   .add('with default props', () =>
     <ValueOnGradientBar />

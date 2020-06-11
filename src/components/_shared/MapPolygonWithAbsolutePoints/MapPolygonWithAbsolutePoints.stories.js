@@ -6,7 +6,7 @@ import colors from 'global_styles/colors.sass'
 import Map from '../Map/Map'
 import MapPolygonWithAbsolutePoints from './MapPolygonWithAbsolutePoints'
 
-storiesOf('MapPolygonWithAbsolutePoints', module)
+storiesOf('II Components/Map/MapPolygonWithAbsolutePoints', module)
   .addDecorator(withKnobs)
   .add('at bottom right', () => {
     const polygonProps = {

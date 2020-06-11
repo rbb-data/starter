@@ -29,7 +29,7 @@ const Circle = ({ color }) =>
 
 Circle.propTypes = { color: PropTypes.string }
 
-storiesOf('Search', module)
+storiesOf('II Components/Search/Search', module)
   .addDecorator(withKnobs)
   .add('SimpleSearch', () =>
     <SimpleSearch

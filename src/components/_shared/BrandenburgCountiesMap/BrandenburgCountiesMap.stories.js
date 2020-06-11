@@ -7,7 +7,7 @@ import { withKnobs } from '@storybook/addon-knobs'
 import rbbColors from 'global_styles/colors.sass'
 import BrandenburgCountiesMap from './BrandenburgCountiesMap'
 
-storiesOf('BrandenburgCountiesMap', module)
+storiesOf('II Components/BrandenburgCountiesMap', module)
   .addDecorator(withKnobs)
   .add('with default props', () =>
     <div style={{ width: '200px' }}>

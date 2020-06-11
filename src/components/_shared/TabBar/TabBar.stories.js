@@ -6,7 +6,7 @@ import { withKnobs, number, text, array } from '@storybook/addon-knobs'
 
 import TabBar from './TabBar'
 
-storiesOf('TabBar', module)
+storiesOf('II Components/TabBar', module)
   .addDecorator(withKnobs)
   .add('Basic Example', () => {
     const tabs = array('tabs', ['one', 'two', 'three'])

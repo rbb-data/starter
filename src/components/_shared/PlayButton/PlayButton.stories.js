@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions'
 
 import PlayButton from './PlayButton'
 
-storiesOf('PlayButton', module)
+storiesOf('II Components/PlayButton', module)
   .add('with play icon', () => {
     return <PlayButton onClick={action('onClick')} />
   })

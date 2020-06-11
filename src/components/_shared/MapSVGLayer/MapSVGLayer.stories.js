@@ -12,7 +12,7 @@ const someLatLngs = [
   [52.5094, 13.4222]
 ]
 
-storiesOf('MapSVGLayer', module)
+storiesOf('II Components/Map/MapSVGLayer', module)
   .add('draw circles for latLngs', () => {
     // this is obviously a useless example
     // but since now all you are drawing is an svg it is easier to use d3 or other tools

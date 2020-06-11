@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions'
 
 import SearchInput from './SearchInput'
 
-storiesOf('SearchInput', module)
+storiesOf('II Components/Search/SearchInput', module)
   .addDecorator(withKnobs)
   .add('Without suggestions', () => {
     return <SearchInput

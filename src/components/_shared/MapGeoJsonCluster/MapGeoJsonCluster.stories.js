@@ -5,7 +5,7 @@ import Map from '../Map/Map'
 import MapGeoJsonCluster from './MapGeoJsonCluster'
 import geojson from './features.geo.json'
 
-storiesOf('MapGeoJsonCluster', module)
+storiesOf('II Components/Map/MapGeoJsonCluster', module)
   .add('with default styles', () => {
     return <Map>
       <MapGeoJsonCluster

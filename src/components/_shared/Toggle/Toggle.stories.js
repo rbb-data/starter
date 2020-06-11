@@ -6,7 +6,7 @@ import { withKnobs, array, text, radios } from '@storybook/addon-knobs'
 
 import Toggle from './Toggle'
 
-storiesOf('Toggle', module)
+storiesOf('II Components/Toggle', module)
   .addDecorator(withKnobs)
   .add('basic example', () =>
     <Toggle

@@ -6,7 +6,7 @@ import { withKnobs, text, array, boolean } from '@storybook/addon-knobs'
 import Map from '../Map/Map'
 import MapSelectableMarker from './MapSelectableMarker'
 
-storiesOf('MapSelectableMarker', module)
+storiesOf('II Components/Map/MapSelectableMarker', module)
   .addDecorator(withKnobs)
   .add('Not selected', () => {
     return <Map>

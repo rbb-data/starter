@@ -5,7 +5,7 @@ import { withKnobs } from '@storybook/addon-knobs'
 
 import BalanceGauge from './BalanceGauge'
 
-storiesOf('BalanceGauge', module)
+storiesOf('II Components/BalanceGauge', module)
   .addDecorator(withKnobs)
   .add('Low ratio', () =>
     <BalanceGauge
