@@ -1,33 +1,36 @@
 import React from 'react'
-
-import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { withKnobs, array, text, radios } from '@storybook/addon-knobs'
-
 import Toggle from './Toggle'
 
-storiesOf('II Components/Toggle', module)
-  .addDecorator(withKnobs)
-  .add('basic example', () =>
+export default {
+  title: 'II Components/Toggle',
+  decorators: [withKnobs],
+  component: Toggle,
+}
+
+export const Basic = () => (
+  <Toggle
+    options={array('options', ['Option A', 'Option B'])}
+    active={text('active', 'Option A')}
+    onChange={action('onChange')}
+  />
+)
+
+export const WithCustomFormat = () => {
+  const options = [
+    { firstname: 'Tina', lastname: 'Klein' },
+    { firstname: 'Kim', lastname: 'Frank' },
+  ]
+  const activeIndex = radios('active', { Tina: 0, Kim: 1 }, 0)
+  const active = options[activeIndex]
+
+  return (
     <Toggle
-      options={array('options', ['Option A', 'Option B'])}
-      active={text('active', 'Option A')}
+      options={options}
+      active={active}
+      format={(option) => `${option.firstname}.${option.lastname}`}
       onChange={action('onChange')}
     />
   )
-
-  .add('with custom format', () => {
-    const options = [
-      { firstname: 'Tina', lastname: 'Klein' },
-      { firstname: 'Kim', lastname: 'Frank' }
-    ]
-    const activeIndex = radios('active', { Tina: 0, Kim: 1 }, 0)
-    const active = options[activeIndex]
-
-    return <Toggle
-      options={options}
-      active={active}
-      format={option => `${option.firstname}.${option.lastname}`}
-      onChange={action('onChange')}
-    />
-  })
+}

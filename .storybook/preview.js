@@ -1,6 +1,7 @@
 import { addParameters } from '@storybook/react';
 
 addParameters({
+  viewMode: 'docs',
   options: {
     /**
      * display the top-level grouping as a "root" in the sidebar

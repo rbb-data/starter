@@ -1,13 +1,14 @@
 import React from 'react'
-
-import { storiesOf } from '@storybook/react'
-
 import InfoBox from './InfoBox'
 
-storiesOf('II Components/InfoBox', module)
-  .add('InfoBox', () => {
-    return <InfoBox>
-      <h1>InfoBox Content</h1>
-      <p>Lorem Ipsum</p>
-    </InfoBox>
-  })
+export default {
+  title: 'II Components/InfoBox',
+  component: InfoBox,
+}
+
+export const Basic = () => (
+  <InfoBox>
+    <h1>InfoBox Content</h1>
+    <p>Lorem Ipsum</p>
+  </InfoBox>
+)
