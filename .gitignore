@@ -8,8 +8,9 @@
 # testing
 /coverage
 
-# production
+# artefacts
 /build
+/storybook-static
 
 # misc
 .DS_Store
