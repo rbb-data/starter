@@ -11,12 +11,12 @@ export default {
 
 export const Basic = () => (
   <Toggle
+    name={'input1'}
     options={array('options', ['Option A', 'Option B'])}
     active={text('active', 'Option A')}
     onChange={action('onChange')}
   />
 )
-
 export const WithCustomFormat = () => {
   const options = [
     { firstname: 'Tina', lastname: 'Klein' },
@@ -27,6 +27,7 @@ export const WithCustomFormat = () => {
 
   return (
     <Toggle
+      name={'input2'}
       options={options}
       active={active}
       format={(option) => `${option.firstname}.${option.lastname}`}
