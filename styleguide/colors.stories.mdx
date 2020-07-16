@@ -43,20 +43,20 @@ If you don't know which colors to pick just go from left to right.
   <ColorItem
     title="darkHoney | darkCyan | darkMagenta | darkBerry  | darkBlue | lightGrey"
     subtitle="for thin lines, smaller icons or text"
-    colors={[darken(0.01, adjustHue(3, colors.orange)), darken(0.05, colors.cyan), colors.darkMagenta, darken(0.1, colors.darkBlue), lighten(0.08, adjustHue(-5, colors.bordeaux)), colors.lightGrey]} />
+    colors={[darken(0.01, adjustHue(3, colors.orange)), lighten(0.06, colors.darkGreen), colors.darkMagenta, darken(0.1, colors.darkBlue), lighten(0.08, adjustHue(-5, colors.bordeaux)), colors.lightGrey]} />
   <ColorItem
     title="cyan | magenta | honey | berry | blue | lightGrey"
     subtitle="default qualitive color palette"
-    colors={[colors.honey, lighten(0.05, colors.cyan), shade(-0.05, adjustHue(-5, colors.magenta)), darken(0.18, colors.blue), lighten(0.2, adjustHue(-5, colors.bordeaux)), colors.lightGrey]} />
+    colors={[colors.honey, colors.green, shade(-0.05, adjustHue(-5, colors.magenta)), darken(0.18, colors.blue), lighten(0.2, adjustHue(-5, colors.bordeaux)), colors.lightGrey]} />
   <ColorItem
     title="lightCyan | lightMagenta | yellow | lightBerry | lightBlue | backgroundGrey "
     subtitle="sometimes you need a lighter scale or colors in multipe shades"
-    colors={[colors.yellow, lighten(0.15, colors.cyan), lighten(0.28, adjustHue(0, colors.darkMagenta)), colors.lightBlue, lighten(0.3, adjustHue(-5, colors.bordeaux)), colors.backgroundGrey]} />
+    colors={[colors.yellow, lighten(0.3, colors.green), lighten(0.28, adjustHue(0, colors.darkMagenta)), colors.lightBlue, lighten(0.3, adjustHue(-5, colors.bordeaux)), colors.backgroundGrey]} />
 
   <h3>gender</h3>
-  <ColorItem title="coral | darkGreen" subtitle="female | male" colors={['#ff7348', colors.darkGreen]} />
+  <ColorItem title="coral | darkGreen" subtitle="female | male" colors={['#FF7758', darken(0.05, colors.cyan)]} />
   <h3>changes</h3>
-  <ColorItem title="orange | signalBlue | darkBeige" subtitle="increase | decrease | unchanged" colors={[lighten(0.05, adjustHue(-3, colors.orange)), colors.blue, colors.darkBeige]} />
+  <ColorItem title="orange | signalBlue | darkBeige" subtitle="increase | decrease | unchanged" colors={[lighten(0.05, colors.orange), colors.blue, colors.darkBeige]} />
 </ColorPalette>
 
 ## UI colors
