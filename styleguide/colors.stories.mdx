@@ -1,4 +1,5 @@
 import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import { darken, lighten, shade, tint, saturate } from 'polished'
 
 import colors from '../src/global_styles/colors.sass';
 
@@ -8,15 +9,45 @@ import colors from '../src/global_styles/colors.sass';
 
 ## color use
 
-good basic advice for color use: https://blog.datawrapper.de/colors/
+Good basic advice for color use: https://blog.datawrapper.de/colors/
 
-## brand colors
+## chart colors
 
 <ColorPalette>
-  <ColorItem title="colors.red" subtitle="rbb brand color – for primary actions and highlights" colors={[colors.red]} />
-  <ColorItem title="colors.lightGrey" subtitle="for secondary buttons or unselected tabs" colors={[colors.lightGrey]} />
-  <ColorItem title="colors.grey" subtitle="e.g. grey lines or as a grey in a chart" colors={[colors.grey]} />
-  <ColorItem title="colors.darkGrey" subtitle="for text and as background for buttons or selected tabs" colors={[colors.darkGrey]} />
+  <h3>primary</h3>
+  <ColorItem
+    title="darkBlue | blue | lightBlue"
+    subtitle="default color for single color chart"
+    colors={['#20006c', colors.blue, colors.lightBlue]}
+  />
+
+  <h3>category colors</h3>
+  <ColorItem
+    title="darkBlue | darkMagenta | orange | bordeaux | darkCyan | grey"
+    subtitle="for secondary buttons or unselected tabs"
+    colors={['#20006c', colors.darkMagenta, colors.orange, lighten(0.12, colors.bordeaux), darken(0.05, colors.cyan), colors.grey]} />
+  <ColorItem
+    title="blue | magenta | honey | lightBordeaux | cyan"
+    subtitle="for secondary buttons or unselected tabs"
+    colors={[colors.blue, shade(-0.05, colors.magenta), colors.honey, lighten(0.2, colors.bordeaux), colors.cyan, colors.lightGrey]} />
+  <ColorItem
+    title="lightBlue | lightMagenta | yellow | coral | lightCyan"
+    subtitle="for secondary buttons or unselected tabs"
+    colors={[colors.lightBlue, tint(0.2, saturate(0.25,colors.magenta)), colors.yellow, lighten(0.3, colors.bordeaux), lighten(0.12, colors.cyan), colors.lightGrey]} />
+
+  <h3>gender</h3>
+  <ColorItem title="darkMagenta | cyan" subtitle="female | male" colors={[colors.darkMagenta, colors.cyan]} />
+  <h3>changes</h3>
+  <ColorItem title="orange | blue | darkBeige" subtitle="increase | decrease | unchanged" colors={[colors.orange, colors.blue, colors.darkBeige]} />
+</ColorPalette>
+
+## UI colors
+
+<ColorPalette>
+  <ColorItem title="red" subtitle="rbb brand color – for primary actions (read means clikacble)" colors={[colors.red]} />
+  <ColorItem title="lightGrey" subtitle="for secondary buttons or unselected tabs" colors={[colors.lightGrey]} />
+  <ColorItem title="grey" subtitle="e.g. grey lines" colors={[colors.grey]} />
+  <ColorItem title="darkGrey" subtitle="for text and as background for buttons or selected tabs" colors={[colors.darkGrey]} />
   <ColorItem title="black" subtitle="for text" colors={['black']} />
 </ColorPalette>
 
@@ -28,19 +59,10 @@ good basic advice for color use: https://blog.datawrapper.de/colors/
   <ColorItem title="colors.darkBeige" subtitle="like light grey but in combination with beige" colors={[colors.darkBeige]} />
 </ColorPalette>
 
-## colors with meaning
-
+## more colors
 <ColorPalette>
-  <h3>gender</h3>
-  <ColorItem title="colors.darkMagenta" subtitle="female" colors={[colors.darkMagenta]} />
-  <ColorItem title="colors.cyan" subtitle="male" colors={[colors.cyan]} />
-  <h3>changes</h3>
-  <ColorItem title="colors.orange" subtitle="increase" colors={[colors.orange]} />
-  <ColorItem title="colors.blue" subtitle="decrease" colors={[colors.blue]} />
-  <ColorItem title="colors.darkBeige" subtitle="unchanged" colors={[colors.darkBeige]} />
   <h3>maps</h3>
-  <ColorItem title="colors.lightWaterBlue" subtitle="water" colors={[colors.lightWaterBlue]} />
-  <ColorItem title="colors.darkWaterBlue" subtitle="water" colors={[colors.darkWaterBlue]} />
+  <ColorItem title="lightWaterBlue | darkWaterBlue" subtitle="water" colors={[colors.lightWaterBlue, colors.darkWaterBlue]} />
   <h3>parties</h3>
   <ColorItem title="colors.spd" subtitle="SPD" colors={[colors.spd]} />
   <ColorItem title="colors.cdu" subtitle="CDU" colors={[colors.cdu]} />
@@ -49,33 +71,4 @@ good basic advice for color use: https://blog.datawrapper.de/colors/
   <ColorItem title="colors.gruene" subtitle="B90 / GRÜENE" colors={[colors.gruene]} />
   <ColorItem title="colors.orange" subtitle="BVB / FW" colors={[colors.orange]} />
   <ColorItem title="colors.darkBeige" subtitle="Fraktionslos" colors={[colors.darkBeige]} />
-</ColorPalette>
-
-## data colors
-
-<ColorPalette>
-  <ColorItem title="colors.grey" subtitle="no data or faded out" colors={[colors.grey]} />
-  <ColorItem title="colors.darkBeige" subtitle="faded out" colors={[colors.darkBeige]} />
-
-  <p>&nbsp;</p>
-  <ColorItem title="colors.yellow" subtitle="yellow" colors={[colors.yellow]} />
-  <ColorItem title="colors.honey" subtitle="honey" colors={[colors.honey]} />
-  <ColorItem title="colors.orange" subtitle="orange" colors={[colors.orange]} />
-  <p>&nbsp;</p>
-  <ColorItem title="colors.lightGreen" subtitle="lightGreen" colors={[colors.lightGreen]} />
-  <ColorItem title="colors.green" subtitle="green" colors={[colors.green]} />
-  <ColorItem title="colors.darkGreen" subtitle="darkGreen" colors={[colors.darkGreen]} />
-  <p>&nbsp;</p>
-  <ColorItem title="colors.lightBlue" subtitle="lightBlue" colors={[colors.lightBlue]} />
-  <ColorItem title="colors.blue" subtitle="blue" colors={[colors.blue]} />
-  <ColorItem title="colors.darkBlue" subtitle="darkBlue" colors={[colors.darkBlue]} />
-  <p>&nbsp;</p>
-  <ColorItem title="colors.magenta" subtitle="magenta" colors={[colors.magenta]} />
-  <ColorItem title="colors.darkMagenta" subtitle="darkMagenta" colors={[colors.darkMagenta]} />
-  <p>&nbsp;</p>
-  <ColorItem title="colors.cyan" subtitle="cyan" colors={[colors.cyan]} />
-  <p>&nbsp;</p>
-  <ColorItem title="colors.red" subtitle="red" colors={[colors.red]} />
-  <ColorItem title="colors.bordeaux" subtitle="bordeaux" colors={[colors.bordeaux]} />
-  
 </ColorPalette>
