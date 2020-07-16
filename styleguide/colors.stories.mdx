@@ -18,22 +18,22 @@ Good basic advice for color use: https://blog.datawrapper.de/colors/
   <ColorItem
     title="darkBlue | blue | lightBlue"
     subtitle="default color for single color chart"
-    colors={['#20006c', colors.blue, colors.lightBlue]}
+    colors={['#20006c', darken(0.1, colors.blue), darken(0.1, colors.lightBlue)]}
   />
 
   <h3>category colors</h3>
   <ColorItem
-    title="darkBlue | darkMagenta | orange | bordeaux | darkCyan | grey"
+    title="darkBlue | darkCyan | darkMagenta | orange | bordeaux  | lightGrey"
     subtitle="for secondary buttons or unselected tabs"
-    colors={['#20006c', colors.darkMagenta, colors.orange, lighten(0.12, colors.bordeaux), darken(0.05, colors.cyan), colors.grey]} />
+    colors={['#20006c', darken(0.05, colors.cyan), colors.darkMagenta, colors.orange, lighten(0.12, colors.bordeaux), colors.lightGrey]} />
   <ColorItem
-    title="blue | magenta | honey | lightBordeaux | cyan"
+    title="blue | cyan | magenta | honey | lightBordeaux | lightGrey"
     subtitle="for secondary buttons or unselected tabs"
-    colors={[colors.blue, shade(-0.05, colors.magenta), colors.honey, lighten(0.2, colors.bordeaux), colors.cyan, colors.lightGrey]} />
+    colors={[darken(0.1, colors.blue), colors.cyan, shade(-0.05, colors.magenta), colors.honey, lighten(0.2, colors.bordeaux), colors.lightGrey]} />
   <ColorItem
-    title="lightBlue | lightMagenta | yellow | coral | lightCyan"
+    title="lightBlue | lightCyan | lightMagenta | yellow | coral | lightGrey "
     subtitle="for secondary buttons or unselected tabs"
-    colors={[colors.lightBlue, tint(0.2, saturate(0.25,colors.magenta)), colors.yellow, lighten(0.3, colors.bordeaux), lighten(0.12, colors.cyan), colors.lightGrey]} />
+    colors={[darken(0.1, colors.lightBlue), lighten(0.12, colors.cyan), tint(0.2, saturate(0.25,colors.magenta)), colors.yellow, lighten(0.3, colors.bordeaux), colors.lightGrey]} />
 
   <h3>gender</h3>
   <ColorItem title="darkMagenta | cyan" subtitle="female | male" colors={[colors.darkMagenta, colors.cyan]} />
