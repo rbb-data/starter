@@ -1,5 +1,5 @@
 import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
-import { darken, lighten, shade, tint, saturate } from 'polished'
+import { darken, lighten, shade, tint, desaturate, adjustHue } from 'polished'
 
 import colors from '../src/global_styles/colors.sass';
 
@@ -13,32 +13,50 @@ Good basic advice for color use: https://blog.datawrapper.de/colors/
 
 ## chart colors
 
+### primary
+
+These blues are the default colors for a simple chart with a single category.  
+Use this if the theme don't suggest otherwise (e.g. green for parks)
+
+**Don't use the different shades for multiple categories!**  
+There are miltiple shades so you can adjust to a background 
+or use a darker color for thinner lines.  
+A common pattern would be to use a darker blue as outline for a lighter one.
+
 <ColorPalette>
-  <h3>primary</h3>
   <ColorItem
     title="darkBlue | blue | lightBlue"
     subtitle="default color for single color chart"
-    colors={['#20006c', darken(0.1, colors.blue), darken(0.1, colors.lightBlue)]}
+    colors={[darken(0.1, colors.darkBlue), darken(0.18, colors.blue), colors.lightBlue]}
   />
+</ColorPalette>
 
-  <h3>category colors</h3>
+### category colors
+
+These colors are to encode categories without implicit order.
+
+Try to choose colors that math your category: Like blue for winter or red (berry) for healthcare.  
+Don't use the same color for different categories in the same article.  
+If you don't know which colors to pick just go from left to right.
+
+<ColorPalette>
   <ColorItem
-    title="darkBlue | darkCyan | darkMagenta | orange | bordeaux  | lightGrey"
-    subtitle="for secondary buttons or unselected tabs"
-    colors={['#20006c', darken(0.05, colors.cyan), colors.darkMagenta, colors.orange, lighten(0.12, colors.bordeaux), colors.lightGrey]} />
+    title="darkHoney | darkCyan | darkMagenta | darkBerry  | darkBlue | lightGrey"
+    subtitle="for thin lines, smaller icons or text"
+    colors={[darken(0.01, adjustHue(3, colors.orange)), darken(0.05, colors.cyan), colors.darkMagenta, darken(0.1, colors.darkBlue), lighten(0.08, adjustHue(-5, colors.bordeaux)), colors.lightGrey]} />
   <ColorItem
-    title="blue | cyan | magenta | honey | lightBordeaux | lightGrey"
-    subtitle="for secondary buttons or unselected tabs"
-    colors={[darken(0.1, colors.blue), colors.cyan, shade(-0.05, colors.magenta), colors.honey, lighten(0.2, colors.bordeaux), colors.lightGrey]} />
+    title="cyan | magenta | honey | berry | blue | lightGrey"
+    subtitle="default qualitive color palette"
+    colors={[colors.honey, lighten(0.05, colors.cyan), shade(-0.05, adjustHue(-5, colors.magenta)), darken(0.18, colors.blue), lighten(0.2, adjustHue(-5, colors.bordeaux)), colors.lightGrey]} />
   <ColorItem
-    title="lightBlue | lightCyan | lightMagenta | yellow | coral | lightGrey "
-    subtitle="for secondary buttons or unselected tabs"
-    colors={[darken(0.1, colors.lightBlue), lighten(0.12, colors.cyan), tint(0.2, saturate(0.25,colors.magenta)), colors.yellow, lighten(0.3, colors.bordeaux), colors.lightGrey]} />
+    title="lightCyan | lightMagenta | yellow | lightBerry | lightBlue | backgroundGrey "
+    subtitle="sometimes you need a lighter scale or colors in multipe shades"
+    colors={[colors.yellow, lighten(0.15, colors.cyan), lighten(0.28, adjustHue(0, colors.darkMagenta)), colors.lightBlue, lighten(0.3, adjustHue(-5, colors.bordeaux)), colors.backgroundGrey]} />
 
   <h3>gender</h3>
-  <ColorItem title="darkMagenta | cyan" subtitle="female | male" colors={[colors.darkMagenta, colors.cyan]} />
+  <ColorItem title="coral | darkGreen" subtitle="female | male" colors={['#ff7348', colors.darkGreen]} />
   <h3>changes</h3>
-  <ColorItem title="orange | blue | darkBeige" subtitle="increase | decrease | unchanged" colors={[colors.orange, colors.blue, colors.darkBeige]} />
+  <ColorItem title="orange | signalBlue | darkBeige" subtitle="increase | decrease | unchanged" colors={[lighten(0.05, adjustHue(-3, colors.orange)), colors.blue, colors.darkBeige]} />
 </ColorPalette>
 
 ## UI colors
