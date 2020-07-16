@@ -1,7 +1,81 @@
-import colors from './design-manual-colors.png'
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
 
-<Meta title='I Styleguide/1 Colors' />
+import colors from '../src/global_styles/colors.sass';
+
+<Meta title="I Styleguide/1 Colors" />
 
 # Colors
 
-<img src={colors} />
+## color use
+
+good basic advice for color use: https://blog.datawrapper.de/colors/
+
+## brand colors
+
+<ColorPalette>
+  <ColorItem title="colors.red" subtitle="rbb brand color – for primary actions and highlights" colors={[colors.red]} />
+  <ColorItem title="colors.lightGrey" subtitle="for secondary buttons or unselected tabs" colors={[colors.lightGrey]} />
+  <ColorItem title="colors.grey" subtitle="e.g. grey lines or as a grey in a chart" colors={[colors.grey]} />
+  <ColorItem title="colors.darkGrey" subtitle="for text and as background for buttons or selected tabs" colors={[colors.darkGrey]} />
+  <ColorItem title="black" subtitle="for text" colors={['black']} />
+</ColorPalette>
+
+## background colors
+
+<ColorPalette>
+  <ColorItem title="colors.backgroundGrey" subtitle="background for toolboxes and infoboxes" colors={[colors.backgroundGrey]} />
+  <ColorItem title="colors.beige" subtitle="as a background for maps and charts" colors={[colors.beige]} />
+  <ColorItem title="colors.darkBeige" subtitle="like light grey but in combination with beige" colors={[colors.darkBeige]} />
+</ColorPalette>
+
+## colors with meaning
+
+<ColorPalette>
+  <h3>gender</h3>
+  <ColorItem title="colors.darkMagenta" subtitle="female" colors={[colors.darkMagenta]} />
+  <ColorItem title="colors.cyan" subtitle="male" colors={[colors.cyan]} />
+  <h3>changes</h3>
+  <ColorItem title="colors.orange" subtitle="increase" colors={[colors.orange]} />
+  <ColorItem title="colors.blue" subtitle="decrease" colors={[colors.blue]} />
+  <ColorItem title="colors.darkBeige" subtitle="unchanged" colors={[colors.darkBeige]} />
+  <h3>maps</h3>
+  <ColorItem title="colors.lightWaterBlue" subtitle="water" colors={[colors.lightWaterBlue]} />
+  <ColorItem title="colors.darkWaterBlue" subtitle="water" colors={[colors.darkWaterBlue]} />
+  <h3>parties</h3>
+  <ColorItem title="colors.spd" subtitle="SPD" colors={[colors.spd]} />
+  <ColorItem title="colors.cdu" subtitle="CDU" colors={[colors.cdu]} />
+  <ColorItem title="colors.afd" subtitle="AFD" colors={[colors.afd]} />
+  <ColorItem title="colors.fdp" subtitle="FDP" colors={[colors.fdp]} />
+  <ColorItem title="colors.gruene" subtitle="B90 / GRÜENE" colors={[colors.gruene]} />
+  <ColorItem title="colors.orange" subtitle="BVB / FW" colors={[colors.orange]} />
+  <ColorItem title="colors.darkBeige" subtitle="Fraktionslos" colors={[colors.darkBeige]} />
+</ColorPalette>
+
+## data colors
+
+<ColorPalette>
+  <ColorItem title="colors.grey" subtitle="no data or faded out" colors={[colors.grey]} />
+  <ColorItem title="colors.darkBeige" subtitle="faded out" colors={[colors.darkBeige]} />
+
+  <p>&nbsp;</p>
+  <ColorItem title="colors.yellow" subtitle="yellow" colors={[colors.yellow]} />
+  <ColorItem title="colors.honey" subtitle="honey" colors={[colors.honey]} />
+  <ColorItem title="colors.orange" subtitle="orange" colors={[colors.orange]} />
+  <p>&nbsp;</p>
+  <ColorItem title="colors.lightGreen" subtitle="lightGreen" colors={[colors.lightGreen]} />
+  <ColorItem title="colors.green" subtitle="green" colors={[colors.green]} />
+  <ColorItem title="colors.darkGreen" subtitle="darkGreen" colors={[colors.darkGreen]} />
+  <p>&nbsp;</p>
+  <ColorItem title="colors.lightBlue" subtitle="lightBlue" colors={[colors.lightBlue]} />
+  <ColorItem title="colors.blue" subtitle="blue" colors={[colors.blue]} />
+  <ColorItem title="colors.darkBlue" subtitle="darkBlue" colors={[colors.darkBlue]} />
+  <p>&nbsp;</p>
+  <ColorItem title="colors.magenta" subtitle="magenta" colors={[colors.magenta]} />
+  <ColorItem title="colors.darkMagenta" subtitle="darkMagenta" colors={[colors.darkMagenta]} />
+  <p>&nbsp;</p>
+  <ColorItem title="colors.cyan" subtitle="cyan" colors={[colors.cyan]} />
+  <p>&nbsp;</p>
+  <ColorItem title="colors.red" subtitle="red" colors={[colors.red]} />
+  <ColorItem title="colors.bordeaux" subtitle="bordeaux" colors={[colors.bordeaux]} />
+  
+</ColorPalette>
