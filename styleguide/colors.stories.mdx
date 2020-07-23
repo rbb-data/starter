@@ -74,6 +74,12 @@ You can copy the colors to the [chroma-js color scale helper](https://gka.github
 nore or less colors in a scale.
 
 #### diverging
+
+Use for two dimesional data. Exeamples for when to use a diverging scale:
+  - above see level / below see level (beige: is see level)
+  - above average / below average (beige: is average)
+  - more people are leaving / more people are arriving (beige: the same number of people are leaving and arriving) 
+
 <ColorPalette>
   <ColorItem title="changes" subtitle="from increase over unchanged to decrease" colors={Chroma.scale(['#fa9d1e', colors.beige, colors.lightBlue]).colors(13)} />
   <ColorItem title="darkCyan | cyan | beige | honey | darkHoney" subtitle="diverging scale" colors={Chroma.scale(['#00685c', '#008373', colors.beige, '#fad700', adjustHue(-2, '#ebb600')]).mode('lab').colors(13)} />
@@ -81,6 +87,9 @@ nore or less colors in a scale.
 </ColorPalette>
 
 #### linear
+
+Use for one dimesional data.
+
 <ColorPalette>
   <ColorItem title="cyan-blue-scale" subtitle="linear scale" colors={Chroma.scale([lighten(0.1, colors.beige), tint(0.3, '#008373'), shade(0.1, '#206cc0'), '#262465', darken(0.1, '#262465')]).correctLightness().mode('lab').colors(13)} />
   <ColorItem title="yellow-green-scale" subtitle="linear scale" colors={Chroma.scale([mix(0.2, lighten(0.1, colors.beige), lighten(0.3, '#fbe34c')), lighten(0.15, '#fbe34c'),  darken(0.07, adjustHue(10, '#709211')), darken(0.1, '#4d5b0b')]).correctLightness().mode('lab').colors(13)} />
