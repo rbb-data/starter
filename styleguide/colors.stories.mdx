@@ -52,7 +52,7 @@ If you don't know which colors to pick just go from left to right.
   <ColorItem
     title="honey | magenta | green | blue | cyan | lightGrey"
     subtitle="default qualitive color palette"
-    colors={['#f7e900', colors.darkMagenta, '#8da914', colors.darkBlue, '#008373', colors.lightGrey]} />
+    colors={[darken(0.2, adjustHue(45, '#FF6559')), shade(0.05, adjustHue(30, colors.darkMagenta)), shade(0.1, '#8da914'), colors.darkBlue, lighten(0.07, '#008373'), colors.lightGrey]} />
   <ColorItem
     title="yellow | lightMagenta | lightGreen | lightBlue | lightCyan | lightGrey"
     subtitle="lighter qualitive color palette e.g. to fade something out"
@@ -61,7 +61,7 @@ If you don't know which colors to pick just go from left to right.
 
 <ColorPalette>
   <h4>gender</h4>
-  <ColorItem title="coral | blueGrey" subtitle="female | male" colors={['#FF6559', '#456e74']} />
+  <ColorItem title="coral | blueGrey" subtitle="female | male" colors={['#FF6559', '#456e74', desaturate(0.1, adjustHue(-20, colors.darkMagenta))]} />
   <h4>changes</h4>
   <ColorItem title="orange | darkBeige | coldBlue" subtitle="increase | unchanged |  decrease" colors={['#fa9d1e', colors.darkBeige, colors.lightBlue]} />
 </ColorPalette>
@@ -94,8 +94,6 @@ Use for one dimesional data.
   <ColorItem title="cyan-blue-scale" subtitle="linear scale" colors={Chroma.scale([lighten(0.1, colors.beige), tint(0.3, '#008373'), shade(0.1, '#206cc0'), '#262465', darken(0.1, '#262465')]).correctLightness().mode('lab').colors(13)} />
   <ColorItem title="yellow-green-scale" subtitle="linear scale" colors={Chroma.scale([mix(0.2, lighten(0.1, colors.beige), lighten(0.3, '#fbf24c')), lighten(0.27, '#f7e900'),  darken(0, adjustHue(0, '#707c0e')), darken(0.13, '#707c0e')]).correctLightness().mode('lab').colors(13)} />
   <ColorItem title="yellow-magenta-scale" subtitle="linear scale" colors={Chroma.scale([mix(0.1, lighten(0.1, colors.beige), lighten(0.3, '#fbe34c')), lighten(0.22, '#fbe34c'), adjustHue(20, lighten(0.2, '#983073')), adjustHue(-5, '#983073'), darken(0.22, '#983073')]).correctLightness().mode('lab').colors(13)} />
-  <ColorItem title="female scale" subtitle="linear scale" colors={Chroma.scale([lighten(0, colors.beige),  adjustHue(0, '#FF6559'), darken(0.05, shade(0.2, adjustHue(0, '#FF6559')))]).correctLightness().mode('lab').colors(13)} />
-  <ColorItem title="male scale" subtitle="linear scale" colors={Chroma.scale([lighten(0, colors.beige), lighten(0.1, desaturate(0.2, adjustHue(40, '#1e5a3a'))),  desaturate(0.2, darken(0, adjustHue(40, '#1e5a3a')))]).correctLightness().mode('lab').colors(13)} />
 
 </ColorPalette>
 
