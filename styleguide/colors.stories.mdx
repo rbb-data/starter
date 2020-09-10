@@ -1,8 +1,10 @@
-import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import { Meta, Story, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks'
 import Chroma from 'chroma-js'
+import { useState } from 'react'
 import { darken, lighten, shade, tint, mix, desaturate, adjustHue, saturate } from 'polished'
 
 import colors from '../src/global_styles/colors.sass';
+import ColorBoxes from '../src/components/_shared/ColorBoxes/ColorBoxes'
 
 <Meta title="I Styleguide/1 Colors" />
 
@@ -24,13 +26,23 @@ There are miltiple shades so you can adjust to a background
 or use a darker color for thinner lines.  
 A common pattern would be to use a darker blue as an outline for a shape filled with a lighter one.
 
-<ColorPalette>
-  <ColorItem
-    title="darkBlue | blue | lightBlue"
-    subtitle="default color for single color chart"
-    colors={['#262465', colors.darkBlue, '#206cc0']}
-  />
-</ColorPalette>
+<ColorBoxes
+  title='default color'
+  description='default color for single color chart'
+  colors={{
+    default: {
+      colors: { blue: '#0A446B'}
+    },
+    dark: {
+      description: 'e.g. for highlights and lines',
+      colors: { blue: '#0A446B'}
+    },
+    light: {
+      description: 'e.g. for fading things out',
+      colors: { blue: '#0A446B'}
+    },
+  }}
+/>
 
 ### category colors
 
@@ -44,27 +56,36 @@ Don't use different shades of the same color for different categories.
 Try to choose colors that match your category: Like blue for winter or green for nature.  
 Don't use the same color for different categories in one article.  
 If you don't know which colors to pick just go from left to right.
-<ColorPalette>
-  <ColorItem
-    title="darkHoney | darkMagenta | darkGreen | darkBlue | darkCyan | lightGrey"
-    subtitle="darker qualitive color palette e.g. for lines and highlights"
-    colors={['#ebdd00', '#983073', '#707c0e', '#262465', '#00685c', colors.lightGrey]} />
-  <ColorItem
-    title="honey | magenta | green | blue | cyan | lightGrey"
-    subtitle="default qualitive color palette"
-    colors={['#0A446B', '#A33E6B', '#F2C600', '#A1A32C', '#4392B8', colors.lightGrey]} />
-  <ColorItem
-    title="yellow | lightMagenta | lightGreen | lightBlue | lightCyan | lightGrey"
-    subtitle="lighter qualitive color palette e.g. to fade something out"
-    colors={['#fbf24c', '#e258c7', '#bdd018', '#206cc0', '#3fa296', colors.lightGrey]} />
-</ColorPalette>
 
-<ColorPalette>
-  <h4>gender</h4>
-  <ColorItem title="coral | blueGrey" subtitle="female | male" colors={['#FF6559', '#00685c', '#A573DB']} />
-  <h4>changes</h4>
-  <ColorItem title="orange | darkBeige | coldBlue" subtitle="increase | unchanged |  decrease" colors={['#fa9d1e', colors.darkBeige, colors.lightBlue]} />
-</ColorPalette>
+<ColorBoxes
+  title='category colors'
+  description='qualitive color palette'
+  colors={{
+    default: {
+      colors: {blue: '#0A446B', magenta: '#A33E6B', yellow: '#F2C600', green: '#A1A32C', cyan: '#4392B8'}
+    },
+    dark: {
+      description: 'e.g. for highlights and lines',
+      colors: {blue: '#0A446B', magenta: '#A33E6B', yellow: '#F2C600', green: '#A1A32C', cyan: '#4392B8'}
+    },
+    light: {
+      description: 'e.g. for fading things out',
+      colors: {blue: '#0A446B', magenta: '#A33E6B', yellow: '#F2C600', green: '#A1A32C', cyan: '#4392B8'}
+    },
+  }}
+/>
+
+<hr/>
+
+<ColorBoxes
+  title='gender colors'
+  colors={{female: '#FF6559', male: '#00685c', divers: '#A573DB'}}
+/>
+<ColorBoxes
+  title='changes'
+  colors={{increase: '#fa9d1e',  unchanged: colors.darkBeige, decrease: colors.lightBlue}}
+/>
+
 
 
 ### gradients
