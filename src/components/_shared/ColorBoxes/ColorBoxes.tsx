@@ -4,8 +4,9 @@ import _ from './ColorBoxes.module.sass'
 
 export const ColorBox = (props: { name: string; color: string }) => {
   return (
-    <div className={_.colorBox} style={{ backgroundColor: props.color }}>
-      {props.name}
+    <div className={_.colorBox}>
+      <output style={{ backgroundColor: props.color }}>{props.color}</output>
+      <p>{props.name}</p>
     </div>
   )
 }
@@ -23,6 +24,7 @@ const isColorList = (value: ColorList | Palletes): value is ColorList => {
 interface Props {
   title: string
   description: string
+  limit?: string
   colors: ColorList | Palletes
 }
 const ColorBoxes = (props: Props) => {
@@ -32,6 +34,11 @@ const ColorBoxes = (props: Props) => {
   const palletNames = Object.keys(palletes)
   const [paletteName, setPalleteName] = useState(palletNames[0])
   const currentPallete = palletes[paletteName]
+  const [limit, setLimit] = useState(Object.keys(currentPallete.colors).length)
+  const currentColors =
+    props.limit === undefined
+      ? Object.entries(currentPallete.colors)
+      : Object.entries(currentPallete.colors).slice(0, limit)
 
   return (
     <figure className={_.colorBoxes}>
@@ -48,8 +55,20 @@ const ColorBoxes = (props: Props) => {
           onChange={setPalleteName}
         />
       )}
+      {props.limit && (
+        <div>
+          {props.limit}
+          <input
+            type='number'
+            value={limit}
+            onChange={(e) => {
+              setLimit(parseInt(e.target.value))
+            }}
+          />
+        </div>
+      )}
       <ul className={_.colorList}>
-        {Object.entries(currentPallete.colors).map(([name, color]) => (
+        {currentColors.map(([name, color]) => (
           <li>
             <ColorBox name={name} color={color} />
           </li>
