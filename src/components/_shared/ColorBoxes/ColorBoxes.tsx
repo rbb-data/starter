@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
 import TabBar from 'components/_shared/TabBar/TabBar'
 import _ from './ColorBoxes.module.sass'
+import { meetsContrastGuidelines } from 'polished'
 
 export const ColorBox = (props: { name: string; color: string }) => {
+  const { AA } = meetsContrastGuidelines('black', props.color)
   return (
     <div className={_.colorBox}>
-      <output style={{ backgroundColor: props.color }}>{props.color}</output>
+      <output
+        style={{ backgroundColor: props.color, color: AA ? 'black' : 'white' }}
+      >
+        {props.color}
+      </output>
       <p>{props.name}</p>
     </div>
   )
@@ -21,6 +27,7 @@ interface Palletes {
 const isColorList = (value: ColorList | Palletes): value is ColorList => {
   return typeof Object.values(value)[0] === 'string'
 }
+
 interface Props {
   title: string
   description: string
