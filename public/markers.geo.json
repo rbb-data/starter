@@ -1,0 +1,73 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "0",
+        "lat": 52.46947,
+        "lng": 13.43961,
+        "title": "Beispiel1",
+        "description": "Natus at qui quidem. Omnis minus nobis atque illum. Et harum explicabo id dolor occaecati consequuntur perferendis aut. Sed quia quia nam asperiores est autem rerum. Ea facilis aspernatur animi earum consequatur qui a facilis. Quisquam et magni nemo labore qui. Laboriosam fugiat non modi excepturi aut. Ut fugiat qui in debitis inventore doloremque. Officia impedit commodi a molestiae."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.43961,
+          52.46947
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "1",
+        "lat": 52.43293,
+        "lng": 13.34283,
+        "title": "Beispiel2",
+        "description": "Ea facilis aspernatur animi earum consequatur qui a facilis. Quisquam et magni nemo labore qui. Laboriosam fugiat non modi excepturi aut. Ut fugiat qui in debitis inventore doloremque. Officia impedit commodi a molestiae."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.34283,
+          52.43293
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "2",
+        "lat": 52.56636,
+        "lng": 13.40072,
+        "title": "Beispiel3",
+        "description": "Et odio qui fuga fuga eos et dignissimos. Est eum ipsam necessitatibus quas in doloremque. Rerum quasi quia voluptatem. Qui quas numquam corporis. Omnis fugiat numquam vitae. Ea facilis aspernatur animi earum consequatur qui a facilis. Quisquam et magni nemo labore qui. Laboriosam fugiat non modi excepturi aut. Ut fugiat qui in debitis inventore doloremque. Officia impedit commodi a molestiae."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.40072,
+          52.56636
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "3",
+        "lat": 52.53487,
+        "lng": 13.61829,
+        "title": "Beispiel4",
+        "description": "Quas beatae voluptas dolores officia sed cupiditate. Et a id eligendi. Est et consequatur voluptatem est vero enim. Est ut optio aut numquam. Ea facilis aspernatur animi earum consequatur qui a facilis. Quisquam et magni nemo labore qui. Laboriosam fugiat non modi excepturi aut. Ut fugiat qui in debitis inventore doloremque. Officia impedit commodi a molestiae."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.61829,
+          52.53487
+        ]
+      }
+    }
+  ]
+}

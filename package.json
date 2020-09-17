@@ -2,7 +2,7 @@
   "name": "starter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dj1.app.rbb-cloud.de/airbnb-ratings",
+  "homepage": "https://rbb24.de/static/rbb/rbb-data/{project-name}",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -10,11 +10,13 @@
     "analyze-without-build": "source-map-explorer 'build/static/js/*.js'",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages",
     "scripts:create-geojson-mask": "node ./scripts/create-geojson-mask.js",
     "scripts:geocode-data": "node ./scripts/geocode-data.js",
     "scripts:convert-to-csv": "node ./scripts/convert-to-csv.js",
-    "scripts:convert-to-geojson": "node ./scripts/convert-to-geojson.js",
-    "deploy": "npm run build && rsync -srvP --rsync-path='sudo rsync' -e 'ssh -i ~/.ssh/rbb-data.pem' build/ linux@rbb-dj-dev.app.rbb-cloud.de:/var/www/airbnb-ratings/"
+    "scripts:convert-to-geojson": "node ./scripts/convert-to-geojson.js"
   },
   "browserslist": [
     ">0.2%",
@@ -27,18 +29,11 @@
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@turf/turf": "^5.1.6",
-    "@types/d3-dsv": "^1.0.36",
-    "@types/d3-force": "^1.2.1",
-    "@types/jest": "^26.0.14",
-    "@types/node": "^14.10.3",
-    "@types/react": "^16.9.49",
-    "@types/react-dom": "^16.9.8",
     "chroma-js": "^2.0.3",
-    "d3-force": "^2.1.1",
     "fuse.js": "^3.4.4",
     "leaflet": "^1.4.0",
     "leaflet.markercluster": "^1.4.1",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.15",
     "node-sass": "^4.14.1",
     "polished": "^3.6.5",
     "prop-types": "^15.7.2",
@@ -46,7 +41,7 @@
     "react-dom": "^16.8.4",
     "react-leaflet": "^2.2.1",
     "react-leaflet-bing": "^4.1.0",
-    "react-scripts": "^3.4.3",
+    "react-scripts": "^3.4.1",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
@@ -74,6 +69,6 @@
     "react-is": "^16.13.1",
     "request-promise": "^4.2.5",
     "source-map-explorer": "^2.0.0",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.3"
   }
 }
