@@ -1,25 +1,13 @@
 import React, { useState } from 'react'
 import TabBar from 'components/_shared/TabBar/TabBar'
 import _ from './ColorBoxes.module.sass'
-import { meetsContrastGuidelines } from 'polished'
+import { ColorBox } from './ColorBox'
 
-export const ColorBox = (props: { name: string; color: string }) => {
-  const { AA } = meetsContrastGuidelines('black', props.color)
-  return (
-    <div className={_.colorBox}>
-      <output
-        style={{ backgroundColor: props.color, color: AA ? 'black' : 'white' }}
-      >
-        {props.color}
-      </output>
-      <p>{props.name}</p>
-    </div>
-  )
-}
-
-interface ColorList {
-  [name: string]: string
-}
+type ColorList =
+  | {
+      [name: string]: string
+    }
+  | [string]
 interface Palletes {
   [pallete: string]: { colors: ColorList; description?: string }
 }
@@ -42,10 +30,15 @@ const ColorBoxes = (props: Props) => {
   const [paletteName, setPalleteName] = useState(palletNames[0])
   const currentPallete = palletes[paletteName]
   const [limit, setLimit] = useState(Object.keys(currentPallete.colors).length)
+  const colorArray: { color: string; info?: string }[] =
+    currentPallete.colors instanceof Array
+      ? currentPallete.colors.map((color) => ({ color }))
+      : Object.entries(currentPallete.colors).map(([info, color]) => ({
+          info,
+          color,
+        }))
   const currentColors =
-    props.limit === undefined
-      ? Object.entries(currentPallete.colors)
-      : Object.entries(currentPallete.colors).slice(0, limit)
+    props.limit === undefined ? colorArray : colorArray.slice(0, limit)
 
   return (
     <figure className={_.colorBoxes}>
@@ -75,9 +68,9 @@ const ColorBoxes = (props: Props) => {
         </div>
       )}
       <ul className={_.colorList}>
-        {currentColors.map(([name, color]) => (
+        {currentColors.map((color) => (
           <li>
-            <ColorBox name={name} color={color} />
+            <ColorBox color={color.color} info={color.info} />
           </li>
         ))}
       </ul>
