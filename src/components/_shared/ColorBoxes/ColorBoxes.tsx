@@ -75,6 +75,17 @@ const ColorBoxes = (props: Props) => {
         ))}
       </ul>
       <p>{currentPallete.description}</p>
+      <label>
+        copy for datwarpper import:{' '}
+        <input
+          readOnly
+          style={{
+            fontFamily: 'monospace',
+            width: '100%',
+          }}
+          value={currentColors.map((color) => color.color).join(',')}
+        ></input>
+      </label>
     </figure>
   )
 }
