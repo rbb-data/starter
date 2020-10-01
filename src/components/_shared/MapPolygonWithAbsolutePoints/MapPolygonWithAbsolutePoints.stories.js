@@ -1,6 +1,6 @@
 import React from 'react'
 import { withKnobs, text } from '@storybook/addon-knobs'
-import colors from 'global_styles/colors.sass'
+import * as colors from 'global_styles/colors'
 import Map from '../Map/Map'
 import MapPolygonWithAbsolutePoints from './MapPolygonWithAbsolutePoints'
 

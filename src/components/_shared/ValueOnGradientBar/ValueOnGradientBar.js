@@ -1,25 +1,30 @@
 import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import Chroma from 'chroma-js'
-import rbbColors from 'global_styles/colors.sass'
+import rbbColors from 'global_styles/colors'
 import _ from './ValueOnGradientBar.module.sass'
 
-const ValueOnGradientBar = props => {
+const ValueOnGradientBar = (props) => {
   const {
-    highlightedValue, maxValue, threshold,
-    showThreshold, greyOutBelowThreshold,
+    highlightedValue,
+    maxValue,
+    threshold,
+    showThreshold,
+    greyOutBelowThreshold,
     className,
-    colorScale, unit,
-    canvasHeight: realCanvasHeight, barHeight: realBarHeight
+    colorScale,
+    unit,
+    canvasHeight: realCanvasHeight,
+    barHeight: realBarHeight,
   } = props
 
-  const thresholdPosition = threshold / maxValue * 100
-  const valuePosition = highlightedValue / maxValue * 100
+  const thresholdPosition = (threshold / maxValue) * 100
+  const valuePosition = (highlightedValue / maxValue) * 100
 
   const canvas = useRef(null)
 
   useEffect(() => {
-    function drawGradientBar () {
+    function drawGradientBar() {
       const canvasHeight = realCanvasHeight * 2
       const barHeight = realBarHeight * 2
       const barTopOffset = canvasHeight - barHeight
@@ -27,10 +32,11 @@ const ValueOnGradientBar = props => {
       const ctx = canvas.current.getContext('2d')
       const width = canvas.current.clientWidth * 2
 
-      const normalizedThreshold = threshold / maxValue * width
+      const normalizedThreshold = (threshold / maxValue) * width
       const hasHighlightedValue = highlightedValue !== undefined
-      const normalizedHighligedValue = highlightedValue !== undefined &&
-        parseInt(highlightedValue / maxValue * width)
+      const normalizedHighligedValue =
+        highlightedValue !== undefined &&
+        parseInt((highlightedValue / maxValue) * width)
 
       ctx.canvas.width = width
       ctx.canvas.height = canvasHeight
@@ -69,29 +75,46 @@ const ValueOnGradientBar = props => {
     drawGradientBar()
   })
 
-  return <div className={`${_.gradientBar} ${className}`}>
-    { highlightedValue &&
-      <output className={_.highlightedValue} style={{ left: `${valuePosition}%` }}>
-        {highlightedValue} {unit}
-      </output>
-    }
+  return (
+    <div className={`${_.gradientBar} ${className}`}>
+      {highlightedValue && (
+        <output
+          className={_.highlightedValue}
+          style={{ left: `${valuePosition}%` }}
+        >
+          {highlightedValue} {unit}
+        </output>
+      )}
 
-    <canvas ref={canvas} id='gradientBar' className={_.canvas} />
-    <div className={_.ticks}>
-      <p htmlFor='gradientBar' className={`${_.tick} ${_.first}`} style={{ left: 0 }}>
-        0
-      </p>
-      {showThreshold &&
-        <p htmlFor='gradientBar' className={_.tick} style={{ left: `${thresholdPosition}%` }}>
-          { threshold }
-          <span className={_.moreInfo}>(Grenzwert)</span>
+      <canvas ref={canvas} id='gradientBar' className={_.canvas} />
+      <div className={_.ticks}>
+        <p
+          htmlFor='gradientBar'
+          className={`${_.tick} ${_.first}`}
+          style={{ left: 0 }}
+        >
+          0
         </p>
-      }
-      <p htmlFor='gradientBar' className={`${_.tick} ${_.last}`} style={{ left: '100%' }}>
-        { maxValue }
-      </p>
+        {showThreshold && (
+          <p
+            htmlFor='gradientBar'
+            className={_.tick}
+            style={{ left: `${thresholdPosition}%` }}
+          >
+            {threshold}
+            <span className={_.moreInfo}>(Grenzwert)</span>
+          </p>
+        )}
+        <p
+          htmlFor='gradientBar'
+          className={`${_.tick} ${_.last}`}
+          style={{ left: '100%' }}
+        >
+          {maxValue}
+        </p>
+      </div>
     </div>
-  </div>
+  )
 }
 
 ValueOnGradientBar.propTypes = {
@@ -104,7 +127,7 @@ ValueOnGradientBar.propTypes = {
   threshold: PropTypes.number,
   showThreshold: PropTypes.bool,
   greyOutBelowThreshold: PropTypes.bool,
-  colorScale: PropTypes.func
+  colorScale: PropTypes.func,
 }
 
 ValueOnGradientBar.defaultProps = {
@@ -115,7 +138,7 @@ ValueOnGradientBar.defaultProps = {
   colorScale: Chroma.scale(['white', 'black']),
   showThreshold: true,
   greyOutBelowThreshold: false,
-  threshold: 50
+  threshold: 50,
 }
 
 export default ValueOnGradientBar

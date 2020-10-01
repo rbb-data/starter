@@ -1,9 +1,12 @@
-import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
-import { darken, lighten, shade, tint, desaturate, adjustHue, saturate } from 'polished'
+import { Meta } from '@storybook/addon-docs/blocks'
 
-import colors from '../src/global_styles/colors.sass';
+import * as colors from '../src/global_styles/colors.ts'
+import * as gradients from '../src/global_styles/gradients.ts'
 
-<Meta title="I Styleguide/1 Colors" />
+import ColorBoxes from '../src/components/_shared/ColorBoxes/ColorBoxes'
+import GradientBoxes from '../src/components/_shared/ColorBoxes/GradientBoxes'
+
+<Meta title='I Styleguide/1 Colors' />
 
 # Colors
 
@@ -19,74 +22,193 @@ These blues are the default colors for a simple chart with a single category.
 Use this if the theme don't suggest otherwise (e.g. green for parks)
 
 **Don't use the different shades for multiple categories!**  
-There are miltiple shades so you can adjust to a background 
-or use a darker color for thinner lines.  
-A common pattern would be to use a darker blue as outline for a lighter one.
+There are miltiple shades so you can adjust to a background or use a darker color for thinner lines.  
+A common pattern would be to use a darker blue as an outline for a shape filled with a lighter one.
 
-<ColorPalette>
-  <ColorItem
-    title="darkBlue | blue | lightBlue"
-    subtitle="default color for single color chart"
-    colors={[darken(0.1, colors.darkBlue), darken(0.18, colors.blue), colors.lightBlue]}
-  />
-</ColorPalette>
+<ColorBoxes
+  title='default color'
+  description='default color for single color chart'
+  colors={{
+    default: { colors: [colors.blue] },
+    shades: {
+      colors: [
+        colors.darkBlue,
+        colors.blue,
+        colors.lightBlue,
+        colors.backgroundBlue,
+      ],
+    },
+  }}
+/>
 
 ### category colors
 
 These colors are to encode categories without implicit order.
 
-Try to choose colors that math your category: Like blue for winter or red (berry) for healthcare.  
-Don't use the same color for different categories in the same article.  
+If you need to highlight or fade out someting you can use
+the darker or lighter vaersion of the colors.  
+Don't use different shades of the same color for different categories.
+
+Try to choose colors that match your category: Like blue for winter or green for nature.  
+Don't use the same color for different categories in one article.  
 If you don't know which colors to pick just go from left to right.
 
-<ColorPalette>
-  <ColorItem
-    title="darkHoney | darkCyan | darkMagenta | darkBerry  | darkBlue | lightGrey"
-    subtitle="for thin lines, smaller icons or text"
-    colors={[darken(0.01, adjustHue(3, colors.orange)), colors.darkMagenta, lighten(0.0, colors.darkGreen), darken(0.1, colors.darkBlue), lighten(0.28, adjustHue(-5, colors.bordeaux)), colors.lightGrey]} />
-  <ColorItem
-    title="cyan | magenta | honey | berry | blue | lightGrey"
-    subtitle="default qualitive color palette"
-    colors={[colors.honey, shade(0.05, adjustHue(-10, colors.magenta)), darken(0.06, colors.green), darken(0.18, colors.blue), saturate(0.5, lighten(0.33, adjustHue(-5, colors.bordeaux))), colors.lightGrey]} />
-  <ColorItem
-    title="lightCyan | lightMagenta | yellow | lightBerry | lightBlue | backgroundGrey "
-    subtitle="sometimes you need a lighter scale or colors in multipe shades"
-    colors={[colors.yellow, lighten(0.2, colors.magenta), darken(0.0, colors.lightGreen), colors.lightBlue, lighten(0.33, adjustHue(-5, colors.bordeaux)), colors.backgroundGrey]} />
+<div>
+  <ColorBoxes
+    title='category colors'
+    description='qualitive color palette'
+    limit='number of categories: '
+    colors={{
+      default: {
+        colors: [
+          colors.blue,
+          colors.magenta,
+          colors.yellow,
+          colors.green,
+          colors.cyan,
+        ],
+      },
+      dark: {
+        description: 'e.g. for highlights and lines',
+        colors: [
+          colors.darkBlue,
+          colors.darkMagenta,
+          colors.darkYellow,
+          colors.darkGreen,
+          colors.darkCyan,
+        ],
+      },
+      light: {
+        description: 'e.g. for fading things out',
+        colors: [
+          colors.lightBlue,
+          colors.lightMagenta,
+          colors.lightYellow,
+          colors.lightGreen,
+          colors.lightCyan,
+        ],
+      },
+      background: {
+        description: 'e.g. to fill table colums behind text',
+        colors: [
+          colors.backgroundBlue,
+          colors.backgroundMagenta,
+          colors.backgroundYellow,
+          colors.backgroundGreen,
+          colors.backgroundCyan,
+        ],
+      },
+    }}
+  />
+  <ColorBoxes
+    title='gender colors'
+    colors={[colors.female, colors.male, colors.divers]}
+  />
+  <ColorBoxes
+    title='changes'
+    colors={{
+      increase: colors.orange,
+      unchanged: colors.darkBeige,
+      decrease: colors.violet,
+    }}
+  />
+</div>
 
-  <h3>gender</h3>
-  <ColorItem title="coral | darkGreen" subtitle="female | male" colors={['#FF7758', adjustHue(10, darken(0.04, colors.cyan))]} />
-  <h3>changes</h3>
-  <ColorItem title="orange | signalBlue | darkBeige" subtitle="increase | decrease | unchanged" colors={[lighten(0.05, colors.orange), colors.blue, colors.darkBeige]} />
-</ColorPalette>
+### gradients
 
-## UI colors
+These gradients are created with chroma js.  
+You can copy the colors to the [chroma-js color scale helper](https://gka.github.io/palettes/#/11|s|fa9d1e,dfded2,3fbaed|ffffe0,ff005e,93003a|0|0)if you need
+nore or less colors in a scale.
 
-<ColorPalette>
-  <ColorItem title="red" subtitle="rbb brand color – for primary actions (read means clikacble)" colors={[colors.red]} />
-  <ColorItem title="lightGrey" subtitle="for secondary buttons or unselected tabs" colors={[colors.lightGrey]} />
-  <ColorItem title="grey" subtitle="e.g. grey lines" colors={[colors.grey]} />
-  <ColorItem title="darkGrey" subtitle="for text and as background for buttons or selected tabs" colors={[colors.darkGrey]} />
-  <ColorItem title="black" subtitle="for text" colors={['black']} />
-</ColorPalette>
+#### diverging
 
-## background colors
+Use for two dimesional data. Exeamples for when to use a diverging scale:
 
-<ColorPalette>
-  <ColorItem title="colors.backgroundGrey" subtitle="background for toolboxes and infoboxes" colors={[colors.backgroundGrey]} />
-  <ColorItem title="colors.beige" subtitle="as a background for maps and charts" colors={[colors.beige]} />
-  <ColorItem title="colors.darkBeige" subtitle="like light grey but in combination with beige" colors={[colors.darkBeige]} />
-</ColorPalette>
+- above see level / below see level (beige: is see level)
+- above average / below average (beige: is average)
+- more people are leaving / more people are arriving (beige: the same number of people are leaving and arriving)
+
+<GradientBoxes
+  diverging
+  title='Changes'
+  description='from increase over unchanged to decrease'
+  scale={gradients.diverging.changes}
+/>
+<GradientBoxes
+  diverging
+  title='cyan / yellow'
+  description='diverging scale'
+  scale={gradients.diverging.cyanYellow}
+/>
+<GradientBoxes
+  diverging
+  title='green / magenta'
+  description='diverging scale'
+  scale={gradients.diverging.greenMagenta}
+/>
+
+#### linear
+
+Use for one dimesional data.
+
+<GradientBoxes
+  title='cyan-blue-scale'
+  description='linear scale'
+  scale={gradients.linear.cyanBlue}
+/>
+<GradientBoxes
+  title='yellow-green-scale'
+  description='linear scale'
+  scale={gradients.linear.yellowGreen}
+/>
+<GradientBoxes
+  title='yellow-magenta-scale'
+  description='linear scale'
+  scale={gradients.linear.yellowMagenta}
+/>
+<GradientBoxes
+  title='NO2 scale'
+  description='NO2 values from 0 to 100'
+  scale={gradients.linear.no2}
+/>
+<ColorBoxes
+title='UI colors'
+colors={{
+'rbb brand color – for primary actions (read means clikacble)': colors.red,
+'outline for red elements': colors.bordeaux,
+'for secondary buttons or unselected tabs': colors.lightGrey,
+'for text and as background for buttons or selected tabs': colors.darkGrey,
+'for text': 'black',
+}}
+/>
+<ColorBoxes
+title='background colors'
+colors={{
+'background for toolboxes and infoboxes': colors.backgroundGrey,
+'background for maps and charts': colors.beige,
+'like light grey but in combination with beige': colors.darkBeige,
+}}
+/>
 
 ## more colors
-<ColorPalette>
-  <h3>maps</h3>
-  <ColorItem title="lightWaterBlue | darkWaterBlue" subtitle="water" colors={[colors.lightWaterBlue, colors.darkWaterBlue]} />
-  <h3>parties</h3>
-  <ColorItem title="colors.spd" subtitle="SPD" colors={[colors.spd]} />
-  <ColorItem title="colors.cdu" subtitle="CDU" colors={[colors.cdu]} />
-  <ColorItem title="colors.afd" subtitle="AFD" colors={[colors.afd]} />
-  <ColorItem title="colors.fdp" subtitle="FDP" colors={[colors.fdp]} />
-  <ColorItem title="colors.gruene" subtitle="B90 / GRÜENE" colors={[colors.gruene]} />
-  <ColorItem title="colors.orange" subtitle="BVB / FW" colors={[colors.orange]} />
-  <ColorItem title="colors.darkBeige" subtitle="Fraktionslos" colors={[colors.darkBeige]} />
-</ColorPalette>
+
+<ColorBoxes
+  title='maps'
+  colors={{
+    mapBackground: colors.beige,
+    lightWaterBlue: colors.lightWaterBlue,
+    darkWaterBlue: colors.darkWaterBlue,
+  }}
+/>
+<ColorBoxes
+  title='parties'
+  colors={{
+    spd: colors.spd,
+    linke: colors.linke,
+    cdu: colors.cdu,
+    afd: colors.afd,
+    fdp: colors.fdp,
+    bvbfw: colors.bvbfw,
+    gruene: colors.gruene,
+  }}
+/>

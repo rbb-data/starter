@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Marker } from 'react-leaflet'
 import { LatLng, DivIcon } from 'leaflet'
-import colors from 'global_styles/colors.sass'
+import * as colors from 'global_styles/colors'
 
 /**
  * Renders a locator at a given location.
@@ -23,7 +23,7 @@ const MapLocationMarker = ({ position, pane }) => {
     html: iconHtml,
     className: false,
     iconSize: [26, 34],
-    iconAnchor: [13, 34]
+    iconAnchor: [13, 34],
   })
 
   const markerProps = {
@@ -31,7 +31,7 @@ const MapLocationMarker = ({ position, pane }) => {
     icon: icon,
     pane: pane,
     className: false,
-    interactive: false
+    interactive: false,
   }
 
   return <Marker {...markerProps} />
@@ -41,11 +41,11 @@ MapLocationMarker.propTypes = {
   /** The name of the pane the marker should be rendered on. */
   pane: PropTypes.string,
   /** see: https://leafletjs.com/reference-1.3.4.html#latlng */
-  position: PropTypes.instanceOf(LatLng).isRequired
+  position: PropTypes.instanceOf(LatLng).isRequired,
 }
 
 MapLocationMarker.defaultProps = {
-  pane: 'markerPane'
+  pane: 'markerPane',
 }
 
 export default MapLocationMarker
