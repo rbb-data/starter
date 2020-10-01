@@ -2,7 +2,7 @@ import React from 'react'
 
 import { action } from '@storybook/addon-actions'
 
-import rbbColors from 'global_styles/colors.sass'
+import * as rbbColors from 'global_styles/colors'
 import BrandenburgCountiesMap from './BrandenburgCountiesMap'
 
 export default {
@@ -34,7 +34,7 @@ export const WithMultipleSelected = () => (
   </div>
 )
 
-export const WithCustomCOlor = () => (
+export const WithCustomColor = () => (
   <div style={{ width: '200px' }}>
     <BrandenburgCountiesMap
       areaColor={(county) =>

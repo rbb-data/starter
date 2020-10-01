@@ -1,5 +1,5 @@
 import React from 'react'
-import colors from 'global_styles/colors.sass'
+import * as colors from 'global_styles/colors'
 import Map from '../Map/Map'
 import MapSVGLayer from './MapSVGLayer'
 

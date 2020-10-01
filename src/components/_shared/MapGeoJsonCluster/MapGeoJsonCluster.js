@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Chroma from 'chroma-js'
 import L from 'leaflet'
 import { featureToLatLng } from 'lib/geoJsonCompat'
-import { red } from 'global_styles/colors.sass'
+import { red } from 'global_styles/colors'
 import _ from './MapGeoJsonCluster.module.sass'
 
 import 'leaflet.markercluster'
