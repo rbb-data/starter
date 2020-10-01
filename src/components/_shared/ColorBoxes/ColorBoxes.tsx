@@ -21,6 +21,7 @@ interface Props {
   description: string
   limit?: string
   colors: ColorList | Palletes
+  showCopyString?: boolean
 }
 const ColorBoxes = (props: Props) => {
   const palletes: Palletes = isColorList(props.colors)
@@ -75,17 +76,19 @@ const ColorBoxes = (props: Props) => {
         ))}
       </ul>
       <p>{currentPallete.description}</p>
-      <label>
-        copy for datwarpper import:{' '}
-        <input
-          readOnly
-          style={{
-            fontFamily: 'monospace',
-            width: '100%',
-          }}
-          value={currentColors.map((color) => color.color).join(',')}
-        ></input>
-      </label>
+      {props.showCopyString && (
+        <label>
+          copy for datwarpper import:{' '}
+          <input
+            readOnly
+            style={{
+              fontFamily: 'monospace',
+              width: '100%',
+            }}
+            value={currentColors.map((color) => color.color).join(',')}
+          ></input>
+        </label>
+      )}
     </figure>
   )
 }

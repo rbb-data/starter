@@ -14,16 +14,16 @@ import GradientBoxes from '../src/components/_shared/ColorBoxes/GradientBoxes'
 
 Good basic advice for color use: https://blog.datawrapper.de/colors/
 
+**Don't use the different shades for multiple categories!**  
+There are multiple shades so you can adjust to a background or use a darker color for thinner lines.  
+A common pattern would be to use a darker blue as an outline for a shape filled with a lighter one.
+
 ## chart colors
 
 ### primary
 
-These blues are the default colors for a simple chart with a single category.  
-Use this if the theme don't suggest otherwise (e.g. green for parks)
-
-**Don't use the different shades for multiple categories!**  
-There are miltiple shades so you can adjust to a background or use a darker color for thinner lines.  
-A common pattern would be to use a darker blue as an outline for a shape filled with a lighter one.
+Blue is the default color for a simple chart with a single category.  
+Use this if the theme does not suggest otherwise (e.g. green for parks)
 
 <ColorBoxes
   title='default color'
@@ -43,20 +43,15 @@ A common pattern would be to use a darker blue as an outline for a shape filled 
 
 ### category colors
 
-These colors are to encode categories without implicit order.
-
-If you need to highlight or fade out someting you can use
-the darker or lighter vaersion of the colors.  
-Don't use different shades of the same color for different categories.
-
-Try to choose colors that match your category: Like blue for winter or green for nature.  
-Don't use the same color for different categories in one article.  
+Try to choose colors that match your category: Like cyan for winter and yellow for summer or green for yes and magenta for no.  
+Try not to use the same color for different categories in one article.  
 If you don't know which colors to pick just go from left to right.
 
 <div>
   <ColorBoxes
-    title='category colors'
-    description='qualitive color palette'
+    showCopyString
+    title='main category colors'
+    description='colors to encode categories without implicit order'
     limit='number of categories: '
     colors={{
       default: {
@@ -101,69 +96,37 @@ If you don't know which colors to pick just go from left to right.
     }}
   />
   <ColorBoxes
+    showCopyString
     title='gender colors'
+    description='colors to categorize gender'
     colors={[colors.female, colors.male, colors.divers]}
   />
   <ColorBoxes
+    showCopyString
     title='changes'
+    description='encode changes of values over time. e.g. a increasing / decreasing number of corona infections'
     colors={{
-      increase: colors.orange,
-      unchanged: colors.darkBeige,
       decrease: colors.violet,
+      unchanged: colors.darkBeige,
+      increase: colors.orange,
     }}
   />
 </div>
 
 ### gradients
 
-These gradients are created with chroma js.  
-You can copy the colors to the [chroma-js color scale helper](https://gka.github.io/palettes/#/11|s|fa9d1e,dfded2,3fbaed|ffffe0,ff005e,93003a|0|0)if you need
-nore or less colors in a scale.
-
-#### diverging
-
-Use for two dimesional data. Exeamples for when to use a diverging scale:
-
-- above see level / below see level (beige: is see level)
-- above average / below average (beige: is average)
-- more people are leaving / more people are arriving (beige: the same number of people are leaving and arriving)
-
-<GradientBoxes
-  diverging
-  title='Changes'
-  description='from increase over unchanged to decrease'
-  scale={gradients.diverging.changes}
-/>
-<GradientBoxes
-  diverging
-  title='cyan / yellow'
-  description='diverging scale'
-  scale={gradients.diverging.cyanYellow}
-/>
-<GradientBoxes
-  diverging
-  title='green / magenta'
-  description='diverging scale'
-  scale={gradients.diverging.greenMagenta}
-/>
-
 #### linear
 
-Use for one dimesional data.
+Use for one dimesional data.  
+The first color always encodes 0. So depending on your data (e.g. if your first chunk is something like: _from 0 - 5_) you might want to start with the second color.
 
-<GradientBoxes
-  title='cyan-blue-scale'
-  description='linear scale'
-  scale={gradients.linear.cyanBlue}
-/>
+<GradientBoxes title='cyan-blue-scale' scale={gradients.linear.cyanBlue} />
 <GradientBoxes
   title='yellow-green-scale'
-  description='linear scale'
   scale={gradients.linear.yellowGreen}
 />
 <GradientBoxes
   title='yellow-magenta-scale'
-  description='linear scale'
   scale={gradients.linear.yellowMagenta}
 />
 <GradientBoxes
@@ -171,33 +134,63 @@ Use for one dimesional data.
   description='NO2 values from 0 to 100'
   scale={gradients.linear.no2}
 />
+
+#### diverging
+
+Diverging scales should be used with two dimesional data or when da data fluctuates around a neutral value like 0.
+
+**Exeamples for when to use a diverging scale:**
+
+- voted for us republicnas / voted for us democrats (beige: both parties got the same amount of votes)
+- above see level / below see level (beige: is see level)
+- above average / below average (beige: is average)
+- more people are leaving / more people are arriving (beige: the same number of people are leaving and arriving)
+
+<GradientBoxes
+  diverging
+  title='cyan / yellow'
+  scale={gradients.diverging.cyanYellow}
+/>
+<GradientBoxes
+  diverging
+  title='green / magenta'
+  scale={gradients.diverging.greenMagenta}
+/>
+<GradientBoxes
+  diverging
+  title='Changes'
+  description='from decrease over unchanged to increase'
+  scale={gradients.diverging.changes}
+/>
+
+## UI colors
+
 <ColorBoxes
-title='UI colors'
-colors={{
-'rbb brand color – for primary actions (read means clikacble)': colors.red,
-'outline for red elements': colors.bordeaux,
-'for secondary buttons or unselected tabs': colors.lightGrey,
-'for text and as background for buttons or selected tabs': colors.darkGrey,
-'for text': 'black',
-}}
+  title='primary UI colors'
+  colors={{
+    'rbb brand color – for primary actions (red means clickable)': colors.red,
+    'for secondary buttons or unselected tabs': colors.lightGrey,
+    'like light grey but in combination with beige': colors.darkBeige,
+    'for text and as background for buttons or selected tabs': colors.darkGrey,
+    'for text': 'black',
+  }}
 />
 <ColorBoxes
-title='background colors'
-colors={{
-'background for toolboxes and infoboxes': colors.backgroundGrey,
-'background for maps and charts': colors.beige,
-'like light grey but in combination with beige': colors.darkBeige,
-}}
+  title='background colors'
+  colors={{
+    'background for toolboxes and infoboxes': colors.backgroundGrey,
+    'background for maps and charts': colors.beige,
+  }}
 />
 
 ## more colors
 
 <ColorBoxes
-  title='maps'
+  title='others'
   colors={{
-    mapBackground: colors.beige,
     lightWaterBlue: colors.lightWaterBlue,
     darkWaterBlue: colors.darkWaterBlue,
+    'outline for red elements': colors.bordeaux,
   }}
 />
 <ColorBoxes

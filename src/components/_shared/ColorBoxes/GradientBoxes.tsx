@@ -17,8 +17,6 @@ const isColorList = (value: ColorList | Palletes): value is ColorList => {
   return typeof Object.values(value)[0] === 'string'
 }
 
-const gradient = Chroma.scale(['black', 'red']).mode('lab')
-
 interface Props {
   title: string
   description: string
@@ -38,6 +36,7 @@ const GradientBoxes = (props: Props) => {
       </figcaption>
 
       <div>
+        Number of steps:{' '}
         <input
           type='number'
           value={steps}
