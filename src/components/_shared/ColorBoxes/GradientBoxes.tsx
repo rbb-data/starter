@@ -3,6 +3,8 @@ import TabBar from 'components/_shared/TabBar/TabBar'
 import _ from './ColorBoxes.module.sass'
 import { ColorBox } from './ColorBox'
 import Chroma, { Scale } from 'chroma-js'
+import { border } from 'polished'
+import { darkGrey, grey } from 'global_styles/colors'
 
 interface ColorList {
   [name: string]: string
@@ -51,6 +53,17 @@ const GradientBoxes = (props: Props) => {
           </li>
         ))}
       </ul>
+      <label>
+        copy for datwarpper import:{' '}
+        <input
+          readOnly
+          style={{
+            fontFamily: 'monospace',
+            width: '100%',
+          }}
+          value={colors.join(' ')}
+        ></input>
+      </label>
     </figure>
   )
 }
