@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import * as colors from 'global_styles/colors'
-import { linear } from 'global_styles/gradients'
+import * as gradients from 'global_styles/gradients'
+import useAutoStepper from 'lib/hooks/useAutoStepper'
 
 import DotSwarm from './DotSwarm'
-import useAutoStepper from 'lib/hooks/useAutoStepper'
 
 export default {
   title: 'II Components/DotSwarm',
@@ -32,7 +32,7 @@ export const ColoredByIndex = () => {
         count={500}
         dotProps={(dot, idx) => ({
           r: 2,
-          fill: linear.yellowGreen
+          fill: gradients.linear.yellowGreen
             .domain([0, 500])(idx)
             .hex(),
         })}
