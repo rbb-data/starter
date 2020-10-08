@@ -8,7 +8,7 @@ interface Props {
   unit?: string
   maxValue?: number
   highlight?: number
-  formatText: (idx: number) => string
+  formatText?: (idx: number) => string
 }
 const MiniBarChart: React.FunctionComponent<Props> = (props) => {
   const max =
@@ -53,7 +53,7 @@ const MiniBarChart: React.FunctionComponent<Props> = (props) => {
               textAnchor='middle'
               fill={i === props.highlight ? red : blue}
             >
-              {props.formatText(i)}
+              {props.formatText!(i)}
             </text>
           )}
         </g>
