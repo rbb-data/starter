@@ -3,19 +3,19 @@ import ReactDOM from 'react-dom'
 import { MapLayer, useLeaflet, withLeaflet } from 'react-leaflet'
 import L from 'leaflet'
 
-function safeRemoveLayer (leafletMap, el) {
+function safeRemoveLayer(leafletMap, el) {
   const { overlayPane } = leafletMap.getPanes()
   if (overlayPane && overlayPane.contains(el)) {
     overlayPane.removeChild(el)
   }
 }
 
-function useForceUpdate () {
-  const [, forceUpdate] = useReducer(x => x + 1, 0)
+function useForceUpdate() {
+  const [, forceUpdate] = useReducer((x) => x + 1, 0)
   return forceUpdate
 }
 
-function SVG (props) {
+function SVG(props) {
   // eslint-disable-next-line react/prop-types
   const { children: renderFunction } = props
   const { map } = useLeaflet()
@@ -25,7 +25,7 @@ function SVG (props) {
   const zoomClass = 'leaflet-zoom-hide'
 
   useEffect(() => {
-    const updateMapState = e => {
+    const updateMapState = (e) => {
       const topLeft = map.containerPointToLayerPoint([0, 0])
       L.DomUtil.setPosition(svgRef.current, topLeft)
       // make shure to rerender for current map state
@@ -33,18 +33,25 @@ function SVG (props) {
     }
 
     map.on('moveend', updateMapState)
-    return () => { map.off('moveend', updateMapState) }
+    return () => {
+      map.off('moveend', updateMapState)
+    }
+    // forceUpdate is a hack to trigger a rerender but it will not change so we dont neet it as dependency here
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map])
 
   const mapSize = map.getSize()
 
-  return <svg
-    ref={svgRef}
-    className={zoomClass}
-    width={mapSize.x}
-    height={mapSize.y}>
-    {renderFunction(map)}
-  </svg>
+  return (
+    <svg
+      ref={svgRef}
+      className={zoomClass}
+      width={mapSize.x}
+      height={mapSize.y}
+    >
+      {renderFunction(map)}
+    </svg>
+  )
 }
 
 /**
@@ -55,7 +62,7 @@ function SVG (props) {
  *  the content of the svg can be updated accordingly
  */
 class MapSVGLayer extends MapLayer {
-  createLeafletElement (props) {
+  createLeafletElement(props) {
     this.el = L.DomUtil.create('div')
 
     const SVGLayer = L.Layer.extend({
@@ -69,13 +76,13 @@ class MapSVGLayer extends MapLayer {
       },
       onRemove: (leafletMap) => {
         safeRemoveLayer(leafletMap, this.el)
-      }
+      },
     })
 
     return new SVGLayer()
   }
 
-  render () {
+  render() {
     const { children: renderFunction } = this.props
     return ReactDOM.createPortal(<SVG>{renderFunction}</SVG>, this.el)
   }

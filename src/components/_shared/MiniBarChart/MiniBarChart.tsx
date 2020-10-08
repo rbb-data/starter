@@ -1,6 +1,5 @@
 import React from 'react'
 import { red, blue } from 'global_styles/colors'
-import _ from './Histogram.module.sass'
 
 interface Props {
   onClick: (e: number) => void

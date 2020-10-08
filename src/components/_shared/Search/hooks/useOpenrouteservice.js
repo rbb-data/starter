@@ -2,47 +2,55 @@ import { useState, useEffect } from 'react'
 import debounce from 'lodash/debounce'
 import { autocomplete, fixBerlinSearchResult } from '../openrouteservice.js'
 
-export const format = feature =>
-  `${feature.properties.name}, ${feature.properties.neighbourhood ? `${feature.properties.neighbourhood},` : ''} ${feature.properties.region}`
+export const format = (feature) =>
+  `${feature.properties.name}, ${
+    feature.properties.neighbourhood
+      ? `${feature.properties.neighbourhood},`
+      : ''
+  } ${feature.properties.region}`
 
-const makeRequest = debounce(async ({ searchString, config, setSuggestions }) => {
-  if (searchString === null || searchString.trim() === '') return null
+const makeRequest = debounce(
+  async ({ searchString, config, setSuggestions }) => {
+    if (searchString === null || searchString.trim() === '') return null
 
-  // format config so it can be consumed by the api
-  const { layers, location, sources } = config
-  const params = {
-    layers: layers.join(','),
-    sources: sources.join(','),
-    location: location,
-    text: searchString
-  }
+    // format config so it can be consumed by the api
+    const { layers, location, sources } = config
+    const params = {
+      layers: layers.join(','),
+      sources: sources.join(','),
+      location: location,
+      text: searchString,
+    }
 
-  // get autocomplete results from api
-  const result = await autocomplete(params)
-  const features = result.features
-    .map(feature => fixBerlinSearchResult(feature))
-    // format with lat lng
-    .map(feature => ({
-      ...feature,
-      type: 'location',
-      location: {
-        lat: feature.geometry.coordinates[1],
-        lng: feature.geometry.coordinates[0]
-      }
-    }))
+    // get autocomplete results from api
+    const result = await autocomplete(params)
+    const features = result.features
+      .map((feature) => fixBerlinSearchResult(feature))
+      // format with lat lng
+      .map((feature) => ({
+        ...feature,
+        type: 'location',
+        location: {
+          lat: feature.geometry.coordinates[1],
+          lng: feature.geometry.coordinates[0],
+        },
+      }))
 
-  setSuggestions(features)
-}, 300, { 'leading': true, 'trailing': true })
+    setSuggestions(features)
+  },
+  300,
+  { leading: true, trailing: true }
+)
 
-function useOpenrouteservice (config) {
+function useOpenrouteservice(config) {
   const [searchString, setInternalSearchString] = useState(null)
   const [suggestions, setSuggestions] = useState(null)
 
   useEffect(() => {
     makeRequest({ searchString, config, setSuggestions })
-  }, [searchString])
+  }, [searchString, config])
 
-  function setSearchString (searchString) {
+  function setSearchString(searchString) {
     if (searchString === null) setSuggestions(null)
     setInternalSearchString(searchString)
   }

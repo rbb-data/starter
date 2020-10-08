@@ -4,36 +4,47 @@ import Chroma from 'chroma-js'
 // import colors
 import c from './StemAndLeafPlot.module.sass'
 
-const StemAndLeafPlot = props => {
+const StemAndLeafPlot = (props) => {
   const {
-    items, selectedItem,
-    maxValue, threshold, numberOfSteps,
-    colorScaleHeight, fontSize,
+    items,
+    selectedItem,
+    maxValue,
+    threshold,
+    numberOfSteps,
+    colorScaleHeight,
+    fontSize,
     className,
     colorScale: scaleThatMightHasTheWrongDomain,
-    selectOnMouseover, drawLineToSelectedItem,
-    getValue, onSelectDot
+    selectOnMouseover,
+    drawLineToSelectedItem,
+    getValue,
+    onSelectDot,
   } = props
 
   const colorScale = scaleThatMightHasTheWrongDomain.domain([0, maxValue])
 
-  const plot = items.sort((a, b) => getValue(a) - getValue(b))
+  const plot = items
+    .sort((a, b) => getValue(a) - getValue(b))
     .reduce((plot, item) => {
-      const normalizedPosition = getValue(item) / maxValue * numberOfSteps
+      const normalizedPosition = (getValue(item) / maxValue) * numberOfSteps
       const pos = Math.round(normalizedPosition)
       if (!plot[pos]) plot[pos] = []
       plot[pos].push(item)
       return plot
     }, Array(numberOfSteps))
 
-  const maxLeafCount = plot.reduce((max, curr) => curr.length > max ? curr.length : max, 0)
+  const maxLeafCount = plot.reduce(
+    (max, curr) => (curr.length > max ? curr.length : max),
+    0
+  )
 
   // scale is drawn on canvas
   const labelsHeight = fontSize * 1.2
   const spacingBetweenScaleAndPlot = 0.5
   // canvas has labelsHeight as bottomSpacing
   // so we can just align svg and canvas on bottom line
-  const canvasHeight = colorScaleHeight + labelsHeight + spacingBetweenScaleAndPlot
+  const canvasHeight =
+    colorScaleHeight + labelsHeight + spacingBetweenScaleAndPlot
 
   const graphWidth = 100
   const circleDiameter = graphWidth / numberOfSteps
@@ -42,9 +53,10 @@ const StemAndLeafPlot = props => {
   const graphHeight = plotHeight + canvasHeight
   const viewBox = { width: graphWidth + circleDiameter, height: graphHeight }
 
-  const normalizedThreshold = threshold !== null
-    ? threshold / maxValue * graphWidth - circleRadius
-    : null
+  const normalizedThreshold =
+    threshold !== null
+      ? (threshold / maxValue) * graphWidth - circleRadius
+      : null
   const hasSelectedItem = selectedItem !== null
 
   let elements = []
@@ -74,8 +86,8 @@ const StemAndLeafPlot = props => {
           },
           onClick: (e) => {
             onSelectDot(item)
-          }
-        }
+          },
+        },
       }
 
       if (isHighlightedValue) {
@@ -96,8 +108,8 @@ const StemAndLeafPlot = props => {
         y1: 0,
         y2: graphHeight - labelsHeight,
         stroke: 'black',
-        'stroke-width': 0.2
-      }
+        'stroke-width': 0.2,
+      },
     })
   }
 
@@ -113,8 +125,8 @@ const StemAndLeafPlot = props => {
           x2: dot.props.cx + circleRadius,
           y2: dot.props.cy,
           stroke: 'white',
-          'stroke-width': 0.4
-        }
+          'stroke-width': 0.4,
+        },
       })
       elements.push({
         type: 'line',
@@ -124,11 +136,11 @@ const StemAndLeafPlot = props => {
           x2: dot.props.cx + circleRadius,
           y2: dot.props.cy,
           stroke: dot.props.fill,
-          'stroke-width': 0.2
-        }
+          'stroke-width': 0.2,
+        },
       })
     }
-    highlightedValues.forEach(dot => elements.push(dot))
+    highlightedValues.forEach((dot) => elements.push(dot))
   }
 
   // ticks
@@ -139,8 +151,8 @@ const StemAndLeafPlot = props => {
       x: 0,
       y: graphHeight,
       'font-size': fontSize,
-      'font-family': 'Interstate'
-    }
+      'font-family': 'Interstate',
+    },
   })
 
   if (normalizedThreshold !== null) {
@@ -152,8 +164,8 @@ const StemAndLeafPlot = props => {
         x: normalizedThreshold + circleRadius,
         y: graphHeight,
         'font-size': fontSize,
-        'font-family': 'Interstate'
-      }
+        'font-family': 'Interstate',
+      },
     })
   }
 
@@ -165,15 +177,15 @@ const StemAndLeafPlot = props => {
       x: 100 + circleDiameter,
       y: graphHeight,
       'font-size': fontSize,
-      'font-family': 'Interstate'
-    }
+      'font-family': 'Interstate',
+    },
   })
 
   const canvas = useRef(null)
 
   useEffect(() => {
     const drawGradient = () => {
-      const scaleFactor = canvas.current.clientWidth / viewBox.width * 2
+      const scaleFactor = (canvas.current.clientWidth / viewBox.width) * 2
       const bottomSpacing = labelsHeight * scaleFactor
       const highResScaleHeight = colorScaleHeight * scaleFactor
 
@@ -194,20 +206,34 @@ const StemAndLeafPlot = props => {
     drawGradient()
   })
 
-  return <div className={`${c.salPlot} ${className}`}>
-    <div className={c.graph}>
-      <svg className={c.svg} viewBox={`0 0 ${viewBox.width} ${viewBox.height}`}>
-        { elements.map((element, i) => {
-          switch (element.type) {
-            case 'circle': return <circle key={i} {...element.props} />
-            case 'line': return <line key={i} {...element.props} />
-            case 'text': return <text key={i} {...element.props}>{element.value}</text>
-          }
-        }) }
-      </svg>
-      <canvas ref={canvas} id='sal-plot' className={c.canvas} />
+  return (
+    <div className={`${c.salPlot} ${className}`}>
+      <div className={c.graph}>
+        <svg
+          className={c.svg}
+          viewBox={`0 0 ${viewBox.width} ${viewBox.height}`}
+        >
+          {elements.map((element, i) => {
+            switch (element.type) {
+              case 'circle':
+                return <circle key={i} {...element.props} />
+              case 'line':
+                return <line key={i} {...element.props} />
+              case 'text':
+                return (
+                  <text key={i} {...element.props}>
+                    {element.value}
+                  </text>
+                )
+              default:
+                return null
+            }
+          })}
+        </svg>
+        <canvas ref={canvas} id='sal-plot' className={c.canvas} />
+      </div>
     </div>
-  </div>
+  )
 }
 
 StemAndLeafPlot.propTypes = {
@@ -240,7 +266,7 @@ StemAndLeafPlot.propTypes = {
   /** get the value used to determine the position in the graph from the item */
   getValue: PropTypes.func,
   /** called when dot is "selected" see `selectOnMouseover` */
-  onSelectDot: PropTypes.func
+  onSelectDot: PropTypes.func,
 }
 
 StemAndLeafPlot.defaultProps = {
@@ -251,8 +277,8 @@ StemAndLeafPlot.defaultProps = {
   numberOfSteps: 100,
   threshold: null,
   drawLineToSelectedItem: false,
-  getValue: value => value,
-  onSelectDot: () => {}
+  getValue: (value) => value,
+  onSelectDot: () => {},
 }
 
 export default StemAndLeafPlot

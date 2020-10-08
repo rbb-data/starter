@@ -1,8 +1,4 @@
 import React from 'react'
-import * as colors from 'global_styles/colors'
-import * as gradients from 'global_styles/gradients'
-import useAutoStepper from 'lib/hooks/useAutoStepper'
-
 import MiniBarChart from './MiniBarChart'
 
 export default {
