@@ -7,7 +7,7 @@ import { BingLayer } from 'react-leaflet-bing'
 import trackEvent from 'lib/analytics'
 import berlinMask from 'data/berlin-mask.geo.json'
 import berlinBoroughs from 'data/berlin-bezirke.geo.json'
-import { darkGrey } from 'global_styles/colors.sass'
+import { darkGrey } from 'global_styles/colors'
 import _ from './Map.module.sass'
 
 // TODO:
@@ -18,17 +18,17 @@ import _ from './Map.module.sass'
  * React leaflet map component in rbb-data style
  * with bing map tiles and berlin borders
  */
-const Map = props => {
+const Map = (props) => {
   const { children, className, bingKey, ...forwardedProps } = props
 
-  function handleZoom (e) {
+  function handleZoom(e) {
     const map = e.target
     map.dragging.enable()
     if (map.tap) map.tap.enable()
     trackEvent('zoom map')
   }
 
-  function handleDragEnd (e) {
+  function handleDragEnd(e) {
     trackEvent('move map')
   }
 
@@ -37,12 +37,12 @@ const Map = props => {
     center: { lat: 52.5244, lng: 13.4105 },
     bounds: {
       topleft: { lat: 52.65, lng: 13.1 },
-      bottomright: { lat: 52.35, lng: 13.75 }
+      bottomright: { lat: 52.35, lng: 13.75 },
     },
     maxBounds: {
       topleft: { lat: 52.8, lng: 12.9 },
-      bottomright: { lat: 52.2, lng: 13.9 }
-    }
+      bottomright: { lat: 52.2, lng: 13.9 },
+    },
   }
 
   const mapProps = {
@@ -60,54 +60,60 @@ const Map = props => {
     zoomSnap: false,
     bounds: [
       [berlin.bounds.bottomright.lat, berlin.bounds.bottomright.lng],
-      [berlin.bounds.topleft.lat, berlin.bounds.topleft.lng]
+      [berlin.bounds.topleft.lat, berlin.bounds.topleft.lng],
     ],
     maxBounds: [
       [berlin.maxBounds.bottomright.lat, berlin.maxBounds.bottomright.lng],
-      [berlin.maxBounds.topleft.lat, berlin.maxBounds.topleft.lng]
-    ]
+      [berlin.maxBounds.topleft.lat, berlin.maxBounds.topleft.lng],
+    ],
   }
 
   // const mapStyle = 'trs|lv:true;fc:EAEAEA_pp|lv:false;v:false_ar|v:false;lv:false_vg|v:true;fc:E4E4E4_wt|fc:AED1E4_rd|sc:d0d0d0;fc:e9e9e9;lv:false_mr|sc:d3d3d3;fc:dddddd;lv:true_hg|sc:d3d3d3;fc:e9e9e9;lv:true_g|lc:EAEAEA'
   // const darkStyle = 'trs|lv:true_pp|lv:false;v:false_ar|v:false;lv:false_vg|v:true_wt|lv:false_wt|fc:0B2539_rd|lv:false_mr|lv:true_hg|lv:false'
-  const beigeStyle = 'trs|lv:true;fc:dfded2_pp|lv:false;v:false_ar|v:false;lv:false_vg|v:true_wt|lv:false;fc:86c6ed_rd|fc:ECEADD;sc:D4CDB9;lv:false_mr|fc:ECEADD;lv:true_hg|lv:false_g|lc:dfded2'
+  const beigeStyle =
+    'trs|lv:true;fc:dfded2_pp|lv:false;v:false_ar|v:false;lv:false_vg|v:true_wt|lv:false;fc:86c6ed_rd|fc:ECEADD;sc:D4CDB9;lv:false_mr|fc:ECEADD;lv:true_hg|lv:false_g|lc:dfded2'
   const mapClassName = `${className} ${_.map}`
 
-  return <LeafletMap className={mapClassName} {...mapProps} {...forwardedProps}>
-    <BingLayer
-      type='CanvasGray'
-      bingkey={bingKey}
-      culture='de-de'
-      // eslint-disable-next-line react/style-prop-object
-      style={beigeStyle} />
+  return (
+    <LeafletMap className={mapClassName} {...mapProps} {...forwardedProps}>
+      <BingLayer
+        type='CanvasGray'
+        bingkey={bingKey}
+        culture='de-de'
+        // eslint-disable-next-line react/style-prop-object
+        style={beigeStyle}
+      />
 
-    <GeoJSON
-      data={berlinMask}
-      interactive={false}
-      fillOpacity={0.8}
-      color='white'
-      stroke={false} />
+      <GeoJSON
+        data={berlinMask}
+        interactive={false}
+        fillOpacity={0.8}
+        color='white'
+        stroke={false}
+      />
 
-    <GeoJSON
-      data={berlinBoroughs}
-      interactive={false}
-      opacity={1}
-      weight={0.3}
-      fillOpacity={0}
-      color={darkGrey} />
+      <GeoJSON
+        data={berlinBoroughs}
+        interactive={false}
+        opacity={1}
+        weight={0.3}
+        fillOpacity={0}
+        color={darkGrey}
+      />
 
-    {/* <Rectangle bounds={mapProps.bounds} /> */}
+      {/* <Rectangle bounds={mapProps.bounds} /> */}
 
-    <ZoomControl position='bottomright' />
+      <ZoomControl position='bottomright' />
 
-    {children}
-  </LeafletMap>
+      {children}
+    </LeafletMap>
+  )
 }
 
 Map.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  bingKey: PropTypes.string.isRequired
+  bingKey: PropTypes.string.isRequired,
 }
 
 export default Map
