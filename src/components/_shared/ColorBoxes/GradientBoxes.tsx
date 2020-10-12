@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
-import TabBar from 'components/_shared/TabBar/TabBar'
 import _ from './ColorBoxes.module.sass'
 import { ColorBox } from './ColorBox'
-import Chroma, { Scale } from 'chroma-js'
-import { border } from 'polished'
-import { darkGrey, grey } from 'global_styles/colors'
+import { Scale } from 'chroma-js'
 
 interface ColorList {
   [name: string]: string
@@ -12,12 +9,6 @@ interface ColorList {
 interface Palletes {
   [pallete: string]: { colors: ColorList; description?: string }
 }
-
-const isColorList = (value: ColorList | Palletes): value is ColorList => {
-  return typeof Object.values(value)[0] === 'string'
-}
-
-const gradient = Chroma.scale(['black', 'red']).mode('lab')
 
 interface Props {
   title: string

@@ -9,14 +9,15 @@ import './css/fontello-embedded.css'
  * @param {String} text
  * @return {String}
  */
-const removeHashtags = text =>
+const removeHashtags = (text) =>
   text
     // remove final hashtags
     .replace(/(\s?#[^#\s]+)+$/, '')
     // remove just the pound signs from hashtags in the middle of the text
-    .replace(/#[^\s]+/g, s => s.substr(1))
+    .replace(/#[^\s]+/g, (s) => s.substr(1))
 
 export const FacebookButton = ({ url }) => (
+  // eslint-disable-next-line jsx-a11y/anchor-has-content
   <a
     className={`${_.Button} icon-facebook`}
     aria-label='Auf Facebook teilen'
@@ -29,10 +30,11 @@ export const FacebookButton = ({ url }) => (
 )
 
 FacebookButton.propTypes = {
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
 }
 
 export const TwitterButton = ({ url, description }) => (
+  // eslint-disable-next-line jsx-a11y/anchor-has-content
   <a
     className={`${_.Button} icon-twitter`}
     aria-label='Auf Twitter teilen'
@@ -49,10 +51,11 @@ export const TwitterButton = ({ url, description }) => (
 
 TwitterButton.propTypes = {
   url: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired
+  description: PropTypes.string.isRequired,
 }
 
 export const WhatsAppButton = ({ url, description }) => (
+  // eslint-disable-next-line jsx-a11y/anchor-has-content
   <a
     className={`${_.Button} icon-whatsapp`}
     aria-label='Auf WhatsApp teilen'
@@ -67,7 +70,7 @@ export const WhatsAppButton = ({ url, description }) => (
 
 WhatsAppButton.propTypes = {
   url: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired
+  description: PropTypes.string.isRequired,
 }
 
 /**
@@ -75,7 +78,7 @@ WhatsAppButton.propTypes = {
  * **NOTE**: The WhatsApp button is only visible on screens that are less than 600px wide
  * @param {*} props
  */
-const ShareButtonGroup = props => (
+const ShareButtonGroup = (props) => (
   <div className={_.ShareButtonGroup}>
     <p className={_.text}>{props.title}</p>
     <FacebookButton url={props.url} description={props.description} />
@@ -90,7 +93,7 @@ ShareButtonGroup.propTypes = {
   /** The text displayed above the share buttons */
   title: PropTypes.string.isRequired,
   /** Twitter and WhatsApp accept a description that is added to the post content of the user */
-  description: PropTypes.string.isRequired
+  description: PropTypes.string.isRequired,
 }
 
 export default ShareButtonGroup
