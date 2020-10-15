@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react'
+import React, { useRef, useMemo, useEffect, useState } from 'react'
 import { scaleLinear } from 'd3-scale'
 import { line as lineGenerator, curveMonotoneX } from 'd3-shape'
 import * as colors from 'global_styles/colors'
@@ -14,6 +14,42 @@ function getMax(array: number[]): number {
     if (next > max) return next
     return max
   }, Number.MIN_VALUE)
+}
+
+var getAnimationProgress = function (
+  x: number,
+  path: SVGPathElement | null,
+  error = 0.01
+): { animationProgress: number; lineLength: number } {
+  if (!path) {
+    return { animationProgress: 0, lineLength: Number.MAX_SAFE_INTEGER }
+  }
+
+  const lineLength = path.getTotalLength()
+  const bisection_iterations_max = 50
+
+  let length_end = lineLength
+  let length_start = 0
+  let point = path.getPointAtLength((length_end + length_start) / 2) // get the middle point
+  let bisection_iterations = 0
+
+  while (x < point.x - error || x > point.x + error) {
+    // get the middle point
+    point = path.getPointAtLength((length_end + length_start) / 2)
+
+    if (x < point.x) {
+      length_end = (length_start + length_end) / 2
+    } else {
+      length_start = (length_start + length_end) / 2
+    }
+
+    // Increase iteration
+    if (bisection_iterations_max < ++bisection_iterations) break
+  }
+
+  const animationProgress =
+    Math.round(((length_end + length_start) / 2 / lineLength) * 100) / 100
+  return { animationProgress, lineLength }
 }
 
 interface Props {
@@ -38,12 +74,16 @@ const LineChartWithDotSwarm: React.FC<Props> = ({
   onSelect = () => {},
   ...props
 }) => {
-  const svgLineRef = useRef(null)
+  const [isInitialRender, setIsInitialRender] = useState(true)
+  const svgLineRef = useRef<SVGPathElement>(null)
   const padding = { top: 60, right: 75, bottom: 40, left: 75, legend: 20 }
   const maxIndex = values.length - 1
-  const animationProgress = selected / maxIndex
   const currentIndex = Math.round(selected)
-  console.log(selected, currentIndex, animationProgress)
+
+  // render twice initally so we are shure to have a ref to our svg path
+  useEffect(() => {
+    setIsInitialRender(false)
+  }, [isInitialRender])
 
   // setup scales
   const max = getMax(values)
@@ -65,17 +105,18 @@ const LineChartWithDotSwarm: React.FC<Props> = ({
   // setup line generator
   const historyLine = lineGenerator<number>()
     .curve(curveMonotoneX)
-    .x((d, idx) => x(idx) || 0)
-    .y((d) => y(d) || 0)
+    .x((d, idx) => x(idx)!)
+    .y((d) => y(d)!)
 
   const currentValue = values[currentIndex]
   const firstValue = values[0]
 
-  const linePath = svgLineRef.current as any
-  const lineLength = linePath
-    ? linePath.getTotalLength()
-    : Number.MAX_SAFE_INTEGER
-  console.log(linePath, lineLength)
+  const linePath = svgLineRef.current
+  const { animationProgress, lineLength } = getAnimationProgress(
+    x(selected)!,
+    svgLineRef.current
+  )
+
   const lineEndPoint = linePath
     ? linePath.getPointAtLength(lineLength * animationProgress)
     : { x: x(currentIndex), y: y(currentValue) }
@@ -97,38 +138,38 @@ const LineChartWithDotSwarm: React.FC<Props> = ({
       {animationProgress === 1 && (
         <RawDotSwarm
           count={firstValue}
-          position={{ x: x(0) || 0, y: y(firstValue) || 0 }}
+          position={{ x: x(0)!, y: y(firstValue)! }}
           dotProps={() => ({ r: 1, fill: color })}
         />
       )}
       <RawDotSwarm
         count={currentValue}
-        position={{ x: lineEndPoint.x, y: lineEndPoint.y }}
+        position={{ x: lineEndPoint.x!, y: lineEndPoint.y! }}
         dotProps={() => ({ r: 1, fill: color })}
       />
 
       {animationProgress === 1 && (
         <text
           className={_.fadeText}
-          x={(x(0) || 0) - 15}
-          y={(y(firstValue) || 0) + firstTextOffset}
+          x={x(0)! - 15}
+          y={y(firstValue)! + firstTextOffset}
           textAnchor='middle'
         >
           {firstValue}
         </text>
       )}
       <text
-        x={lineEndPoint.x + 15}
-        y={lineEndPoint.y + lastTextOffset}
+        x={lineEndPoint.x! + 15}
+        y={lineEndPoint.y! + lastTextOffset}
         textAnchor='middle'
       >
         {currentValue}
       </text>
 
       <line
-        x1={(x(0) || 0) - 30}
+        x1={x(0)! - 30}
         y1={y(0)}
-        x2={(x(maxIndex) || 0) + 30}
+        x2={x(maxIndex)! + 30}
         y2={y(0)}
         stroke={colors.darkGrey}
         strokeWidth='1'
