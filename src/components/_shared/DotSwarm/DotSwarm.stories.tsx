@@ -3,7 +3,7 @@ import * as colors from 'global_styles/colors'
 import * as gradients from 'global_styles/gradients'
 import useAutoStepper from 'lib/hooks/useAutoStepper'
 
-import DotSwarm from './DotSwarm'
+import DotSwarm, { RawDotSwarm } from './DotSwarm'
 
 export default {
   title: 'II Components/DotSwarm',
@@ -13,12 +13,7 @@ export default {
 export const Basic = () => {
   return (
     <div style={{ width: '200px' }}>
-      <DotSwarm
-        width={200}
-        height={200}
-        count={500}
-        dotProps={() => ({ r: 2, fill: colors.blue })}
-      />
+      <DotSwarm count={500} />
     </div>
   )
 }
@@ -27,14 +22,10 @@ export const ColoredByIndex = () => {
   return (
     <div style={{ width: '200px' }}>
       <DotSwarm
-        width={200}
-        height={200}
         count={500}
         dotProps={(dot, idx) => ({
-          r: 2,
-          fill: gradients.linear.yellowGreen
-            .domain([0, 500])(idx)
-            .hex(),
+          r: 1,
+          fill: gradients.linear.yellowGreen.domain([0, 500])(idx).hex(),
         })}
       />
     </div>
@@ -65,5 +56,20 @@ export const Animated = () => {
         })}
       />
     </div>
+  )
+}
+
+export const InsideSVG = () => {
+  return (
+    <svg viewBox='0 0 200 200' style={{ width: '200px' }}>
+      <RawDotSwarm
+        position={{ x: 100, y: 100 }}
+        count={500}
+        dotProps={(dot, idx) => ({
+          r: 2,
+          fill: colors.blue,
+        })}
+      />
+    </svg>
   )
 }
