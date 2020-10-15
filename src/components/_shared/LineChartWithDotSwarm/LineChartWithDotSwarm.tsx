@@ -20,34 +20,39 @@ interface Props {
   width?: number
   height?: number
   values: number[]
+  selected?: number
   color?: string
-  animationProgress?: number
   showInfoText: boolean
-  onYearSelect: (year: number) => void
   formatX?: (idx: number) => string
   limit?: (maxY: number) => number
+  onSelect?: (index: number) => void
 }
 const LineChartWithDotSwarm: React.FC<Props> = ({
   width = 600,
   height = 350,
   values,
+  selected = values.length - 1,
   color = colors.blue,
-  animationProgress = 1,
   limit = (max) => max + 30,
   formatX = (idx) => `${idx}`,
+  onSelect = () => {},
   ...props
 }) => {
   const svgLineRef = useRef(null)
   const padding = { top: 60, right: 75, bottom: 40, left: 75, legend: 20 }
+  const maxIndex = values.length - 1
+  const animationProgress = selected / maxIndex
+  const currentIndex = Math.round(selected)
+  console.log(selected, currentIndex, animationProgress)
 
   // setup scales
   const max = getMax(values)
   const x = useMemo(
     () =>
       scaleLinear()
-        .domain([0, values.length])
+        .domain([0, maxIndex])
         .range([padding.left, width - padding.right]),
-    [values, padding.left, padding.right, width]
+    [maxIndex, padding.left, padding.right, width]
   )
   const y = useMemo(
     () =>
@@ -58,12 +63,11 @@ const LineChartWithDotSwarm: React.FC<Props> = ({
   )
 
   // setup line generator
-  const historyLine = lineGenerator<Point>()
+  const historyLine = lineGenerator<number>()
     .curve(curveMonotoneX)
-    .x((d) => x(d[0]) || 0)
-    .y((d) => y(d[1]) || 0)
+    .x((d, idx) => x(idx) || 0)
+    .y((d) => y(d) || 0)
 
-  const currentIndex = Math.round((values.length - 1) * animationProgress)
   const currentValue = values[currentIndex]
   const firstValue = values[0]
 
@@ -71,6 +75,7 @@ const LineChartWithDotSwarm: React.FC<Props> = ({
   const lineLength = linePath
     ? linePath.getTotalLength()
     : Number.MAX_SAFE_INTEGER
+  console.log(linePath, lineLength)
   const lineEndPoint = linePath
     ? linePath.getPointAtLength(lineLength * animationProgress)
     : { x: x(currentIndex), y: y(currentValue) }
@@ -81,7 +86,7 @@ const LineChartWithDotSwarm: React.FC<Props> = ({
   return (
     <svg className={_.svg} viewBox={`0 0 ${width} ${height}`}>
       <path
-        d={historyLine(values.map((value, idx) => [idx, value])) || ''}
+        d={historyLine(values) || ''}
         ref={svgLineRef}
         stroke={color}
         // hack to aniname line drawing:
@@ -121,9 +126,9 @@ const LineChartWithDotSwarm: React.FC<Props> = ({
       </text>
 
       <line
-        x1={x(0) || 0 - 30}
+        x1={(x(0) || 0) - 30}
         y1={y(0)}
-        x2={x(values.length) || 0 + 30}
+        x2={(x(maxIndex) || 0) + 30}
         y2={y(0)}
         stroke={colors.darkGrey}
         strokeWidth='1'
@@ -156,7 +161,7 @@ const LineChartWithDotSwarm: React.FC<Props> = ({
               transform={`rotate(${rotate} ${xPos} ${yPos})`}
               textAnchor={textAnchor}
               onClick={() => {
-                props.onYearSelect(idx)
+                onSelect(idx)
               }}
             >
               {formatX(idx)}
@@ -170,7 +175,7 @@ const LineChartWithDotSwarm: React.FC<Props> = ({
             Klicken Sie sich
           </tspan>
           <tspan x={width - 55} dy='1.2em'>
-            durch die Jahre um die
+            durch die x Achse um die
           </tspan>
           <tspan x={width - 55} dy='1.2em'>
             einzelnen Werte zu sehen.
