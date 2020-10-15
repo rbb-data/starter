@@ -17,37 +17,44 @@ function getMax(array: number[]): number {
 }
 
 interface Props {
-  width: number
-  height: number
+  width?: number
+  height?: number
   values: number[]
-  color: string
-  animationProgress: number
+  color?: string
+  animationProgress?: number
   showInfoText: boolean
   onYearSelect: (year: number) => void
+  formatX?: (idx: number) => string
   limit?: (maxY: number) => number
 }
 const LineChartWithDotSwarm: React.FC<Props> = ({
+  width = 600,
+  height = 350,
+  values,
+  color = colors.blue,
+  animationProgress = 1,
   limit = (max) => max + 30,
+  formatX = (idx) => `${idx}`,
   ...props
 }) => {
   const svgLineRef = useRef(null)
   const padding = { top: 60, right: 75, bottom: 40, left: 75, legend: 20 }
 
   // setup scales
-  const max = getMax(props.values)
+  const max = getMax(values)
   const x = useMemo(
     () =>
       scaleLinear()
-        .domain([0, props.values.length])
-        .range([padding.left, props.width - padding.right]),
-    [props.values, padding.left, padding.right, props.width]
+        .domain([0, values.length])
+        .range([padding.left, width - padding.right]),
+    [values, padding.left, padding.right, width]
   )
   const y = useMemo(
     () =>
       scaleLinear()
         .domain([0, limit(max)])
-        .range([props.height - padding.bottom, padding.top]),
-    [max, limit, padding.bottom, padding.top, props.height]
+        .range([height - padding.bottom, padding.top]),
+    [max, limit, padding.bottom, padding.top, height]
   )
 
   // setup line generator
@@ -56,53 +63,50 @@ const LineChartWithDotSwarm: React.FC<Props> = ({
     .x((d) => x(d[0]) || 0)
     .y((d) => y(d[1]) || 0)
 
-  const currentIndex = Math.round(
-    (props.values.length - 1) * props.animationProgress
-  )
-  console.log(props.animationProgress, currentIndex)
-  const currentValue = props.values[currentIndex]
-  const firstValue = props.values[0]
+  const currentIndex = Math.round((values.length - 1) * animationProgress)
+  const currentValue = values[currentIndex]
+  const firstValue = values[0]
 
   const linePath = svgLineRef.current as any
   const lineLength = linePath
     ? linePath.getTotalLength()
     : Number.MAX_SAFE_INTEGER
   const lineEndPoint = linePath
-    ? linePath.getPointAtLength(lineLength * props.animationProgress)
+    ? linePath.getPointAtLength(lineLength * animationProgress)
     : { x: x(currentIndex), y: y(currentValue) }
 
   const firstTextOffset = Math.sqrt(firstValue) * 2.8 + 15
   const lastTextOffset = Math.sqrt(currentValue) * 2.8 + 15
 
   return (
-    <svg className={_.svg} viewBox={`0 0 ${props.width} ${props.height}`}>
+    <svg className={_.svg} viewBox={`0 0 ${width} ${height}`}>
       <path
-        d={historyLine(props.values.map((value, idx) => [idx, value])) || ''}
+        d={historyLine(values.map((value, idx) => [idx, value])) || ''}
         ref={svgLineRef}
-        stroke={props.color}
+        stroke={color}
         // hack to aniname line drawing:
         strokeDasharray={`${lineLength} ${lineLength}`}
-        strokeDashoffset={lineLength - lineLength * props.animationProgress}
+        strokeDashoffset={lineLength - lineLength * animationProgress}
       />
 
-      {props.animationProgress === 1 && (
+      {animationProgress === 1 && (
         <RawDotSwarm
           count={firstValue}
           position={{ x: x(0) || 0, y: y(firstValue) || 0 }}
-          dotProps={() => ({ r: 1, fill: props.color })}
+          dotProps={() => ({ r: 1, fill: color })}
         />
       )}
       <RawDotSwarm
         count={currentValue}
         position={{ x: lineEndPoint.x, y: lineEndPoint.y }}
-        dotProps={() => ({ r: 1, fill: props.color })}
+        dotProps={() => ({ r: 1, fill: color })}
       />
 
-      {props.animationProgress === 1 && (
+      {animationProgress === 1 && (
         <text
           className={_.fadeText}
-          x={x(0) || 0 - 15}
-          y={y(firstValue) || 0 + firstTextOffset}
+          x={(x(0) || 0) - 15}
+          y={(y(firstValue) || 0) + firstTextOffset}
           textAnchor='middle'
         >
           {firstValue}
@@ -119,17 +123,17 @@ const LineChartWithDotSwarm: React.FC<Props> = ({
       <line
         x1={x(0) || 0 - 30}
         y1={y(0)}
-        x2={x(props.values.length) || 0 + 30}
+        x2={x(values.length) || 0 + 30}
         y2={y(0)}
         stroke={colors.darkGrey}
         strokeWidth='1'
       />
 
-      {props.values.map((value, idx) => {
+      {values.map((value, idx) => {
         const xPos = x(idx)
-        const yPos = props.height - 20
-        const rotate = props.width < breakpoints.small ? 45 : 0
-        const textAnchor = props.width < breakpoints.small ? 'start' : 'middle'
+        const yPos = height - 20
+        const rotate = width < breakpoints.small ? 45 : 0
+        const textAnchor = width < breakpoints.small ? 'start' : 'middle'
         const isCurrentValue = idx === currentIndex
 
         return (
@@ -155,20 +159,20 @@ const LineChartWithDotSwarm: React.FC<Props> = ({
                 props.onYearSelect(idx)
               }}
             >
-              {idx}
+              {formatX(idx)}
             </text>
           </g>
         )
       })}
-      {props.showInfoText && props.animationProgress === 1 && (
-        <text y={props.height - 115} className={_.infoText} textAnchor='end'>
-          <tspan x={props.width - 55} dy='1.2em'>
+      {props.showInfoText && animationProgress === 1 && (
+        <text y={height - 115} className={_.infoText} textAnchor='end'>
+          <tspan x={width - 55} dy='1.2em'>
             Klicken Sie sich
           </tspan>
-          <tspan x={props.width - 55} dy='1.2em'>
+          <tspan x={width - 55} dy='1.2em'>
             durch die Jahre um die
           </tspan>
-          <tspan x={props.width - 55} dy='1.2em'>
+          <tspan x={width - 55} dy='1.2em'>
             einzelnen Werte zu sehen.
           </tspan>
         </text>

@@ -16,10 +16,7 @@ export const Basic = () => {
 
   return (
     <LineChartWithDotSwarm
-      width={600}
-      height={350}
       values={values}
-      color={colors.blue}
       showInfoText={true}
       onYearSelect={setSelectedIdx}
       animationProgress={progress}
