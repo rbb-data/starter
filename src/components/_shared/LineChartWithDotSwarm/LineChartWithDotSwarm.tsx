@@ -47,8 +47,8 @@ var getAnimationProgress = function (
     if (bisection_iterations_max < ++bisection_iterations) break
   }
 
-  const animationProgress =
-    Math.round(((length_end + length_start) / 2 / lineLength) * 100) / 100
+  let animationProgress = (length_end + length_start) / 2 / lineLength
+  if (animationProgress > 1 - error) animationProgress = 1
   return { animationProgress, lineLength }
 }
 
@@ -56,6 +56,7 @@ interface Props {
   width?: number
   height?: number
   values: number[]
+  /** The index of the selected x value *this does dot need to be an integer and can be interpolated* */
   selected?: number
   color?: string
   showInfoText: boolean
