@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as colors from 'global_styles/colors'
 
 import LineChartWithDotSwarm from './LineChartWithDotSwarm'
@@ -8,30 +8,21 @@ export default {
   component: LineChartWithDotSwarm,
 }
 
-const line: [number, number][] = [
-  [0, 100],
-  [1, 120],
-  [2, 140],
-  [3, 100],
-  [4, 120],
-  [5, 144],
-  [6, 104],
-  [7, 125],
-  [8, 146],
-  [9, 105],
-  [10, 129],
-]
+const values = [100, 120, 140, 100, 120, 144, 104, 125, 146, 105, 129, 300]
 
 export const Basic = () => {
+  const [selectedIdx, setSelectedIdx] = useState(values.length - 1)
+  const progress = selectedIdx / (values.length - 1)
+
   return (
     <LineChartWithDotSwarm
       width={600}
       height={350}
-      line={line}
+      values={values}
       color={colors.blue}
       showInfoText={true}
-      onYearSelect={(year) => {}}
-      animationProgress={1}
+      onYearSelect={setSelectedIdx}
+      animationProgress={progress}
     />
   )
 }

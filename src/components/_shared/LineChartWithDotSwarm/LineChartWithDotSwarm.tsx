@@ -1,32 +1,13 @@
 import React, { useRef, useMemo } from 'react'
 import { scaleLinear } from 'd3-scale'
 import { line as lineGenerator, curveMonotoneX } from 'd3-shape'
-import { forceSimulation, forceX, forceY } from 'd3-force'
 import * as colors from 'global_styles/colors'
 import * as breakpoints from 'global_styles/breakpoints'
+import { RawDotSwarm } from '../DotSwarm/DotSwarm'
 import _ from './_LineChartWithDotSwarm.module.sass'
 
 type Point = [number, number]
-type Line = Point[]
-
-function createDotsCluster(count: number): Point[] {
-  const children: any[] = Array.from(Array(count).keys()).map(() => ({}))
-
-  const simulation: any = forceSimulation(children)
-    .stop()
-    .force('x', forceX(0).strength(1.45))
-    .force('y', forceY(0).strength(1.45))
-    .tick(1)
-
-  return simulation.nodes().map((node: any) => [node.x, node.y])
-}
-
-function getMin(array: number[]): number {
-  return array.reduce((min, next) => {
-    if (next < min) return next
-    return min
-  }, Number.MAX_VALUE)
-}
+export type Line = Point[]
 
 function getMax(array: number[]): number {
   return array.reduce((max, next) => {
@@ -38,36 +19,35 @@ function getMax(array: number[]): number {
 interface Props {
   width: number
   height: number
-  line: Line
+  values: number[]
   color: string
   animationProgress: number
   showInfoText: boolean
   onYearSelect: (year: number) => void
+  limit?: (maxY: number) => number
 }
-function LineChartWithDotSwarm(props: Props) {
+const LineChartWithDotSwarm: React.FC<Props> = ({
+  limit = (max) => max + 30,
+  ...props
+}) => {
   const svgLineRef = useRef(null)
   const padding = { top: 60, right: 75, bottom: 40, left: 75, legend: 20 }
 
   // setup scales
-  const years = props.line.map((point) => point[0])
-  const minYear = getMin(years)
-  const maxYear = getMax(years)
-  const maxCount = getMax(props.line.map((point) => point[1]))
-  const domainPadding = 30
-
+  const max = getMax(props.values)
   const x = useMemo(
     () =>
       scaleLinear()
-        .domain([minYear, maxYear])
+        .domain([0, props.values.length])
         .range([padding.left, props.width - padding.right]),
-    [minYear, maxYear, padding.left, padding.right, props.width]
+    [props.values, padding.left, padding.right, props.width]
   )
   const y = useMemo(
     () =>
       scaleLinear()
-        .domain([0, maxCount + domainPadding])
+        .domain([0, limit(max)])
         .range([props.height - padding.bottom, padding.top]),
-    [maxCount, domainPadding, padding.bottom, padding.top, props.height]
+    [max, limit, padding.bottom, padding.top, props.height]
   )
 
   // setup line generator
@@ -76,20 +56,20 @@ function LineChartWithDotSwarm(props: Props) {
     .x((d) => x(d[0]) || 0)
     .y((d) => y(d[1]) || 0)
 
-  const currentYearIndex = Math.round(
-    (maxYear - minYear) * props.animationProgress
+  const currentIndex = Math.round(
+    (props.values.length - 1) * props.animationProgress
   )
-  const currentYear = minYear + currentYearIndex
-  const firstValue = props.line[0][1]
-  const currentValue = props.line[currentYearIndex][1]
+  console.log(props.animationProgress, currentIndex)
+  const currentValue = props.values[currentIndex]
+  const firstValue = props.values[0]
+
   const linePath = svgLineRef.current as any
-  const lineLength = linePath ? linePath.getTotalLength() : 1000
+  const lineLength = linePath
+    ? linePath.getTotalLength()
+    : Number.MAX_SAFE_INTEGER
   const lineEndPoint = linePath
     ? linePath.getPointAtLength(lineLength * props.animationProgress)
-    : { x: x(10), y: y(currentValue) }
-
-  const startDots = useMemo(() => createDotsCluster(firstValue), [firstValue])
-  const endDots = useMemo(() => createDotsCluster(currentValue), [currentValue])
+    : { x: x(currentIndex), y: y(currentValue) }
 
   const firstTextOffset = Math.sqrt(firstValue) * 2.8 + 15
   const lastTextOffset = Math.sqrt(currentValue) * 2.8 + 15
@@ -97,7 +77,7 @@ function LineChartWithDotSwarm(props: Props) {
   return (
     <svg className={_.svg} viewBox={`0 0 ${props.width} ${props.height}`}>
       <path
-        d={historyLine(props.line) || ''}
+        d={historyLine(props.values.map((value, idx) => [idx, value])) || ''}
         ref={svgLineRef}
         stroke={props.color}
         // hack to aniname line drawing:
@@ -106,31 +86,22 @@ function LineChartWithDotSwarm(props: Props) {
       />
 
       {props.animationProgress === 1 && (
-        <g
-          className={_.startDots}
-          style={{
-            transform: `translate(${x(minYear)}px, ${y(firstValue)}px)`,
-          }}
-        >
-          {startDots.map((dot, j) => (
-            <circle key={j} cx={dot[0]} cy={dot[1]} r={1} fill={props.color} />
-          ))}
-        </g>
+        <RawDotSwarm
+          count={firstValue}
+          position={{ x: x(0) || 0, y: y(firstValue) || 0 }}
+          dotProps={() => ({ r: 1, fill: props.color })}
+        />
       )}
-      <g
-        style={{
-          transform: `translate(${lineEndPoint.x}px, ${lineEndPoint.y}px)`,
-        }}
-      >
-        {endDots.map((dot, j) => (
-          <circle key={j} cx={dot[0]} cy={dot[1]} r={1} fill={props.color} />
-        ))}
-      </g>
+      <RawDotSwarm
+        count={currentValue}
+        position={{ x: lineEndPoint.x, y: lineEndPoint.y }}
+        dotProps={() => ({ r: 1, fill: props.color })}
+      />
 
       {props.animationProgress === 1 && (
         <text
           className={_.fadeText}
-          x={x(minYear) || 0 - 15}
+          x={x(0) || 0 - 15}
           y={y(firstValue) || 0 + firstTextOffset}
           textAnchor='middle'
         >
@@ -146,27 +117,28 @@ function LineChartWithDotSwarm(props: Props) {
       </text>
 
       <line
-        x1={x(minYear) || 0 - 30}
+        x1={x(0) || 0 - 30}
         y1={y(0)}
-        x2={x(maxYear) || 0 + 30}
+        x2={x(props.values.length) || 0 + 30}
         y2={y(0)}
         stroke={colors.darkGrey}
         strokeWidth='1'
       />
 
-      {years.map((year) => {
-        const xPos = x(year)
+      {props.values.map((value, idx) => {
+        const xPos = x(idx)
         const yPos = props.height - 20
         const rotate = props.width < breakpoints.small ? 45 : 0
         const textAnchor = props.width < breakpoints.small ? 'start' : 'middle'
-        const isCurrentYear = year === currentYear
+        const isCurrentValue = idx === currentIndex
+
         return (
-          <g key={year}>
+          <g key={idx}>
             <circle
               cx={xPos}
               cy={y(0)}
               r={2}
-              fill={isCurrentYear ? colors.red : colors.grey}
+              fill={isCurrentValue ? colors.red : colors.grey}
             />
             <text
               className={_.legend}
@@ -174,16 +146,16 @@ function LineChartWithDotSwarm(props: Props) {
               x={xPos}
               y={yPos}
               style={{
-                fontWeight: isCurrentYear ? 'bold' : 'normal',
-                fill: isCurrentYear ? colors.red : colors.darkGrey,
+                fontWeight: isCurrentValue ? 'bold' : 'normal',
+                fill: isCurrentValue ? colors.red : colors.darkGrey,
               }}
               transform={`rotate(${rotate} ${xPos} ${yPos})`}
               textAnchor={textAnchor}
               onClick={() => {
-                props.onYearSelect(year)
+                props.onYearSelect(idx)
               }}
             >
-              {year}
+              {idx}
             </text>
           </g>
         )
