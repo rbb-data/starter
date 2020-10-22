@@ -43,7 +43,8 @@ export const WithCustomColor = () => {
       color={(tab) => (tab === selectedTab ? tab.color : colors.darkGrey)}
       onChange={(tab) => {
         // for some reason setState will make a copy or something so
-        // if we can't just compare tabs but have to use the index
+        // so selectedTab === tab won't work anymore inside the component
+        // we can't just compare tabs but have to use the index
         const newIndex = tabs.findIndex((t) => t === tab)
         setSelectedTabIndex(newIndex)
       }}
@@ -90,8 +91,9 @@ export const WithReactComponents = () => {
       format={(tab) => tab.display}
       tabs={tabs}
       onChange={(tab) => {
-        // for some reason setState will make a copy or something so
-        // if we can't just compare tabs but have to use the index
+        // for some reason setState will make a copy of the tab or something
+        // so selectedTab === tab won't work anymore inside the component
+        // so we can't just compare tabs but have to use the index
         const newIndex = tabs.findIndex((t) => t === tab)
         setSelectedTabIndex(newIndex)
       }}
