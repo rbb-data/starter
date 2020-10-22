@@ -1,6 +1,6 @@
-import React from 'react'
-import { action } from '@storybook/addon-actions'
-import { withKnobs, number, text, array } from '@storybook/addon-knobs'
+import React, { useState } from 'react'
+import { withKnobs } from '@storybook/addon-knobs'
+import * as colors from 'global_styles/colors'
 import TabBar from './TabBar'
 
 export default {
@@ -10,45 +10,49 @@ export default {
 }
 
 export const Basic = () => {
-  const tabs = array('tabs', ['one', 'two', 'three'])
+  const [selectedTab, setSelectedTab] = useState('one')
+  const tabs = ['one', 'two', 'three']
 
   return (
     <TabBar
-      id='tab-bar-id'
-      class='custom-class-name'
+      className='custom-class-name'
       title='select something'
-      selectedTab={text('selectedTab', 'one')}
+      selectedTab={selectedTab}
       tabs={tabs}
-      onChange={action('changed')}
+      onChange={setSelectedTab}
     />
   )
 }
 
 export const WithCustomColor = () => {
+  const [selectedTabIndex, setSelectedTabIndex] = useState(0)
   const tabs = [
     { color: 'red', display: 'Option number one' },
     { color: 'blue', display: 'Option number two' },
     { color: 'green', display: 'Option number three' },
   ]
-
-  const selectedTabIndex = number('selectedTabIndex', 0)
   const selectedTab = tabs[selectedTabIndex]
 
   return (
     <TabBar
-      id='tab-bar-id'
-      class='custom-class-name'
+      className='custom-class-name'
       title='select something'
       selectedTab={selectedTab}
       tabs={tabs}
       format={(tab) => tab.display}
-      color={(tab) => (tab === selectedTab ? tab.color : null)}
-      onChange={action('changed')}
+      color={(tab) => (tab === selectedTab ? tab.color : colors.darkGrey)}
+      onChange={(tab) => {
+        // for some reason setState will make a copy or something so
+        // if we can't just compare tabs but have to use the index
+        const newIndex = tabs.findIndex((t) => t === tab)
+        setSelectedTabIndex(newIndex)
+      }}
     />
   )
 }
 
 export const WithReactComponents = () => {
+  const [selectedTabIndex, setSelectedTabIndex] = useState(0)
   const tabs = [
     {
       value: 'one',
@@ -76,18 +80,21 @@ export const WithReactComponents = () => {
     },
   ]
 
-  const selectedTabIndex = number('selectedTabIndex', 0)
   const selectedTab = tabs[selectedTabIndex]
 
   return (
     <TabBar
-      id='tab-bar-id'
-      class='custom-class-name'
+      className='custom-class-name'
       title='select something'
       selectedTab={selectedTab}
       format={(tab) => tab.display}
       tabs={tabs}
-      onChange={action('changed')}
+      onChange={(tab) => {
+        // for some reason setState will make a copy or something so
+        // if we can't just compare tabs but have to use the index
+        const newIndex = tabs.findIndex((t) => t === tab)
+        setSelectedTabIndex(newIndex)
+      }}
     />
   )
 }

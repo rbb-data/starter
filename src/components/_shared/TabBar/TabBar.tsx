@@ -12,24 +12,24 @@ interface Props<T> {
   title: string
   className?: string
   /** An array of objects like this: { value: 0, display: 'tab1' } */
-  tabs: [T]
+  tabs: T[]
   selectedTab: T
   /** takes the tab value and should return its label
    *  (anything that can be renderd by react)
    */
-  format: (tab: T) => string
+  format?: (tab: T) => React.ReactNode
   /** takes the tab value and should return its background color */
-  color: (tab: T) => string
+  color?: (tab: T) => string
   /** select handler */
-  onChange: (tab: T) => void
+  onChange?: (tab: T) => void
 }
 
 /**
  * Renders selectable Tabs next to each other
  */
 function TabBar<T>({
-  onChange = () => {},
-  format = (value: T) => `${value}`,
+  onChange = (tab: T) => {},
+  format = (tab: T) => `${tab}`,
   color = () => colors.darkGrey,
   ...props
 }: Props<T>) {
