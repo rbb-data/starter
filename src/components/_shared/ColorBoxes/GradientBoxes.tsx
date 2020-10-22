@@ -45,14 +45,14 @@ const GradientBoxes = (props: Props) => {
         ))}
       </ul>
       <label>
-        copy for datwarpper import:{' '}
+        copy for datawrapper import:{' '}
         <input
           readOnly
           style={{
             fontFamily: 'monospace',
             width: '100%',
           }}
-          value={colors.join(' ')}
+          value={colors.join(',')}
         ></input>
       </label>
     </figure>
