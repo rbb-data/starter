@@ -4,4 +4,5 @@ import rbb24Theme from './rbb24Theme'
 
 addons.setConfig({
   theme: rbb24Theme,
+  showRoots: false,
 });
