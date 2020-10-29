@@ -48,7 +48,6 @@ const ColorBoxes = (props: Props) => {
       </figcaption>
       {palletNames.length > 1 && (
         <TabBar
-          id={props.title}
           title='select pallete'
           selectedTab={paletteName}
           tabs={palletNames}
@@ -69,7 +68,7 @@ const ColorBoxes = (props: Props) => {
       )}
       <ul className={_.colorList}>
         {currentColors.map((color) => (
-          <li>
+          <li key={color.color + color.info}>
             <ColorBox color={color.color} info={color.info} />
           </li>
         ))}
