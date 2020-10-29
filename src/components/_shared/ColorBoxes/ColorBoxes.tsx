@@ -76,7 +76,7 @@ const ColorBoxes = (props: Props) => {
       </ul>
       <p>{currentPallete.description}</p>
       <label>
-        copy for datwarpper import:{' '}
+        copy for datawrapper import:{' '}
         <input
           readOnly
           style={{
