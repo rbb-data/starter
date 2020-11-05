@@ -1,11 +1,9 @@
 import { NextPage } from 'next'
-import dynamic from 'next/dynamic'
 import React from 'react'
-
-const App = dynamic(() => import('../components/App/App'), { ssr: false })
+import StemAndLeafPlot from 'components/_shared/StemAndLeafPlot/StemAndLeafPlot'
 
 const Index: NextPage = () => {
-  return <App />
+  return <StemAndLeafPlot />
 }
 
 export default Index
