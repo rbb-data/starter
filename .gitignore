@@ -11,6 +11,7 @@
 # artefacts
 /build
 /storybook-static
+/out*
 
 # misc
 .DS_Store

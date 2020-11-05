@@ -53,49 +53,22 @@ export const WithCustomColor = () => {
 }
 
 export const WithReactComponents = () => {
-  const [selectedTabIndex, setSelectedTabIndex] = useState(0)
-  const tabs = [
-    {
-      value: 'one',
-      display: (
-        <span>
-          Option <i>number one</i>
-        </span>
-      ),
-    },
-    {
-      value: 'two',
-      display: (
-        <span>
-          Option <i>number two</i>
-        </span>
-      ),
-    },
-    {
-      value: 'three',
-      display: (
-        <span>
-          Option <i>number three</i>
-        </span>
-      ),
-    },
-  ]
-
-  const selectedTab = tabs[selectedTabIndex]
+  const [selectedTab, setSelectedTab] = useState('one')
+  const tabs = ['one', 'two', 'three']
 
   return (
     <TabBar
       className='custom-class-name'
       title='select something'
       selectedTab={selectedTab}
-      format={(tab) => tab.display}
+      format={(tab) => (
+        <span>
+          Option <i>number ${tab}</i>
+        </span>
+      )}
       tabs={tabs}
       onChange={(tab) => {
-        // for some reason setState will make a copy of the tab or something
-        // so selectedTab === tab won't work anymore inside the component
-        // so we can't just compare tabs but have to use the index
-        const newIndex = tabs.findIndex((t) => t === tab)
-        setSelectedTabIndex(newIndex)
+        setSelectedTab(tab)
       }}
     />
   )

@@ -11,7 +11,10 @@ function useId(): string {
 interface Props<T> {
   title: string
   className?: string
-  /** An array of objects like this: { value: 0, display: 'tab1' } */
+  /** An array of tabs.
+   * This could simply be string or objects like for example:
+   * { value: 0, display: 'tab1' }
+   * or anything else you might need */
   tabs: T[]
   selectedTab: T
   /** takes the tab value and should return its label
