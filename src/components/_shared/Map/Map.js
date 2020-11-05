@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import 'leaflet/dist/leaflet.css'
 import { Map as LeafletMap, ZoomControl, GeoJSON } from 'react-leaflet'
-import { BingLayer } from 'react-leaflet-bing'
+import { BingLayer } from 'react-leaflet-bing-v2'
 
 import trackEvent from 'lib/analytics'
 import berlinMask from 'data/berlin-mask.geo.json'
