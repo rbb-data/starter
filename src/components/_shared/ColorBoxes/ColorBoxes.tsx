@@ -68,14 +68,14 @@ const ColorBoxes = (props: Props) => {
       )}
       <ul className={_.colorList}>
         {currentColors.map((color) => (
-          <li>
+          <li key={color.color + color.info}>
             <ColorBox color={color.color} info={color.info} />
           </li>
         ))}
       </ul>
       <p>{currentPallete.description}</p>
       <label>
-        copy for datwarpper import:{' '}
+        copy for datawrapper import:{' '}
         <input
           readOnly
           style={{
