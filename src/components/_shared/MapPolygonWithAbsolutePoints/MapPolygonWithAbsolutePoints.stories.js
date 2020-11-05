@@ -91,7 +91,7 @@ export const MultiplePointsOnMap = (args) => {
     </Map>
   )
 }
-MultiplePointsOnMapa.args = {
+MultiplePointsOnMap.args = {
   fillColor: 'transparent',
   color: colors.darkGrey,
   fillOpacity: 1,

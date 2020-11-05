@@ -20,12 +20,12 @@ NotSelected.args = {
   strokeColor: colors.bordeaux,
 }
 
-export const Selected = () => (
+export const Selected = (args) => (
   <Map>
     <MapSelectableMarker {...args} />
   </Map>
 )
-NotSelected.args = {
+Selected.args = {
   isSelected: true,
   position: [52.49, 13.4],
   hasStroke: true,
