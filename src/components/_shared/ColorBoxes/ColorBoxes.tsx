@@ -48,7 +48,6 @@ const ColorBoxes = (props: Props) => {
       </figcaption>
       {palletNames.length > 1 && (
         <TabBar
-          id={props.title}
           title='select pallete'
           selectedTab={paletteName}
           tabs={palletNames}
