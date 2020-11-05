@@ -15,10 +15,10 @@ export default {
 } as Meta
 
 export const Basic: Story = (args) => {
-  return <Header>{{ header: args.header, subheader: args.subheader }}</Header>
+  return <Header>{{ title: args.title, subtitle: args.subtitle }}</Header>
 }
 Basic.args = {
-  header: 'Wegen des guten Wetters ziehen Schwaben nach Berlin',
-  subheader:
+  title: 'Wegen des guten Wetters ziehen Schwaben nach Berlin',
+  subtitle:
     'Die blaue linie zeigt die Anzahl der Zugezogenen Personen, die gelbe die Temperatur in ° Celsius ',
 }
