@@ -1,4 +1,3 @@
-import useAutoStepper from 'lib/hooks/useAutoStepper'
 import React, { useEffect, useState } from 'react'
 
 import LineChartWithDotSwarm from './LineChartWithDotSwarm'
