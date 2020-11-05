@@ -25,11 +25,34 @@ export const Basic = () => {
 }
 
 export const WithCustomColor = () => {
+  const [selectedTab, setSelectedTab] = useState('one')
+  const tabs = ['one', 'two', 'three']
+  const tabColors: Record<string, string> = {
+    one: colors.blue,
+    two: colors.magenta,
+    three: colors.yellow,
+  }
+
+  return (
+    <TabBar
+      className='custom-class-name'
+      title='select something'
+      selectedTab={selectedTab}
+      tabs={tabs}
+      color={(tab) => (tab === selectedTab ? tabColors[tab] : colors.darkGrey)}
+      onChange={(tab) => {
+        setSelectedTab(tab)
+      }}
+    />
+  )
+}
+
+export const WithTabObjectThatContainsColorData = () => {
   const [selectedTabIndex, setSelectedTabIndex] = useState(0)
   const tabs = [
-    { color: 'red', display: 'Option number one' },
-    { color: 'blue', display: 'Option number two' },
-    { color: 'green', display: 'Option number three' },
+    { color: colors.blue, display: 'Option number one' },
+    { color: colors.magenta, display: 'Option number two' },
+    { color: colors.yellow, display: 'Option number three' },
   ]
   const selectedTab = tabs[selectedTabIndex]
 
