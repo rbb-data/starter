@@ -12,10 +12,7 @@
 /build
 /storybook-static
 /out*
-<<<<<<< HEAD
 .next
-=======
->>>>>>> master
 
 # misc
 .DS_Store
