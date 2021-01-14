@@ -1,7 +1,6 @@
 /* global fetch */
 
 import React, { useState, useEffect } from 'react'
-import 'whatwg-fetch'
 import Map from 'components/_shared/Map/Map'
 import MapElements from 'components/MapElements/MapElements'
 import SearchWrapper from 'components/SearchWrapper/SearchWrapper'
@@ -14,7 +13,7 @@ function App (props) {
 
   useEffect(() => {
     async function fetchMarkers () {
-      const res = await fetch(`${window.location}/markers.geo.json`)
+      const res = await fetch(`${window.location}markers.geo.json`)
       const json = await res.json()
       setMarkers(json.features)
     }

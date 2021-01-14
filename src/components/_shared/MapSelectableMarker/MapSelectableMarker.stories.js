@@ -1,34 +1,34 @@
 import React from 'react'
 import colors from 'global_styles/colors.sass'
-import { withKnobs, text, array, boolean } from '@storybook/addon-knobs'
 import Map from '../Map/Map'
 import MapSelectableMarker from './MapSelectableMarker'
 
 export default {
   title: 'II Components/Map/MapSelectableMarker',
-  decorators: [withKnobs],
   component: MapSelectableMarker,
 }
 
-export const NotSelected = () => (
+export const NotSelected = (args) => (
   <Map>
-    <MapSelectableMarker
-      position={array('position', [52.49, 13.4])}
-      hasStroke={boolean('hasStroke', true)}
-      fillColor={text('fillColor', colors.red)}
-      strokeColor={text('strokeColor', colors.bordeaux)}
-    />
+    <MapSelectableMarker {...args} />
   </Map>
 )
+NotSelected.args = {
+  position: [52.49, 13.4],
+  hasStroke: true,
+  fillColor: colors.red,
+  strokeColor: colors.bordeaux,
+}
 
-export const Selected = () => (
+export const Selected = (args) => (
   <Map>
-    <MapSelectableMarker
-      isSelected
-      position={array('position', [52.49, 13.4])}
-      hasStroke={boolean('hasStroke', true)}
-      fillColor={text('fillColor', colors.red)}
-      strokeColor={text('strokeColor', colors.bordeaux)}
-    />
+    <MapSelectableMarker {...args} />
   </Map>
 )
+Selected.args = {
+  isSelected: true,
+  position: [52.49, 13.4],
+  hasStroke: true,
+  fillColor: colors.red,
+  strokeColor: colors.bordeaux,
+}

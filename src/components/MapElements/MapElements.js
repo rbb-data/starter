@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import find from 'lodash/find'
 import { Pane } from 'react-leaflet'
-import { darkGrey } from 'global_styles/colors.sass'
+import { darkGrey } from 'global_styles/colors'
 import MapPolygonWithAbsolutePoints from '../_shared/MapPolygonWithAbsolutePoints/MapPolygonWithAbsolutePoints'
 import Markers from '../Markers/Markers'
 

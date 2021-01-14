@@ -1,29 +1,56 @@
-import PropTypes from 'prop-types'
-import React, { useEffect, useRef } from 'react'
-import Chroma from 'chroma-js'
+import React, { ReactElement, useEffect, useRef } from 'react'
+import { Scale } from 'chroma-js'
+import * as scales from 'global_styles/gradients'
 // import colors
 import c from './StemAndLeafPlot.module.sass'
+interface StemAndLeafPlotProps<T> {
+  items: T[]
+  selectedItem?: T
+  /** used to set the max Value of the scale */
+  maxValue?: number
+  /** on how many branches are the values grouped
+   *  set to same as maxValue to group to real numbers
+   */
+  numberOfSteps?: number
+  /** when set a line at that value will be drawn to indicate a threshold */
+  threshold?: number
+  className?: string
+  /** Chromajs colorScale
+   *  this compoent will set the domain of the scale from 0 to maxValue
+   *  this is needed so the colors of the circles match the gradient from the canvas
+   */
+  colorScale?: Scale
+  /** the height of the color gradient
+   *  the unit of this value relative to the size of the svg
+   */
+  colorScaleHeight?: number
+  fontSize?: number
+  /** if set onSelectDot will be called when hovering over circle
+   * otherwise onClick is used
+   */
+  selectOnMouseover?: boolean
+  drawLineToSelectedItem?: boolean
+  /** get the value used to determine the position in the graph from the item */
+  getValue?: (item: T) => number
+  /** called when dot is "selected" see `selectOnMouseover` */
+  onSelectDot?: (item: T) => void
+}
+function StemAndLeafPlot<T>({
+  colorScale: rawScale = scales.linear.cyanBlue,
+  colorScaleHeight = 0.5,
+  fontSize = 1,
+  maxValue = 100,
+  numberOfSteps = 100,
+  selectOnMouseover = false,
+  drawLineToSelectedItem = false,
+  getValue = (item: T) =>
+    typeof item === 'number' ? item : parseInt(`${item}`),
+  onSelectDot = () => {},
+  ...props
+}: StemAndLeafPlotProps<T>): ReactElement {
+  const colorScale = rawScale.domain([0, maxValue])
 
-const StemAndLeafPlot = (props) => {
-  const {
-    items,
-    selectedItem,
-    maxValue,
-    threshold,
-    numberOfSteps,
-    colorScaleHeight,
-    fontSize,
-    className,
-    colorScale: scaleThatMightHasTheWrongDomain,
-    selectOnMouseover,
-    drawLineToSelectedItem,
-    getValue,
-    onSelectDot,
-  } = props
-
-  const colorScale = scaleThatMightHasTheWrongDomain.domain([0, maxValue])
-
-  const plot = items
+  const plot: T[][] = props.items
     .sort((a, b) => getValue(a) - getValue(b))
     .reduce((plot, item) => {
       const normalizedPosition = (getValue(item) / maxValue) * numberOfSteps
@@ -54,37 +81,52 @@ const StemAndLeafPlot = (props) => {
   const viewBox = { width: graphWidth + circleDiameter, height: graphHeight }
 
   const normalizedThreshold =
-    threshold !== null
-      ? (threshold / maxValue) * graphWidth - circleRadius
+    props.threshold !== undefined
+      ? (props.threshold / maxValue) * graphWidth - circleRadius
       : null
-  const hasSelectedItem = selectedItem !== null
+  const hasSelectedItem = props.selectedItem !== null
 
-  let elements = []
-  let highlightedValues = []
+  interface CircleElement {
+    type: 'circle'
+    props: React.SVGProps<SVGCircleElement>
+  }
+  interface TextElement {
+    type: 'text'
+    value: string
+    props: React.SVGProps<SVGTextElement>
+  }
+  interface LineElement {
+    type: 'line'
+    props: React.SVGProps<SVGLineElement>
+  }
+  type Element = CircleElement | TextElement | LineElement
+
+  let elements: Element[] = []
+  let highlightedValues: any[] = []
 
   plot.forEach((leafs, i) => {
     const currentLineHeight = plot[i].length * circleDiameter
     const rowStartY = plotHeight - currentLineHeight + circleRadius
 
     leafs.forEach((item, j) => {
-      const isHighlightedValue = hasSelectedItem && selectedItem === item
+      const isHighlightedValue = hasSelectedItem && props.selectedItem === item
       const x = i * circleDiameter + circleRadius
       const y = j * circleDiameter + rowStartY
 
-      const element = {
+      const element: CircleElement = {
         type: 'circle',
         props: {
           cx: x,
           cy: y,
           r: isHighlightedValue ? circleRadius * 1.6 : circleRadius,
-          stroke: isHighlightedValue ? 'black' : false,
-          'stroke-width': 0.2,
-          fill: colorScale(getValue(item)),
-          onMouseEnter: (e) => {
+          stroke: isHighlightedValue ? 'black' : undefined,
+          strokeWidth: 0.2,
+          fill: colorScale(getValue(item)).hex(),
+          onMouseEnter: (e: { preventDefault: () => void }) => {
             if (!selectOnMouseover) return e.preventDefault()
             onSelectDot(item)
           },
-          onClick: (e) => {
+          onClick: () => {
             onSelectDot(item)
           },
         },
@@ -108,7 +150,7 @@ const StemAndLeafPlot = (props) => {
         y1: 0,
         y2: graphHeight - labelsHeight,
         stroke: 'black',
-        'stroke-width': 0.2,
+        strokeWidth: 0.2,
       },
     })
   }
@@ -125,7 +167,7 @@ const StemAndLeafPlot = (props) => {
           x2: dot.props.cx + circleRadius,
           y2: dot.props.cy,
           stroke: 'white',
-          'stroke-width': 0.4,
+          strokeWidth: 0.4,
         },
       })
       elements.push({
@@ -136,7 +178,7 @@ const StemAndLeafPlot = (props) => {
           x2: dot.props.cx + circleRadius,
           y2: dot.props.cy,
           stroke: dot.props.fill,
-          'stroke-width': 0.2,
+          strokeWidth: 0.2,
         },
       })
     }
@@ -146,68 +188,67 @@ const StemAndLeafPlot = (props) => {
   // ticks
   elements.push({
     type: 'text',
-    value: 0,
+    value: '0',
     props: {
       x: 0,
       y: graphHeight,
-      'font-size': fontSize,
-      'font-family': 'Interstate',
+      fontSize: fontSize,
+      fontFamily: 'Interstate',
     },
   })
 
   if (normalizedThreshold !== null) {
     elements.push({
       type: 'text',
-      value: threshold,
+      value: `${props.threshold}`,
       props: {
         style: { textAnchor: 'middle' },
         x: normalizedThreshold + circleRadius,
         y: graphHeight,
-        'font-size': fontSize,
-        'font-family': 'Interstate',
+        fontSize: fontSize,
+        fontFamily: 'Interstate',
       },
     })
   }
 
   elements.push({
     type: 'text',
-    value: maxValue,
+    value: `${maxValue}`,
     props: {
       style: { textAnchor: 'end' },
       x: 100 + circleDiameter,
       y: graphHeight,
-      'font-size': fontSize,
-      'font-family': 'Interstate',
+      fontSize: fontSize,
+      fontFamily: 'Interstate',
     },
   })
 
-  const canvas = useRef(null)
+  const canvas = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const drawGradient = () => {
-      const scaleFactor = (canvas.current.clientWidth / viewBox.width) * 2
-      const bottomSpacing = labelsHeight * scaleFactor
-      const highResScaleHeight = colorScaleHeight * scaleFactor
+    if (canvas.current === null) return
+    const ctx = canvas.current.getContext('2d')
+    if (ctx === null) return
 
-      const ctx = canvas.current.getContext('2d')
-      const height = highResScaleHeight + bottomSpacing
-      const width = canvas.current.clientWidth * 2
+    const scaleFactor = (canvas.current.clientWidth / viewBox.width) * 2
+    const bottomSpacing = labelsHeight * scaleFactor
+    const highResScaleHeight = colorScaleHeight * scaleFactor
 
-      ctx.canvas.width = width
-      ctx.canvas.height = height
+    const height = highResScaleHeight + bottomSpacing
+    const width = canvas.current.clientWidth * 2
 
-      // draw gradient scale
-      colorScale.colors(width).forEach((color, i) => {
-        ctx.fillStyle = color
-        ctx.fillRect(i, 0, 1, highResScaleHeight)
-      })
-    }
+    ctx.canvas.width = width
+    ctx.canvas.height = height
 
-    drawGradient()
+    // draw gradient scale
+    colorScale.colors(width).forEach((color, i) => {
+      ctx.fillStyle = color
+      ctx.fillRect(i, 0, 1, highResScaleHeight)
+    })
   })
 
   return (
-    <div className={`${c.salPlot} ${className}`}>
+    <div className={`${c.salPlot} ${props.className}`}>
       <div className={c.graph}>
         <svg
           className={c.svg}
@@ -234,51 +275,6 @@ const StemAndLeafPlot = (props) => {
       </div>
     </div>
   )
-}
-
-StemAndLeafPlot.propTypes = {
-  items: PropTypes.array.isRequired,
-  selectedItem: PropTypes.any,
-  /** used to set the max Value of the scale */
-  maxValue: PropTypes.number.isRequired,
-  /** on how many branches are the values grouped
-   *  set to same as maxValue to group to real numbers
-   */
-  numberOfSteps: PropTypes.number.isRequired,
-  /** when set a line at that value will be drawn to indicate a threshold */
-  threshold: PropTypes.number,
-  className: PropTypes.string,
-  /** Chromajs colorScale
-   *  this compoent will set the domain of the scale from 0 to maxValue
-   *  this is needed so the colors of the circles match the gradient from the canvas
-   */
-  colorScale: PropTypes.func,
-  /** the height of the color gradient
-   *  the unit of this value relative to the size of the svg
-   */
-  colorScaleHeight: PropTypes.number,
-  fontSize: PropTypes.number,
-  /** if set onSelectDot will be called when hovering over circle
-   * otherwise onClick is used
-   */
-  selectOnMouseover: PropTypes.bool,
-  drawLineToSelectedItem: PropTypes.bool,
-  /** get the value used to determine the position in the graph from the item */
-  getValue: PropTypes.func,
-  /** called when dot is "selected" see `selectOnMouseover` */
-  onSelectDot: PropTypes.func,
-}
-
-StemAndLeafPlot.defaultProps = {
-  colorScale: Chroma.scale('OrRd').padding([0.5, 0]),
-  colorScaleHeight: 0.5,
-  fontSize: 1,
-  maxValue: 100,
-  numberOfSteps: 100,
-  threshold: null,
-  drawLineToSelectedItem: false,
-  getValue: (value) => value,
-  onSelectDot: () => {},
 }
 
 export default StemAndLeafPlot
