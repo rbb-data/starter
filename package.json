@@ -2,12 +2,12 @@
   "name": "starter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rbb24.de/static/rbb/rbb-data/{project-name}",
   "scripts": {
     "dev": "next",
     "start": "next start",
     "build": "next build",
     "export": "next export",
+    "deploy": "npm run build && npm run export && rsync -srvP --rsync-path='sudo rsync' -e 'ssh -i ~/.ssh/rbb-data.pem' out/ linux@rbb-dj-dev.app.rbb-cloud.de:/var/www/{project-name}/",
     "analyze": "npm run build && npm run analyze-without-build",
     "analyze-without-build": "source-map-explorer 'build/static/js/*.js'",
     "storybook": "start-storybook -p 6006",
