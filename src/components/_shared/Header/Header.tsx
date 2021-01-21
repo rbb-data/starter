@@ -1,5 +1,6 @@
 import React from 'react'
 import { FunctionComponent } from 'react'
+import { darkGrey } from 'global_styles/colors'
 
 export interface TitleProps {
   children: {
@@ -26,6 +27,18 @@ const Header: FunctionComponent<TitleProps> = (props) => {
     <header>
       <h1>{props.children.title}</h1>
       <p>{props.children.subtitle}</p>
+      <style jsx>{`
+        h1 {
+          font-size: 16px;
+          margin-bottom: 0.3em;
+        }
+
+        p {
+          font-size: 12px;
+          color: ${darkGrey};
+          margin: 0 0 1.5em;
+        }
+      `}</style>
     </header>
   )
 }
