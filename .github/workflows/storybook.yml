@@ -1,0 +1,28 @@
+name: Storybook
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  # vercel token expires if we dont use it regulaly so just run it nightly :-)
+  schedule:
+    - cron: 23 4 * * 1/2
+
+jobs:
+  deploy-storybook:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to Vercel
+        id: deploy-to-vercel
+        uses: amondnet/vercel-action@v19
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          alias-domains: '{{BRANCH}}-rbb-data.errnesto.vercel.app'
+    outputs:
+      preview-url: ${{ steps.deploy-to-vercel.outputs.preview-url }}
