@@ -7,6 +7,11 @@ services:
     command: "." # run nextjs in watch mode
     # mount app folder so we have livereload
     volumes:
-      - .:/app
+      - .:/home/app
+      # use node_modules installed in image
+      - node_modules_volume:/home/app/node_modules
     ports:
       - '3000:3000'
+
+volumes: 
+  node_modules_volume:
