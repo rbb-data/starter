@@ -60,6 +60,12 @@ You can also run `docker-compose up` to run your app inside docker.
 It will also run nextjs in dev mode and mount all files including `node_modules` so you have to run `npm install` again.
 You could use the node_modules from docker by mounting a volume under `app/node_modules`.
 
+To build the dockerfile you need to login to the rbb dockerreg first via:
+
+```
+docker login dockerreg.rbb-cloud.de
+```
+
 ### `npm run analyze`
 
 Analyze the bundle size you can also run `npm run analyze-without-build` if you already have run
