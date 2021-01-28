@@ -1,0 +1,16 @@
+.next/
+.github/
+.storybook/
+storybook-static/
+styleguide/
+node_modules/
+out/
+build/
+raw/
+scripts/
+.eslintrc
+.gitignore
+Dockerfile
+LICENSE
+.env.local
+.env.*.local
