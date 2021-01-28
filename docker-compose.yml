@@ -4,5 +4,9 @@ services:
   frontend:
     build:
       context: .
+    command: "." # run nextjs in watch mode
+    # mount app folder so we have livereload
+    volumes:
+      - .:/app
     ports:
       - '3000:3000'

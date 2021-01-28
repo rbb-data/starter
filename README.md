@@ -57,7 +57,8 @@ The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
 You can also run `docker-compose up` to run your app inside docker.  
-Since there is no volume mounts or live reload set up this is mostly to test if there are any bugs while running inside docker.
+It will also run nextjs in dev mode and mount all files including `node_modules` so you have to run `npm install` again.
+You could use the node_modules from docker by mounting a volume under `app/node_modules`.
 
 ### `npm run analyze`
 

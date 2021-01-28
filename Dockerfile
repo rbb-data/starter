@@ -25,6 +25,9 @@ FROM dockerreg.rbb-cloud.de/rbb/alpine:3.10
 # install nodejs
 RUN apk add --no-cache --update nodejs-current
 
+# dissable nextjs tracking 
+RUN node_modules/next/dist/bin/next telemetry disable
+
 # don't run as root
 RUN addgroup -S node && adduser -S node -G node
 USER node
@@ -32,8 +35,6 @@ USER node
 WORKDIR /app
 COPY --from=builder --chown=node:node /app /app/
 
-# dissable nextjs tracking 
-RUN node_modules/next/dist/bin/next telemetry disable
-
 EXPOSE 3000
-CMD [ "node_modules/next/dist/bin/next", "start" ]
+ENTRYPOINT [ "node_modules/next/dist/bin/next" ]
+CMD [ "start" ]
