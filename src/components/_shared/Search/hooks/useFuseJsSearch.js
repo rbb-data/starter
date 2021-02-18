@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import Fuse from 'fuse.js'
 
-function useFuseJsSearch (allResults, options = {}) {
-  const { returnAllOnEmptyString, ...fuseOptions } = options
+function useFuseJsSearch(allResults, options = {}) {
+  const { returnAllOnEmptyString, limit = 10, ...fuseOptions } = options
 
   const searchOptions = {
     shouldSort: true,
@@ -12,16 +12,16 @@ function useFuseJsSearch (allResults, options = {}) {
     maxPatternLength: 32,
     minMatchCharLength: 1,
     keys: ['value'],
-    ...fuseOptions
+    ...fuseOptions,
   }
 
   const [searchString, setSearchString] = useState(null)
 
-  function getSuggestions () {
+  function getSuggestions() {
     if (searchString === null) return null
     if (searchString === '') return returnAllOnEmptyString ? allResults : null
     const fuse = new Fuse(allResults, searchOptions)
-    return fuse.search(searchString)
+    return fuse.search(searchString, { limit })
   }
 
   const suggestions = getSuggestions()
