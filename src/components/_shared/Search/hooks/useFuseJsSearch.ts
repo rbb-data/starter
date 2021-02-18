@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import Fuse from 'fuse.js'
 
-function useFuseJsSearch(allResults, options = {}) {
-  const { returnAllOnEmptyString, limit = 10, ...fuseOptions } = options
+function useFuseJsSearch<T>(allResults: T[], limit = 10, options = {} as any) {
+  const { returnAllOnEmptyString, ...fuseOptions } = options
 
   const searchOptions = {
     shouldSort: true,

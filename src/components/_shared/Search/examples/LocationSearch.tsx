@@ -21,23 +21,25 @@ type Layer =
 
 type Source = 'openstreetmap' | 'openaddresses' | 'whosonfirst' | 'geonames'
 
-interface LocationSearchProps<T> {
+export interface OpenrouteConfig {
+  location: 'berlin' | 'brandenburg'
+  layers: Layer[]
+  sources: Source[]
+}
+
+export interface LocationSearchProps<T> {
   /** see: https://openrouteservice.org/dev/#/api-docs/geocode/autocomplete/get */
-  openrouteConfig?: {
-    location: 'berlin' | 'brandenburg'
-    layers: Layer[]
-    sources: Source[]
-  }
+  openrouteConfig?: OpenrouteConfig
   keepInputOnFocus?: boolean
   onResult: (result: T) => void
-  onReset: (result: T) => void
+  onReset: () => void
   placeholder?: string
 }
 
-const defaultOpenrouteConfig = {
-  location: 'berlin' as 'berlin',
-  layers: ['street'] as Layer[],
-  sources: ['openstreetmap'] as Source[],
+const defaultOpenrouteConfig: OpenrouteConfig = {
+  location: 'berlin',
+  layers: ['street'],
+  sources: ['openstreetmap'],
 }
 
 /**

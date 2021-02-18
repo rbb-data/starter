@@ -1,19 +1,35 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import useFuseJsSearch from '../hooks/useFuseJsSearch'
 import useDropdownSearchProps from '../hooks/useDropdownSearchProps'
-import PropTypes from 'prop-types'
 
 import SearchInput from '../../SearchInput/SearchInput'
+import { FuseOptions } from 'fuse.js'
+
+export interface DropdownSearchWithReactNodesProps<T> {
+  list: T[]
+  limit?: number
+  fuseOptions?: FuseOptions<T>
+  formatString: (result: T) => string
+  formatNode: (suggestion: T) => ReactNode
+  onResult: (result: T) => void
+  placeholder?: string
+}
 
 /**
  * This is a basic example of how to customize the search
  */
-const DropdownSearchWithReactNodes = props => {
-  const { list, fuseOptions, formatString, formatNode, onResult, placeholder } = props
-
-  const { suggestions, setSearchString } = useFuseJsSearch(list, {
+const DropdownSearchWithReactNodes = <T extends unknown>({
+  list,
+  limit = 10,
+  fuseOptions,
+  formatString,
+  formatNode,
+  onResult,
+  placeholder,
+}: DropdownSearchWithReactNodesProps<T>) => {
+  const { suggestions, setSearchString } = useFuseJsSearch(list, limit, {
     ...fuseOptions,
-    returnAllOnEmptyString: true
+    returnAllOnEmptyString: true,
   })
 
   const dropdownSearchProps = useDropdownSearchProps({
@@ -21,25 +37,16 @@ const DropdownSearchWithReactNodes = props => {
     setSearchString,
     // useDropdownSearchProps expects `format` to return a string
     format: formatString,
-    onResult
+    onResult,
   })
 
   // set our own format prop not the one useDropdownSearchProps uses
   const searchProps = {
     ...dropdownSearchProps,
-    format: formatNode
+    format: formatNode,
   }
 
   return <SearchInput {...searchProps} placeholder={placeholder} />
-}
-
-DropdownSearchWithReactNodes.propTypes = {
-  list: PropTypes.array,
-  fuseOptions: PropTypes.object,
-  formatString: PropTypes.func,
-  formatNode: PropTypes.func,
-  onResult: PropTypes.func,
-  placeholder: PropTypes.string
 }
 
 export default DropdownSearchWithReactNodes
