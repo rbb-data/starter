@@ -1,6 +1,6 @@
 # rbb-data starter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with the [rbb starter](https://github.com/rbb-data/starter) and [nextjs](https://nextjs.org/).
 
 ## Start a new Project:
 
@@ -32,25 +32,11 @@ Adjust the project name/path in the following files: `.env` and `package.json` (
 Your app lives in `/src`.  
 Reusable modules should eventually be moved to `src/shared` and be pushed back to Github. :)
 
-(create react app forces all code to live under `src`)
-
 ## Environment Variables
 
 ### Keys
 
-We don't want our keys in version control so you have to add them as `NEXT_PUBLIC_BING_KEY`
-and `NEXT_PUBLIC_OPENROUTSERVICE_KEY`
-in an `.env.local` file (or `.env.development.local` because bing has a different development key).
-You can just copy and rename `.env.local.example` and add the keys. :-)
-
-For more about .env files in cra see https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables
-
-### Homepage
-
-By default, Create React App produces a build assuming your app is hosted at the server root.
-To override this, specify the homepage in your `package.json`, for example:
-
-    "homepage": "http://rbb24.de/static/rbb/rbb-data/project-name",
+We don't want our keys in version control so you have to add them as NEXT_PUBLIC_BING_KEY and NEXT_PUBLIC_OPENROUTSERVICE_KEY in an .env.local file (or .env.development.local because bing has a different development key). You can just copy and rename .env.local.example and add the keys. 🙂
 
 ### Analytics
 
@@ -58,22 +44,17 @@ This App can track "pageviews" and e.g. map interactions.
 To enable this you need to replace everything in `{}` in the ANALYTICS variables in the `.env` file
 and set `ANALYTICS_ENABLED` to true.
 
-## Scripts
+## Deveolpment and build Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run dev`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run analyze`
 
@@ -84,23 +65,15 @@ Analyze the bundle size you can also run `npm run analyze-without-build` if you 
 
 Creates and opens the [storybook](https://storybook.js.org/) that documents the components in `/shared`
 
-### `npm run deploy-storybook`
-
-Deploy storybook to gh-pages
-
 ### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+build the app so it can be run on a node server
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### `npm run build && npm run export`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+build and export the app so it can be put on a static file server
 
-### `npm run eject`
-
-https://create-react-app.dev/docs/available-scripts/#npm-run-eject
+## helper scripts
 
 ### `npm run --silent scripts:create-geojson-mask`
 
@@ -133,21 +106,3 @@ This script expects a csv at `../src/data/geocoded.csv` (you could change this t
 This is just a simple example on how to map an external file to the datastructure used in the project.
 The output is a geojson file.
 Then it saves the result in the file `../public/markers.geojson`
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
