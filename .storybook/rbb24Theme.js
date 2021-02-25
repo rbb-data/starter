@@ -1,4 +1,4 @@
-import { create } from '@storybook/theming/create';
+import { create } from '@storybook/theming/create'
 import logo from './rbb24Logo.png'
 
 export default create({
@@ -10,7 +10,9 @@ export default create({
   appBg: '#EAEAEA',
   barSelectedColor: '#e31818',
 
+  fontBase: 'Interstate, sans-serif',
+
   brandTitle: 'rbb-data',
   brandUrl: 'https://github.com/rbb-data',
-  brandImage: logo//'https://www.rbb24.de/content/dam/rbb/rbb/logos/rbb24.svg.svg/img.svg',
+  brandImage: logo, //'https://www.rbb24.de/content/dam/rbb/rbb/logos/rbb24.svg.svg/img.svg',
 })
