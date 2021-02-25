@@ -14,10 +14,7 @@ export const decorators = [withInterstateFont]
 export const parameters = {
   viewMode: 'docs',
   options: {
-    /**
-     * display the top-level grouping as a "root" in the sidebar
-     * @type {Boolean}
-     */
+    // sort stories by name
     storySort: (a, b) =>
       a[1].kind === b[1].kind
         ? 0
