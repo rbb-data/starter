@@ -6,24 +6,26 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 To create a new project just run:
 
-````bash
+```bash
 git clone git@github.com:rbb-data/starter.git my-rbb-data-project --depth 1
 cd my-rbb-data-project
 rm -rf .git
 git init
 git add --all
 git commit -m "Init with clone from rbb-data starter"
-````
+```
+
 Replace "my-rbb-data-project" with the name of your project.
 
 Propably you also want to add a remote.
 For example:
-````
+
+```
 git remote add origin https://docs.rbb-online.de/bitbucket/scm/rdat/my-rbb-data-project.git
 git push -u origin master
-````
+```
 
-Adjust the project name/path in the following files: `.env` and `package.json` (see below). 
+Adjust the project name/path in the following files: `.env` and `package.json` (see below).
 
 ## Folder structure
 
@@ -36,8 +38,8 @@ Reusable modules should eventually be moved to `src/shared` and be pushed back t
 
 ### Keys
 
-We don't want our keys in version control so you have to add them as `REACT_APP_BING_KEY`
-and `REACT_APP_OPENROUTSERVICE_KEY`
+We don't want our keys in version control so you have to add them as `NEXT_PUBLIC_BING_KEY`
+and `NEXT_PUBLIC_OPENROUTSERVICE_KEY`
 in an `.env.local` file (or `.env.development.local` because bing has a different development key).
 You can just copy and rename `.env.local.example` and add the keys. :-)
 
@@ -54,7 +56,7 @@ To override this, specify the homepage in your `package.json`, for example:
 
 This App can track "pageviews" and e.g. map interactions.
 To enable this you need to replace everything in `{}` in the ANALYTICS variables in the `.env` file
-and set `REACT_APP_ANALYTICS_ENABLED` to true.
+and set `ANALYTICS_ENABLED` to true.
 
 ## Scripts
 
@@ -102,7 +104,7 @@ https://create-react-app.dev/docs/available-scripts/#npm-run-eject
 
 ### `npm run --silent scripts:create-geojson-mask`
 
-Inverts a given geojson file and creates a mask that can be displayed on a map to draw focus on an area (see `src/data/potsdam-mask.geo.json` for an example`. Additional info: `npm run scripts:create-geojson-mask --help`.
+Inverts a given geojson file and creates a mask that can be displayed on a map to draw focus on an area (see `src/data/potsdam-mask.geo.json` for an example`. Additional info:`npm run scripts:create-geojson-mask --help`.
 
 **NOTE:** The `--silent` flag is needed, otherwise invalid GeoJSON will be produced.
 
@@ -141,7 +143,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ### Code Splitting
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
 
 ### Advanced Configuration
 
