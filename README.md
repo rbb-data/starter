@@ -30,7 +30,7 @@ Adjust the project name/path in the following files: `.env` and `package.json` (
 ## Folder structure
 
 Your app lives in `/src`.  
-Reusable modules should eventually be moved to `src/shared` and be pushed back to Github. :)
+Reusable modules should eventually be moved to `src/components/_shared` and be pushed back to Github. :)
 
 ## Environment Variables
 
