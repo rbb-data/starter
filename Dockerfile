@@ -26,6 +26,13 @@ RUN apk add --no-cache --update nodejs-current
 
 RUN addgroup node -g 11000 -S && adduser node -u 11000 -S -G node
 
+# uncomment to add interstate font to container
+# this is usefull when creating png images from svg's with text in them
+# the folder docker-fonts is not part of this repository though…
+# WORKDIR /usr/share/fonts/interstate/
+# COPY docker-fonts /usr/share/fonts/interstate/
+# RUN fc-cache -fv
+
 WORKDIR /app
 COPY --from=builder --chown=node:node /app /app/
 
