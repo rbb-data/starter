@@ -65,7 +65,11 @@ const DotSwarm: React.FC<Props> = ({
   dotProps = () => ({ fill: blue, r: 1 }),
 }) => {
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} style={{ overflow: 'visible' }}>
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox={`0 0 ${width} ${height}`}
+      style={{ overflow: 'visible' }}
+    >
       <RawDotSwarm
         count={count}
         position={{ x: width / 2, y: height / 2 }}
