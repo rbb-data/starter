@@ -1,4 +1,4 @@
 const withImages = require('next-images')
 module.exports = withImages({
-  assetPrefix: '.',
+  basePath: process.env.URL_PREFIX,
 })
