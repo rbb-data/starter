@@ -6,20 +6,55 @@ import { BingLayer } from 'react-leaflet-bing-v2'
 
 import trackEvent from 'lib/analytics'
 import berlinMask from 'data/berlin-mask.geo.json'
+import brandenburgMask from 'data/brandenburg-mask.geo.json'
 import berlinBoroughs from 'data/berlin-bezirke.geo.json'
 import { darkGrey } from 'global_styles/colors'
 import _ from './Map.module.sass'
 
 // TODO:
-// add brandenburg as option
 // add Potsdam as option
+
+const coords = {
+  berlin: {
+    center: { lat: 52.5244, lng: 13.4105 },
+    bounds: {
+      topleft: { lat: 52.65, lng: 13.1 },
+      bottomright: { lat: 52.35, lng: 13.75 },
+    },
+    maxBounds: {
+      topleft: { lat: 52.8, lng: 12.9 },
+      bottomright: { lat: 52.2, lng: 13.9 },
+    }
+  },
+  brandenburg: {
+    center: { lat: 52.8455492, lng: 13.2461296 },
+    bounds: {
+      topleft: { lat: 53.5590907, lng: 14.7658159 },
+      bottomright: { lat: 51.359064, lng: 11.2662278 },
+    },
+    maxBounds: {
+      topleft: { lat: 54.8590907, lng: 15.2658159 },
+      bottomright: { lat: 50.659064, lng: 11.067355 },
+    }
+  }
+}
+
+const masks = {
+  berlin: berlinMask,
+  brandenburg: brandenburgMask
+}
+
+const minZoom = {
+  berlin: 9,
+  brandenburg: 8
+}
 
 /**
  * React leaflet map component in rbb-data style
  * with bing map tiles and berlin borders
  */
 const Map = (props) => {
-  const { children, className, bingKey, ...forwardedProps } = props
+  const { children, className, bingKey, location = 'berlin', ...forwardedProps } = props
 
   function handleZoom(e) {
     const map = e.target
@@ -32,25 +67,15 @@ const Map = (props) => {
     trackEvent('move map')
   }
 
-  // props used for initial map rendering
-  const berlin = {
-    center: { lat: 52.5244, lng: 13.4105 },
-    bounds: {
-      topleft: { lat: 52.65, lng: 13.1 },
-      bottomright: { lat: 52.35, lng: 13.75 },
-    },
-    maxBounds: {
-      topleft: { lat: 52.8, lng: 12.9 },
-      bottomright: { lat: 52.2, lng: 13.9 },
-    },
-  }
+  const locationCoords = coords[location]
+  const mask = masks[location]
 
   const mapProps = {
     animate: false,
     // this is false because ios jumps towards elemts that can have focus when you touch
     // them which makes the page jump
     keyboard: false,
-    minZoom: 9,
+    minZoom: minZoom[location],
     maxZoom: 17,
     zoomControl: false,
     scrollWheelZoom: false,
@@ -59,12 +84,12 @@ const Map = (props) => {
     onDragEnd: handleDragEnd,
     zoomSnap: false,
     bounds: [
-      [berlin.bounds.bottomright.lat, berlin.bounds.bottomright.lng],
-      [berlin.bounds.topleft.lat, berlin.bounds.topleft.lng],
+      [locationCoords.bounds.bottomright.lat, locationCoords.bounds.bottomright.lng],
+      [locationCoords.bounds.topleft.lat, locationCoords.bounds.topleft.lng],
     ],
     maxBounds: [
-      [berlin.maxBounds.bottomright.lat, berlin.maxBounds.bottomright.lng],
-      [berlin.maxBounds.topleft.lat, berlin.maxBounds.topleft.lng],
+      [locationCoords.maxBounds.bottomright.lat, locationCoords.maxBounds.bottomright.lng],
+      [locationCoords.maxBounds.topleft.lat, locationCoords.maxBounds.topleft.lng],
     ],
   }
 
@@ -85,7 +110,7 @@ const Map = (props) => {
       />
 
       <GeoJSON
-        data={berlinMask}
+        data={mask}
         interactive={false}
         fillOpacity={0.8}
         color='white'
@@ -114,6 +139,7 @@ Map.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   bingKey: PropTypes.string.isRequired,
+  location: PropTypes.string
 }
 
 export default Map
