@@ -2,6 +2,8 @@ name: Storybook
 
 on:
   pull_request:
+    # deploy whenever a pr is opened or a commit is pushed to it
+    types: [ opened, synchronize ]
   push:
     branches:
       - main
