@@ -14,7 +14,7 @@ git log --oneline | grep -q 'Start new project with https://github.com/rbb-data/
 cd $(dirname $0)/..
 
 # substitute '{project-name}' with the current folder name
-sed -i 's/{project-name}/'"$(basename $(pwd))"'/g' .env package.json
+sed -i '' 's/{project-name}/'"$(basename $(pwd))"'/g' .env package.json
 
 # clean up the git history
 git commit --amend -m 'Start new project with https://github.com/rbb-data/starter/tree/'$(git rev-parse --short HEAD)
