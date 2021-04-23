@@ -79,6 +79,8 @@ Runs `build` and `export` and uploads the files to `dj1.app.rbb-cloud.de`.
 Make sure to have configured the correct project-path in the `scripts` section in `package.json`.
 
 The deployed file will be available at https://dj1.app.rbb-cloud.de/{project-name}.
+Be aware that the script overwrites all contents in the target folder, so make sure to choose a unique project name.
+In case you overwrote something by accident, don't panic: There are frequent backups and the wiki contains information how to restore these files.
 
 **Note:** You need a certificate to access the server. If you don't have one yet your colleagues will gladly help you out.
 
