@@ -67,11 +67,22 @@ Creates and opens the [storybook](https://storybook.js.org/) that documents the 
 
 ### `npm run build`
 
-build the app so it can be run on a node server
+Builds the app so it can be run on a node server
 
 ### `npm run build && npm run export`
 
-build and export the app so it can be put on a static file server
+Builds and exports the app so it can be put on a static file server
+
+### `npm run deploy`
+
+Runs `build` and `export` and uploads the files to `dj1.app.rbb-cloud.de`.
+Make sure to have configured the correct project-path in the `scripts` section in `package.json`.
+
+The deployed file will be available at https://dj1.app.rbb-cloud.de/{project-name}.
+
+**Note:** You need a certificate to access the server. If you don't have one yet your colleagues will gladly help you out.
+
+**Note:** The script uses [rsync](https://rsync.samba.org/) to efficiently synchronize changed between in your local build and the target folder. The version of `rsync` that ships with macOS is out of date, so please install a recent version via [homebrew](https://brew.sh/) or [nix](https://nixos.org/guides/install-nix.html).
 
 ## helper scripts
 
