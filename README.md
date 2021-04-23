@@ -18,11 +18,9 @@ Propably you also want to add a remote.
 For example:
 
 ```
-git remote add origin https://docs.rbb-online.de/bitbucket/scm/rdat/my-rbb-data-project.git
-git push -u origin master
+git remote add origin https://docs.rbb-online.de/bitbucket/scm/rdat/coll-project-name.git
+git push -u origin main
 ```
-
-Adjust the project name/path in the following files: `.env` and `package.json` (see below).
 
 ## Folder structure
 
