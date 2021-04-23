@@ -4,18 +4,15 @@ This project was bootstrapped with the [rbb starter](https://github.com/rbb-data
 
 ## Start a new Project:
 
-To create a new project just run:
+To create a new project, pick a `cool-project-name` and run:
 
 ```bash
-git clone git@github.com:rbb-data/starter.git my-rbb-data-project --depth 1
-cd my-rbb-data-project
-rm -rf .git
-git init
-git add --all
-git commit -m "Init with clone from rbb-data starter"
+git clone git@github.com:rbb-data/starter.git cool-project-name --depth 1
+cd cool-project-name
+npm install
 ```
 
-Replace "my-rbb-data-project" with the name of your project.
+Note that `cool-project-name` will be used in various places and will by default also determine the path on the server where the app will be available.
 
 Propably you also want to add a remote.
 For example:
