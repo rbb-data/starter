@@ -18,7 +18,7 @@ Propably you also want to add a remote.
 For example:
 
 ```
-git remote add origin https://docs.rbb-online.de/bitbucket/scm/rdat/coll-project-name.git
+git remote add origin https://docs.rbb-online.de/bitbucket/scm/rdat/cool-project-name.git
 git push -u origin main
 ```
 
