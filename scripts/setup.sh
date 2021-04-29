@@ -7,6 +7,9 @@
 # print every executed line and abort when one fails
 set -ex
 
+# skip when deploying to vercel (see https://vercel.com/docs/environment-variables#system-environment-variables)
+[ -z "$CI" ] || exit 0
+
 # avoid running the setup script multiple times
 git log --oneline | grep -q 'Start new project with https://github.com/rbb-data/starter' && exit 0
 
