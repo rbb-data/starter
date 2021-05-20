@@ -56,6 +56,7 @@
     "d3-scale": "^3.2.3",
     "d3-shape": "^2.0.0",
     "fuse.js": "^3.4.4",
+    "iframe-resizer": "^4.3.2",
     "leaflet": "^1.7.1",
     "leaflet.markercluster": "^1.4.1",
     "lodash": "^4.17.20",
