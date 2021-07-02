@@ -16,8 +16,11 @@ git log --oneline | grep -q 'Start new project with https://github.com/rbb-data/
 # make sure to run from project root
 cd $(dirname $0)/..
 
+# copy resizer scripts to the public folder
+cp node_modules/iframe-resizer/js/iframeResizer{.contentWindow,}.min.js public
+
 # substitute '{project-name}' with the current folder name
-sed -i '' 's/{project-name}/'"$(basename $(pwd))"'/g' .env package.json
+sed -i '' 's/{project-name}/'"$(basename $(pwd))"'/g' .env package.json iframe-embed.html
 
 # clean up the git history
 git commit --amend -m 'Start new project with https://github.com/rbb-data/starter/tree/'$(git rev-parse --short HEAD)

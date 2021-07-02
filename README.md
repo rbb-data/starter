@@ -39,6 +39,12 @@ This App can track "pageviews" and e.g. map interactions.
 To enable this you need to replace everything in `{}` in the ANALYTICS variables in the `.env` file
 and set `ANALYTICS_ENABLED` to true.
 
+## Embed as iFrame
+
+`iframe-embed.html` contains code to embed your app into another page. It supports [David J. Bradshaw's iFrame Resizer script](https://github.com/davidjbradshaw/iframe-resizer) by default.
+
+Note that the iFrame should be given an appropriate title.
+
 ## Deveolpment and build Scripts
 
 In the project directory, you can run:
