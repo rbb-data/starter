@@ -23,6 +23,7 @@ export default class Slider extends Component {
     /** when Slider is focusable user can navigate with keyboard */
     canHaveFocus: PropTypes.bool,
     showSlideButtons: PropTypes.bool,
+    labelSlideButtons: PropTypes.bool,
     className: PropTypes.string
   }
 
@@ -30,7 +31,8 @@ export default class Slider extends Component {
     onBackwardNavigation: () => {},
     onForwardNavigation: () => {},
     canHaveFocus: true,
-    showSlideButtons: true
+    showSlideButtons: true,
+    labelSlideButtons: false
   }
 
   handleKeyDown = e => {
@@ -122,6 +124,7 @@ export default class Slider extends Component {
       onBackwardNavigation: navigateBack,
       canHaveFocus,
       showSlideButtons,
+      labelSlideButtons,
       children
     } = this.props
 
@@ -155,10 +158,12 @@ export default class Slider extends Component {
           { this.canNavigateBackward &&
             <button className={`${_.prevNextButton} ${_.prev}`} onClick={navigateBack}>
               <img alt='go to previous slide' src={nextIcon} />
+              {labelSlideButtons && previousSlide}
             </button>
           }
           { this.canNavigateForward &&
             <button className={`${_.prevNextButton} ${_.next}`} onClick={navigateForward}>
+              {labelSlideButtons && nextSlide}
               <img alt='go to next slide' src={nextIcon} />
             </button>
           }
