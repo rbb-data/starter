@@ -5,6 +5,7 @@
   position: relative
   overflow: hidden
   height: 100%
+  padding: 2px 0
 
 .content
   width: 100%
@@ -48,15 +49,20 @@
   box-shadow: none
   z-index: 100
 
+  display: flex
+  align-items: center
+
   @include breakpoint(small)
     padding-right: 8px
 
   img
-    width: 12px
+    height: 24px
 
 .next
   right: 0
 
 .prev
   left: 0
-  transform: rotate(180deg)
+
+  img
+    transform: rotate(180deg)
