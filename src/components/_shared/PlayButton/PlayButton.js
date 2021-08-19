@@ -9,8 +9,8 @@ export default function PlayButton (props) {
 
   return <button className={`${_.button} ${className}`} onClick={onClick}>
     {showStopIcon
-      ? <img src={stopIcon} alt='stop' />
-      : <img src={playIcon} alt='play' />
+      ? <img src={stopIcon.src} alt='stop' />
+      : <img src={playIcon.src} alt='play' />
     }
   </button>
 }
