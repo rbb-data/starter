@@ -1,4 +1,3 @@
-const withImages = require('next-images')
-module.exports = withImages({
+module.exports = {
   basePath: process.env.URL_PREFIX
-})
+}
