@@ -10,15 +10,15 @@ const SearchButton = ({ type, defaultAction }) => {
     default:
     case 'search':
       return <button key='submit' className={styles.searchButton} type={'submit'}>
-        <img src={searchIcon.src} alt='search' />
+        <img src={searchIcon.src || searchIcon} alt='search' />
       </button>
     case 'dropdown':
       return <button key='dropdown' className={styles.searchButton} onClick={defaultAction}>
-        <img src={dropdownIcon.src} alt='show' className={styles.dropdown} />
+        <img src={dropdownIcon.src || dropdownIcon} alt='show' className={styles.dropdown} />
       </button>
     case 'cancel':
       return <button key='reset' className={styles.searchButton} type={'reset'}>
-        <img src={closeIcon.src} alt='reset' />
+        <img src={closeIcon.src || closeIcon} alt='reset' />
       </button>
   }
 }

@@ -10,6 +10,9 @@ set -ex
 # skip when deploying to vercel (see https://vercel.com/docs/environment-variables#system-environment-variables)
 [ -z "$CI" ] || exit 0
 
+# skip when the project was not templated
+[ "$(git log --oneline | wc -l)" -eq 1 ] || exit 0
+
 # avoid running the setup script multiple times
 git log --oneline | grep -q 'Start new project with https://github.com/rbb-data/starter' && exit 0
 
@@ -24,4 +27,7 @@ sed -i '' 's/{project-name}/'"$(basename $(pwd))"'/g' .env package.json iframe-e
 
 # clean up the git history
 git commit --amend -m 'Start new project with https://github.com/rbb-data/starter/tree/'$(git rev-parse --short HEAD)
+
+# remove remote if cloned manually
+git log --oneline | grep -q 'Initial commit' && exit 0
 git remote remove origin
