@@ -27,4 +27,7 @@ sed -i '' 's/{project-name}/'"$(basename $(pwd))"'/g' .env package.json iframe-e
 
 # clean up the git history
 git commit --amend -m 'Start new project with https://github.com/rbb-data/starter/tree/'$(git rev-parse --short HEAD)
+
+# remove remote if cloned manually
+git log --oneline | grep -q 'Initial commit' && exit 0
 git remote remove origin
