@@ -28,6 +28,24 @@ sed -i '' 's/{project-name}/'"$(basename $(pwd))"'/g' .env package.json iframe-e
 # clean up the git history
 git commit --amend -m 'Start new project with https://github.com/rbb-data/starter/tree/'$(git rev-parse --short HEAD)
 
+# remove storybook-related stuff
+rm .github/workflows/storybook.yml
+[ "$(ls -A .github/workflows)" ] || rmdir .github/workflows
+[ "$(ls -A .github)" ] || rmdir .github
+rm -rf .storybook styleguide
+npm uninstall storybook\
+  @storybook/addon-actions\
+  @storybook/addon-docs\
+  @storybook/addon-knobs\
+  @storybook/addon-storysource\
+  @storybook/addons\
+  @storybook/preset-create-react-app\
+  @storybook/preset-typescript\
+  @storybook/react\
+  @storybook/storybook-deployer\
+  @storybook/theming
+node scripts/removeNpmScripts.js storybook build-storybook deploy-storybook
+
 # remove remote if cloned manually
 git log --oneline | grep -q 'Initial commit' && exit 0
 git remote remove origin
