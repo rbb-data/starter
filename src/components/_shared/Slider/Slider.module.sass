@@ -29,10 +29,10 @@
   .content,
   .previousSlideWrapper,
   .nextSlideWrapper
-    padding: 0 40px
+    padding: 0 30px
 
-    @include breakpoint(small)
-      padding: 0 30px
+    @include breakpoint(wide)
+      padding: 0 40px
 
 .previousSlideWrapper
   left: -100%
@@ -45,7 +45,7 @@
   top: 50%
   margin-top: -28px
   cursor: pointer
-  padding: 15px
+  padding: 15px 8px 15px 15px
   background: transparent
   border: 0
   box-shadow: none
@@ -54,8 +54,8 @@
   display: flex
   align-items: center
 
-  @include breakpoint(small)
-    padding-right: 8px
+  @include breakpoint(wide)
+    padding: 15px
 
   img
     height: 24px

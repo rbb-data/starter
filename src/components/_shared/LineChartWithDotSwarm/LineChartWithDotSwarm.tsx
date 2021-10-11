@@ -179,8 +179,8 @@ const LineChartWithDotSwarm: React.FC<Props> = ({
       {values.map((value, idx) => {
         const xPos = x(idx)
         const yPos = height - 20
-        const rotate = width < breakpoints.small ? 45 : 0
-        const textAnchor = width < breakpoints.small ? 'start' : 'middle'
+        const rotate = width >= breakpoints.wide ? 0 : 45
+        const textAnchor = width >= breakpoints.wide ? 'middle' : 'start'
         const isCurrentValue = idx === currentIndex
 
         return (

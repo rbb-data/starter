@@ -21,10 +21,10 @@
 
 .ticks
   position: relative
-  height: 20px
+  height: 30px
 
-  @include breakpoint(small)
-    height: 30px
+  @include breakpoint(wide)
+    height: 20px
 
 .tick
   position: absolute
@@ -43,11 +43,13 @@
     margin-left: -10px
 
   .moreInfo
+    display: block
+
     &::before
       content: ' '
 
-    @include breakpoint(small)
-      display: block
+    @include breakpoint(wide)
+      display: inline
 
       &::before
         display: none
