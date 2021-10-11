@@ -3,18 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { ResizeObserver } from '@juggle/resize-observer'
 
-interface Dimensions {
-  marginTop?: number;
-  marginRight?: number;
-  marginBottom?: number;
-  marginLeft?: number;
-  width?: number;
-  height?: number;
-  boundedWidth?: number;
-  boundedHeight?: number;
-}
-
-const updateBounds = (dimensions: Dimensions = {}) => ({
+const updateBounds = (dimensions = {}) => ({
   ...dimensions,
   boundedHeight: Math.max(
     dimensions.height
@@ -30,7 +19,7 @@ const updateBounds = (dimensions: Dimensions = {}) => ({
   ),
 })
 
-const setMarginDefaults = (dimensions: Dimensions = {}) => ({
+const setMarginDefaults = (dimensions = {}) => ({
   ...dimensions,
   marginTop: dimensions.marginTop || 0,
   marginRight: dimensions.marginRight || 0,
@@ -38,7 +27,7 @@ const setMarginDefaults = (dimensions: Dimensions = {}) => ({
   marginLeft: dimensions.marginLeft || 0,
 })
 
-const useChartDimensions = (passedSettings: Dimensions = {}) => {
+const useChartDimensions = (passedSettings = {}) => {
   const ref = useRef()
 
   const dimensions = updateBounds(setMarginDefaults(passedSettings))
