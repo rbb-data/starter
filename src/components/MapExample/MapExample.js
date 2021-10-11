@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from 'react'
 import Map from 'components/_shared/Map/Map'
-import MapElements from 'components/MapElements/MapElements'
-import SearchWrapper from 'components/SearchWrapper/SearchWrapper'
-import Detail from 'components/Detail/Detail'
+import MapElements from './MapElements/MapElements'
+import SearchWrapper from './SearchWrapper/SearchWrapper'
+import Detail from './Detail/Detail'
 import _ from './App.module.sass'
 
 function App (props) {
