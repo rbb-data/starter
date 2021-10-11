@@ -12,8 +12,8 @@ const Index: NextPage<Props> = (props) => {
       <Header>
         {{
           title:
-            'Ein Aussagesatz oder notfalls eine Kurzbeschreibung, wenn das eine Livegrafik ist',
-          subtitle: 'Angabe der Metrik und erklärung der Grafik',
+            'Ein Aussagesatz oder notfalls eine Kurzbeschreibung, wenn das eine Live-Grafik ist',
+          subtitle: 'Angabe der Metrik und Erklärung der Grafik',
         }}
       </Header>
       <StemAndLeafPlot items={props.items} numberOfSteps={30} maxValue={30} />

@@ -14,7 +14,7 @@ npm install
 
 Note that `cool-project-name` will be used in various places and will by default also determine the path on the server where the app will be available.
 
-Propably you also want to add a remote.
+Probably you also want to add a remote.
 For example:
 
 ```
@@ -35,7 +35,7 @@ We don't want our keys in version control so you have to add them as NEXT_PUBLIC
 
 ### Analytics
 
-This App can track "pageviews" and e.g. map interactions.
+This App can track "page views" and e.g. map interactions.
 To enable this you need to replace everything in `{}` in the ANALYTICS variables in the `.env` file
 and set `ANALYTICS_ENABLED` to true.
 
@@ -45,7 +45,7 @@ and set `ANALYTICS_ENABLED` to true.
 
 Note that the iFrame should be given an appropriate title.
 
-## Deveolpment and build Scripts
+## Development and build Scripts
 
 In the project directory, you can run:
 
