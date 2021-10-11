@@ -74,6 +74,8 @@ Builds the app so it can be run on a node server
 
 Builds and exports the app so it can be put on a static file server
 
+If you build your app for deployment on the rbb's static server, make sure to set the URL prefix appropriately (usually we host our apps at `rbb-online.de/static/rbb/rbb-data/`, i.e. your URL prefix could look like `/static/rbb/rbb-data/my-magic-url`).
+
 ### `npm run deploy`
 
 Runs `build` and `export` and uploads the files to `dj1.app.rbb-cloud.de`.
