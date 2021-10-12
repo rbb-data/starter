@@ -4,7 +4,7 @@ import { Pane } from 'react-leaflet'
 import L from 'leaflet'
 import { featureToLatLng } from 'lib/geoJsonCompat'
 import useWindowSize from 'lib/hooks/useWindowSize'
-import { small as mobileBreakpoint } from 'global_styles/breakpoints'
+import { wide as breakpoint } from 'global_styles/breakpoints'
 import SelectableMarker from 'components/_shared/MapSelectableMarker/MapSelectableMarker'
 
 export default function Markers (props) {
@@ -23,7 +23,7 @@ export default function Markers (props) {
       },
       position: featureToLatLng(marker),
       pane: isSelected ? 'selectedMarkerPane' : 'markerPane',
-      optimizeForTouch: width < mobileBreakpoint
+      optimizeForTouch: width < breakpoint
     }
 
     return {
