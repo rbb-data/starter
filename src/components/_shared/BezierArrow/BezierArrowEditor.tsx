@@ -44,8 +44,6 @@ interface Props {
   initialEndCoords?: [number, number],
   initialStartBezierHandle?: [number, number],
   initialEndBezierHandle?: [number, number],
-  /** Offset that will be applied to computed xy positions (note that the offset is subtracted) */
-  offset?: [number, number],
   drawArrowHead?: boolean,
   arrowHeadAnchor?: 'start' | 'end' | 'both',
   arrowHeadLength?: number,
@@ -74,7 +72,6 @@ function BezierArrowEditor({
   initialEndCoords = [60, 60],
   initialStartBezierHandle = [10, 40],
   initialEndBezierHandle = [20, 60],
-  offset = [0, 0],
   drawArrowHead = true,
   arrowHeadAnchor = 'end',
   arrowHeadLength = 10,
@@ -92,10 +89,7 @@ function BezierArrowEditor({
 
   function handleDrag(setCoords) {
     return ({ event, active, last }) => {
-      if (active) {
-        const [x, y] = pointer(event, canvasRef.current)
-        setCoords([x - offset[0], y - offset[1]])
-      }
+      if (active) setCoords(pointer(event, canvasRef.current))
       if (last) {
         // map to domain values if scales are given
         const mappedCoords = mapCoords(coords, xScale?.invert, yScale?.invert) 
