@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Coords } from './types'
 
 const LARGE_VALUE = 100000

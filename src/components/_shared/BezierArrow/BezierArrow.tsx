@@ -1,3 +1,4 @@
+import React from 'react'
 import ArrowHead from './ArrowHead'
 
 import { constructCurve } from './utils'
