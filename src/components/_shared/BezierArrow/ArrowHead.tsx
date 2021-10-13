@@ -1,6 +1,20 @@
+import { Coords } from './types'
+
 const LARGE_VALUE = 100000
 
-function ArrowHead({ curvePath, coords, rotation, length }) {
+interface Props {
+  curvePath: string,
+  coords: Coords,
+  rotation?: number,
+  length?: number
+}
+
+function ArrowHead({
+  curvePath,
+  coords,
+  rotation = 30,
+  length = 10
+}: Props) {
   return (
     <g>
       {[1, -1].map((direction) => (

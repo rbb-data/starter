@@ -1,13 +1,27 @@
 import { useRef, useState } from 'react'
 import { useDrag } from '@use-gesture/react'
+import { Handler, EventTypes } from '@use-gesture/core/types'
 
 import BezierArrow from './BezierArrow'
 
 import { constructCurve, mapCoords } from './utils'
+import { Coords } from './types'
 
 import _ from './BezierArrowEditor.module.sass'
 
-function DraggableCircle({ coords, handleDrag, className = '', ...rest }) {
+interface DraggableCircleProps {
+  coords: Coords,
+  handleDrag: Handler<'drag', EventTypes['drag']>,
+  className?: string
+  radius?: number
+}
+
+function DraggableCircle({
+  coords,
+  handleDrag,
+  className = '',
+  radius = 5,
+}: DraggableCircleProps) {
   const ref = useRef()
   useDrag(handleDrag, { target: ref })
   return (
@@ -16,9 +30,29 @@ function DraggableCircle({ coords, handleDrag, className = '', ...rest }) {
       ref={ref}
       cx={coords[0]}
       cy={coords[1]}
-      {...rest}
+      r={radius}
     />
   )
+}
+
+interface Props {
+  initialStartCoords?: Coords,
+  initialEndCoords?: Coords,
+  initialStartBezierHandle?: Coords,
+  initialEndBezierHandle?: Coords,
+  translateX?: number,
+  translateY?: number,
+  drawArrowHead?: boolean,
+  arrowHeadAnchor?: 'start' | 'end' | 'both',
+  arrowHeadLength?: number,
+  arrowHeadRotation?: number,
+  className?: string,
+  xScale?: {
+    invert: (value: number) => number
+  },
+  yScale?: {
+    invert: (value: number) => number
+  }
 }
 
 function BezierArrowEditor({
@@ -35,7 +69,7 @@ function BezierArrowEditor({
   className = '',
   xScale,
   yScale
-}) {
+}: Props) {
   const [startCoords, setStartCoords] = useState(initialStartCoords)
   const [endCoords, setEndCoords] = useState(initialEndCoords)
   const [startBezierHandle, setStartBezierHandle] = useState(initialStartBezierHandle)
@@ -96,13 +130,13 @@ function BezierArrowEditor({
         className={_.startEnd}
         coords={startCoords}
         handleDrag={handleDrag(setStartCoords)}
-        r="8"
+        radius={8}
       />
       <DraggableCircle
         className={_.startEnd}
         coords={endCoords}
         handleDrag={handleDrag(setEndCoords)}
-        r="8"
+        radius={8}
       />
 
       {/* Bezier curve handles for start and end point */}
@@ -110,13 +144,13 @@ function BezierArrowEditor({
         className={_.handle}
         coords={startBezierHandle}
         handleDrag={handleDrag(setStartBezierHandle)}
-        r="6"
+        radius={6}
       />
       <DraggableCircle
         className={_.handle}
         coords={endBezierHandle}
         handleDrag={handleDrag(setEndBezierHandle)}
-        r="6"
+        radius={6}
       />
     </g>
   )

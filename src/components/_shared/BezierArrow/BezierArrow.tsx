@@ -1,17 +1,27 @@
 import ArrowHead from './ArrowHead'
 
 import { constructCurve } from './utils'
+import { BezierCoords } from './types'
 
 import _ from './BezierArrow.module.sass'
+
+interface Props {
+  coords: BezierCoords,
+  drawArrowHead?: boolean,
+  arrowHeadAnchor?: 'start' | 'end' | 'both',
+  arrowHeadLength?: number,
+  arrowHeadRotation?: number,
+  className?: string
+}
 
 function BezierArrow({
   coords,
   drawArrowHead = true,
-  arrowHeadAnchor = 'end', // one of 'start', 'end', 'both'
+  arrowHeadAnchor = 'end',
   arrowHeadLength = 10,
   arrowHeadRotation = 30,
   className = ''
-}) {
+}: Props) {
   const curve = constructCurve(coords)
   const invertCurve = constructCurve({
     startCoords: coords.endCoords,
