@@ -1,9 +1,9 @@
-export const constructCurve = (
+export const constructCurve = ({
   startCoords,
   endCoords,
   startBezierHandle,
   endBezierHandle
-) => [
+}) => [
   'M',
   `${startCoords}`,
   'C',

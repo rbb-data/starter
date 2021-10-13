@@ -5,18 +5,20 @@ import { constructCurve } from './utils'
 import _ from './BezierArrow.module.sass'
 
 function BezierArrow({
-  startCoords,
-  endCoords,
-  startBezierHandle,
-  endBezierHandle,
+  coords,
   drawArrowHead = true,
   arrowHeadAnchor = 'end', // one of 'start', 'end', 'both'
   arrowHeadLength = 10,
   arrowHeadRotation = 30,
   className = ''
 }) {
-  const curve = constructCurve(startCoords, endCoords, startBezierHandle, endBezierHandle)
-  const invertCurve = constructCurve(endCoords, startCoords, endBezierHandle, startBezierHandle)
+  const curve = constructCurve(coords)
+  const invertCurve = constructCurve({
+    startCoords: coords.endCoords,
+    endCoords: coords.startCoords,
+    startBezierHandle: coords.endBezierHandle,
+    endBezierHandle: coords.startBezierHandle
+  })
 
   return (
     <g className={`${_.arrow} ${className}`}>
@@ -27,7 +29,7 @@ function BezierArrow({
       {drawArrowHead && ['start', 'both'].includes(arrowHeadAnchor) && (
         <ArrowHead
           curvePath={curve.join(' ')}
-          coords={startCoords}
+          coords={coords.startCoords}
           rotation={arrowHeadRotation}
           length={arrowHeadLength}
         />
@@ -35,7 +37,7 @@ function BezierArrow({
       {drawArrowHead && ['end', 'both'].includes(arrowHeadAnchor) && (
         <ArrowHead
           curvePath={invertCurve.join(' ')}
-          coords={endCoords}
+          coords={coords.endCoords}
           rotation={arrowHeadRotation}
           length={arrowHeadLength}
         />

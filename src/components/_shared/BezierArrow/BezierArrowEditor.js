@@ -3,6 +3,8 @@ import { useDrag } from '@use-gesture/react'
 
 import BezierArrow from './BezierArrow'
 
+import { constructCurve } from './utils'
+
 import _ from './BezierArrowEditor.module.sass'
 
 function DraggableCircle({ coords, handleDrag, className = '', ...rest }) {
@@ -37,10 +39,22 @@ function BezierArrowEditor({
   const [startBezierHandle, setStartBezierHandle] = useState(initialStartBezierHandle)
   const [endBezierHandle, setEndBezierHandle] = useState(initialEndBezierHandle)
 
+  const coords = { startCoords, endCoords, startBezierHandle, endBezierHandle }
+
   function handleDrag(setCoords) {
     return ({ event, active, last }) => {
       if (active) setCoords([event.clientX - translateX, event.clientY - translateY])
-      if (last) console.log(startCoords, startBezierHandle, endBezierHandle, endCoords)
+      if (last) {
+        console.log('Copy this object by left-clicking on it and selecting "Copy Object", then paste it back into your code:', coords)
+        console.log([
+          'Or use these values elsewhere:',
+          `coords (start): ${startCoords}`,
+          `coords (end): ${endCoords}`,
+          `handle (start): ${startBezierHandle}`,
+          `handle (end): ${endBezierHandle}`,
+          `path: ${constructCurve(coords).join(' ')}`
+        ].join('\n'))
+      }
     }
   }
 
@@ -65,10 +79,7 @@ function BezierArrowEditor({
       {/* Bezier Curve with arrow heads */}
       <BezierArrow
         className={className}
-        startCoords={startCoords}
-        endCoords={endCoords}
-        startBezierHandle={startBezierHandle}
-        endBezierHandle={endBezierHandle}
+        coords={coords}
         drawArrowHead={drawArrowHead}
         arrowHeadAnchor={arrowHeadAnchor}
         arrowHeadLength={arrowHeadLength}
