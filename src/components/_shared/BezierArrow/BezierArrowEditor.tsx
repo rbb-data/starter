@@ -36,7 +36,7 @@ function DraggableCircle({
 }
 
 interface Props {
-  /** Reference to the element used as reference point for position calculations */
+  /** Reference to the element used as a reference point for position calculations */
   canvasRef: {
     current: HTMLElement | SVGElement
   }
@@ -49,11 +49,11 @@ interface Props {
   arrowHeadLength?: number,
   arrowHeadRotation?: number,
   className?: string,
-  /** If provided, provide domain values for the computed positions (on x-axis) */
+  /** If given, provide domain values for the computed positions (on x-axis) */
   xScale?: {
     invert: (value: number) => number
   },
-  /** If provided, provide domain values for the computed positions (on y-axis) */
+  /** If given, provide domain values for the computed positions (on y-axis) */
   yScale?: {
     invert: (value: number) => number
   }
@@ -62,7 +62,7 @@ interface Props {
 /**
  * This interactive editor allows to hand-craft Bezier arrows.
  * 
- * To do so, add `BezierArrowEditor` to your graphic and adjust start and end position as well as
+ * To do so, add `BezierArrowEditor` to your graphic and adjust the position and
  * the shape of the curve as you like. If happy with your choices, check the console, copy the
  * provided object containing the relevant values and feed it into `BezierArrow`. 
  */
