@@ -5,6 +5,7 @@ function ArrowHead({ curvePath, coords, rotation, length }) {
     <g>
       {[1, -1].map((direction) => (
         <path
+          key={direction}
           transform={`rotate(${direction * rotation} ${coords.join(' ')})`}
           style={{ strokeDasharray: [length, LARGE_VALUE].join(' ') }}
           d={curvePath}
