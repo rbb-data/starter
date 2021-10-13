@@ -1,4 +1,8 @@
+import BezierArrowEditor from 'components/_shared/BezierArrow/BezierArrowEditor'
+
 import useChartDimensions from 'lib/hooks/useChartDimensions'
+
+import _ from './chart.module.sass'
 
 function Chart() {
   const [ref, dms] = useChartDimensions({
@@ -24,6 +28,10 @@ function Chart() {
             <text x="0" y="0" dy="1em">
               Chart (boundedWidth={dms.boundedWidth}/boundedHeight={dms.boundedHeight})
             </text>
+            <BezierArrowEditor
+              className={_.myCurve}
+              translateX={dms.marginLeft}
+              translateY={dms.marginTop} />
           </g>
         </svg>
       </div>

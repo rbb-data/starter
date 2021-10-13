@@ -46,6 +46,22 @@ function BezierArrowEditor({
 
   return (
     <g className={_.editor}>
+      {/* Connect start/end points with bezier curve handles */}
+      <line
+        className={_.connector}
+        x1={startCoords[0]}
+        y1={startCoords[1]}
+        x2={startBezierHandle[0]}
+        y2={startBezierHandle[1]}
+      />
+      <line
+        className={_.connector}
+        x1={endCoords[0]}
+        y1={endCoords[1]}
+        x2={endBezierHandle[0]}
+        y2={endBezierHandle[1]}
+      />
+
       {/* Bezier Curve with arrow heads */}
       <BezierArrow
         className={className}
@@ -85,22 +101,6 @@ function BezierArrowEditor({
         coords={endBezierHandle}
         handleDrag={handleDrag(setEndBezierHandle)}
         r="6"
-      />
-
-      {/* Connect start/end points with bezier curve handles */}
-      <line
-        className={_.connector}
-        x1={startCoords[0]}
-        y1={startCoords[1]}
-        x2={startBezierHandle[0]}
-        y2={startBezierHandle[1]}
-      />
-      <line
-        className={_.connector}
-        x1={endCoords[0]}
-        y1={endCoords[1]}
-        x2={endBezierHandle[0]}
-        y2={endBezierHandle[1]}
       />
     </g>
   )
