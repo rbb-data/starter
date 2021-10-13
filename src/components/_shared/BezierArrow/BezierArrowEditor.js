@@ -3,7 +3,7 @@ import { useDrag } from '@use-gesture/react'
 
 import BezierArrow from './BezierArrow'
 
-import { constructCurve } from './utils'
+import { constructCurve, mapCoords } from './utils'
 
 import _ from './BezierArrowEditor.module.sass'
 
@@ -33,6 +33,8 @@ function BezierArrowEditor({
   arrowHeadLength = 10,
   arrowHeadRotation = 30,
   className = '',
+  xScale,
+  yScale
 }) {
   const [startCoords, setStartCoords] = useState(initialStartCoords)
   const [endCoords, setEndCoords] = useState(initialEndCoords)
@@ -45,14 +47,17 @@ function BezierArrowEditor({
     return ({ event, active, last }) => {
       if (active) setCoords([event.clientX - translateX, event.clientY - translateY])
       if (last) {
-        console.log('Copy this object by left-clicking on it and selecting "Copy Object", then paste it back into your code:', coords)
+        // map to domain values if scales are given
+        const mappedCoords = mapCoords(coords, xScale?.invert, yScale?.invert) 
+
+        console.log('Copy this object by left-clicking on it and selecting "Copy Object", then paste it back into your code:', mappedCoords)
         console.log([
           'Or use these values elsewhere:',
-          `coords (start): ${startCoords}`,
-          `coords (end): ${endCoords}`,
-          `handle (start): ${startBezierHandle}`,
-          `handle (end): ${endBezierHandle}`,
-          `path: ${constructCurve(coords).join(' ')}`
+          `coords (start): ${mappedCoords.startCoords}`,
+          `coords (end): ${mappedCoords.endCoords}`,
+          `handle (start): ${mappedCoords.startBezierHandle}`,
+          `handle (end): ${mappedCoords.endBezierHandle}`,
+          `path: ${constructCurve(mappedCoords).join(' ')}`
         ].join('\n'))
       }
     }
