@@ -22,9 +22,9 @@ function DraggableCircle({ coords, handleDrag, className = '', ...rest }) {
 }
 
 function BezierArrowEditor({
-  initialStartCoords = [0, 0],
+  initialStartCoords = [10, 10],
   initialEndCoords = [60, 60],
-  initialStartBezierHandle = [0, 40],
+  initialStartBezierHandle = [10, 40],
   initialEndBezierHandle = [20, 60],
   translateX = 0,
   translateY = 0,
