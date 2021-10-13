@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useDrag } from '@use-gesture/react'
 import { Handler, EventTypes } from '@use-gesture/core/types'
+import { pointer } from 'd3-selection'
 
 import BezierArrow from './BezierArrow'
 
@@ -36,6 +37,9 @@ function DraggableCircle({
 }
 
 interface Props {
+  canvasRef: {
+    current: HTMLElement | SVGElement
+  }
   initialStartCoords?: Coords,
   initialEndCoords?: Coords,
   initialStartBezierHandle?: Coords,
@@ -56,6 +60,7 @@ interface Props {
 }
 
 function BezierArrowEditor({
+  canvasRef,
   initialStartCoords = [10, 10],
   initialEndCoords = [60, 60],
   initialStartBezierHandle = [10, 40],
@@ -79,7 +84,10 @@ function BezierArrowEditor({
 
   function handleDrag(setCoords) {
     return ({ event, active, last }) => {
-      if (active) setCoords([event.clientX - translateX, event.clientY - translateY])
+      if (active) {
+        const [x, y] = pointer(event, canvasRef.current)
+        setCoords([x - translateX, y - translateY])
+      }
       if (last) {
         // map to domain values if scales are given
         const mappedCoords = mapCoords(coords, xScale?.invert, yScale?.invert) 
