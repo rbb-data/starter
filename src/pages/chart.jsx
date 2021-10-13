@@ -1,7 +1,5 @@
 import useChartDimensions from 'lib/hooks/useChartDimensions'
 
-import _ from './chart.module.sass'
-
 function Chart() {
   const [ref, dms] = useChartDimensions({
     marginTop: 40,
