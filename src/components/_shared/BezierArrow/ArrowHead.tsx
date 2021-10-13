@@ -1,12 +1,10 @@
 import React from 'react'
 
-import { Coords } from './types'
-
 const LARGE_VALUE = 100000
 
 interface Props {
   curvePath: string,
-  coords: Coords,
+  coords: [number, number],
   rotation?: number,
   length?: number
 }

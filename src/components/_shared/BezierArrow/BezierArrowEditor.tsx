@@ -6,12 +6,11 @@ import { pointer } from 'd3-selection'
 import BezierArrow from './BezierArrow'
 
 import { constructCurve, mapCoords } from './utils'
-import { Coords } from './types'
 
 import _ from './BezierArrowEditor.module.sass'
 
 interface DraggableCircleProps {
-  coords: Coords,
+  coords: [number, number],
   handleDrag: Handler<'drag', EventTypes['drag']>,
   className?: string
   radius?: number
@@ -37,38 +36,47 @@ function DraggableCircle({
 }
 
 interface Props {
+  /** Reference to the element used as reference point for position calculations */
   canvasRef: {
     current: HTMLElement | SVGElement
   }
-  initialStartCoords?: Coords,
-  initialEndCoords?: Coords,
-  initialStartBezierHandle?: Coords,
-  initialEndBezierHandle?: Coords,
-  translateX?: number,
-  translateY?: number,
+  initialStartCoords?: [number, number],
+  initialEndCoords?: [number, number],
+  initialStartBezierHandle?: [number, number],
+  initialEndBezierHandle?: [number, number],
+  /** Offset that will be applied to computed xy positions (note that the offset is subtracted) */
+  offset?: [number, number],
   drawArrowHead?: boolean,
   arrowHeadAnchor?: 'start' | 'end' | 'both',
   arrowHeadLength?: number,
   arrowHeadRotation?: number,
   className?: string,
+  /** If provided, provide domain values for the computed positions (on x-axis) */
   xScale?: {
     invert: (value: number) => number
   },
+  /** If provided, provide domain values for the computed positions (on y-axis) */
   yScale?: {
     invert: (value: number) => number
   }
 }
 
+/**
+ * This interactive editor allows to hand-craft Bezier arrows.
+ * 
+ * To do so, add `BezierArrowEditor` to your graphic and adjust start and end position as well as
+ * the shape of the curve as you like. If happy with your choices, check the console, copy the
+ * provided object containing the relevant values and feed it into `BezierArrow`. 
+ */
 function BezierArrowEditor({
   canvasRef,
   initialStartCoords = [10, 10],
   initialEndCoords = [60, 60],
   initialStartBezierHandle = [10, 40],
   initialEndBezierHandle = [20, 60],
-  translateX = 0,
-  translateY = 0,
+  offset = [0, 0],
   drawArrowHead = true,
-  arrowHeadAnchor = 'end', // one of 'start', 'end', 'both'
+  arrowHeadAnchor = 'end',
   arrowHeadLength = 10,
   arrowHeadRotation = 30,
   className = '',
@@ -86,7 +94,7 @@ function BezierArrowEditor({
     return ({ event, active, last }) => {
       if (active) {
         const [x, y] = pointer(event, canvasRef.current)
-        setCoords([x - translateX, y - translateY])
+        setCoords([x - offset[0], y - offset[1]])
       }
       if (last) {
         // map to domain values if scales are given

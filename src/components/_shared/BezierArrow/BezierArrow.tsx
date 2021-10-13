@@ -2,13 +2,19 @@ import React from 'react'
 import ArrowHead from './ArrowHead'
 
 import { constructCurve } from './utils'
-import { BezierCoords } from './types'
 
 import _ from './BezierArrow.module.sass'
 
 interface Props {
-  coords: BezierCoords,
+  /** All coordinates necessary to define the position and shape of a Bezier curve */
+  coords: {
+    startCoords: [number, number],
+    endCoords: [number, number],
+    startBezierHandle: [number, number],
+    endBezierHandle: [number, number]
+  },
   drawArrowHead?: boolean,
+  /** Draw arrow heads on one end (`"start"` or `"end"`) or on both ends (`"both"`) */
   arrowHeadAnchor?: 'start' | 'end' | 'both',
   arrowHeadLength?: number,
   arrowHeadRotation?: number,
