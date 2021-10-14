@@ -22,9 +22,6 @@
   ],
   "dependencies": {
     "@babel/core": "^7.13.16",
-    "@fortawesome/fontawesome-svg-core": "^1.2.17",
-    "@fortawesome/free-solid-svg-icons": "^5.8.1",
-    "@fortawesome/react-fontawesome": "^0.1.4",
     "@juggle/resize-observer": "^3.3.1",
     "@storybook/addon-actions": "^6.2.9",
     "@storybook/addon-docs": "^6.2.9",
@@ -60,6 +57,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-feather": "^2.0.9",
     "react-leaflet": "^2.2.1",
     "react-leaflet-bing-v2": "^5.0.1",
     "react-scripts": "^3.4.4",
