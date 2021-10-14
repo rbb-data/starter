@@ -45,15 +45,15 @@
     "react-scripts": "^3.4.4"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^6.2.9",
-    "@storybook/addon-controls": "^6.2.9",
-    "@storybook/addon-docs": "^6.2.9",
-    "@storybook/addon-storysource": "^6.2.9",
-    "@storybook/addons": "^6.2.9",
-    "@storybook/preset-create-react-app": "^3.1.7",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-controls": "^6.3.12",
+    "@storybook/addon-docs": "^6.3.12",
+    "@storybook/addon-storysource": "^6.3.12",
+    "@storybook/addons": "^6.3.12",
+    "@storybook/preset-create-react-app": "^3.2.0",
     "@storybook/preset-typescript": "^3.0.0",
-    "@storybook/react": "^6.2.9",
-    "@storybook/theming": "^6.2.9",
+    "@storybook/react": "^6.3.12",
+    "@storybook/theming": "^6.3.12",
     "@types/chroma-js": "^2.1.0",
     "@types/d3-force": "^3.0.3",
     "@types/d3-scale": "^4.0.1",
@@ -64,7 +64,7 @@
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "sass": "^1.29.0",
-    "storybook": "^6.2.9",
+    "storybook": "^6.3.12",
     "typescript": "^3.9.7"
   }
 }
