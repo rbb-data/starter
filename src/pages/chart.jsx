@@ -30,7 +30,7 @@ function Chart() {
       <div style={{ width: '100%', border: '1px solid black', marginTop: '5px' }}>
         {Object.entries(dms)
           .filter(([key,]) => key.startsWith('margin'))
-          .map(([key, value]) => <span>{key}={value}<br/></span>)}
+          .map(([key, value]) => <span key={key}>{key}={value}<br/></span>)}
       </div>
     </>
   )
