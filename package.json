@@ -12,8 +12,7 @@
     "analyze": "npm run build && npm run analyze-without-build",
     "analyze-without-build": "source-map-explorer 'build/static/js/*.js'",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "deploy-storybook": "storybook-to-ghpages"
+    "build-storybook": "build-storybook"
   },
   "browserslist": [
     ">0.2%",
@@ -35,7 +34,6 @@
     "@storybook/preset-create-react-app": "^3.1.7",
     "@storybook/preset-typescript": "^3.0.0",
     "@storybook/react": "^6.2.9",
-    "@storybook/storybook-deployer": "^2.8.7",
     "@storybook/theming": "^6.2.9",
     "@types/chroma-js": "^2.1.0",
     "@types/d3-force": "^2.1.0",
