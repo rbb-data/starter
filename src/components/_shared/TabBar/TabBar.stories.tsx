@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import { withKnobs } from '@storybook/addon-knobs'
 import * as colors from 'global_styles/colors'
 import TabBar from './TabBar'
 
 export default {
   title: 'II Components/TabBar',
-  decorators: [withKnobs],
   component: TabBar,
 }
 

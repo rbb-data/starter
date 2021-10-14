@@ -36,8 +36,8 @@ rm -rf .storybook styleguide
 npm uninstall\
   storybook\
   @storybook/addon-actions\
+  @storybook/addon-controls\
   @storybook/addon-docs\
-  @storybook/addon-knobs\
   @storybook/addon-storysource\
   @storybook/addons\
   @storybook/preset-create-react-app\

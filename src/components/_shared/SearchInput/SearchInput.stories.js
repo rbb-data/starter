@@ -1,42 +1,45 @@
 import React from 'react'
-import { withKnobs, text, object, array } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import SearchInput from './SearchInput'
 
 export default {
   title: 'II Components/Search/SearchInput',
-  decorators: [withKnobs],
   component: SearchInput,
 }
 
-export const WithoutSuggestions = () => (
+export const WithoutSuggestions = (args) => (
   <SearchInput
-    value={text('value', '')}
-    placeholder={text('placeholder', 'Suchbegriff eingeben')}
+    {...args}
     onInput={action('onInput')}
     onReset={action('onReset')}
     onResult={action('onResult')}
   />
 )
 
-export const WithSimpleSuggestions = () => (
+WithoutSuggestions.args = {
+  value: '',
+  placeholder: 'Suchbegriff eingeben', 
+}
+
+export const WithSimpleSuggestions = (args) => (
   <SearchInput
-    value={text('value', 'A')}
-    placeholder={text('placeholder', 'Suchbegriff eingeben')}
-    suggestions={array('suggestions', ['Apple', 'Banana'])}
+    {...args}
     onInput={action('onInput')}
     onReset={action('onReset')}
     onResult={action('onResult')}
   />
 )
-export const WithFormatedFuggestions = () => (
+
+WithSimpleSuggestions.args = {
+  value: 'A',
+  placeholder: 'Suchbegriff eingeben', 
+  suggestions: ['Apple', 'Banana']
+}
+
+
+export const WithFormattedSuggestions = (args) => (
   <SearchInput
-    value={text('value', 'A')}
-    placeholder={text('placeholder', 'Suchbegriff eingeben')}
-    suggestions={object('suggestions', [
-      { value: 0, label: 'Apple' },
-      { value: 1, label: 'Banana' },
-    ])}
+    {...args}
     format={(suggestion) => '-> ' + suggestion.label}
     onInput={action('onInput')}
     onReset={action('onReset')}
@@ -44,11 +47,18 @@ export const WithFormatedFuggestions = () => (
   />
 )
 
-export const NothingFound = () => (
+WithFormattedSuggestions.args = {
+  value: 'A',
+  placeholder: 'Suchbegriff eingeben', 
+  suggestions: [
+    { value: 0, label: 'Apple' },
+    { value: 1, label: 'Banana' },
+  ]
+}
+
+export const NothingFound = (args) => (
   <SearchInput
-    value={text('value', 'shjdk')}
-    placeholder={text('placeholder', 'Suchbegriff eingeben')}
-    nothingFoundText={text('nothingFoundText', 'Nichts gefunden')}
+    {...args}
     suggestions={[]}
     onInput={action('onInput')}
     onReset={action('onReset')}
@@ -56,24 +66,38 @@ export const NothingFound = () => (
   />
 )
 
-export const WithCancelButton = () => (
+NothingFound.args = {
+  value: 'shjdk',
+  placeholder: 'Suchbegriff eingeben', 
+  nothingFoundText: 'Nichts gefunden'
+}
+
+export const WithCancelButton = (args) => (
   <SearchInput
-    value={text('value', 'Banana')}
+    {...args}
     buttonType='cancel'
-    placeholder={text('placeholder', 'Suchbegriff eingeben')}
     onInput={action('onInput')}
     onReset={action('onReset')}
     onResult={action('onResult')}
   />
 )
 
-export const WithDropdownButton = () => (
+WithCancelButton.args = {
+  value: 'Banana',
+  placeholder: 'Suchbegriff eingeben'
+}
+
+export const WithDropdownButton = (args) => (
   <SearchInput
-    value={text('value', '')}
+    {...args}
     buttonType='dropdown'
-    placeholder={text('placeholder', 'Suchbegriff eingeben')}
     onInput={action('onInput')}
     onReset={action('onReset')}
     onResult={action('onResult')}
   />
 )
+
+WithDropdownButton.args = {
+  value: '',
+  placeholder: 'Suchbegriff eingeben'
+}
