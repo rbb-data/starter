@@ -23,12 +23,12 @@ export default function BrandenburgCountiesMap(props) {
 
   const unselected = geometries
     .filter((area) => selectedAreas.indexOf(area.id) === -1)
-    .map((area) => <path {...makeProps(area)} className={_.County} />)
+    .map((area) => <path key={area.id} {...makeProps(area)} className={_.County} />)
 
   const selected = geometries
     .filter((area) => selectedAreas.indexOf(area.id) !== -1)
     .map((area) => (
-      <path {...makeProps(area)} className={`${_.County} ${_.selected}`} />
+      <path key={area.id} {...makeProps(area)} className={`${_.County} ${_.selected}`} />
     ))
 
   // the geometries.json was generated using mapshaper:
