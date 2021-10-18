@@ -1,21 +1,21 @@
-import React from 'react'
-import useFuseJsSearch from '../hooks/useFuseJsSearch'
-import useDefaultSearchProps from '../hooks/useDefaultSearchProps'
+import React from 'react';
+import useFuseJsSearch from '../hooks/useFuseJsSearch';
+import useDefaultSearchProps from '../hooks/useDefaultSearchProps';
 
-import SearchInput from '../../SearchInput/SearchInput'
-import { FuseOptions } from 'fuse.js'
+import SearchInput from '../../SearchInput/SearchInput';
+import { FuseOptions } from 'fuse.js';
 
 export interface SimpleSearchProps<T> {
-  list: T[]
+  list: T[];
   /** see https://fusejs.io/api/options.html */
-  fuseOptions: FuseOptions<T>
-  keepInputOnFocus?: boolean
-  format: (suggestion: T) => string
-  onResult: (result: T) => void
-  onReset: () => void
-  placeholder?: string
+  fuseOptions: FuseOptions<T>;
+  keepInputOnFocus?: boolean;
+  format: (suggestion: T) => string;
+  onResult: (result: T) => void;
+  onReset: () => void;
+  placeholder?: string;
   /** max number of results */
-  limit?: number
+  limit?: number;
 }
 /**
  * This is a basic example of how to use the SearchInput component
@@ -35,14 +35,14 @@ const SimpleSearch = <T extends unknown>({
     list,
     limit,
     fuseOptions
-  )
+  );
   const searchProps = useDefaultSearchProps({
     suggestions,
     setSearchString,
     format,
     onReset,
     onResult,
-  })
+  });
 
   return (
     <SearchInput
@@ -50,7 +50,7 @@ const SimpleSearch = <T extends unknown>({
       placeholder={placeholder}
       keepInputOnFocus={keepInputOnFocus}
     />
-  )
-}
+  );
+};
 
-export default SimpleSearch
+export default SimpleSearch;

@@ -1,38 +1,43 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-function useDropdownSearchProps ({ suggestions, setSearchString, format, onResult }) {
-  const [value, setValue] = useState('')
-  const [lastResult, setLastResult] = useState(null)
+function useDropdownSearchProps({
+  suggestions,
+  setSearchString,
+  format,
+  onResult,
+}) {
+  const [value, setValue] = useState('');
+  const [lastResult, setLastResult] = useState(null);
 
   return {
     value: value,
     suggestions: suggestions,
     buttonType: suggestions === null ? 'dropdown' : 'cancel',
     format: format,
-    onInput (value) {
+    onInput(value) {
       // update internal state
-      setValue(value)
+      setValue(value);
 
       // calll external handlers
-      setSearchString(value)
+      setSearchString(value);
     },
-    onReset () {
+    onReset() {
       // update internal state
-      setValue(lastResult)
+      setValue(lastResult);
 
       // calll external handlers
-      setSearchString(null)
+      setSearchString(null);
     },
-    onResult (result) {
+    onResult(result) {
       // update internal state
-      setLastResult(format(result))
-      setValue(format(result))
+      setLastResult(format(result));
+      setValue(format(result));
 
       // calll external handlers
-      setSearchString(null)
-      onResult(result)
-    }
-  }
+      setSearchString(null);
+      onResult(result);
+    },
+  };
 }
 
-export default useDropdownSearchProps
+export default useDropdownSearchProps;

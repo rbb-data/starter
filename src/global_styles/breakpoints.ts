@@ -1,1 +1,1 @@
-export const wide = 500
+export const wide = 500;

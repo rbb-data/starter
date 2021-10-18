@@ -1,18 +1,18 @@
-import React, { ReactNode } from 'react'
-import useFuseJsSearch from '../hooks/useFuseJsSearch'
-import useDropdownSearchProps from '../hooks/useDropdownSearchProps'
+import React, { ReactNode } from 'react';
+import useFuseJsSearch from '../hooks/useFuseJsSearch';
+import useDropdownSearchProps from '../hooks/useDropdownSearchProps';
 
-import SearchInput from '../../SearchInput/SearchInput'
-import { FuseOptions } from 'fuse.js'
+import SearchInput from '../../SearchInput/SearchInput';
+import { FuseOptions } from 'fuse.js';
 
 export interface DropdownSearchWithReactNodesProps<T> {
-  list: T[]
-  limit?: number
-  fuseOptions?: FuseOptions<T>
-  formatString: (result: T) => string
-  formatNode: (suggestion: T) => ReactNode
-  onResult: (result: T) => void
-  placeholder?: string
+  list: T[];
+  limit?: number;
+  fuseOptions?: FuseOptions<T>;
+  formatString: (result: T) => string;
+  formatNode: (suggestion: T) => ReactNode;
+  onResult: (result: T) => void;
+  placeholder?: string;
 }
 
 /**
@@ -30,7 +30,7 @@ const DropdownSearchWithReactNodes = <T extends unknown>({
   const { suggestions, setSearchString } = useFuseJsSearch(list, limit, {
     ...fuseOptions,
     returnAllOnEmptyString: true,
-  })
+  });
 
   const dropdownSearchProps = useDropdownSearchProps({
     suggestions,
@@ -38,15 +38,15 @@ const DropdownSearchWithReactNodes = <T extends unknown>({
     // useDropdownSearchProps expects `format` to return a string
     format: formatString,
     onResult,
-  })
+  });
 
   // set our own format prop not the one useDropdownSearchProps uses
   const searchProps = {
     ...dropdownSearchProps,
     format: formatNode,
-  }
+  };
 
-  return <SearchInput {...searchProps} placeholder={placeholder} />
-}
+  return <SearchInput {...searchProps} placeholder={placeholder} />;
+};
 
-export default DropdownSearchWithReactNodes
+export default DropdownSearchWithReactNodes;

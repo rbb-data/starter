@@ -1,12 +1,12 @@
-import React from 'react'
-import { FunctionComponent } from 'react'
-import { darkGrey } from 'global_styles/colors'
+import React from 'react';
+import { FunctionComponent } from 'react';
+import { darkGrey } from 'global_styles/colors';
 
 export interface TitleProps {
   children: {
-    title: string
-    subtitle: string
-  }
+    title: string;
+    subtitle: string;
+  };
 }
 /**
  * Der Titlel für jede Grafik oder Interactive
@@ -40,6 +40,6 @@ const Header: FunctionComponent<TitleProps> = (props) => {
         }
       `}</style>
     </header>
-  )
-}
-export default Header
+  );
+};
+export default Header;

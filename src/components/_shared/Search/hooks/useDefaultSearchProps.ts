@@ -1,9 +1,15 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-function useDefaultSearchProps ({ suggestions, setSearchString, format, onReset, onResult }) {
-  const [value, setValue] = useState('')
-  const [hasResult, setHasResult] = useState(false)
-  const showCancel = hasResult || suggestions
+function useDefaultSearchProps({
+  suggestions,
+  setSearchString,
+  format,
+  onReset,
+  onResult,
+}) {
+  const [value, setValue] = useState('');
+  const [hasResult, setHasResult] = useState(false);
+  const showCancel = hasResult || suggestions;
 
   return {
     value: value,
@@ -11,33 +17,33 @@ function useDefaultSearchProps ({ suggestions, setSearchString, format, onReset,
     buttonType: showCancel ? 'cancel' : 'search',
     keepInputOnFocus: true,
     format: format,
-    onInput (value) {
+    onInput(value) {
       // update internal state
-      setValue(value)
-      setHasResult(false)
+      setValue(value);
+      setHasResult(false);
 
       // calll external handlers
-      setSearchString(value)
+      setSearchString(value);
     },
-    onReset () {
+    onReset() {
       // update internal state
-      setValue('')
-      setHasResult(false)
+      setValue('');
+      setHasResult(false);
 
       // calll external handlers
-      setSearchString(null)
-      onReset()
+      setSearchString(null);
+      onReset();
     },
-    onResult (result) {
+    onResult(result) {
       // update internal state
-      setValue(format(result))
-      setHasResult(true)
+      setValue(format(result));
+      setHasResult(true);
 
       // calll external handlers
-      setSearchString(null)
-      onResult(result)
-    }
-  }
+      setSearchString(null);
+      onResult(result);
+    },
+  };
 }
 
-export default useDefaultSearchProps
+export default useDefaultSearchProps;

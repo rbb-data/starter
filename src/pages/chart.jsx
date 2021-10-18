@@ -1,11 +1,11 @@
-import useChartDimensions from 'lib/hooks/useChartDimensions'
+import useChartDimensions from 'lib/hooks/useChartDimensions';
 
 function Chart() {
   const [ref, dms] = useChartDimensions({
     marginTop: 40,
     marginLeft: 10,
-    marginRight: 50
-  })
+    marginRight: 50,
+  });
 
   return (
     <>
@@ -22,18 +22,26 @@ function Chart() {
               fill="lavender"
             />
             <text x="0" y="0" dy="1em">
-              Chart (boundedWidth={dms.boundedWidth}/boundedHeight={dms.boundedHeight})
+              Chart (boundedWidth={dms.boundedWidth}/boundedHeight=
+              {dms.boundedHeight})
             </text>
           </g>
         </svg>
       </div>
-      <div style={{ width: '100%', border: '1px solid black', marginTop: '5px' }}>
+      <div
+        style={{ width: '100%', border: '1px solid black', marginTop: '5px' }}
+      >
         {Object.entries(dms)
-          .filter(([key,]) => key.startsWith('margin'))
-          .map(([key, value]) => <span key={key}>{key}={value}<br/></span>)}
+          .filter(([key]) => key.startsWith('margin'))
+          .map(([key, value]) => (
+            <span key={key}>
+              {key}={value}
+              <br />
+            </span>
+          ))}
       </div>
     </>
-  )
+  );
 }
 
-export default Chart
+export default Chart;

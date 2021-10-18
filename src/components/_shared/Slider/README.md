@@ -5,15 +5,16 @@ backward and forward throgh content.
 
 ## Parameters
 
-| Param | Type | Description | Default |
-| --- | --- | --- | --- |
-| class | `String` | A className for the component | ''
-| onForwardNavigation | `function` | called after user did navigate forward | `() => {}`
-| onBackwardNavigation | `function` | called after user did navigate backward | `() => {}`
-| previousSlide | `preact Component` | used during slide animation - set to null if backward navigation is not possible | null
-| currentSlide | `preact Component` | the currently visible slide | null
-| nextSlide | `preact Component` | used during slide animation - set to null if forward navigation is not possible | null
-| canHaveFocus | `Boolean` | when slider is focusable user can navigate with keyboard | true
+| Param                | Type               | Description                                                                      | Default    |
+| -------------------- | ------------------ | -------------------------------------------------------------------------------- | ---------- |
+| class                | `String`           | A className for the component                                                    | ''         |
+| onForwardNavigation  | `function`         | called after user did navigate forward                                           | `() => {}` |
+| onBackwardNavigation | `function`         | called after user did navigate backward                                          | `() => {}` |
+| previousSlide        | `preact Component` | used during slide animation - set to null if backward navigation is not possible | null       |
+| currentSlide         | `preact Component` | the currently visible slide                                                      | null       |
+| nextSlide            | `preact Component` | used during slide animation - set to null if forward navigation is not possible  | null       |
+| canHaveFocus         | `Boolean`          | when slider is focusable user can navigate with keyboard                         |  true      |
+
 ## Example
 
 **Code**

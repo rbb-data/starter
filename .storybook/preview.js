@@ -1,16 +1,16 @@
-import React from 'react'
-import rbb24Theme from './rbb24Theme'
-import 'global_styles/index.sass'
+import React from 'react';
+import rbb24Theme from './rbb24Theme';
+import 'global_styles/index.sass';
 
 const withInterstateFont = (Story, context) => {
   return (
     <div style={{ fontFamily: 'Interstate' }}>
       <Story {...context} />
     </div>
-  )
-}
+  );
+};
 
-export const decorators = [withInterstateFont]
+export const decorators = [withInterstateFont];
 export const parameters = {
   viewMode: 'docs',
   options: {
@@ -23,4 +23,4 @@ export const parameters = {
   docs: {
     theme: rbb24Theme,
   },
-}
+};

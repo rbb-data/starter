@@ -1,12 +1,12 @@
-import { Meta } from '@storybook/addon-docs/blocks'
+import { Meta } from '@storybook/addon-docs/blocks';
 
-import * as colors from '../src/global_styles/colors.ts'
-import * as gradients from '../src/global_styles/gradients.ts'
+import * as colors from '../src/global_styles/colors.ts';
+import * as gradients from '../src/global_styles/gradients.ts';
 
-import ColorBoxes from '../src/components/_shared/ColorBoxes/ColorBoxes'
-import GradientBoxes from '../src/components/_shared/ColorBoxes/GradientBoxes'
+import ColorBoxes from '../src/components/_shared/ColorBoxes/ColorBoxes';
+import GradientBoxes from '../src/components/_shared/ColorBoxes/GradientBoxes';
 
-<Meta title='I Style Guide/1 Colors' />
+<Meta title="I Style Guide/1 Colors" />
 
 # Colors
 
@@ -26,8 +26,8 @@ There are miltiple shades so you can adjust to a background or use a darker colo
 A common pattern would be to use a darker blue as an outline for a shape filled with a lighter one.
 
 <ColorBoxes
-  title='default color'
-  description='default color for single color chart'
+  title="default color"
+  description="default color for single color chart"
   colors={{
     default: { colors: [colors.blue] },
     shades: {
@@ -55,9 +55,9 @@ If you don't know which colors to pick just go from left to right.
 
 <div>
   <ColorBoxes
-    title='category colors'
-    description='qualitive color palette'
-    limit='number of categories: '
+    title="category colors"
+    description="qualitive color palette"
+    limit="number of categories: "
     colors={{
       default: {
         colors: [
@@ -101,11 +101,11 @@ If you don't know which colors to pick just go from left to right.
     }}
   />
   <ColorBoxes
-    title='gender colors'
+    title="gender colors"
     colors={[colors.female, colors.male, colors.divers]}
   />
   <ColorBoxes
-    title='changes'
+    title="changes"
     colors={{
       increase: colors.orange,
       unchanged: colors.darkBeige,
@@ -130,20 +130,20 @@ Use for two dimesional data. Exeamples for when to use a diverging scale:
 
 <GradientBoxes
   diverging
-  title='Changes'
-  description='from increase over unchanged to decrease'
+  title="Changes"
+  description="from increase over unchanged to decrease"
   scale={gradients.diverging.changes}
 />
 <GradientBoxes
   diverging
-  title='cyan / yellow'
-  description='diverging scale'
+  title="cyan / yellow"
+  description="diverging scale"
   scale={gradients.diverging.cyanYellow}
 />
 <GradientBoxes
   diverging
-  title='green / magenta'
-  description='diverging scale'
+  title="green / magenta"
+  description="diverging scale"
   scale={gradients.diverging.greenMagenta}
 />
 
@@ -152,48 +152,48 @@ Use for two dimesional data. Exeamples for when to use a diverging scale:
 Use for one dimesional data.
 
 <GradientBoxes
-  title='cyan-blue-scale'
-  description='linear scale'
+  title="cyan-blue-scale"
+  description="linear scale"
   scale={gradients.linear.cyanBlue}
 />
 <GradientBoxes
-  title='yellow-green-scale'
-  description='linear scale'
+  title="yellow-green-scale"
+  description="linear scale"
   scale={gradients.linear.yellowGreen}
 />
 <GradientBoxes
-  title='yellow-magenta-scale'
-  description='linear scale'
+  title="yellow-magenta-scale"
+  description="linear scale"
   scale={gradients.linear.yellowMagenta}
 />
 <GradientBoxes
-  title='NO2 scale'
-  description='NO2 values from 0 to 100'
+  title="NO2 scale"
+  description="NO2 values from 0 to 100"
   scale={gradients.linear.no2}
 />
 <ColorBoxes
-title='UI colors'
-colors={{
-'rbb brand color – for primary actions (read means clikacble)': colors.red,
-'outline for red elements': colors.bordeaux,
-'for secondary buttons or unselected tabs': colors.lightGrey,
-'for text and as background for buttons or selected tabs': colors.darkGrey,
-'for text': 'black',
-}}
+  title="UI colors"
+  colors={{
+    'rbb brand color – for primary actions (read means clikacble)': colors.red,
+    'outline for red elements': colors.bordeaux,
+    'for secondary buttons or unselected tabs': colors.lightGrey,
+    'for text and as background for buttons or selected tabs': colors.darkGrey,
+    'for text': 'black',
+  }}
 />
 <ColorBoxes
-title='background colors'
-colors={{
-'background for toolboxes and infoboxes': colors.backgroundGrey,
-'background for maps and charts': colors.beige,
-'like light grey but in combination with beige': colors.darkBeige,
-}}
+  title="background colors"
+  colors={{
+    'background for toolboxes and infoboxes': colors.backgroundGrey,
+    'background for maps and charts': colors.beige,
+    'like light grey but in combination with beige': colors.darkBeige,
+  }}
 />
 
 ## more colors
 
 <ColorBoxes
-  title='maps'
+  title="maps"
   colors={{
     mapBackground: colors.beige,
     lightWaterBlue: colors.lightWaterBlue,
@@ -201,7 +201,7 @@ colors={{
   }}
 />
 <ColorBoxes
-  title='parties'
+  title="parties"
   colors={{
     spd: colors.spd,
     linke: colors.linke,

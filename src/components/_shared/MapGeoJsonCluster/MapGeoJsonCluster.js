@@ -1,26 +1,26 @@
-import { MapLayer, withLeaflet } from 'react-leaflet'
-import PropTypes from 'prop-types'
-import Chroma from 'chroma-js'
-import L from 'leaflet'
-import { featureToLatLng } from 'lib/geoJsonCompat'
-import { red } from 'global_styles/colors'
-import _ from './MapGeoJsonCluster.module.sass'
+import { MapLayer, withLeaflet } from 'react-leaflet';
+import PropTypes from 'prop-types';
+import Chroma from 'chroma-js';
+import L from 'leaflet';
+import { featureToLatLng } from 'lib/geoJsonCompat';
+import { red } from 'global_styles/colors';
+import _ from './MapGeoJsonCluster.module.sass';
 
-import 'leaflet.markercluster'
+import 'leaflet.markercluster';
 
-const scale = Chroma.scale([red, 'black']).domain([2, 150])
+const scale = Chroma.scale([red, 'black']).domain([2, 150]);
 
 function getSize(childCount) {
-  const radius = childCount * 0.5
-  if (radius < 8) return 8
-  if (radius > 48) return 48
+  const radius = childCount * 0.5;
+  if (radius < 8) return 8;
+  if (radius > 48) return 48;
 
-  return radius
+  return radius;
 }
 
 function iconCreateFunction(cluster) {
-  const childCount = cluster.getChildCount()
-  const size = getSize(childCount)
+  const childCount = cluster.getChildCount();
+  const size = getSize(childCount);
 
   return L.divIcon({
     html: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +39,7 @@ function iconCreateFunction(cluster) {
     </svg>`,
     iconSize: [20, 20],
     className: _.divIcon,
-  })
+  });
 }
 
 function markerCreateFunction(feature) {
@@ -49,7 +49,7 @@ function markerCreateFunction(feature) {
     interactive: false,
     fillColor: 'red',
     fillOpacity: 1,
-  })
+  });
 }
 
 /**
@@ -69,20 +69,20 @@ class MapGeoJsonCluster extends MapLayer {
     leaflet,
     ...options
   }) {
-    const group = L.markerClusterGroup({ iconCreateFunction, ...options })
-    const markers = features.map(markerCreateFunction)
-    group.addLayers(markers)
+    const group = L.markerClusterGroup({ iconCreateFunction, ...options });
+    const markers = features.map(markerCreateFunction);
+    group.addLayers(markers);
 
-    return group
+    return group;
   }
 
   updateLeafletElement(fromProps, toProps) {
-    const { features, markerCreateFunction } = toProps
+    const { features, markerCreateFunction } = toProps;
 
-    this.leafletElement.clearLayers()
+    this.leafletElement.clearLayers();
 
-    const markers = features.map(markerCreateFunction)
-    this.leafletElement.addLayers(markers)
+    const markers = features.map(markerCreateFunction);
+    this.leafletElement.addLayers(markers);
   }
 }
 
@@ -93,11 +93,11 @@ MapGeoJsonCluster.propTypes = {
   markerCreateFunction: PropTypes.func,
   /** a function that get's the cluster as an argument and should return a leaflet icon */
   iconCreateFunction: PropTypes.func,
-}
+};
 
 MapGeoJsonCluster.defaultProps = {
   iconCreateFunction: iconCreateFunction,
   markerCreateFunction: markerCreateFunction,
-}
+};
 
-export default withLeaflet(MapGeoJsonCluster)
+export default withLeaflet(MapGeoJsonCluster);

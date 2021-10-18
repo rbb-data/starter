@@ -1,10 +1,10 @@
-import { ReactNode } from 'react'
+import { ReactNode } from 'react';
 
 interface Props {
-  children: () => ReactNode
+  children: () => ReactNode;
 }
 const MDXWrapper = (props: Props) => {
-  return props.children()
-}
+  return props.children();
+};
 
-export default MDXWrapper
+export default MDXWrapper;

@@ -1,20 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-const LARGE_VALUE = 100000
+const LARGE_VALUE = 100000;
 
 interface Props {
-  curvePath: string,
-  coords: [number, number],
-  rotation?: number,
-  length?: number
+  curvePath: string;
+  coords: [number, number];
+  rotation?: number;
+  length?: number;
 }
 
-function ArrowHead({
-  curvePath,
-  coords,
-  rotation = 30,
-  length = 10
-}: Props) {
+function ArrowHead({ curvePath, coords, rotation = 30, length = 10 }: Props) {
   return (
     <g>
       {[1, -1].map((direction) => (
@@ -26,7 +21,7 @@ function ArrowHead({
         />
       ))}
     </g>
-  )
+  );
 }
 
-export default ArrowHead
+export default ArrowHead;
