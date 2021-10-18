@@ -26,7 +26,7 @@ function DraggableCircle({
   useDrag(handleDrag, { target: ref });
   return (
     <circle
-      className={className}
+      className={`${_.draggable} ${className}`}
       ref={ref}
       cx={coords[0]}
       cy={coords[1]}

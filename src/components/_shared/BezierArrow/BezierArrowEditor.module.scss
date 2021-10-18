@@ -13,4 +13,8 @@
   .handle {
     fill: currentColor;
   }
+
+  .draggable:hover {
+    cursor: pointer;
+  }
 }
