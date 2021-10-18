@@ -45,5 +45,5 @@ Basic.args = {
     </div>
   ),
   placeholder: 'auswählen',
-  onResult: () => {}
+  onResult: () => {},
 };
