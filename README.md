@@ -88,3 +88,7 @@ In case you overwrote something by accident, don't panic: There are frequent bac
 **Note:** You need a certificate to access the server. If you don't have one yet your colleagues will gladly help you out.
 
 **Note:** The script uses [rsync](https://rsync.samba.org/) to efficiently synchronize changed between in your local build and the target folder. The version of `rsync` that ships with macOS is out of date, so please install a recent version via [homebrew](https://brew.sh/) or [nix](https://nixos.org/guides/install-nix.html).
+
+### `npm run lint`
+
+Runs code formatting tools including [ESLint](https://eslint.org) [(configured for next.js)](https://nextjs.org/docs/basic-features/eslint), [stylelint](https://stylelint.io) and [prettier](https://prettier.io).
