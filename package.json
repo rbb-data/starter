@@ -8,12 +8,14 @@
     "start": "next start",
     "build": "next build",
     "export": "next export",
-    "lint": "next lint",
     "deploy": "npm run build && npm run export && rsync -srvP --rsync-path='sudo rsync' -e 'ssh -i ~/.ssh/rbb-data.pem' out/ linux@rbb-dj-dev.app.rbb-cloud.de:/var/www/{project-name}/",
     "analyze": "npm run build && npm run analyze-without-build",
     "analyze-without-build": "source-map-explorer 'build/static/js/*.js'",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "lint": "npm run lint:eslint; npm run lint:prettier",
+    "lint:eslint": "next lint --fix",
+    "lint:prettier": "prettier --write ."
   },
   "browserslist": [
     ">0.2%",
@@ -63,6 +65,8 @@
     "@types/react-dom": "^17.0.9",
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.2",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "2.2.1",
     "sass": "^1.29.0",
     "typescript": "^4.4.4"
   }
