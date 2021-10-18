@@ -25,4 +25,6 @@ Basic.args = {
   limit: 10,
   fuseOptions: { keys: ['label'] },
   format: (suggestion) => suggestion.label,
+  onResult: () => {},
+  onReset: () => {}
 };

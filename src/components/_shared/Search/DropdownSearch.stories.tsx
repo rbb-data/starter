@@ -26,4 +26,5 @@ Basic.args = {
   fuseOptions: { keys: ['label'] },
   format: (suggestion) => suggestion.label,
   placeholder: 'auswählen',
+  onResult: () => {}
 };

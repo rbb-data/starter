@@ -25,4 +25,6 @@ export const Basic: Story = <T extends unknown>(
 };
 Basic.args = {
   placeholder: 'nach Ort suchern',
+  onResult: () => {},
+  onReset: () => {}
 };
