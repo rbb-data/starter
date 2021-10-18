@@ -34,6 +34,7 @@ rm .github/workflows/storybook.yml
 [ "$(ls -A .github)" ] || rmdir .github
 rm -rf .storybook styleguide
 npm uninstall\
+  @storybook/addon-a11y\
   @storybook/addon-actions\
   @storybook/addon-essentials\
   @storybook/addon-links\
