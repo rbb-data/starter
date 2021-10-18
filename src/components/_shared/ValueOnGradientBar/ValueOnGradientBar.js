@@ -34,7 +34,7 @@ const ValueOnGradientBar = (props) => {
 
       const normalizedThreshold = (threshold / maxValue) * width;
       const hasHighlightedValue = highlightedValue !== undefined;
-      const normalizedHighligedValue =
+      const normalizedHighlightedValue =
         highlightedValue !== undefined &&
         parseInt((highlightedValue / maxValue) * width);
 
@@ -66,8 +66,8 @@ const ValueOnGradientBar = (props) => {
 
       ctx.beginPath();
       ctx.fillColor = 'black';
-      ctx.moveTo(normalizedHighligedValue, 0);
-      ctx.lineTo(normalizedHighligedValue, canvasHeight);
+      ctx.moveTo(normalizedHighlightedValue, 0);
+      ctx.lineTo(normalizedHighlightedValue, canvasHeight);
       ctx.lineWidth = 2;
       ctx.stroke();
     }

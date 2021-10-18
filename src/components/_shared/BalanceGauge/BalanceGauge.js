@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import style from './BalanceGauge.module.sass';
 
 /**
- * Renders an info gauge that's useful for visualizing balances between two dimesions:
+ * Renders an info gauge that's useful for visualizing balances between two dimensions:
  * You can imagine it like this:
  *
  *        ⌄

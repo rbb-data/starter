@@ -9,8 +9,8 @@ interface Props {
   scale: Scale;
 }
 const GradientBoxes = (props: Props) => {
-  const initalSteps = 7;
-  const [steps, setSteps] = useState(initalSteps);
+  const initialSteps = 7;
+  const [steps, setSteps] = useState(initialSteps);
   const colors = props.scale.colors(steps);
 
   return (

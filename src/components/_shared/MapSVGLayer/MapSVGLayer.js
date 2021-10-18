@@ -28,7 +28,7 @@ function SVG(props) {
     const updateMapState = (e) => {
       const topLeft = map.containerPointToLayerPoint([0, 0]);
       L.DomUtil.setPosition(svgRef.current, topLeft);
-      // make shure to rerender for current map state
+      // make sure to rerender for current map state
       forceUpdate();
     };
 
@@ -36,7 +36,7 @@ function SVG(props) {
     return () => {
       map.off('moveend', updateMapState);
     };
-    // forceUpdate is a hack to trigger a rerender but it will not change so we dont neet it as dependency here
+    // forceUpdate is a hack to trigger a rerender but it will not change so we don't need it as dependency here
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map]);
 

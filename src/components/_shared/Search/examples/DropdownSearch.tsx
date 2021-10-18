@@ -1,7 +1,6 @@
 import React from 'react';
 import useFuseJsSearch from '../hooks/useFuseJsSearch';
 import useDropdownSearchProps from '../hooks/useDropdownSearchProps';
-import PropTypes from 'prop-types';
 
 import SearchInput from '../../SearchInput/SearchInput';
 import { FuseOptions } from 'fuse.js';

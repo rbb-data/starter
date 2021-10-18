@@ -21,7 +21,7 @@ function App(props) {
     fetchMarkers();
   }, []);
   // ⬆️ the second parameter to useEffect are its dependencies
-  //  if the array is empty it runs only once otherwise it runs when depencies change
+  //  if the array is empty it runs only once otherwise it runs when dependencies change
 
   return (
     <div className={_.app}>

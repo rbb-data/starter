@@ -1,6 +1,6 @@
 # Balance Gauge
 
-Renders an info gauge that's useful for visualizing balances between two dimesions
+Renders an info gauge that's useful for visualizing balances between two dimensions
 
 ## Parameters
 

@@ -54,7 +54,7 @@ export interface Props {
   count: number;
   /** Calculate the properties of the svg circle based on the point and its index.
    * *You could even overwrite the position. See https://developer.mozilla.org/en-US/docs/Web/SVG/Element/circle
-   * for what you can retrun as svg circle props*
+   * for what you can return as svg circle props*
    */
   dotProps?: (point: Point, idx: number) => React.SVGProps<SVGCircleElement>;
 }

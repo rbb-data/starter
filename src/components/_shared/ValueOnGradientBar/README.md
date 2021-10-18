@@ -28,7 +28,7 @@ npm i chroma-js
 **Code**
 
 ```jsx
-const gradienBarProps = {
+const gradientBarProps = {
   maxValue: 80,
   highlightedValue: 26,
   unit: 'μg/m³',
@@ -37,7 +37,7 @@ const gradienBarProps = {
   threshold: thresholdFilter.threshold
 }
 
-<ValueOnGradientBar class={_.graph} {...gradienBarProps} />
+<ValueOnGradientBar class={_.graph} {...gradientBarProps} />
 ```
 
 **Screenshot**

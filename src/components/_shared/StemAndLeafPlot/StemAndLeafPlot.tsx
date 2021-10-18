@@ -16,7 +16,7 @@ interface StemAndLeafPlotProps<T> {
   threshold?: number;
   className?: string;
   /** Chromajs colorScale
-   *  this compoent will set the domain of the scale from 0 to maxValue
+   *  this component will set the domain of the scale from 0 to maxValue
    *  this is needed so the colors of the circles match the gradient from the canvas
    */
   colorScale?: Scale;

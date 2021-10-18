@@ -5,14 +5,14 @@ import _ from './Slider.module.sass';
 
 /**
  * Adds prev next icons around provided content and provides functions for navigating
- * backward and forward throgh content (on mobile with swipe gesture).
+ * backward and forward through content (on mobile with swipe gesture).
  */
 export default class Slider extends Component {
   static propTypes = {
-    /** an array of render funtions for the prevoius current and next slide
+    /** an array of render functions for the previous current and next slide
      *  in that order.
      *
-     *  return null for the previous or next slide if you want to dissable backward
+     *  return null for the previous or next slide if you want to disable backward
      *  or forward navigation
      */
     children: PropTypes.arrayOf(PropTypes.func),

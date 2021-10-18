@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
 
-import PlayButton from 'components/_shared/PlayButton/PlayButton';
-
 function Index() {
   const PAGES = [
     { url: 'graphic', title: 'Example of a complete graphic (Header+Chart)' },
@@ -22,7 +20,6 @@ function Index() {
           </li>
         ))}
       </ul>
-      <PlayButton />
     </>
   );
 }

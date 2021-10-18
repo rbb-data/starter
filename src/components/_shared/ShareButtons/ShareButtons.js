@@ -74,7 +74,7 @@ WhatsAppButton.propTypes = {
 };
 
 /**
- * Componen to add social share buttons
+ * Component to add social share buttons
  * **NOTE**: The WhatsApp button is only visible on screens that are less than 600px wide
  * @param {*} props
  */

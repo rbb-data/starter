@@ -22,7 +22,7 @@ function useDefaultSearchProps({
       setValue(value);
       setHasResult(false);
 
-      // calll external handlers
+      // call external handlers
       setSearchString(value);
     },
     onReset() {
@@ -30,7 +30,7 @@ function useDefaultSearchProps({
       setValue('');
       setHasResult(false);
 
-      // calll external handlers
+      // call external handlers
       setSearchString(null);
       onReset();
     },
@@ -39,7 +39,7 @@ function useDefaultSearchProps({
       setValue(format(result));
       setHasResult(true);
 
-      // calll external handlers
+      // call external handlers
       setSearchString(null);
       onResult(result);
     },

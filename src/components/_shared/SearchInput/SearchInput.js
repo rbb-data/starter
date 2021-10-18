@@ -163,8 +163,8 @@ const SearchInput = (props) => {
             {suggestions.map((suggestion, i) => (
               <li
                 key={i}
-                // this is needed to prevent the blur event on the input beeing called
-                // before we select a suggestion. Becuase we might clear the suggestions
+                // this is needed to prevent the blur event on the input being called
+                // before we select a suggestion. Because we might clear the suggestions
                 // in the blur event and then a click would not be triggered
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => {
@@ -198,7 +198,7 @@ SearchInput.propTypes = {
 
   /** You can set different button types that have different actions
    *
-   * - search: magnifining class; when clicked calls onResult with the selected suggestion
+   * - search: magnifying glass; when clicked calls onResult with the selected suggestion
    * - dropdown: triangle; when clicked focuses the input and calls onInput
    * - cancel: cross; when clicked clears the input and calls onReset
    */

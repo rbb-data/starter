@@ -8,11 +8,11 @@ type ColorList =
       [name: string]: string;
     }
   | [string];
-interface Palletes {
-  [pallete: string]: { colors: ColorList; description?: string };
+interface Palettes {
+  [palette: string]: { colors: ColorList; description?: string };
 }
 
-const isColorList = (value: ColorList | Palletes): value is ColorList => {
+const isColorList = (value: ColorList | Palettes): value is ColorList => {
   return typeof Object.values(value)[0] === 'string';
 };
 
@@ -20,20 +20,20 @@ interface Props {
   title: string;
   description: string;
   limit?: string;
-  colors: ColorList | Palletes;
+  colors: ColorList | Palettes;
 }
 const ColorBoxes = (props: Props) => {
-  const palletes: Palletes = isColorList(props.colors)
+  const palettes: Palettes = isColorList(props.colors)
     ? { default: { colors: props.colors } }
     : props.colors;
-  const palletNames = Object.keys(palletes);
-  const [paletteName, setPalleteName] = useState(palletNames[0]);
-  const currentPallete = palletes[paletteName];
-  const [limit, setLimit] = useState(Object.keys(currentPallete.colors).length);
+  const palletNames = Object.keys(palettes);
+  const [paletteName, setPaletteName] = useState(palletNames[0]);
+  const currentPalette = palettes[paletteName];
+  const [limit, setLimit] = useState(Object.keys(currentPalette.colors).length);
   const colorArray: { color: string; info?: string }[] =
-    currentPallete.colors instanceof Array
-      ? currentPallete.colors.map((color) => ({ color }))
-      : Object.entries(currentPallete.colors).map(([info, color]) => ({
+    currentPalette.colors instanceof Array
+      ? currentPalette.colors.map((color) => ({ color }))
+      : Object.entries(currentPalette.colors).map(([info, color]) => ({
           info,
           color,
         }));
@@ -48,10 +48,10 @@ const ColorBoxes = (props: Props) => {
       </figcaption>
       {palletNames.length > 1 && (
         <TabBar
-          title="select pallete"
+          title="select palette"
           selectedTab={paletteName}
           tabs={palletNames}
-          onChange={setPalleteName}
+          onChange={setPaletteName}
         />
       )}
       {props.limit && (
@@ -73,7 +73,7 @@ const ColorBoxes = (props: Props) => {
           </li>
         ))}
       </ul>
-      <p>{currentPallete.description}</p>
+      <p>{currentPalette.description}</p>
       <label>
         copy for datawrapper import:{' '}
         <input

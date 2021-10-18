@@ -18,8 +18,8 @@ Basic.args = {
 
 export const WithCustomFormat = () => {
   const options = [
-    { firstname: 'Tina', lastname: 'Klein' },
-    { firstname: 'Kim', lastname: 'Frank' },
+    { firstName: 'Tina', lastName: 'Klein' },
+    { firstName: 'Kim', lastName: 'Frank' },
   ];
   const active = options[0];
 
@@ -28,7 +28,7 @@ export const WithCustomFormat = () => {
       name={'input2'}
       options={options}
       active={active}
-      format={(option) => `${option.firstname}.${option.lastname}`}
+      format={(option) => `${option.firstName}.${option.lastName}`}
       onChange={action('onChange')}
     />
   );

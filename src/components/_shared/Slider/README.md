@@ -1,7 +1,7 @@
 # Slider
 
 Adds prev next icons around provided content and provides functions for navigating
-backward and forward throgh content.
+backward and forward through content.
 
 ## Parameters
 
@@ -24,7 +24,7 @@ const previousLocation = locations[index - 1]
 const currentLocation = locations[index]
 const nextLocation = locations[index + 1]
 
-const silderProps = {
+const sliderProps = {
   onForwardNavigation: () => {
     this.context.actions.selectLocation({ byIndex: index + 1 })
   },
@@ -37,5 +37,5 @@ const silderProps = {
   canHaveFocus: !isTouchEnabled
 }
 
-<Slider {...silderProps} />
+<Slider {...sliderProps} />
 ```

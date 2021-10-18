@@ -8,7 +8,7 @@ that are reused in different rbb-data projects.
 ### Structure
 
 _Components should not depend on any global variables such as `context` or stores._  
-An exeption to this rule are components that rely on the [context provided by the react-leaflet Map component](https://react-leaflet.js.org/docs/en/intro.html#component-context). Those Components names should be prepended with Map (e.g. MapSearchResultMarker) and state this dependency in the `README.md`
+An exception to this rule are components that rely on the [context provided by the react-leaflet Map component](https://react-leaflet.js.org/docs/en/intro.html#component-context). Those Components names should be prepended with Map (e.g. MapSearchResultMarker) and state this dependency in the `README.md`
 
 #### index.js
 

@@ -81,7 +81,7 @@ const LineChartWithDotSwarm: React.FC<Props> = ({
   const maxIndex = values.length - 1;
   const currentIndex = Math.round(selected);
 
-  // render twice initally so we are shure to have a ref to our svg path
+  // render twice initially so we are sure to have a ref to our svg path
   useEffect(() => {
     setIsInitialRender(false);
   }, [isInitialRender]);
@@ -131,7 +131,7 @@ const LineChartWithDotSwarm: React.FC<Props> = ({
         d={historyLine(values) || ''}
         ref={svgLineRef}
         stroke={color}
-        // hack to aniname line drawing:
+        // hack to animate line drawing:
         strokeDasharray={`${lineLength} ${lineLength}`}
         strokeDashoffset={lineLength - lineLength * animationProgress}
       />

@@ -1,5 +1,5 @@
 // This has the same values as ./colors.sass but exports the variables for use in js
-// maybe we could write a script that automaticly converts one to the other…
+// maybe we could write a script that automatically converts one to the other…
 
 // UI colors
 export const red = '#e31818';
@@ -45,12 +45,10 @@ export const male = '#00685c';
 export const divers = '#DB99EA';
 
 // map colors
-
 export const lightWaterBlue = '#86c6ed';
 export const darkWaterBlue = '#266ca3';
 
 // party colors
-
 export const spd = '#e31818';
 export const linke = '#be3ca5';
 export const cdu = '#000';

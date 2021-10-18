@@ -18,14 +18,14 @@ function useDropdownSearchProps({
       // update internal state
       setValue(value);
 
-      // calll external handlers
+      // call external handlers
       setSearchString(value);
     },
     onReset() {
       // update internal state
       setValue(lastResult);
 
-      // calll external handlers
+      // call external handlers
       setSearchString(null);
     },
     onResult(result) {
@@ -33,7 +33,7 @@ function useDropdownSearchProps({
       setLastResult(format(result));
       setValue(format(result));
 
-      // calll external handlers
+      // call external handlers
       setSearchString(null);
       onResult(result);
     },

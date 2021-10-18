@@ -72,7 +72,7 @@ MapSelectableMarker.propTypes = {
   fillColor: PropTypes.string,
   /** outline color   */
   strokeColor: PropTypes.string,
-  /** wheater to draw outlines in deselected state */
+  /** whether to draw outlines in deselected state */
   hasStroke: PropTypes.bool,
 };
 

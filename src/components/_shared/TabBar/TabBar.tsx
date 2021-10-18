@@ -18,7 +18,7 @@ interface Props<T> {
   tabs: T[];
   selectedTab: T;
   /** takes the tab value and should return its label
-   *  (anything that can be renderd by react)
+   *  (anything that can be rendered by react)
    */
   format?: (tab: T) => React.ReactNode;
   /** takes the tab value and should return its background color */

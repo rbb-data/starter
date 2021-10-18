@@ -15,7 +15,7 @@ const someLatLngs = [
   [52.5094, 13.4222],
 ];
 
-export const DrawCriclesForLatLgs = () => (
+export const DrawCirclesForLatLgs = () => (
   // this is obviously a useless example
   // but since now all you are drawing is an svg it is easier to use d3 or other tools
   // to place the markers
