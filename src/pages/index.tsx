@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 
+import PlayButton from 'components/_shared/PlayButton/PlayButton';
+
 function Index() {
   const PAGES = [
     { url: 'graphic', title: 'Example of a complete graphic (Header+Chart)' },
@@ -13,13 +15,14 @@ function Index() {
       <b>Example pages:</b>
       <ul>
         {PAGES.map(({ url, title }) => (
-          <li>
+          <li key={url}>
             <Link href={url}>
               <a>{title}</a>
             </Link>
           </li>
         ))}
       </ul>
+      <PlayButton />
     </>
   );
 }

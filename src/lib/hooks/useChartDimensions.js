@@ -47,6 +47,7 @@ const useChartDimensions = (passedSettings = {}) => {
 
     resizeObserver.observe(element);
     return () => resizeObserver.unobserve(element);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const newSettings = updateBounds({

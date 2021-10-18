@@ -23,6 +23,7 @@ const useSize = () => {
 
     resizeObserver.observe(element);
     return () => resizeObserver.unobserve(element);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return [ref, { width, height }];

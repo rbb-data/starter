@@ -1,4 +1,4 @@
-export default function (event) {
+export default function setupAnalytics(event) {
   if (
     process.env.REACT_APP_ANALYTICS_ENABLED &&
     typeof window.callAnalytics === 'function'
