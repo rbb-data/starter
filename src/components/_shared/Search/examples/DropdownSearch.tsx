@@ -1,18 +1,17 @@
-import React from 'react'
-import useFuseJsSearch from '../hooks/useFuseJsSearch'
-import useDropdownSearchProps from '../hooks/useDropdownSearchProps'
-import PropTypes from 'prop-types'
+import React from 'react';
+import useFuseJsSearch from '../hooks/useFuseJsSearch';
+import useDropdownSearchProps from '../hooks/useDropdownSearchProps';
 
-import SearchInput from '../../SearchInput/SearchInput'
-import { FuseOptions } from 'fuse.js'
+import SearchInput from '../../SearchInput/SearchInput';
+import { FuseOptions } from 'fuse.js';
 
 export interface DropdownSearchProps<T> {
-  list: T[]
-  limit?: number
-  fuseOptions?: FuseOptions<T>
-  format: (suggestion: T) => string
-  onResult: (result: T) => void
-  placeholder?: string
+  list: T[];
+  limit?: number;
+  fuseOptions?: FuseOptions<T>;
+  format: (suggestion: T) => string;
+  onResult: (result: T) => void;
+  placeholder?: string;
 }
 
 /**
@@ -30,15 +29,15 @@ const DropdownSearch = <T extends unknown>({
   const { suggestions, setSearchString } = useFuseJsSearch(list, limit, {
     ...fuseOptions,
     returnAllOnEmptyString: true,
-  })
+  });
   const searchProps = useDropdownSearchProps({
     suggestions,
     setSearchString,
     format,
     onResult,
-  })
+  });
 
-  return <SearchInput {...searchProps} placeholder={placeholder} />
-}
+  return <SearchInput {...searchProps} placeholder={placeholder} />;
+};
 
-export default DropdownSearch
+export default DropdownSearch;

@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
-import _ from './ColorBoxes.module.sass'
-import { ColorBox } from './ColorBox'
-import { Scale } from 'chroma-js'
+import React, { useState } from 'react';
+import _ from './ColorBoxes.module.scss';
+import { ColorBox } from './ColorBox';
+import { Scale } from 'chroma-js';
 
 interface Props {
-  title: string
-  description: string
-  scale: Scale
+  title: string;
+  description: string;
+  scale: Scale;
 }
 const GradientBoxes = (props: Props) => {
-  const initalSteps = 7
-  const [steps, setSteps] = useState(initalSteps)
-  const colors = props.scale.colors(steps)
+  const initialSteps = 7;
+  const [steps, setSteps] = useState(initialSteps);
+  const colors = props.scale.colors(steps);
 
   return (
     <figure className={_.colorBoxes}>
@@ -22,10 +22,10 @@ const GradientBoxes = (props: Props) => {
 
       <div>
         <input
-          type='number'
+          type="number"
           value={steps}
           onChange={(e) => {
-            setSteps(parseInt(e.target.value))
+            setSteps(parseInt(e.target.value));
           }}
         />
       </div>
@@ -48,7 +48,7 @@ const GradientBoxes = (props: Props) => {
         ></input>
       </label>
     </figure>
-  )
-}
+  );
+};
 
-export default GradientBoxes
+export default GradientBoxes;

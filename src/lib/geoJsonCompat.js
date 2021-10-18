@@ -1,4 +1,4 @@
-import {toLatLng} from 'leaflet/src/geo/LatLng'
+import { toLatLng } from 'leaflet/src/geo/LatLng';
 
 /**
  * Transforms a GeoJSON Feature with point geometry to a Leaflet.LatLng
@@ -7,9 +7,9 @@ import {toLatLng} from 'leaflet/src/geo/LatLng'
  * @param  {GeoJSON.Point} feature
  * @return {Leaflet.LatLng}
  */
-export function featureToLatLng (feature) {
-  const coords = feature.geometry.coordinates
-  return toLatLng([coords[1], coords[0]])
+export function featureToLatLng(feature) {
+  const coords = feature.geometry.coordinates;
+  return toLatLng([coords[1], coords[0]]);
 }
 
 /**
@@ -18,12 +18,12 @@ export function featureToLatLng (feature) {
  * @param   {Leaflet.LatLng}
  * @return  {GeoJSON.Point}
  */
-export function latLngToFeature (latLng) {
+export function latLngToFeature(latLng) {
   return {
     type: 'Feature',
     geometry: {
       type: 'Point',
-      coordinates: [latLng.lng, latLng.lat]
-    }
-  }
+      coordinates: [latLng.lng, latLng.lat],
+    },
+  };
 }

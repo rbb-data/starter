@@ -1,0 +1,13 @@
+.colorBoxes {
+  font-family: sans-serif;
+  margin: 2em 0;
+}
+
+.colorList {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}

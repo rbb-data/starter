@@ -1,30 +1,30 @@
-import React, { useRef } from 'react'
-import { uniqueId } from 'lodash'
-import * as colors from 'global_styles/colors'
-import styles from './TabBar.module.sass'
+import React, { useRef } from 'react';
+import { uniqueId } from 'lodash';
+import * as colors from 'global_styles/colors';
+import styles from './TabBar.module.scss';
 
 function useId(): string {
-  const { current: id } = useRef(uniqueId())
-  return id
+  const { current: id } = useRef(uniqueId());
+  return id;
 }
 
 interface Props<T> {
-  title: string
-  className?: string
+  title: string;
+  className?: string;
   /** An array of tabs.
    * This could simply be string or objects like for example:
    * { value: 0, display: 'tab1' }
    * or anything else you might need */
-  tabs: T[]
-  selectedTab: T
+  tabs: T[];
+  selectedTab: T;
   /** takes the tab value and should return its label
-   *  (anything that can be renderd by react)
+   *  (anything that can be rendered by react)
    */
-  format?: (tab: T) => React.ReactNode
+  format?: (tab: T) => React.ReactNode;
   /** takes the tab value and should return its background color */
-  color?: (tab: T) => string
+  color?: (tab: T) => string;
   /** select handler */
-  onChange?: (tab: T) => void
+  onChange?: (tab: T) => void;
 }
 
 /**
@@ -36,7 +36,7 @@ function TabBar<T>({
   color = () => colors.darkGrey,
   ...props
 }: Props<T>) {
-  const id = useId()
+  const id = useId();
 
   return (
     <div className={`${styles.radioFilter} ${props.className}`}>
@@ -48,7 +48,7 @@ function TabBar<T>({
           >
             <input
               id={`${id}-${i}`}
-              type='radio'
+              type="radio"
               name={id}
               value={i}
               checked={tab === props.selectedTab}
@@ -66,7 +66,7 @@ function TabBar<T>({
         ))}
       </ul>
     </div>
-  )
+  );
 }
 
-export default TabBar
+export default TabBar;

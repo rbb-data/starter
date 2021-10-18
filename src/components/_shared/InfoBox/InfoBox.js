@@ -1,28 +1,31 @@
 /* eslint-env browser */
-import React from 'react'
-import PropTypes from 'prop-types'
-import style from './InfoBox.module.sass'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Info } from 'react-feather';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfo } from '@fortawesome/free-solid-svg-icons'
+import style from './InfoBox.module.scss';
 
-const InfoBox = props => {
-  const { children, className } = props
-  return <div className={`${className} ${style.wrapper}`}>
-    <div className={style.infoWrapper}>
-      <button className={style.infoButton}>
-        <FontAwesomeIcon icon={faInfo} />
-      </button>
-      <div className={style.infoBox}>
-        {children}
+const InfoBox = (props) => {
+  const { children, className, size = 20 } = props;
+  return (
+    <div className={`${className} ${style.wrapper}`}>
+      <div className={style.infoWrapper}>
+        <button
+          className={style.infoButton}
+          style={{ width: `${size}px`, height: `${size}px` }}
+        >
+          <Info width={size} height={size} />
+        </button>
+        <div className={style.infoBox}>{children}</div>
       </div>
     </div>
-  </div>
-}
+  );
+};
 
 InfoBox.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string
-}
+  className: PropTypes.string,
+  size: PropTypes.number,
+};
 
-export default InfoBox
+export default InfoBox;

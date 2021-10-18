@@ -1,46 +1,46 @@
-import React, { useReducer, useRef, useEffect } from 'react'
-import ReactDOM from 'react-dom'
-import { MapLayer, useLeaflet, withLeaflet } from 'react-leaflet'
-import L from 'leaflet'
+import React, { useReducer, useRef, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import { MapLayer, useLeaflet, withLeaflet } from 'react-leaflet';
+import L from 'leaflet';
 
 function safeRemoveLayer(leafletMap, el) {
-  const { overlayPane } = leafletMap.getPanes()
+  const { overlayPane } = leafletMap.getPanes();
   if (overlayPane && overlayPane.contains(el)) {
-    overlayPane.removeChild(el)
+    overlayPane.removeChild(el);
   }
 }
 
 function useForceUpdate() {
-  const [, forceUpdate] = useReducer((x) => x + 1, 0)
-  return forceUpdate
+  const [, forceUpdate] = useReducer((x) => x + 1, 0);
+  return forceUpdate;
 }
 
 function SVG(props) {
   // eslint-disable-next-line react/prop-types
-  const { children: renderFunction } = props
-  const { map } = useLeaflet()
-  const svgRef = useRef(null)
-  const forceUpdate = useForceUpdate()
+  const { children: renderFunction } = props;
+  const { map } = useLeaflet();
+  const svgRef = useRef(null);
+  const forceUpdate = useForceUpdate();
 
-  const zoomClass = 'leaflet-zoom-hide'
+  const zoomClass = 'leaflet-zoom-hide';
 
   useEffect(() => {
     const updateMapState = (e) => {
-      const topLeft = map.containerPointToLayerPoint([0, 0])
-      L.DomUtil.setPosition(svgRef.current, topLeft)
-      // make shure to rerender for current map state
-      forceUpdate()
-    }
+      const topLeft = map.containerPointToLayerPoint([0, 0]);
+      L.DomUtil.setPosition(svgRef.current, topLeft);
+      // make sure to rerender for current map state
+      forceUpdate();
+    };
 
-    map.on('moveend', updateMapState)
+    map.on('moveend', updateMapState);
     return () => {
-      map.off('moveend', updateMapState)
-    }
-    // forceUpdate is a hack to trigger a rerender but it will not change so we dont neet it as dependency here
+      map.off('moveend', updateMapState);
+    };
+    // forceUpdate is a hack to trigger a rerender but it will not change so we don't need it as dependency here
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [map])
+  }, [map]);
 
-  const mapSize = map.getSize()
+  const mapSize = map.getSize();
 
   return (
     <svg
@@ -51,7 +51,7 @@ function SVG(props) {
     >
       {renderFunction(map)}
     </svg>
-  )
+  );
 }
 
 /**
@@ -63,29 +63,29 @@ function SVG(props) {
  */
 class MapSVGLayer extends MapLayer {
   createLeafletElement(props) {
-    this.el = L.DomUtil.create('div')
+    this.el = L.DomUtil.create('div');
 
     const SVGLayer = L.Layer.extend({
       getAttribution: () => props.attribution,
       onAdd: (leafletMap) => {
-        leafletMap.getPanes().markerPane.appendChild(this.el)
+        leafletMap.getPanes().markerPane.appendChild(this.el);
       },
       addTo: (leafletMap) => {
-        leafletMap.addLayer(this)
-        return this
+        leafletMap.addLayer(this);
+        return this;
       },
       onRemove: (leafletMap) => {
-        safeRemoveLayer(leafletMap, this.el)
+        safeRemoveLayer(leafletMap, this.el);
       },
-    })
+    });
 
-    return new SVGLayer()
+    return new SVGLayer();
   }
 
   render() {
-    const { children: renderFunction } = this.props
-    return ReactDOM.createPortal(<SVG>{renderFunction}</SVG>, this.el)
+    const { children: renderFunction } = this.props;
+    return ReactDOM.createPortal(<SVG>{renderFunction}</SVG>, this.el);
   }
 }
 
-export default withLeaflet(MapSVGLayer)
+export default withLeaflet(MapSVGLayer);

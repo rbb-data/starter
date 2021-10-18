@@ -1,34 +1,32 @@
 // Adapted from https://wattenberger.com/blog/react-and-d3#sizing-responsivity
 
-import { useState, useRef, useEffect } from 'react'
-import { ResizeObserver } from '@juggle/resize-observer'
+import { useState, useRef, useEffect } from 'react';
+import { ResizeObserver } from '@juggle/resize-observer';
 
 const useSize = () => {
-  const ref = useRef()
+  const ref = useRef();
 
-  const [width, setWidth] = useState(0)
-  const [height, setHeight] = useState(0)
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    const element = ref.current
-    const resizeObserver = new ResizeObserver(
-      entries => {
-        if (!Array.isArray(entries)) return
-        if (!entries.length) return
+    const element = ref.current;
+    const resizeObserver = new ResizeObserver((entries) => {
+      if (!Array.isArray(entries)) return;
+      if (!entries.length) return;
 
-        const entry = entries[0]
-        if (width !== entry.contentRect.width)
-          setWidth(entry.contentRect.width)
-        if (height !== entry.contentRect.height)
-          setHeight(entry.contentRect.height)
-      }
-    )
+      const entry = entries[0];
+      if (width !== entry.contentRect.width) setWidth(entry.contentRect.width);
+      if (height !== entry.contentRect.height)
+        setHeight(entry.contentRect.height);
+    });
 
-    resizeObserver.observe(element)
-    return () => resizeObserver.unobserve(element)
-  }, [])
+    resizeObserver.observe(element);
+    return () => resizeObserver.unobserve(element);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  return [ref, { width, height }]
-}
+  return [ref, { width, height }];
+};
 
-export default useSize
+export default useSize;

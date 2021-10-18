@@ -1,0 +1,58 @@
+@import 'global_styles/colors';
+@import 'global_styles/mixins';
+
+.scenarioToggler {
+  background: white;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.9) 70%,
+    rgba(255, 255, 255, 0)
+  );
+  box-sizing: border-box;
+  font-size: 14px;
+  height: 70px;
+  padding: 15px 0 10px;
+  text-align: center;
+  transition: opacity 0.5s;
+  white-space: nowrap;
+  width: 100%;
+  // bottom: 0
+  z-index: 10;
+
+  @media screen and (min-width: 600px) {
+    background: none;
+  }
+
+  input[type='radio'] {
+    display: none;
+  }
+
+  label {
+    background: $lightGrey;
+    color: $darkGrey;
+    cursor: pointer;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 12px;
+    position: relative;
+  }
+
+  input:checked + label {
+    $checked-label-height: 34px;
+    background: $red;
+    color: white;
+    font-weight: bold;
+    height: $checked-label-height;
+    line-height: $checked-label-height;
+
+    z-index: 10;
+
+    &.twoSix {
+      @include slant-left($checked-label-height, $red);
+    }
+
+    &.eightFive {
+      @include slant-right($checked-label-height, $red);
+    }
+  }
+}

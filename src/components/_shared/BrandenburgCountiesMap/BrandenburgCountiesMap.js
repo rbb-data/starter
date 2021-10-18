@@ -1,9 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import * as rbbColors from 'global_styles/colors'
-import _ from './BrandenburgCountiesMap.module.sass'
+import React from 'react';
+import PropTypes from 'prop-types';
+import * as rbbColors from 'global_styles/colors';
+import _ from './BrandenburgCountiesMap.module.scss';
 
-import geometries from './geometries.json'
+import geometries from './geometries.json';
 
 /**
  * Renders a map of all counties in Brandenburg, allowing colorization of and
@@ -11,7 +11,7 @@ import geometries from './geometries.json'
  *
  */
 export default function BrandenburgCountiesMap(props) {
-  const { areaColor, selectedAreas, onAreaSelect } = props
+  const { areaColor, selectedAreas, onAreaSelect } = props;
 
   const makeProps = (area) => ({
     onClick: (_) => onAreaSelect(area.id),
@@ -19,34 +19,40 @@ export default function BrandenburgCountiesMap(props) {
     key: area.id,
     id: area.id,
     d: area.path,
-  })
+  });
 
   const unselected = geometries
     .filter((area) => selectedAreas.indexOf(area.id) === -1)
-    .map((area) => <path {...makeProps(area)} className={_.County} />)
+    .map((area) => (
+      <path key={area.id} {...makeProps(area)} className={_.County} />
+    ));
 
   const selected = geometries
     .filter((area) => selectedAreas.indexOf(area.id) !== -1)
     .map((area) => (
-      <path {...makeProps(area)} className={`${_.County} ${_.selected}`} />
-    ))
+      <path
+        key={area.id}
+        {...makeProps(area)}
+        className={`${_.County} ${_.selected}`}
+      />
+    ));
 
   // the geometries.json was generated using mapshaper:
   //  mapshaper berlin_brandenburg_landkreise.geo.json -proj +proj=tmerc +lat_0=0 +lon_0=9 +k=1 +x_0=3500000 +y_0=0 +ellps=bessel +datum=potsdam +units=m +no_defs -o out.svg
   // the resulting out.svg is hand-edited
   return (
-    <svg className={_.BrandenburgCounties} viewBox='0 0 800 791'>
+    <svg className={_.BrandenburgCounties} viewBox="0 0 800 791">
       <defs>
-        <filter id='shadow' x='0' y='0' width='200%' height='200%'>
-          <feOffset result='offOut' in='SourceAlpha' dx='10' dy='10' />
-          <feGaussianBlur result='blurOut' in='offOut' stdDeviation='8' />
-          <feBlend in='SourceGraphic' in2='blurOut' mode='normal' />
+        <filter id="shadow" x="0" y="0" width="200%" height="200%">
+          <feOffset result="offOut" in="SourceAlpha" dx="10" dy="10" />
+          <feGaussianBlur result="blurOut" in="offOut" stdDeviation="8" />
+          <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
         </filter>
       </defs>
       <g>{unselected}</g>
-      <g filter='url(#shadow)'>{selected}</g>
+      <g filter="url(#shadow)">{selected}</g>
     </svg>
-  )
+  );
 }
 
 BrandenburgCountiesMap.propTypes = {
@@ -64,10 +70,10 @@ BrandenburgCountiesMap.propTypes = {
    *   the class "selected" that can be used to visually tell them apart
    */
   onAreaSelect: PropTypes.func,
-}
+};
 
 BrandenburgCountiesMap.defaultProps = {
   areaColor: (_) => rbbColors.red,
   selectedAreas: [],
   onAreaSelect: Function.prototype,
-}
+};

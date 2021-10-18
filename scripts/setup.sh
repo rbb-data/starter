@@ -33,18 +33,16 @@ rm .github/workflows/storybook.yml
 [ "$(ls -A .github/workflows)" ] || rmdir .github/workflows
 [ "$(ls -A .github)" ] || rmdir .github
 rm -rf .storybook styleguide
-npm uninstall storybook\
+npm uninstall\
+  @storybook/addon-a11y\
   @storybook/addon-actions\
-  @storybook/addon-docs\
-  @storybook/addon-knobs\
-  @storybook/addon-storysource\
-  @storybook/addons\
+  @storybook/addon-essentials\
+  @storybook/addon-links\
+  @storybook/node-logger\
   @storybook/preset-create-react-app\
-  @storybook/preset-typescript\
   @storybook/react\
-  @storybook/storybook-deployer\
   @storybook/theming
-node scripts/removeNpmScripts.js storybook build-storybook deploy-storybook
+node scripts/removeNpmScripts.js storybook build-storybook
 
 # remove remote if cloned manually
 git log --oneline | grep -q 'Initial commit' && exit 0

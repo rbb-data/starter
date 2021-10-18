@@ -1,0 +1,19 @@
+.BrandenburgCounties {
+  height: 100%;
+
+  // this has to be set explicitly for SVGs
+  overflow: visible;
+  width: 100%;
+
+  .County {
+    cursor: pointer;
+    stroke: #000;
+    stroke-width: 0.5px;
+    // transition: fill 0.5s
+  }
+
+  .selected {
+    stroke: #fff;
+    stroke-width: 2px;
+  }
+}

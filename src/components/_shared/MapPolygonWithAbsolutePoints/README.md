@@ -4,10 +4,10 @@ Renders a Line from an absolute position of the screen to a geo position on a ma
 
 ## Parameters
 
-| Param | Type | Description |
-| --- | --- | --- |
+| Param                     | Type         | Description                                                                                                              |
+| ------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------ |
 | pointCalculationFunctions | `[function]` | An array of functions that take the parameters `{ width, height }` and must return an object with numbers for `{ x, y }` |
-| … |  | anything you can pass to [`Path`](http://leafletjs.com/reference-1.3.0.html#path) can also be passed to this polygon |
+| …                         |              | anything you can pass to [`Path`](http://leafletjs.com/reference-1.3.0.html#path) can also be passed to this polygon     |
 
 ### context
 

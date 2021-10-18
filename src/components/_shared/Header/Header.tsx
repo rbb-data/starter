@@ -1,18 +1,18 @@
-import React from 'react'
-import { FunctionComponent } from 'react'
-import { darkGrey } from 'global_styles/colors'
+import React from 'react';
+import { FunctionComponent } from 'react';
+import { darkGrey } from 'global_styles/colors';
 
 export interface TitleProps {
   children: {
-    title: string
-    subtitle: string
-  }
+    title: string;
+    subtitle: string;
+  };
 }
 /**
- * Der Titlel für jede Grafik oder Interactive
+ * Der Titel für jede Grafik oder Interactive
  * Ein Header besteht aus: `title` und `subheader`
  *
- * **`title`: Ein Aussagesatz oder notfalls eine Kurzbeschreibung, wenn das eine Livegrafik ist**
+ * **`title`: Ein Aussagesatz oder notfalls eine Kurzbeschreibung, wenn das eine Live-Grafik ist**
  *
  * *Also:* "Wegen des guten Wetters ziehen Schwaben nach Berlin" oder "So viele Autos nutzt der Berliner Senat in diesem Jahr" <br/>
  * *Nicht:* ~~"Wieder geht es bergab"~~ oder ~~"Zahl der Abgeordneten je Partei"~~
@@ -40,6 +40,6 @@ const Header: FunctionComponent<TitleProps> = (props) => {
         }
       `}</style>
     </header>
-  )
-}
-export default Header
+  );
+};
+export default Header;

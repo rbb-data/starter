@@ -1,12 +1,12 @@
-import React from 'react'
-import Map from '../Map/Map'
-import MapGeoJsonCluster from './MapGeoJsonCluster'
-import geojson from './features.geo.json'
+import React from 'react';
+import Map from '../Map/Map';
+import MapGeoJsonCluster from './MapGeoJsonCluster';
+import geojson from './features.geo.json';
 
 export default {
   title: 'II Components/Map/MapGeoJsonCluster',
   component: MapGeoJsonCluster,
-}
+};
 
 export const Basic = () => (
   <Map>
@@ -21,4 +21,4 @@ export const Basic = () => (
       disableClusteringAtZoom={14}
     />
   </Map>
-)
+);

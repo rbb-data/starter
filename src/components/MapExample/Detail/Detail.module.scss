@@ -1,0 +1,17 @@
+@import 'global_styles/colors';
+@import 'global_styles/breakpoints';
+
+.detail {
+  background-color: $backgroundGrey;
+  border-bottom: 4px solid $darkGrey;
+}
+
+.loadingText {
+  color: $darkGrey;
+  display: block;
+  font-size: 14px;
+  line-height: 1.3em;
+  margin: 0;
+  padding: 0 10px;
+  text-align: center;
+}

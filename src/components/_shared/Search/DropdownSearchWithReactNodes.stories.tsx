@@ -1,22 +1,22 @@
-import React from 'react'
-import { Story, Meta } from '@storybook/react'
-import { SimpleSearch, DropdownSearchWithReactNodes } from './Search'
-import { DropdownSearchWithReactNodesProps } from './examples/DropdownSearchWithReactNodes'
+import React from 'react';
+import { Story, Meta } from '@storybook/react';
+import { SimpleSearch, DropdownSearchWithReactNodes } from './Search';
+import { DropdownSearchWithReactNodesProps } from './examples/DropdownSearchWithReactNodes';
 
 export default {
   title: 'II Components/Search/Examples/DropdownSearchWithReactNodes',
   component: SimpleSearch,
-} as Meta
+} as Meta;
 
 const list = [
   { color: 'red', label: 'Apple' },
   { color: 'yellow', label: 'Banana' },
-  { color: 'red', label: 'Strawbery' },
+  { color: 'red', label: 'Strawberry' },
   { color: 'green', label: 'Avocado' },
   { color: 'blue', label: 'Blueberry' },
   { color: 'red', label: 'Cherry' },
   { color: 'green', label: 'Grapes' },
-]
+];
 
 const Circle = (props: { color: string }) => (
   <div
@@ -29,11 +29,11 @@ const Circle = (props: { color: string }) => (
       borderRadius: '10px',
     }}
   />
-)
+);
 
 export const Basic: Story = <T extends unknown>(
   args: DropdownSearchWithReactNodesProps<T>
-) => <DropdownSearchWithReactNodes {...args} />
+) => <DropdownSearchWithReactNodes {...args} />;
 Basic.args = {
   list: list,
   fuseOptions: { keys: ['label'] },
@@ -45,4 +45,5 @@ Basic.args = {
     </div>
   ),
   placeholder: 'auswählen',
-}
+  onResult: () => {},
+};

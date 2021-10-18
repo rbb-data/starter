@@ -1,65 +1,63 @@
-import React, { useState } from 'react'
-import { withKnobs } from '@storybook/addon-knobs'
-import * as colors from 'global_styles/colors'
-import TabBar from './TabBar'
+import React, { useState } from 'react';
+import * as colors from 'global_styles/colors';
+import TabBar from './TabBar';
 
 export default {
   title: 'II Components/TabBar',
-  decorators: [withKnobs],
   component: TabBar,
-}
+};
 
 export const Basic = () => {
-  const [selectedTab, setSelectedTab] = useState('one')
-  const tabs = ['one', 'two', 'three']
+  const [selectedTab, setSelectedTab] = useState('one');
+  const tabs = ['one', 'two', 'three'];
 
   return (
     <TabBar
-      className='custom-class-name'
-      title='select something'
+      className="custom-class-name"
+      title="select something"
       selectedTab={selectedTab}
       tabs={tabs}
       onChange={setSelectedTab}
     />
-  )
-}
+  );
+};
 
 export const WithCustomColor = () => {
-  const [selectedTab, setSelectedTab] = useState('one')
-  const tabs = ['one', 'two', 'three']
+  const [selectedTab, setSelectedTab] = useState('one');
+  const tabs = ['one', 'two', 'three'];
   const tabColors: Record<string, string> = {
     one: colors.blue,
     two: colors.magenta,
     three: colors.yellow,
-  }
+  };
 
   return (
     <TabBar
-      className='custom-class-name'
-      title='select something'
+      className="custom-class-name"
+      title="select something"
       selectedTab={selectedTab}
       tabs={tabs}
       color={(tab) => (tab === selectedTab ? tabColors[tab] : colors.darkGrey)}
       onChange={(tab) => {
-        setSelectedTab(tab)
+        setSelectedTab(tab);
       }}
     />
-  )
-}
+  );
+};
 
 export const WithTabObjectThatContainsColorData = () => {
-  const [selectedTabIndex, setSelectedTabIndex] = useState(0)
+  const [selectedTabIndex, setSelectedTabIndex] = useState(0);
   const tabs = [
     { color: colors.blue, display: 'Option number one' },
     { color: colors.magenta, display: 'Option number two' },
     { color: colors.yellow, display: 'Option number three' },
-  ]
-  const selectedTab = tabs[selectedTabIndex]
+  ];
+  const selectedTab = tabs[selectedTabIndex];
 
   return (
     <TabBar
-      className='custom-class-name'
-      title='select something'
+      className="custom-class-name"
+      title="select something"
       selectedTab={selectedTab}
       tabs={tabs}
       format={(tab) => tab.display}
@@ -68,21 +66,21 @@ export const WithTabObjectThatContainsColorData = () => {
         // for some reason setState will make a copy or something so
         // so selectedTab === tab won't work anymore inside the component
         // we can't just compare tabs but have to use the index
-        const newIndex = tabs.findIndex((t) => t === tab)
-        setSelectedTabIndex(newIndex)
+        const newIndex = tabs.findIndex((t) => t === tab);
+        setSelectedTabIndex(newIndex);
       }}
     />
-  )
-}
+  );
+};
 
 export const WithReactComponents = () => {
-  const [selectedTab, setSelectedTab] = useState('one')
-  const tabs = ['one', 'two', 'three']
+  const [selectedTab, setSelectedTab] = useState('one');
+  const tabs = ['one', 'two', 'three'];
 
   return (
     <TabBar
-      className='custom-class-name'
-      title='select something'
+      className="custom-class-name"
+      title="select something"
       selectedTab={selectedTab}
       format={(tab) => (
         <span>
@@ -91,8 +89,8 @@ export const WithReactComponents = () => {
       )}
       tabs={tabs}
       onChange={(tab) => {
-        setSelectedTab(tab)
+        setSelectedTab(tab);
       }}
     />
-  )
-}
+  );
+};

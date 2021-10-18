@@ -1,23 +1,21 @@
-import React from 'react'
+import React from 'react';
 
-import BalanceGauge from './BalanceGauge'
+import BalanceGauge from './BalanceGauge';
 
 export default {
   component: BalanceGauge,
-  title: 'II Components/BalanceGauge'
-}
+  title: 'II Components/BalanceGauge',
+  args: {
+    text: (ratio) => `A gauge with a ratio of ${ratio}`,
+  },
+};
 
-export const MediumRatio = () =>
-  <BalanceGauge
-    ratio={0.3}
-    text={ratio => `A gauge with a ratio of ${ratio}`} />
+const Template = (args) => <BalanceGauge {...args} />;
 
-export const lowRatio = () =>
-  <BalanceGauge
-    ratio={0}
-    text={ratio => `A gauge with a ratio of ${ratio}`} />
+export const MediumRatio = Template.bind({});
+export const LowRatio = Template.bind({});
+export const HighRatio = Template.bind({});
 
-export const highRatio = () =>
-  <BalanceGauge
-    ratio={1}
-    text={ratio => `A gauge with a ratio of ${ratio}`} />
+MediumRatio.args = { ratio: 0.3 };
+LowRatio.args = { ratio: 0 };
+HighRatio.args = { ratio: 1 };

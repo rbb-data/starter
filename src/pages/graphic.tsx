@@ -1,10 +1,10 @@
-import { NextPage, GetStaticProps } from 'next'
-import React from 'react'
-import StemAndLeafPlot from 'components/_shared/StemAndLeafPlot/StemAndLeafPlot'
-import Header from 'components/_shared/Header/Header'
+import { NextPage, GetStaticProps } from 'next';
+import React from 'react';
+import StemAndLeafPlot from 'components/_shared/StemAndLeafPlot/StemAndLeafPlot';
+import Header from 'components/_shared/Header/Header';
 
 interface Props {
-  items: number[]
+  items: number[];
 }
 const Graphic: NextPage<Props> = (props) => {
   return (
@@ -18,8 +18,8 @@ const Graphic: NextPage<Props> = (props) => {
       </Header>
       <StemAndLeafPlot items={props.items} numberOfSteps={30} maxValue={30} />
     </>
-  )
-}
+  );
+};
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   // get static props is called at build / export time,
@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     props: {
       items,
     },
-  }
-}
+  };
+};
 
-export default Graphic
+export default Graphic;

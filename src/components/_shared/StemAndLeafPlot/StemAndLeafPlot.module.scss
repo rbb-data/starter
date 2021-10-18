@@ -1,0 +1,27 @@
+@import 'global_styles/colors';
+@import 'global_styles/breakpoints';
+
+.salPlot {
+  box-sizing: border-box;
+  padding: 0 10px;
+  width: 100%;
+}
+
+.graph {
+  font-size: 0;
+  position: relative;
+
+  .svg {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .canvas {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+  }
+}

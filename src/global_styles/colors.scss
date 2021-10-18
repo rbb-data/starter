@@ -1,0 +1,58 @@
+// This has the same values as ./colors.ts but exports the variables for use in sass
+// maybe we could write a script that automatically converts one to the other…
+
+// UI colors
+$red: #e31818;
+$bordeaux: #821423;
+$lightGrey: #d5d5d5;
+$grey: #868686;
+$darkGrey: #585856;
+$backgroundGrey: #eaeaea;
+$beige: #dfded2;
+$darkBeige: #aaa493;
+
+// category colors
+$blue: #0c5382;
+$magenta: #b54577;
+$yellow: #f2c600;
+$green: #a1a32c;
+$cyan: #489fac;
+
+$darkBlue: #06263c;
+$darkMagenta: #7e3053;
+$darkYellow: #a58700;
+$darkGreen: #65671c;
+$darkCyan: #316d76;
+
+$lightBlue: #0f6ba7;
+$lightMagenta: #c3608c;
+$lightYellow: #ffd61c;
+$lightGreen: #c1c335;
+$lightCyan: #72b9c4;
+
+$backgroundBlue: #52b0ef;
+$backgroundMagenta: #d38dac;
+$backgroundYellow: #ffe159;
+$backgroundGreen: #d2d461;
+$backgroundCyan: #afd8de;
+
+// colors with meaning
+$orange: #fa9d1e;
+$violet: #6374c9;
+
+$female: #ff6559;
+$male: #00685c;
+$divers: #db99ea;
+
+// map colors
+$lightWaterBlue: #86c6ed;
+$darkWaterBlue: #266ca3;
+
+// party colors
+$spd: #e31818;
+$linke: #be3ca5;
+$cdu: #000;
+$afd: #2887f0;
+$fdp: #ffdc37;
+$bvbfw: #fa9d1e;
+$gruene: #699b32;

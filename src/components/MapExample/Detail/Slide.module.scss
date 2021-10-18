@@ -1,0 +1,29 @@
+@import 'global_styles/colors';
+@import 'global_styles/breakpoints';
+
+.content {
+  font-size: 14px;
+  padding: 8px 10px 10px;
+
+  @include breakpoint(wide) {
+    padding: 20px 0;
+  }
+}
+
+.title {
+  color: $darkGrey;
+  font-size: 16px;
+  line-height: 1.2em;
+  margin: 5px 0 10px;
+  margin-right: 5px;
+  text-transform: uppercase;
+
+  @include breakpoint(wide) {
+    font-size: 18px;
+  }
+}
+
+.description {
+  font-size: 14px;
+  margin: 5px 0;
+}

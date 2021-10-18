@@ -7,7 +7,7 @@ on:
   push:
     branches:
       - main
-  # vercel token expires if we dont use it regulaly so just run it nightly :-)
+  # vercel token expires if we don't use it regularly so just run it nightly :-)
   schedule:
     - cron: 23 4 * * 1/2
 

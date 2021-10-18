@@ -1,9 +1,11 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+/* eslint-disable @next/next/no-sync-scripts */
+
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps };
   }
 
   render() {
@@ -26,20 +28,20 @@ class MyDocument extends Document {
         >
           <Main />
           <NextScript />
-          <script src='iframeResizer.contentWindow.min.js'></script>
+          <script src="iframeResizer.contentWindow.min.js"></script>
           {process.env.ANALYTICS_ENABLED === 'true' && (
             <>
-              <script src='https://www.rbb-online.de/basis/js/jquery-2.2.4.min.js'></script>
-              <script src='https://www.rbb-online.de/basis/js/underscore-1.8.2.js'></script>
-              <script src='https://www.rbb-online.de/basis/js/underscore.string-3.0.3.js'></script>
-              <script src='https://www.rbb-online.de/basis/js/analytics.js'></script>
-              <script src='https://www.rbb-online.de/basis/js/xtcore.js'></script>
+              <script src="https://www.rbb-online.de/basis/js/jquery-2.2.4.min.js"></script>
+              <script src="https://www.rbb-online.de/basis/js/underscore-1.8.2.js"></script>
+              <script src="https://www.rbb-online.de/basis/js/underscore.string-3.0.3.js"></script>
+              <script src="https://www.rbb-online.de/basis/js/analytics.js"></script>
+              <script src="https://www.rbb-online.de/basis/js/xtcore.js"></script>
             </>
           )}
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;

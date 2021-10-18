@@ -1,5 +1,5 @@
-import { create } from '@storybook/theming/create'
-import logo from './rbb24Logo.png'
+import { create } from '@storybook/theming';
+import logo from './rbb24Logo.png';
 
 export default create({
   base: 'light',
@@ -15,4 +15,4 @@ export default create({
   brandTitle: 'rbb-data',
   brandUrl: 'https://github.com/rbb-data',
   brandImage: logo, //'https://www.rbb24.de/content/dam/rbb/rbb/logos/rbb24.svg.svg/img.svg',
-})
+});

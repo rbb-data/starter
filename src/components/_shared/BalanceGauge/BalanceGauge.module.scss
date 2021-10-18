@@ -1,0 +1,55 @@
+$red: #e31818;
+$grey: #d8d8d8;
+
+.balanceGauge {
+  display: inline-block;
+  margin: 0.3em 0;
+  position: relative;
+
+  .bar {
+    display: inline-block;
+    height: 3px;
+    margin-right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80px;
+
+    .leftBarPart,
+    .rightBarPart {
+      display: inline-block;
+      height: 100%;
+    }
+
+    .leftBarPart {
+      // width is calculated dynamically (see .jsx)
+      background: $red;
+    }
+
+    .rightBarPart {
+      // width is calculated dynamically (see .jsx)
+      background: $grey;
+    }
+
+    .caret {
+      $size: 3px;
+      border-left: $size solid transparent;
+      border-right: $size solid transparent;
+      border-top: $size solid $red;
+      display: block;
+      height: 0;
+      position: absolute;
+      // left is calculated dynamically (see .jsx)
+      top: 5px;
+      // the rotation is supposed to help with anti-aliasing issues in webkit browsers
+      transform: rotate(360deg) translateX(-$size);
+      // this is a 4px downwards pointing triangle:
+      width: 0;
+    }
+  }
+
+  .text {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% - 90px);
+  }
+}

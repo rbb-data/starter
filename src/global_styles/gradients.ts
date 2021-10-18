@@ -1,6 +1,6 @@
-import Chroma from 'chroma-js'
-import { adjustHue, darken, lighten, tint } from 'polished'
-import * as colors from './colors'
+import Chroma from 'chroma-js';
+import { adjustHue, darken, lighten, tint } from 'polished';
+import * as colors from './colors';
 
 export const diverging = {
   changes: Chroma.scale([
@@ -22,7 +22,7 @@ export const diverging = {
     colors.magenta,
     darken(0.02, colors.darkMagenta),
   ]).mode('lab'),
-}
+};
 
 export const linear = {
   cyanBlue: Chroma.scale([
@@ -51,4 +51,4 @@ export const linear = {
     .correctLightness()
     .mode('lab'),
   no2: Chroma.bezier(['#B6D61B', '70B50F', '#E2430D', 'E30F04', '000']).scale(),
-}
+};

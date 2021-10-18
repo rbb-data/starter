@@ -1,12 +1,12 @@
-import React from 'react'
-import * as colors from 'global_styles/colors'
-import Map from '../Map/Map'
-import MapPolygonWithAbsolutePoints from './MapPolygonWithAbsolutePoints'
+import React from 'react';
+import * as colors from 'global_styles/colors';
+import Map from '../Map/Map';
+import MapPolygonWithAbsolutePoints from './MapPolygonWithAbsolutePoints';
 
 export default {
   title: 'II Components/Map/MapPolygonWithAbsolutePoints',
   component: MapPolygonWithAbsolutePoints,
-}
+};
 
 export const AtBottomRight = (args) => {
   const polygonProps = {
@@ -15,20 +15,20 @@ export const AtBottomRight = (args) => {
       ({ width, height }) => ({ x: width * 0.8, y: height }),
       ({ width, height }) => ({ x: width * 0.8 + 10, y: height }),
     ],
-  }
+  };
 
   return (
     <Map>
       <MapPolygonWithAbsolutePoints {...args} {...polygonProps} />
     </Map>
-  )
-}
+  );
+};
 AtBottomRight.args = {
   fillColor: colors.darkGrey,
   color: colors.darkGrey,
   fillOpacity: 1,
   weight: 1,
-}
+};
 
 export const AtTopRight = (args) => {
   const polygonProps = {
@@ -37,20 +37,20 @@ export const AtTopRight = (args) => {
       ({ width, height }) => ({ x: width * 0.8, y: 0 }),
       ({ width, height }) => ({ x: width * 0.8 + 10, y: 0 }),
     ],
-  }
+  };
 
   return (
     <Map>
       <MapPolygonWithAbsolutePoints {...args} {...polygonProps} />
     </Map>
-  )
-}
+  );
+};
 AtTopRight.args = {
   fillColor: colors.darkGrey,
   color: colors.darkGrey,
   fillOpacity: 1,
   weight: 1,
-}
+};
 
 export const AtLeftCenter = (args) => {
   const polygonProps = {
@@ -59,20 +59,20 @@ export const AtLeftCenter = (args) => {
       ({ width, height }) => ({ x: 0, y: height / 2 }),
       ({ width, height }) => ({ x: 0, y: height / 2 + 10 }),
     ],
-  }
+  };
 
   return (
     <Map>
       <MapPolygonWithAbsolutePoints {...args} {...polygonProps} />
     </Map>
-  )
-}
+  );
+};
 AtLeftCenter.args = {
   fillColor: colors.darkGrey,
   color: colors.darkGrey,
   fillOpacity: 1,
   weight: 1,
-}
+};
 
 export const MultiplePointsOnMap = (args) => {
   const polygonProps = {
@@ -83,17 +83,17 @@ export const MultiplePointsOnMap = (args) => {
     pointCalculationFunctions: [
       ({ width, height }) => ({ x: 0, y: height / 2 }),
     ],
-  }
+  };
 
   return (
     <Map>
       <MapPolygonWithAbsolutePoints {...args} {...polygonProps} />
     </Map>
-  )
-}
+  );
+};
 MultiplePointsOnMap.args = {
   fillColor: 'transparent',
   color: colors.darkGrey,
   fillOpacity: 1,
   weight: 1,
-}
+};

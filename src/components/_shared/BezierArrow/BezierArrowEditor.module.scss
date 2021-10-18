@@ -1,0 +1,20 @@
+.editor {
+  touch-action: 'none';
+
+  .connector {
+    stroke: currentColor;
+  }
+
+  .startEnd {
+    fill: transparent;
+    stroke: currentColor;
+  }
+
+  .handle {
+    fill: currentColor;
+  }
+
+  .draggable:hover {
+    cursor: pointer;
+  }
+}
