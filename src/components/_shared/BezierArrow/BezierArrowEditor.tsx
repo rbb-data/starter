@@ -49,14 +49,14 @@ interface Props {
   arrowHeadLength?: number;
   arrowHeadRotation?: number;
   className?: string;
-  /** If given, provide domain values for the computed positions (on x-axis) */
-  xScale?: {
-    invert: (value: number) => number;
-  };
-  /** If given, provide domain values for the computed positions (on y-axis) */
-  yScale?: {
-    invert: (value: number) => number;
-  };
+  /** Transforms x-values before writing to console
+   * (e.g. if you work with a d3 scale, you might want to pass scale.invert
+   * to provide domain values for the computed positions) */
+  transformX?: (value: number) => number;
+  /** Transforms y-values before writing to console
+   * (e.g. if you work with a d3 scale, you might want to pass scale.invert
+   * to provide domain values for the computed positions) */
+  transformY?: (value: number) => number;
 }
 
 /**
@@ -77,8 +77,8 @@ function BezierArrowEditor({
   arrowHeadLength = 10,
   arrowHeadRotation = 30,
   className = '',
-  xScale,
-  yScale,
+  transformX,
+  transformY,
 }: Props) {
   const [startCoords, setStartCoords] = useState(initialStartCoords);
   const [endCoords, setEndCoords] = useState(initialEndCoords);
@@ -96,7 +96,7 @@ function BezierArrowEditor({
       if (active) setCoords(pointer(event, canvasRef?.current));
       if (last) {
         // map to domain values if scales are given
-        const mappedCoords = mapCoords(coords, xScale?.invert, yScale?.invert);
+        const mappedCoords = mapCoords(coords, transformX, transformY);
 
         console.log(
           'Copy this object by left-clicking on it and selecting "Copy Object", then paste it back into your code:',
