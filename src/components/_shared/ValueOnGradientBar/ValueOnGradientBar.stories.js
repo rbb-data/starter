@@ -7,14 +7,22 @@ export default {
   component: ValueOnGradientBar,
 }
 
-export const Basic = () => <ValueOnGradientBar />
+const Template = (args) => <ValueOnGradientBar {...args} />
 
-export const WithHighlightedValue = () => (
-  <ValueOnGradientBar highlightedValue={10} unit='km/h' />
-)
+export const Basic = Template.bind({})
+export const WithHighlightedValue = Template.bind({})
+export const WithNo2Gradient = Template.bind({})
 
-export const WithNo2Gradient = () => {
-  const no2ColorScale = Chroma.bezier([
+WithHighlightedValue.args = {
+  highlightedValue: 10,
+  unit: 'km/h'
+}
+
+WithNo2Gradient.args = {
+  threshold: 40,
+  highlightedValue: 43,
+  unit: 'µg/m³',
+  colorScale: Chroma.bezier([
     '#B6D61B',
     '70B50F',
     '#E2430D',
@@ -24,13 +32,4 @@ export const WithNo2Gradient = () => {
     .scale()
     .domain([0, 100])
     .correctLightness()
-
-  return (
-    <ValueOnGradientBar
-      threshold={40}
-      highlightedValue={43}
-      unit='µg/m³'
-      colorScale={no2ColorScale}
-    />
-  )
 }

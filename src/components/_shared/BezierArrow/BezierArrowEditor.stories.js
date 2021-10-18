@@ -6,7 +6,7 @@ export default {
   component: BezierArrowEditor,
 }
 
-export const Basic = () => {  
+export const Basic = (args) => {  
   const WIDTH = 400
   const HEIGHT = 120
 
@@ -20,7 +20,7 @@ export const Basic = () => {
       overflow="visible"
     >
       <rect width={WIDTH} height={HEIGHT} fill="whitesmoke" />
-      <BezierArrowEditor canvasRef={canvasRef} />
+      <BezierArrowEditor canvasRef={canvasRef} {...args} />
     </svg>
   )
 }

@@ -1,46 +1,31 @@
 import React from 'react'
-
 import { action } from '@storybook/addon-actions'
 
-import * as rbbColors from 'global_styles/colors'
 import BrandenburgCountiesMap from './BrandenburgCountiesMap'
+
+import * as rbbColors from 'global_styles/colors'
 
 export default {
   title: 'II Components/BrandenburgCountiesMap',
   component: BrandenburgCountiesMap,
+  args: {
+    onAreaSelect: action('onAreaSelect')
+  }
 }
 
-export const WithDefaultProps = () => (
+const Template = (args) => (
   <div style={{ width: '200px' }}>
-    <BrandenburgCountiesMap onAreaSelect={action('onAreaSelect')} />
+    <BrandenburgCountiesMap {...args} />
   </div>
 )
 
-export const WithBerlinSelected = () => (
-  <div style={{ width: '200px' }}>
-    <BrandenburgCountiesMap
-      selectedAreas={['Berlin']}
-      onAreaSelect={action('onAreaSelect')}
-    />
-  </div>
-)
+export const WithDefaultProps = Template.bind({})
+export const WithBerlinSelected = Template.bind({})
+export const WithMultipleSelected = Template.bind({})
+export const WithCustomColor = Template.bind({})
 
-export const WithMultipleSelected = () => (
-  <div style={{ width: '200px' }}>
-    <BrandenburgCountiesMap
-      selectedAreas={['Oder-Spree', 'Märkisch-Oderland']}
-      onAreaSelect={action('onAreaSelect')}
-    />
-  </div>
-)
-
-export const WithCustomColor = () => (
-  <div style={{ width: '200px' }}>
-    <BrandenburgCountiesMap
-      areaColor={(county) =>
-        county === 'Uckermark' ? rbbColors.red : rbbColors.lightGrey
-      }
-      onAreaSelect={action('onAreaSelect')}
-    />
-  </div>
-)
+WithBerlinSelected.args = { selectedAreas: ['Berlin'] }
+WithMultipleSelected.args = { selectedAreas: ['Oder-Spree', 'Märkisch-Oderland'] }
+WithCustomColor.args = {
+  areaColor: (county) => county === 'Uckermark' ? rbbColors.red : rbbColors.lightGrey
+}

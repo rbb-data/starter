@@ -17,6 +17,7 @@ export default {
 export const Basic: Story = (args) => {
   return <Header>{{ title: args.title, subtitle: args.subtitle }}</Header>
 }
+
 Basic.args = {
   title: 'Wegen des guten Wetters ziehen Schwaben nach Berlin',
   subtitle:

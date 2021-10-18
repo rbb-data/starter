@@ -10,27 +10,24 @@ export default {
   component: DotSwarm,
 }
 
-export const Basic = () => {
-  return (
-    <div style={{ width: '200px' }}>
-      <DotSwarm count={500} />
-    </div>
-  )
-}
 
-export const ColoredByIndex = () => {
-  return (
-    <div style={{ width: '200px' }}>
-      <DotSwarm
-        count={500}
-        dotProps={(dot, idx) => ({
-          r: 1,
-          fill: gradients.linear.yellowGreen.domain([0, 500])(idx).hex(),
-        })}
-      />
-    </div>
-  )
-}
+const Template = (args) => (
+  <div style={{ width: '200px' }}>
+    <DotSwarm {...args} />
+  </div>
+)
+
+export const Basic = Template.bind({})
+export const ColoredByIndex = Template.bind({})
+
+Basic.args = { count: 500 }
+ColoredByIndex.args = { 
+  count: 500,
+  dotProps: (dot, idx) => ({
+    r: 1,
+    fill: gradients.linear.yellowGreen.domain([0, 500])(idx).hex(),
+  })
+ }
 
 export const Animated = () => {
   const step = 200
