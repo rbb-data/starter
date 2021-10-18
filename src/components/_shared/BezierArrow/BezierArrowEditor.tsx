@@ -37,7 +37,7 @@ function DraggableCircle({
 
 interface Props {
   /** Reference to the element used as a reference point for position calculations */
-  canvasRef: {
+  canvasRef?: {
     current: HTMLElement | SVGElement;
   };
   initialStartCoords?: [number, number];
@@ -93,7 +93,7 @@ function BezierArrowEditor({
 
   function handleDrag(setCoords) {
     return ({ event, active, last }) => {
-      if (active) setCoords(pointer(event, canvasRef.current));
+      if (active) setCoords(pointer(event, canvasRef?.current));
       if (last) {
         // map to domain values if scales are given
         const mappedCoords = mapCoords(coords, xScale?.invert, yScale?.invert);
