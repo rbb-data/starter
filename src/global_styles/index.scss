@@ -1,6 +1,8 @@
 @import './fonts';
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
