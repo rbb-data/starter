@@ -34,14 +34,11 @@ rm .github/workflows/storybook.yml
 [ "$(ls -A .github)" ] || rmdir .github
 rm -rf .storybook styleguide
 npm uninstall\
-  storybook\
   @storybook/addon-actions\
-  @storybook/addon-controls\
-  @storybook/addon-docs\
-  @storybook/addon-storysource\
-  @storybook/addons\
+  @storybook/addon-essentials\
+  @storybook/addon-links\
+  @storybook/node-logger\
   @storybook/preset-create-react-app\
-  @storybook/preset-typescript\
   @storybook/react\
   @storybook/theming
 node scripts/removeNpmScripts.js storybook build-storybook
