@@ -5,7 +5,7 @@ import Map from 'components/_shared/Map/Map';
 import MapElements from './MapElements/MapElements';
 import SearchWrapper from './SearchWrapper/SearchWrapper';
 import Detail from './Detail/Detail';
-import _ from './App.module.sass';
+import _ from './App.module.scss';
 
 function App(props) {
   const [markers, setMarkers] = useState(null);

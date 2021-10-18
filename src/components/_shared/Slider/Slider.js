@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import nextIcon from './nextIcon.svg';
-import _ from './Slider.module.sass';
+import _ from './Slider.module.scss';
 
 /**
  * Adds prev next icons around provided content and provides functions for navigating

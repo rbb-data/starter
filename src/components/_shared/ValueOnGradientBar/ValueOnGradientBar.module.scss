@@ -1,0 +1,65 @@
+@import 'global_styles/colors';
+@import 'global_styles/breakpoints';
+
+.gradientBar {
+  box-sizing: border-box;
+  padding: 0 10px;
+  width: 100%;
+}
+
+.highlightedValue {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  margin-left: -40px;
+  position: relative;
+  text-align: center;
+  width: 80px;
+}
+
+.canvas {
+  width: 100%;
+}
+
+.ticks {
+  height: 30px;
+  position: relative;
+
+  @include breakpoint(wide) {
+    height: 20px;
+  }
+}
+
+.tick {
+  color: $darkGrey;
+  font-size: 11px;
+  line-height: 1em;
+  margin: 0;
+  margin-left: -50px;
+  margin-top: 3px;
+  position: absolute;
+  text-align: center;
+  width: 100px;
+
+  &.first,
+  &.last {
+    margin-left: -10px;
+    width: 20px;
+  }
+
+  .moreInfo {
+    display: block;
+    @include breakpoint(wide) {
+      display: inline;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    &::before {
+      content: ' ';
+    }
+  }
+}

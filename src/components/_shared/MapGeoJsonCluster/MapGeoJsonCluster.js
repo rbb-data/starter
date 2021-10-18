@@ -4,7 +4,7 @@ import Chroma from 'chroma-js';
 import L from 'leaflet';
 import { featureToLatLng } from 'lib/geoJsonCompat';
 import { red } from 'global_styles/colors';
-import _ from './MapGeoJsonCluster.module.sass';
+import _ from './MapGeoJsonCluster.module.scss';
 
 import 'leaflet.markercluster';
 

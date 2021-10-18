@@ -1,0 +1,12 @@
+.marker {
+  border: 0;
+
+  &.betterTouch {
+    padding-left: 14px;
+    padding-top: 12px;
+  }
+
+  svg {
+    pointer-events: none;
+  }
+}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import searchIcon from './img/searchIcon.svg';
 import closeIcon from './img/closeIcon.svg';
 import dropdownIcon from './img/dropdownIcon.svg';
-import styles from './SearchInput.module.sass';
+import styles from './SearchInput.module.scss';
 
 const SearchButton = ({ type, defaultAction }) => {
   switch (type) {

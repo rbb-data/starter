@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { uniqueId } from 'lodash';
 import * as colors from 'global_styles/colors';
-import styles from './TabBar.module.sass';
+import styles from './TabBar.module.scss';
 
 function useId(): string {
   const { current: id } = useRef(uniqueId());

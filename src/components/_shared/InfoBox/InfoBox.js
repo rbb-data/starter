@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Info } from 'react-feather';
 
-import style from './InfoBox.module.sass';
+import style from './InfoBox.module.scss';
 
 const InfoBox = (props) => {
   const { children, className, size = 20 } = props;

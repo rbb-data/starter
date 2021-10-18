@@ -1,6 +1,6 @@
 import React from 'react';
 import rbb24Theme from './rbb24Theme';
-import 'global_styles/index.sass';
+import 'global_styles/index.scss';
 
 const withInterstateFont = (Story, context) => {
   return (

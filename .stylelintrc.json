@@ -1,0 +1,11 @@
+{
+  "extends": ["stylelint-config-sass-guidelines", "stylelint-config-prettier"],
+  "rules": {
+    "color-named": null,
+    "max-nesting-depth": 5,
+    "scss/dollar-variable-pattern": null,
+    "selector-class-pattern": null,
+    "selector-max-compound-selectors": 6,
+    "selector-no-qualifying-type": null
+  }
+}

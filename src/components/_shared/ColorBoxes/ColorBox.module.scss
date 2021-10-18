@@ -1,0 +1,33 @@
+@import 'global_styles/colors';
+@import 'global_styles/breakpoints';
+
+.colorBoxWrapper {
+  box-sizing: border-box;
+  display: grid;
+  grid-auto-flow: row;
+  grid-auto-rows: 1fr;
+  height: 100%;
+  text-align: center;
+}
+
+.colorBox {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 20px 20px 15px;
+
+  output {
+    display: block;
+    font-family: monospace;
+  }
+
+  span {
+    display: block;
+    margin-top: 0.3em;
+    opacity: 0.5;
+  }
+}
+
+.infoText {
+  color: $darkGrey;
+  height: 50%;
+}

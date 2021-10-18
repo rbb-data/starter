@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import TabBar from 'components/_shared/TabBar/TabBar';
-import _ from './ColorBoxes.module.sass';
+import _ from './ColorBoxes.module.scss';
 import { ColorBox } from './ColorBox';
 
 type ColorList =

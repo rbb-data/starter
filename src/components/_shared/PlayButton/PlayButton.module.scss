@@ -1,0 +1,23 @@
+@import 'global_styles/colors';
+@import 'global_styles/breakpoints';
+
+.button {
+  background-color: $red;
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.66);
+  cursor: pointer;
+  display: block;
+  flex: 0 0 35px;
+  font-family: 'Interstate', sans-serif;
+  height: 35px;
+  margin-right: 10px;
+  padding: 0;
+  width: 35px;
+
+  img {
+    height: 100%;
+    margin: 0;
+    width: 100%;
+  }
+}

@@ -1,0 +1,84 @@
+@import 'global_styles/colors';
+@import 'global_styles/breakpoints';
+
+.slider {
+  height: 100%;
+  overflow: hidden;
+  padding: 2px 0;
+  position: relative;
+}
+
+.content {
+  font-weight: bold;
+  height: 100%;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.previousSlideWrapper,
+.nextSlideWrapper {
+  height: 100%;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.slider.hasSlideButtons {
+  .content,
+  .previousSlideWrapper,
+  .nextSlideWrapper {
+    padding: 0 30px;
+
+    @include breakpoint(wide) {
+      padding: 0 40px;
+    }
+  }
+}
+
+.previousSlideWrapper {
+  left: -100%;
+}
+
+.nextSlideWrapper {
+  left: 100%;
+}
+
+.prevNextButton {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  cursor: pointer;
+
+  display: flex;
+  margin-top: -28px;
+  padding: 15px 8px 15px 15px;
+  position: absolute;
+  top: 50%;
+  z-index: 100;
+
+  @include breakpoint(wide) {
+    padding: 15px;
+  }
+
+  img {
+    height: 24px;
+  }
+}
+
+.next {
+  padding-right: 0;
+  right: 0;
+}
+
+.prev {
+  left: 0;
+  padding-left: 0;
+
+  img {
+    transform: rotate(180deg);
+  }
+}

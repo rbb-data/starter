@@ -3,7 +3,7 @@ import ArrowHead from './ArrowHead';
 
 import { constructCurve } from './utils';
 
-import _ from './BezierArrow.module.sass';
+import _ from './BezierArrow.module.scss';
 
 interface Props {
   /** All coordinates necessary to define the position and shape of a Bezier curve */

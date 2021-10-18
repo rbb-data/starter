@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useRef } from 'react';
 import { Scale } from 'chroma-js';
 import * as scales from 'global_styles/gradients';
 // import colors
-import c from './StemAndLeafPlot.module.sass';
+import c from './StemAndLeafPlot.module.scss';
 interface StemAndLeafPlotProps<T> {
   items: T[];
   selectedItem?: T;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import _ from './ColorBoxes.module.sass';
+import _ from './ColorBoxes.module.scss';
 import { ColorBox } from './ColorBox';
 import { Scale } from 'chroma-js';
 

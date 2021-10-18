@@ -1,0 +1,44 @@
+@import 'global_styles/colors';
+@import 'global_styles/breakpoints';
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.detail {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.mapWrapper {
+  flex: 100 1 auto;
+  max-height: 60%;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+
+  @include breakpoint(wide) {
+    max-height: none;
+    min-height: none;
+  }
+}
+
+.map {
+  height: 100%;
+  width: 100%;
+}
+
+.search {
+  left: 20px;
+  position: absolute;
+  top: 20px;
+  width: calc(100% - 40px);
+  z-index: 1000;
+}

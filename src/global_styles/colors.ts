@@ -1,4 +1,4 @@
-// This has the same values as ./colors.sass but exports the variables for use in js
+// This has the same values as ./colors.scss but exports the variables for use in js
 // maybe we could write a script that automatically converts one to the other…
 
 // UI colors

@@ -4,7 +4,7 @@ import { line as lineGenerator, curveMonotoneX } from 'd3-shape';
 import * as colors from 'global_styles/colors';
 import * as breakpoints from 'global_styles/breakpoints';
 import { RawDotSwarm } from '../DotSwarm/DotSwarm';
-import _ from './_LineChartWithDotSwarm.module.sass';
+import _ from './_LineChartWithDotSwarm.module.scss';
 
 type Point = [number, number];
 export type Line = Point[];

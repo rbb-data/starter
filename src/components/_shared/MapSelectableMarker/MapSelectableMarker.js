@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import L, { DivIcon } from 'leaflet';
 import { Marker } from 'react-leaflet';
 import * as colors from 'global_styles/colors';
-import _ from './styles.module.sass';
+import _ from './styles.module.scss';
 
 /**
  * Renders a marker at a given location.

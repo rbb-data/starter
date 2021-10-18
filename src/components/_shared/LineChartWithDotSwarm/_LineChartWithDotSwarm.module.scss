@@ -1,0 +1,56 @@
+@import 'global_styles/colors';
+@import 'global_styles/breakpoints';
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.svg {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+
+  .startDots {
+    animation: fadeIn 2s;
+  }
+
+  text {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .fadeText {
+    animation: fadeIn 2s;
+  }
+
+  .legend {
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: normal;
+  }
+
+  path {
+    fill: none;
+    stroke-width: 2;
+  }
+
+  .infoText {
+    animation: fadeIn 2s;
+    fill: $grey;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0;
+    padding: 20px 20px 0 50%;
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import colors from 'global_styles/colors.sass';
+import colors from 'global_styles/colors.scss';
 import Map from '../Map/Map';
 import MapSelectableMarker from './MapSelectableMarker';
 

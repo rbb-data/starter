@@ -4,7 +4,7 @@ import { featureToLatLng } from 'lib/geoJsonCompat';
 import MixedSearch from 'components/_shared/Search/examples/MixedSearch';
 import InfoBox from 'components/_shared/InfoBox/InfoBox';
 import MapLocator from 'components/_shared/MapLocator/MapLocator';
-import _ from './SearchWrapper.module.sass';
+import _ from './SearchWrapper.module.scss';
 
 function SearchWrapper(props) {
   const { markers, onSelectMarkerId: setSelectedMarkerId } = props;

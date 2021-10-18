@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from './ShareButtons.module.sass';
+import _ from './ShareButtons.module.scss';
 import './css/fontello-embedded.css';
 
 /**

@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from './ColorBox.module.sass';
+import _ from './ColorBox.module.scss';
 import { meetsContrastGuidelines } from 'polished';
 import * as colors from 'global_styles/colors';
 

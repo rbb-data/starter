@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import findIndex from 'lodash/findIndex';
 import Slider from 'components/_shared/Slider/Slider';
 import Slide from './Slide';
-import _ from './Detail.module.sass';
+import _ from './Detail.module.scss';
 
 function getSlide(marker) {
   if (!marker) return null;

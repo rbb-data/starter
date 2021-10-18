@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Chroma from 'chroma-js';
 import * as rbbColors from 'global_styles/colors';
-import _ from './ValueOnGradientBar.module.sass';
+import _ from './ValueOnGradientBar.module.scss';
 
 const ValueOnGradientBar = (props) => {
   const {

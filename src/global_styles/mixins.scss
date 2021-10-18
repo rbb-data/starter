@@ -1,0 +1,33 @@
+$slant-width: 4px;
+
+@mixin slant-left($height: 40px, $color: $darkGrey) {
+  &::before {
+    border: 0 solid transparent;
+    border-right-color: $color;
+    border-right-width: $slant-width;
+    border-top-width: $height;
+    content: '';
+    display: block;
+    height: 0;
+    left: $slant-width * -1;
+    position: absolute;
+    top: 0;
+    width: 0;
+  }
+}
+
+@mixin slant-right($height: 40px, $color: $darkGrey) {
+  &::after {
+    border: 0 solid transparent;
+    border-bottom-width: $height;
+    border-left-color: $color;
+    border-left-width: $slant-width;
+    content: '';
+    display: block;
+    height: 0;
+    position: absolute;
+    right: $slant-width * -1;
+    top: 0;
+    width: 0;
+  }
+}

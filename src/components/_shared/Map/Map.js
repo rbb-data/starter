@@ -9,7 +9,7 @@ import berlinMask from 'data/berlin-mask.geo.json';
 import brandenburgMask from 'data/brandenburg-mask.geo.json';
 import berlinBoroughs from 'data/berlin-bezirke.geo.json';
 import { darkGrey } from 'global_styles/colors';
-import _ from './Map.module.sass';
+import _ from './Map.module.scss';
 
 // TODO:
 // add Potsdam as option

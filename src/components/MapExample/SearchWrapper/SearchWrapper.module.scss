@@ -1,0 +1,8 @@
+.search {
+  left: 20px;
+  pointer-events: none;
+  position: absolute;
+  top: 20px;
+  width: calc(100% - 40px);
+  z-index: 1000;
+}

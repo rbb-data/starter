@@ -25,7 +25,7 @@ import ComponentName from '/src/shared/components/ComponentName/ComponentName';
 Every subfolder in `/components` must have an `README.md` and or a `ComponentName.stories.js`
 file that provides a description of the component and documentation on how to use the component.
 
-#### styles.sass (optional)
+#### styles.scss (optional)
 
 The styles for the component.
 

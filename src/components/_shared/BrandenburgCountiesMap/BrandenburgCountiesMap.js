@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as rbbColors from 'global_styles/colors';
-import _ from './BrandenburgCountiesMap.module.sass';
+import _ from './BrandenburgCountiesMap.module.scss';
 
 import geometries from './geometries.json';
 

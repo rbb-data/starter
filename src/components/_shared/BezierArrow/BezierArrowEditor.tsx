@@ -7,7 +7,7 @@ import BezierArrow from './BezierArrow';
 
 import { constructCurve, mapCoords } from './utils';
 
-import _ from './BezierArrowEditor.module.sass';
+import _ from './BezierArrowEditor.module.scss';
 
 interface DraggableCircleProps {
   coords: [number, number];

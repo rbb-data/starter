@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import stopIcon from './stopIcon.svg';
 import playIcon from './playIcon.svg';
-import _ from './PlayButton.module.sass';
+import _ from './PlayButton.module.scss';
 
 export default function PlayButton(props) {
   const { showStopIcon, onClick, className } = props;

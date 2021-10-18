@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import style from './BalanceGauge.module.sass';
+import style from './BalanceGauge.module.scss';
 
 /**
  * Renders an info gauge that's useful for visualizing balances between two dimensions:

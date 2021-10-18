@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from './Toggle.module.sass';
+import _ from './Toggle.module.scss';
 
 const Toggle = (props) => {
   const { options, active, style, name, format, onChange } = props;

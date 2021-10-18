@@ -1,0 +1,46 @@
+@import 'global_styles/colors';
+
+.Button {
+  transition: opacity 0.2s ease;
+}
+
+.ShareButtonGroup {
+  box-sizing: border-box;
+  font-size: 25px;
+  margin: 5px 5px 10px;
+  text-align: center;
+
+  @media screen and (min-width: 600px) {
+    font-size: 22px;
+    width: 100%;
+
+    \:global {
+      .icon-whatsapp {
+        display: none;
+      }
+    }
+  }
+
+  .text {
+    color: $red;
+    color: $darkGrey;
+    font-size: 14px;
+    margin: 0 0 20px;
+  }
+
+  a {
+    color: $red;
+    margin: 0 20px;
+    text-decoration: none;
+  }
+
+  &:hover {
+    a {
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

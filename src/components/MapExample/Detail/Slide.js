@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from './Slide.module.sass';
+import _ from './Slide.module.scss';
 
 export default function Slide({ feature }) {
   return (
