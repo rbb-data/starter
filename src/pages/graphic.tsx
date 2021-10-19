@@ -36,14 +36,14 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     ]
 
   // load configurations from Google Doc
-  const GOOGLE_DOC_ID = '19hUOlQ0dzz__vWmf5QvMD4W-LWjal09kpSKILMoApOA';
+  const GOOGLE_DOC_ID = '1wCovwTGxPsPM-ED-D7hCaL5sMUFBy1A8OadVUCDtQ3A';
   const doc = await loadGoogleDoc(GOOGLE_DOC_ID, true);
-  const googleConfig = parseArchieML(doc);
+  const config = parseArchieML(doc);
 
   return {
     props: {
       items,
-      header: googleConfig.header,
+      header: config.header,
     },
   };
 };
