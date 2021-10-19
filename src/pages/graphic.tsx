@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
   // load configurations from Google Doc
   const GOOGLE_DOC_ID = '1wCovwTGxPsPM-ED-D7hCaL5sMUFBy1A8OadVUCDtQ3A';
-  const doc = await loadGoogleDoc(GOOGLE_DOC_ID, true);
+  const doc = await loadGoogleDoc(GOOGLE_DOC_ID);
   const config = parseArchieML(doc);
 
   return {

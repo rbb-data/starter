@@ -45,7 +45,7 @@ You can connect this app to a Google doc. `src/pages/graphic.tsx` exemplifies ho
 
 ```js
 const GOOGLE_DOC_ID = '1wCovwTGxPsPM-ED-D7hCaL5sMUFBy1A8OadVUCDtQ3A';
-const doc = await loadGoogleDoc(GOOGLE_DOC_ID, true);
+const doc = await loadGoogleDoc(GOOGLE_DOC_ID);
 const config = parseArchieML(doc);
 ```
 
