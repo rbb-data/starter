@@ -1,6 +1,16 @@
 // adapted from https://github.com/rdmurphy/doc-to-archieml (MIT licensed)
 
 import { google } from 'googleapis';
+import sanitizeHtml from 'sanitize-html';
+
+function sanitize(input) {
+  return sanitizeHtml(input, {
+    allowedTags: ["b", "i", "u", "s", "sub", "sup"],
+    allowedAttributes: {
+      a: [ 'href' ],
+    },
+  })
+}
 
 async function connect(keyFile = 'google-credentials.json') {
   const auth = await google.auth.getClient({
@@ -14,7 +24,7 @@ async function connect(keyFile = 'google-credentials.json') {
 async function loadGoogleDoc(documentId, preserveStyles = false) {
   const client = await connect();
   const { data } = await client.documents.get({ documentId });
-  return parseGoogleDoc(data, preserveStyles);
+  return sanitize(parseGoogleDoc(data, preserveStyles));
 }
 
 function parseGoogleDoc(document, preserveStyles = false) {

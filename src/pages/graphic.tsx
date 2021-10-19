@@ -1,5 +1,6 @@
 import { NextPage, GetStaticProps } from 'next';
 import React from 'react';
+
 import StemAndLeafPlot from 'components/_shared/StemAndLeafPlot/StemAndLeafPlot';
 import Header from 'components/_shared/Header/Header';
 
