@@ -3,20 +3,21 @@ import React from 'react';
 import StemAndLeafPlot from 'components/_shared/StemAndLeafPlot/StemAndLeafPlot';
 import Header from 'components/_shared/Header/Header';
 
+import loadGoogleDoc from 'lib/loadGoogleDoc';
+import { parseArchieML } from 'lib/parse';
+
 interface Props {
   items: number[];
+  header: {
+    title: string;
+    subtitle: string;
+  };
 }
-const Graphic: NextPage<Props> = (props) => {
+const Graphic: NextPage<Props> = ({ items, header }) => {
   return (
     <>
-      <Header>
-        {{
-          title:
-            'Ein Aussagesatz oder notfalls eine Kurzbeschreibung, wenn das eine Live-Grafik ist',
-          subtitle: 'Angabe der Metrik und Erklärung der Grafik',
-        }}
-      </Header>
-      <StemAndLeafPlot items={props.items} numberOfSteps={30} maxValue={30} />
+      <Header>{header}</Header>
+      <StemAndLeafPlot items={items} numberOfSteps={30} maxValue={30} />
     </>
   );
 };
@@ -33,9 +34,15 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       27, 27, 27, 28, 28, 28, 28, 29, 29, 29, 30, 30, 30, 30, 30, 30
     ]
 
+  // load configurations from Google Doc
+  const GOOGLE_DOC_ID = '19hUOlQ0dzz__vWmf5QvMD4W-LWjal09kpSKILMoApOA';
+  const doc = await loadGoogleDoc(GOOGLE_DOC_ID, true);
+  const googleConfig = parseArchieML(doc);
+
   return {
     props: {
       items,
+      header: googleConfig.header,
     },
   };
 };
