@@ -53,9 +53,9 @@ The document id (`GOOGLE_DOC_ID`) can be copy-pasted from the doc's URL. The doc
 
 This app has access to the specified doc because _connect@rbb-datenteam.iam.gserviceaccount.com_ has been granted read access; the associated credentials are stored in `google-credentials.json`. Credentials are not stored in version control. If you don't have them, let one of your colleagues know :)
 
-The document's content is parsed using [ArchieML](http://archieml.org), a simple markup language designed at the New York Times.
+By default any formatting is ignored when loading the document. If you wish to preserve some formatting, use `loadGoogleDoc(GOOGLE_DOC_ID, true)` to load content. Supported styles are: bold, italic, underline, superscript, subscript. As well as links. Anything else is stripped ("sanitized") for security reasons.
 
-Some more information can be found at: https://docs.google.com/document/d/1wCovwTGxPsPM-ED-D7hCaL5sMUFBy1A8OadVUCDtQ3A/
+The document's content is parsed using [ArchieML](http://archieml.org), a simple markup language designed at the New York Times.
 
 ## Embed as iFrame
 

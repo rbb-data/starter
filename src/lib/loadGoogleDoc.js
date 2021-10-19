@@ -20,7 +20,7 @@ function sanitize(input, preserveStyles = false) {
 
 /**
  * Connect to Google Docs
- * 
+ *
  * @param {string} keyFile - path to secret credential file
  * @returns Authenticated Google doc client
  */
@@ -35,7 +35,7 @@ async function connect(keyFile = 'google-credentials.json') {
 
 /**
  * Load content from a Google doc
- * 
+ *
  * @param {string} documentId - Google doc ID
  * @param {boolean} preserveStyles - if true, preserve some formatting
  * @returns {string} Sanitized doc contents
@@ -48,7 +48,7 @@ async function loadGoogleDoc(documentId, preserveStyles = false) {
 
 /**
  * Transform Google Doc object into content string
- * 
+ *
  * @param {Object} document - Google Doc as returned by their API
  * @param {boolean} preserveStyles - if true, preserve some formatting
  *    (supported: bold, italic, underlined, superscript, subscript, links)
@@ -87,7 +87,7 @@ function parseGoogleDoc(document, preserveStyles = false) {
 
 /**
  * Parse Google doc element
- * 
+ *
  * @param {Object} element - Google doc element
  * @param {boolean} preserveStyles - if true, preserve some formatting
  *    (supported: bold, italic, underlined, superscript, subscript, links)
@@ -130,7 +130,7 @@ function parseParagraphElement(element, preserveStyles = false) {
 
 /**
  * Wrap content in tags
- * 
+ *
  * @param {string} content - text
  * @param {string} tag - name of the tag (e.g. "b" for <b>)
  * @returns {string} HTML tag
