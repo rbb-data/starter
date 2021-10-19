@@ -35,9 +35,27 @@ We don't want our keys in version control so you have to add them as NEXT_PUBLIC
 
 ### Analytics
 
-This App can track "page views" and e.g. map interactions.
+This app can track "page views" and e.g. map interactions.
 To enable this you need to replace everything in `{}` in the ANALYTICS variables in the `.env` file
 and set `ANALYTICS_ENABLED` to true.
+
+## Connect to Google Doc
+
+You can connect this app to a Google doc. `src/pages/graphic.tsx` exemplifies how:
+
+```js
+const GOOGLE_DOC_ID = '1wCovwTGxPsPM-ED-D7hCaL5sMUFBy1A8OadVUCDtQ3A';
+const doc = await loadGoogleDoc(GOOGLE_DOC_ID);
+const config = parseArchieML(doc);
+```
+
+The document id (`GOOGLE_DOC_ID`) can be copy-pasted from the doc's URL. The doc specified in the code above, for example, lives at https://docs.google.com/document/d/1wCovwTGxPsPM-ED-D7hCaL5sMUFBy1A8OadVUCDtQ3A/.
+
+This app has access to the specified doc because _connect@rbb-datenteam.iam.gserviceaccount.com_ has been granted read access; the associated credentials are stored in `google-credentials.json`. Credentials are not stored in version control. If you don't have them, let one of your colleagues know :)
+
+By default any formatting is ignored when loading the document. If you wish to preserve some formatting, use `loadGoogleDoc(GOOGLE_DOC_ID, true)` to load content. Supported styles are: bold, italic, underline, superscript, subscript. As well as links. Anything else is stripped ("sanitized") for security reasons.
+
+The document's content is parsed using [ArchieML](http://archieml.org), a simple markup language designed at the New York Times.
 
 ## Embed as iFrame
 
