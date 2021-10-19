@@ -5,11 +5,11 @@ import sanitizeHtml from 'sanitize-html';
 
 function sanitize(input) {
   return sanitizeHtml(input, {
-    allowedTags: ["b", "i", "u", "s", "sub", "sup"],
+    allowedTags: ['b', 'i', 'u', 's', 'sub', 'sup'],
     allowedAttributes: {
-      a: [ 'href' ],
+      a: ['href'],
     },
-  })
+  });
 }
 
 async function connect(keyFile = 'google-credentials.json') {
