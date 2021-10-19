@@ -25,6 +25,8 @@ const makeRequest = debounce(
     // get autocomplete results from api
     const result = await autocomplete(params);
     const features = result.features
+      // ignore search result that are not in the specified region
+      .filter((feature) => feature.properties.region.toLowerCase() === location)
       .map((feature) => fixBerlinSearchResult(feature))
       // format with lat lng
       .map((feature) => ({

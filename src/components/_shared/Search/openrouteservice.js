@@ -134,21 +134,12 @@ export function autocomplete({
     'boundary.rect.max_lon': 13.7775421143,
   };
   let bounds = '';
-  let q = text;
-
-  if (location === 'berlin') {
-    bounds = berlinBounds;
-    q = text.indexOf('Berlin') === -1 ? text + ', Berlin' : text;
-  }
-
-  if (location === 'brandenburg') {
-    bounds = brandenburgBounds;
-    q = text.indexOf('Brandenburg') === -1 ? text + ', Brandenburg' : text;
-  }
+  if (location === 'berlin') bounds = berlinBounds;
+  else if (location === 'brandenburg') bounds = brandenburgBounds;
 
   // bounding box and centroid of Berlin
   const params = {
-    text: q,
+    text,
     sources,
     api_key: TOKEN,
     layers,
