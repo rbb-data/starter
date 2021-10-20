@@ -9,7 +9,6 @@ function useFuseJsSearch<T>(allResults: T[], limit = 10, options = {} as any) {
     threshold: 0.6,
     location: 0,
     distance: 100,
-    maxPatternLength: 32,
     minMatchCharLength: 1,
     keys: ['value'],
     ...fuseOptions,
@@ -21,7 +20,9 @@ function useFuseJsSearch<T>(allResults: T[], limit = 10, options = {} as any) {
     if (searchString === null) return null;
     if (searchString === '') return returnAllOnEmptyString ? allResults : null;
     const fuse = new Fuse(allResults, searchOptions);
-    return fuse.search(searchString, { limit });
+    return fuse
+      .search(searchString, { limit })
+      .map((suggestion) => suggestion.item);
   }
 
   const suggestions = getSuggestions();

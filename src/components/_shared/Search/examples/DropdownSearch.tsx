@@ -1,14 +1,14 @@
 import React from 'react';
+import Fuse from 'fuse.js';
 import useFuseJsSearch from '../hooks/useFuseJsSearch';
 import useDropdownSearchProps from '../hooks/useDropdownSearchProps';
 
 import SearchInput from '../../SearchInput/SearchInput';
-import { FuseOptions } from 'fuse.js';
 
 export interface DropdownSearchProps<T> {
   list: T[];
   limit?: number;
-  fuseOptions?: FuseOptions<T>;
+  fuseOptions?: Fuse.IFuseOptions<T>;
   format: (suggestion: T) => string;
   onResult: (result: T) => void;
   placeholder?: string;
