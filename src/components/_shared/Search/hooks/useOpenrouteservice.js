@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import debounce from 'lodash/debounce';
-import { autocomplete, fixBerlinSearchResult } from '../openrouteservice.js';
+import { autocomplete } from '../openrouteservice.js';
 
 export const format = (feature) =>
   `${feature.properties.name}, ${
@@ -25,7 +25,8 @@ const makeRequest = debounce(
     // get autocomplete results from api
     const result = await autocomplete(params);
     const features = result.features
-      .map((feature) => fixBerlinSearchResult(feature))
+      // ignore search result that are not in the specified region
+      .filter((feature) => feature.properties.region.toLowerCase() === location)
       // format with lat lng
       .map((feature) => ({
         ...feature,

@@ -25,87 +25,6 @@ function throwIfError(res) {
     .catch((err) => console.error(err));
 }
 
-// fix taken from https://docs.rbb-online.de/bitbucket/projects/RD/repos/datateam/browse/investitionen/js/l.geosearch.provider.openstreetmap.js
-export function fixBerlinSearchResult(feature) {
-  let borough = feature.properties.borough;
-  let neighbourhood = feature.properties.neighbourhood;
-
-  if (feature.properties.region === 'Berlin') {
-    // TODO temporary fix
-    // check if https://github.com/pelias/pelias/issues/536 is fixed
-    // or use another search API http://wiki.openstreetmap.org/wiki/Search_engines
-    switch (feature.properties.borough) {
-      case 'Tempelhof-Schoneberg':
-        borough = 'Tempelhof-Schöneberg';
-        break;
-      case 'Treptow-Kopenick':
-        borough = 'Treptow-Köpenick';
-        break;
-      case 'Neukolln':
-        borough = 'Neukölln';
-        break;
-      default:
-        break;
-    }
-
-    switch (feature.properties.neighbourhood) {
-      case 'Franzosisch Buchholz':
-        neighbourhood = 'Französisch Buchholz';
-        break;
-      case 'Niederschonhausen':
-        neighbourhood = 'Niederschönhausen';
-        break;
-      case 'Schoneberg':
-        neighbourhood = 'Schöneberg';
-        break;
-      case 'Neukolln':
-        neighbourhood = 'Neukölln';
-        break;
-      case 'Planterwald':
-        neighbourhood = 'Plänterwald';
-        break;
-      case 'Niederschoneweide':
-        neighbourhood = 'Niederschöneweide';
-        break;
-      case 'Oberschoneweide':
-        neighbourhood = 'Oberschöneweide';
-        break;
-      case 'Kopenick':
-        neighbourhood = 'Köpenick';
-        break;
-      case 'Grunau':
-        neighbourhood = 'Grünau';
-        break;
-      case 'Muggelheim':
-        neighbourhood = 'Müggelheim';
-        break;
-      case 'Schmockwitz':
-        neighbourhood = 'Schmöckwitz';
-        break;
-      case 'Lubars':
-        neighbourhood = 'Lübars';
-        break;
-      case 'Markisches Viertel':
-        neighbourhood = 'Märkisches Viertel';
-        break;
-      case 'Neu-Hohenschonhausen':
-        neighbourhood = 'Neu-Hohenschönhausen';
-        break;
-      default:
-        break;
-    }
-  }
-
-  return {
-    ...feature,
-    properties: {
-      ...feature.properties,
-      borough: borough,
-      neighbourhood: neighbourhood,
-    },
-  };
-}
-
 /**
  * Fetches autocomplete suggestions for a string of text.
  *
@@ -134,21 +53,12 @@ export function autocomplete({
     'boundary.rect.max_lon': 13.7775421143,
   };
   let bounds = '';
-  let q = text;
-
-  if (location === 'berlin') {
-    bounds = berlinBounds;
-    q = text.indexOf('Berlin') === -1 ? text + ', Berlin' : text;
-  }
-
-  if (location === 'brandenburg') {
-    bounds = brandenburgBounds;
-    q = text.indexOf('Brandenburg') === -1 ? text + ', Brandenburg' : text;
-  }
+  if (location === 'berlin') bounds = berlinBounds;
+  else if (location === 'brandenburg') bounds = brandenburgBounds;
 
   // bounding box and centroid of Berlin
   const params = {
-    text: q,
+    text,
     sources,
     api_key: TOKEN,
     layers,
@@ -156,6 +66,7 @@ export function autocomplete({
     'focus.point.lon': 13.3827185,
     ...bounds,
     'boundary.country': 'DEU',
+    lang: 'de',
   };
 
   const uri = `//api.openrouteservice.org/geocode/autocomplete?${toUriString(
