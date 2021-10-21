@@ -1,14 +1,14 @@
 import React from 'react';
+import Fuse from 'fuse.js';
 import useFuseJsSearch from '../hooks/useFuseJsSearch';
 import useDefaultSearchProps from '../hooks/useDefaultSearchProps';
 
 import SearchInput from '../../SearchInput/SearchInput';
-import { FuseOptions } from 'fuse.js';
 
 export interface SimpleSearchProps<T> {
   list: T[];
   /** see https://fusejs.io/api/options.html */
-  fuseOptions: FuseOptions<T>;
+  fuseOptions: Fuse.IFuseOptions<T>;
   keepInputOnFocus?: boolean;
   format: (suggestion: T) => string;
   onResult: (result: T) => void;

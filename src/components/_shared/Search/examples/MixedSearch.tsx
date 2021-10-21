@@ -2,17 +2,17 @@ import React from 'react';
 import useOpenrouteservice, {
   format as orFormat,
 } from '../hooks/useOpenrouteservice';
+import Fuse from 'fuse.js';
 import useFuseJsSearch from '../hooks/useFuseJsSearch';
 import useDefaultSearchProps from '../hooks/useDefaultSearchProps';
 
 import SearchInput from '../../SearchInput/SearchInput';
 import { OpenrouteConfig } from './LocationSearch';
-import { FuseOptions } from 'fuse.js';
 
 export interface MixedSearchProps<T> {
   /** see: https://openrouteservice.org/dev/#/api-docs/geocode/autocomplete/get */
   openrouteConfig: OpenrouteConfig;
-  fuseOptions: FuseOptions<T>;
+  fuseOptions: Fuse.IFuseOptions<T>;
   list: T[];
   format: (suggestion: T) => string;
   keepInputOnFocus: boolean;
