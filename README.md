@@ -2,9 +2,9 @@
 
 This project was bootstrapped with the [rbb starter](https://github.com/rbb-data/starter) and [nextjs](https://nextjs.org/).
 
-## Start a new Project:
+## Start a new project:
 
-To create a new project, pick a `cool-project-name` and run:
+To create a new project, either use GitHub's "Use this template" button above ↑ or pick a `cool-project-name` and run:
 
 ```bash
 git clone git@github.com:rbb-data/starter.git cool-project-name --depth 1
@@ -27,7 +27,7 @@ git push -u origin main
 Your app lives in `/src`.  
 Reusable modules should eventually be moved to `src/components/_shared` and be pushed back to Github. :)
 
-## Environment Variables
+## Environment variables
 
 ### Keys
 
@@ -39,7 +39,7 @@ This app can track "page views" and e.g. map interactions.
 To enable this you need to replace everything in `{}` in the ANALYTICS variables in the `.env` file
 and set `ANALYTICS_ENABLED` to true.
 
-## Connect to Google Doc
+## Connect to Google doc
 
 You can connect this app to a Google doc. `src/pages/graphic.tsx` exemplifies how:
 
@@ -63,7 +63,7 @@ The document's content is parsed using [ArchieML](http://archieml.org), a simple
 
 Note that the iFrame should be given an appropriate title.
 
-## Development and build Scripts
+## Development and build scripts
 
 In the project directory, you can run:
 
@@ -74,15 +74,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
-
-### `npm run analyze`
-
-Analyze the bundle size you can also run `npm run analyze-without-build` if you already have run
-`npm run build` before.
-
-### `npm run storybook`
-
-Creates and opens the [storybook](https://storybook.js.org/) that documents the components in `/shared`
 
 ### `npm run build`
 
@@ -106,6 +97,14 @@ In case you overwrote something by accident, don't panic: There are frequent bac
 **Note:** You need a certificate to access the server. If you don't have one yet your colleagues will gladly help you out.
 
 **Note:** The script uses [rsync](https://rsync.samba.org/) to efficiently synchronize changed between in your local build and the target folder. The version of `rsync` that ships with macOS is out of date, so please install a recent version via [homebrew](https://brew.sh/) or [nix](https://nixos.org/guides/install-nix.html).
+
+### `npm run storybook`
+
+Creates and opens the [storybook](https://storybook.js.org/) that documents the components in `/shared`.
+
+### `npm run storybook:build`
+
+Builds the [storybook](https://storybook.js.org/) that documents the components in `/shared`. Building the storybook fails if ESLint errors exist.
 
 ### `npm run lint`
 
