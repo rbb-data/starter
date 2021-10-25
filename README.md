@@ -102,7 +102,7 @@ In case you overwrote something by accident, don't panic: There are frequent bac
 
 Creates and opens the [storybook](https://storybook.js.org/) that documents the components in `/shared`.
 
-### `npm run storybook:build`
+### `npm run build-storybook`
 
 Builds the [storybook](https://storybook.js.org/) that documents the components in `/shared`. Building the storybook fails if ESLint errors exist.
 

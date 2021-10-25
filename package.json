@@ -10,7 +10,7 @@
     "export": "next export",
     "deploy": "npm run build && npm run export && rsync -srvP --rsync-path='sudo rsync' -e 'ssh -i ~/.ssh/rbb-data.pem' out/ linux@rbb-dj-dev.app.rbb-cloud.de:/var/www/{project-name}/",
     "storybook": "start-storybook -p 6006 -s public",
-    "storybook:build": "build-storybook -s public",
+    "build-storybook": "build-storybook -s public",
     "lint": "npm run lint:eslint && npm run lint:stylelint && npm run lint:prettier",
     "lint:eslint": "next lint --fix",
     "lint:prettier": "prettier --write .",
