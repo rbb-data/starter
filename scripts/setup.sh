@@ -33,6 +33,7 @@ rm .github/workflows/storybook.yml
 [ "$(ls -A .github/workflows)" ] || rmdir .github/workflows
 [ "$(ls -A .github)" ] || rmdir .github
 rm -rf .storybook styleguide
+find src -name '*.stories.*' -type f -delete
 npm uninstall\
   @storybook/addon-a11y\
   @storybook/addon-actions\
