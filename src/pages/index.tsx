@@ -3,9 +3,9 @@ import React from 'react';
 
 function Index() {
   const PAGES = [
-    { url: 'graphic', title: 'Example of a complete graphic (Header+Chart)' },
-    { url: 'chart', title: 'Minimal example of a responsive chart' },
-    { url: 'map', title: 'Map example' },
+    { url: '/graphic', title: 'Example of a complete graphic (Header+Chart)' },
+    { url: '/chart', title: 'Minimal example of a responsive chart' },
+    { url: '/map', title: 'Map example' },
   ];
 
   return (
