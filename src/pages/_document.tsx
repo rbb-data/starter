@@ -28,7 +28,9 @@ class MyDocument extends Document {
         >
           <Main />
           <NextScript />
-          <script src="iframeResizer.contentWindow.min.js"></script>
+          {process.env.production && (
+            <script src="iframeResizer.contentWindow.min.js"></script>
+          )}
           {process.env.ANALYTICS_ENABLED === 'true' && (
             <>
               <script src="https://www.rbb-online.de/basis/js/jquery-2.2.4.min.js"></script>

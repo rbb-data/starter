@@ -1,9 +1,7 @@
 module.exports = {
-  basePath: process.env.URL_PREFIX,
-  // required for source-map-explorer to work (makes build slower though!)
-  productionBrowserSourceMaps: true,
+  basePath: process.env.BASE_PATH,
   eslint: {
-    // prevents ESLint errors to fail the production build
+    // production build completes even if linting errors exist
     ignoreDuringBuilds: true,
   }
 }

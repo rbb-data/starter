@@ -1,5 +1,10 @@
 {
-  "extends": ["next/core-web-vitals", "prettier"],
+  "plugins": ["jsx-a11y"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:jsx-a11y/recommended",
+    "prettier"
+  ],
   "overrides": [
     {
       "files": ["**/*.stories.*"],
@@ -9,7 +14,13 @@
     }
   ],
   "rules": {
-    // do not enforce using next/image for image optimization
-    "@next/next/no-img-element": "off"
+    // do not enforce using next/image
+    "@next/next/no-img-element": "off",
+    // if next/link is used, next takes care of the href attribute
+    "jsx-a11y/anchor-is-valid": "off",
+
+    // TODO: Silenced for now but should be addressed
+    "jsx-a11y/no-noninteractive-element-interactions": "warn",
+    "jsx-a11y/click-events-have-key-events": "warn"
   }
 }
