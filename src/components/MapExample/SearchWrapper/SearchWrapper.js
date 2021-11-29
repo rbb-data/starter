@@ -13,7 +13,7 @@ function SearchWrapper(props) {
   return (
     <div className={_.search}>
       <MixedSearch
-        list={markers}
+        list={markers || []}
         format={(marker) => marker.properties.title}
         fuseOptions={{ keys: ['properties.title'] }}
         placeholder="Nach Ort oder Beispiel suchen"

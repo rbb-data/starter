@@ -7,6 +7,7 @@
     "dev": "next",
     "start": "next start",
     "build": "next build",
+    "build:rbb-online": "BASE_PATH=/static/rbb/rbb-data/{project-name} next build",
     "export": "next export",
     "deploy": "npm run build && npm run export && rsync -srvP --rsync-path='sudo rsync' -e 'ssh -i ~/.ssh/rbb-data.pem' out/ linux@rbb-dj-dev.app.rbb-cloud.de:/var/www/{project-name}/",
     "storybook": "start-storybook -p 6006 -s public",
