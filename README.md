@@ -83,7 +83,9 @@ Builds the app so it can be run on a node server
 
 Builds and exports the app so it can be put on a static file server
 
-If you build your app for deployment on the rbb's static server, make sure to set the environment variable `URL_PREFIX` appropriately (see `.env`).
+### `npm run build:rbb-online && npm run export`
+
+Builds and exports the app for deployment on rbb's static server
 
 ### `npm run deploy`
 
