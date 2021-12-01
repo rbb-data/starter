@@ -46,4 +46,4 @@ npm uninstall\
 node scripts/removeNpmScripts.js storybook build-storybook
 
 # remove remote if it points to the template repository
-git remote get-url origin | grep -q 'https://github.com/rbb-data/starter.git' && git remote remove origin
+git remote get-url origin | grep -q 'rbb-data/starter.git' && git remote remove origin
