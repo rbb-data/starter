@@ -42,9 +42,7 @@ new_curvepath=("M "+String(coordsforArrow[0][0]-x_coord_plus)+","+String(coordsf
       {[-1,0,1].map((direction) => (
         <path
           key={direction}
-          transform={`rotate(${direction * rotation} ${coordsforArrow[0].join(' ')})`}
-          //style={{ stroke:"green"}}
-        
+          transform={`rotate(${direction * rotation} ${coordsforArrow[0].join(' ')})`}        
           d={new_curvepath}
         />
       ))}
