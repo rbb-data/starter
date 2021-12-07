@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
+import { useRef } from 'react';
+import { args } from 'react';
 
+
+import BezierArrowEditor from 'components/_shared/BezierArrow/BezierArrowEditor';
 function Index() {
   const PAGES = [
     { url: '/graphic', title: 'Example of a complete graphic (Header+Chart)' },
@@ -8,20 +12,20 @@ function Index() {
     { url: '/map', title: 'Map example' },
   ];
 
+  
+
+  const WIDTH = 400;
+  const HEIGHT = 120;
+
+  const canvasRef = useRef();
+
   return (
-    <>
-      <b>Example pages:</b>
-      <ul>
-        {PAGES.map(({ url, title }) => (
-          <li key={url}>
-            <Link href={url}>
-              <a>{title}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </>
+    <svg ref={canvasRef} width={WIDTH} height={HEIGHT} overflow="visible">
+      <rect width={WIDTH} height={HEIGHT} fill="whitesmoke" />
+      <BezierArrowEditor canvasRef={canvasRef} {...args} />
+    </svg>
   );
 }
+
 
 export default Index;
