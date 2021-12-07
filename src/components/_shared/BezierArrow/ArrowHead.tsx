@@ -21,27 +21,33 @@ function ArrowHead({ curvePath, coordsforArrow, rotation = 30, length = 10 }: Pr
     x_coord_plus=0
     y_coord_plus=length
 }else{
-   x_coord_plus = inclination === 0 ? length : Math.sqrt(Math.pow(length, 2)*Math.pow(inclination, 2)/2);
+   x_coord_plus = inclination === 0 ? length : Math.sqrt(Math.pow(length, 2)/(1+Math.pow(inclination, 2)));
    y_coord_plus = inclination === 0 ? 0 : x_coord_plus*inclination
 }
 console.log(coordsforArrow[0],coordsforArrow[1]);
-if (coordsforArrow[0][0]>=coordsforArrow[1][0]){
+if (coordsforArrow[0][0]>coordsforArrow[1][0]){
+  new_curvepath=("M "+String(coordsforArrow[0][0]-x_coord_plus)+","+String(coordsforArrow[0][1]-y_coord_plus)+" L "+String(coordsforArrow[0][0])+","+String(coordsforArrow[0][1]));
 }
 if (coordsforArrow[0][0]<coordsforArrow[1][0]){
-  //rotation=180-rotation;
+  new_curvepath=("M "+String(coordsforArrow[0][0]+x_coord_plus)+","+String(coordsforArrow[0][1]+y_coord_plus)+" L "+String(coordsforArrow[0][0])+","+String(coordsforArrow[0][1]));
 }
-console.log(arrowrotation)
-new_curvepath=("M "+String(coordsforArrow[0][0]-x_coord_plus)+","+String(coordsforArrow[0][1]-y_coord_plus)+" L "+String(coordsforArrow[0][0])+","+String(coordsforArrow[0][1]));
+if (coordsforArrow[0][0]===coordsforArrow[1][0]){
+  if (coordsforArrow[0][1]>=coordsforArrow[1][1]){
+  new_curvepath=("M "+String(coordsforArrow[0][0]-x_coord_plus)+","+String(coordsforArrow[0][1]-y_coord_plus)+" L "+String(coordsforArrow[0][0])+","+String(coordsforArrow[0][1])) 
+};
+if (coordsforArrow[0][1]<coordsforArrow[1][1]){
+  new_curvepath=("M "+String(coordsforArrow[0][0]+x_coord_plus)+","+String(coordsforArrow[0][1]+y_coord_plus)+" L "+String(coordsforArrow[0][0])+","+String(coordsforArrow[0][1])) 
+};
+}
 
 
   return (
     <g>
-      {[0].map((direction) => (
+      {[-1,0,1].map((direction) => (
         <path
           key={direction}
           transform={`rotate(${direction * rotation} ${coordsforArrow[0].join(' ')})`}
-          style={{ stroke:"green", //strokeDasharray: [length, LARGE_VALUE].join(' ')
-        }
+          style={{ stroke:"green"}
         }
           d={new_curvepath}
         />
