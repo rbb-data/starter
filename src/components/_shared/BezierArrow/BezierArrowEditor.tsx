@@ -69,9 +69,9 @@ interface Props {
 function BezierArrowEditor({
   canvasRef,
   initialStartCoords = [10, 10],
-  initialEndCoords = [60, 10],
+  initialEndCoords = [60, 60],
   initialStartBezierHandle = [10, 40],
-  initialEndBezierHandle = [60, 60],
+  initialEndBezierHandle = [60, 10],
   drawArrowHead = true,
   arrowHeadAnchor = 'end',
   arrowHeadLength = 10,

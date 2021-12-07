@@ -12,10 +12,9 @@ interface Props {
 let x_coord_plus: number;
 let y_coord_plus: number;
 let new_curvepath: string;
-let arrowrotation: number;
 
 function ArrowHead({ curvePath, coordsforArrow, rotation = 30, length = 10 }: Props) {
-  console.log(coordsforArrow) 
+  /*we calculate the inclination between bezierhandle and end of arrow to get for any x also y*/
   const inclination=((coordsforArrow[1][1]-coordsforArrow[0][1])/(coordsforArrow[1][0]-coordsforArrow[0][0]))
   if(!isFinite(inclination)){
     x_coord_plus=0
@@ -24,21 +23,18 @@ function ArrowHead({ curvePath, coordsforArrow, rotation = 30, length = 10 }: Pr
    x_coord_plus = inclination === 0 ? length : Math.sqrt(Math.pow(length, 2)/(1+Math.pow(inclination, 2)));
    y_coord_plus = inclination === 0 ? 0 : x_coord_plus*inclination
 }
-console.log(coordsforArrow[0],coordsforArrow[1]);
-if (coordsforArrow[0][0]>coordsforArrow[1][0]){
-  new_curvepath=("M "+String(coordsforArrow[0][0]-x_coord_plus)+","+String(coordsforArrow[0][1]-y_coord_plus)+" L "+String(coordsforArrow[0][0])+","+String(coordsforArrow[0][1]));
-}
+  /* as the above calculation involves a sqrt we have to add negative and positive inclination as possibilities*/
 if (coordsforArrow[0][0]<coordsforArrow[1][0]){
-  new_curvepath=("M "+String(coordsforArrow[0][0]+x_coord_plus)+","+String(coordsforArrow[0][1]+y_coord_plus)+" L "+String(coordsforArrow[0][0])+","+String(coordsforArrow[0][1]));
+  x_coord_plus=x_coord_plus*-1
+  y_coord_plus=y_coord_plus*-1
 }
-if (coordsforArrow[0][0]===coordsforArrow[1][0]){
-  if (coordsforArrow[0][1]>=coordsforArrow[1][1]){
-  new_curvepath=("M "+String(coordsforArrow[0][0]-x_coord_plus)+","+String(coordsforArrow[0][1]-y_coord_plus)+" L "+String(coordsforArrow[0][0])+","+String(coordsforArrow[0][1])) 
-};
-if (coordsforArrow[0][1]<coordsforArrow[1][1]){
-  new_curvepath=("M "+String(coordsforArrow[0][0]+x_coord_plus)+","+String(coordsforArrow[0][1]+y_coord_plus)+" L "+String(coordsforArrow[0][0])+","+String(coordsforArrow[0][1])) 
-};
-}
+
+if (coordsforArrow[0][0]===coordsforArrow[1][0]&&coordsforArrow[0][1]<coordsforArrow[1][1]){
+  x_coord_plus=x_coord_plus*-1
+  y_coord_plus=y_coord_plus*-1
+  };
+
+new_curvepath=("M "+String(coordsforArrow[0][0]-x_coord_plus)+","+String(coordsforArrow[0][1]-y_coord_plus)+" L "+String(coordsforArrow[0][0])+","+String(coordsforArrow[0][1]));
 
 
   return (
@@ -47,8 +43,8 @@ if (coordsforArrow[0][1]<coordsforArrow[1][1]){
         <path
           key={direction}
           transform={`rotate(${direction * rotation} ${coordsforArrow[0].join(' ')})`}
-          style={{ stroke:"green"}
-        }
+          //style={{ stroke:"green"}}
+        
           d={new_curvepath}
         />
       ))}

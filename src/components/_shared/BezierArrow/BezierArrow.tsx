@@ -32,8 +32,7 @@ function BezierArrow({
   className = '',
 }: Props) {
   const curve = constructCurve(coords);
-  console.log("these are your coords",coords)
-  console.log(curve)
+
 
   const invertCurve = constructCurve({
     startCoords: coords.endCoords,
