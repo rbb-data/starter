@@ -29,7 +29,7 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
           {process.env.production && (
-            <script src="iframeResizer.contentWindow.min.js"></script>
+            <script src="https://storage.googleapis.com/rbb-data-static/iframe-resizer/iframeResizer.contentWindow.min.js"></script>
           )}
           {process.env.ANALYTICS_ENABLED === 'true' && (
             <>
