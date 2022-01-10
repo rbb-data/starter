@@ -87,6 +87,10 @@ Builds and exports the app so it can be put on a static file server
 
 Builds and exports the app for deployment on rbb's static server
 
+### `npm run build:google-cloud && npm run export`
+
+Builds and exports the app for deployment to Google Cloud
+
 ### `npm run deploy`
 
 Runs `build` and `export` and uploads the files to `dj1.app.rbb-cloud.de`.
@@ -99,6 +103,12 @@ In case you overwrote something by accident, don't panic: There are frequent bac
 **Note:** You need a certificate to access the server. If you don't have one yet your colleagues will gladly help you out.
 
 **Note:** The script uses [rsync](https://rsync.samba.org/) to efficiently synchronize changed between in your local build and the target folder. The version of `rsync` that ships with macOS is out of date, so please install a recent version via [homebrew](https://brew.sh/) or [nix](https://nixos.org/guides/install-nix.html).
+
+### `npm run deploy:google-cloud`
+
+Runs `build` and `export` and uploads the files to the Google Cloud Storage `rbb-data-static`. You'll need Google Cloud's command line tools `gcloud` and `gsutil` installed and configured (for installation instructions, see https://cloud.google.com/sdk/docs/install).
+
+The deployed file will be available at https://storage.googleapis.com/rbb-data-static/{project-name}/index.html
 
 ### `npm run storybook`
 
