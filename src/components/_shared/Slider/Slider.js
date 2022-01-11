@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import nextIcon from './nextIcon.svg';
 import _ from './Slider.module.scss';
@@ -7,7 +8,7 @@ import _ from './Slider.module.scss';
  * Adds prev next icons around provided content and provides functions for navigating
  * backward and forward through content (on mobile with swipe gesture).
  */
-export default class Slider extends Component {
+class Slider extends Component {
   static propTypes = {
     /** an array of render functions for the previous current and next slide
      *  in that order.
@@ -122,6 +123,7 @@ export default class Slider extends Component {
 
   render() {
     const {
+      router,
       className,
       onForwardNavigation: navigateForward,
       onBackwardNavigation: navigateBack,
@@ -173,7 +175,7 @@ export default class Slider extends Component {
               >
                 <img
                   alt="go to previous slide"
-                  src={nextIcon.src || nextIcon}
+                  src={router.basePath + (nextIcon.src || nextIcon)}
                 />
                 {labelSlideButtons && previousSlide}
               </button>
@@ -184,7 +186,10 @@ export default class Slider extends Component {
                 onClick={navigateForward}
               >
                 {labelSlideButtons && nextSlide}
-                <img alt="go to next slide" src={nextIcon.src || nextIcon} />
+                <img
+                  alt="go to next slide"
+                  src={router.basePath + (nextIcon.src || nextIcon)}
+                />
               </button>
             )}
           </div>
@@ -193,3 +198,5 @@ export default class Slider extends Component {
     );
   }
 }
+
+export default withRouter(Slider);

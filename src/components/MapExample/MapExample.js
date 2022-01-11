@@ -1,6 +1,7 @@
 /* global fetch */
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Map from 'components/_shared/Map/Map';
 import MapElements from './MapElements/MapElements';
 import SearchWrapper from './SearchWrapper/SearchWrapper';
@@ -8,12 +9,14 @@ import Detail from './Detail/Detail';
 import _ from './App.module.scss';
 
 function App(props) {
+  const { basePath } = useRouter();
+
   const [markers, setMarkers] = useState(null);
   const [selectedMarkerId, setSelectedMarkerId] = useState('0');
 
   useEffect(() => {
     async function fetchMarkers() {
-      const res = await fetch('/markers.geo.json');
+      const res = await fetch(`${basePath}/markers.geo.json`);
       const json = await res.json();
       setMarkers(json.features);
     }

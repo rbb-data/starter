@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import searchIcon from './img/searchIcon.svg';
 import closeIcon from './img/closeIcon.svg';
@@ -6,12 +7,14 @@ import dropdownIcon from './img/dropdownIcon.svg';
 import styles from './SearchInput.module.scss';
 
 const SearchButton = ({ type, defaultAction }) => {
+  const { basePath } = useRouter();
+
   switch (type) {
     default:
     case 'search':
       return (
         <button key="submit" className={styles.searchButton} type={'submit'}>
-          <img src={searchIcon.src || searchIcon} alt="search" />
+          <img src={basePath + (searchIcon.src || searchIcon)} alt="search" />
         </button>
       );
     case 'dropdown':
@@ -22,7 +25,7 @@ const SearchButton = ({ type, defaultAction }) => {
           onClick={defaultAction}
         >
           <img
-            src={dropdownIcon.src || dropdownIcon}
+            src={basePath + (dropdownIcon.src || dropdownIcon)}
             alt="show"
             className={styles.dropdown}
           />
@@ -31,7 +34,7 @@ const SearchButton = ({ type, defaultAction }) => {
     case 'cancel':
       return (
         <button key="reset" className={styles.searchButton} type={'reset'}>
-          <img src={closeIcon.src || closeIcon} alt="reset" />
+          <img src={basePath + (closeIcon.src || closeIcon)} alt="reset" />
         </button>
       );
   }
