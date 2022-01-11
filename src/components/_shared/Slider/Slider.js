@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 import nextIcon from './nextIcon.svg';
 import _ from './Slider.module.scss';
 
+/** Necessary because Storybook has no access to next's router */
+function getSrc(router, resource) {
+  return router ? router.basePath + resource.src : resource;
+}
+
 /**
  * Adds prev next icons around provided content and provides functions for navigating
  * backward and forward through content (on mobile with swipe gesture).
@@ -175,7 +180,7 @@ class Slider extends Component {
               >
                 <img
                   alt="go to previous slide"
-                  src={router.basePath + (nextIcon.src || nextIcon)}
+                  src={getSrc(router, nextIcon)}
                 />
                 {labelSlideButtons && previousSlide}
               </button>
@@ -186,10 +191,7 @@ class Slider extends Component {
                 onClick={navigateForward}
               >
                 {labelSlideButtons && nextSlide}
-                <img
-                  alt="go to next slide"
-                  src={router.basePath + (nextIcon.src || nextIcon)}
-                />
+                <img alt="go to next slide" src={getSrc(router, nextIcon)} />
               </button>
             )}
           </div>

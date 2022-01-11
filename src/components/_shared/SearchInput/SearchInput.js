@@ -6,15 +6,20 @@ import closeIcon from './img/closeIcon.svg';
 import dropdownIcon from './img/dropdownIcon.svg';
 import styles from './SearchInput.module.scss';
 
+/** Necessary because Storybook has no access to next's router */
+function getSrc(router, resource) {
+  return router ? router.basePath + resource.src : resource;
+}
+
 const SearchButton = ({ type, defaultAction }) => {
-  const { basePath } = useRouter();
+  const router = useRouter();
 
   switch (type) {
     default:
     case 'search':
       return (
         <button key="submit" className={styles.searchButton} type={'submit'}>
-          <img src={basePath + (searchIcon.src || searchIcon)} alt="search" />
+          <img src={getSrc(router, searchIcon)} alt="search" />
         </button>
       );
     case 'dropdown':
@@ -25,7 +30,7 @@ const SearchButton = ({ type, defaultAction }) => {
           onClick={defaultAction}
         >
           <img
-            src={basePath + (dropdownIcon.src || dropdownIcon)}
+            src={getSrc(router, dropdownIcon)}
             alt="show"
             className={styles.dropdown}
           />
@@ -34,7 +39,7 @@ const SearchButton = ({ type, defaultAction }) => {
     case 'cancel':
       return (
         <button key="reset" className={styles.searchButton} type={'reset'}>
-          <img src={basePath + (closeIcon.src || closeIcon)} alt="reset" />
+          <img src={getSrc(router, closeIcon)} alt="reset" />
         </button>
       );
   }
