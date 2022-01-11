@@ -32,7 +32,7 @@ function App(props) {
         onSelectMarkerId={setSelectedMarkerId}
       />
       <div className={_.mapWrapper}>
-        <Map bingKey={process.env.REACT_APP_BING_KEY} className={_.map}>
+        <Map bingKey={process.env.NEXT_PUBLIC_BING_KEY} className={_.map}>
           <MapElements
             markers={markers}
             onSelectMarkerId={setSelectedMarkerId}
