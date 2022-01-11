@@ -29,15 +29,33 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
           {process.env.production && (
-            <script src="https://storage.googleapis.com/rbb-data-static/iframe-resizer/iframeResizer.contentWindow.min.js"></script>
+            <script
+              async
+              src="https://storage.googleapis.com/rbb-data-static/iframe-resizer/iframeResizer.contentWindow.min.js"
+            ></script>
           )}
           {process.env.ANALYTICS_ENABLED === 'true' && (
             <>
-              <script src="https://www.rbb-online.de/basis/js/jquery-2.2.4.min.js"></script>
-              <script src="https://www.rbb-online.de/basis/js/underscore-1.8.2.js"></script>
-              <script src="https://www.rbb-online.de/basis/js/underscore.string-3.0.3.js"></script>
-              <script src="https://www.rbb-online.de/basis/js/analytics.js"></script>
-              <script src="https://www.rbb-online.de/basis/js/xtcore.js"></script>
+              <script
+                async
+                src="https://www.rbb-online.de/basis/js/jquery-2.2.4.min.js"
+              ></script>
+              <script
+                async
+                src="https://www.rbb-online.de/basis/js/underscore-1.8.2.js"
+              ></script>
+              <script
+                async
+                src="https://www.rbb-online.de/basis/js/underscore.string-3.0.3.js"
+              ></script>
+              <script
+                async
+                src="https://www.rbb-online.de/basis/js/analytics.js"
+              ></script>
+              <script
+                async
+                src="https://www.rbb-online.de/basis/js/xtcore.js"
+              ></script>
             </>
           )}
         </body>
